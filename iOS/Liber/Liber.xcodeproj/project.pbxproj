@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
+		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
+		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
+		E73A65E01EBB73A0004181DB /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DF1EBB73A0004181DB /* MasterViewController.m */; };
+		E73A65E31EBB73A0004181DB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* DetailViewController.m */; };
+		E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E41EBB73A0004181DB /* Main.storyboard */; };
+		E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E71EBB73A0004181DB /* Assets.xcassets */; };
+		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
+		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
+		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E73A65F21EBB73A0004181DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73A65CA1EBB73A0004181DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E73A65D11EBB73A0004181DB;
+			remoteInfo = Liber;
+		};
+		E73A65FD1EBB73A0004181DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73A65CA1EBB73A0004181DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E73A65D11EBB73A0004181DB;
+			remoteInfo = Liber;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E73A65D91EBB73A0004181DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Liber.xcdatamodel; sourceTree = "<group>"; };
+		E73A65DE1EBB73A0004181DB /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		E73A65DF1EBB73A0004181DB /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		E73A65E11EBB73A0004181DB /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E73A65E21EBB73A0004181DB /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E73A65E51EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E73A65E71EBB73A0004181DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E73A65EA1EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E73A65EC1EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E73A65F11EBB73A0004181DB /* LiberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73A65F51EBB73A0004181DB /* LiberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberTests.m; sourceTree = "<group>"; };
+		E73A65F71EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73A66001EBB73A0004181DB /* LiberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberUITests.m; sourceTree = "<group>"; };
+		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E73A65CF1EBB73A0004181DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65EE1EBB73A0004181DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65F91EBB73A0004181DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E73A65C91EBB73A0004181DB = {
+			isa = PBXGroup;
+			children = (
+				E73A65D41EBB73A0004181DB /* Liber */,
+				E73A65F41EBB73A0004181DB /* LiberTests */,
+				E73A65FF1EBB73A0004181DB /* LiberUITests */,
+				E73A65D31EBB73A0004181DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E73A65D31EBB73A0004181DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65D21EBB73A0004181DB /* Liber.app */,
+				E73A65F11EBB73A0004181DB /* LiberTests.xctest */,
+				E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E73A65D41EBB73A0004181DB /* Liber */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65D81EBB73A0004181DB /* AppDelegate.h */,
+				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
+				E73A65DE1EBB73A0004181DB /* MasterViewController.h */,
+				E73A65DF1EBB73A0004181DB /* MasterViewController.m */,
+				E73A65E11EBB73A0004181DB /* DetailViewController.h */,
+				E73A65E21EBB73A0004181DB /* DetailViewController.m */,
+				E73A65E41EBB73A0004181DB /* Main.storyboard */,
+				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
+				E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */,
+				E73A65EC1EBB73A0004181DB /* Info.plist */,
+				E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */,
+				E73A65D51EBB73A0004181DB /* Supporting Files */,
+			);
+			path = Liber;
+			sourceTree = "<group>";
+		};
+		E73A65D51EBB73A0004181DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65D61EBB73A0004181DB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E73A65F41EBB73A0004181DB /* LiberTests */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65F51EBB73A0004181DB /* LiberTests.m */,
+				E73A65F71EBB73A0004181DB /* Info.plist */,
+			);
+			path = LiberTests;
+			sourceTree = "<group>";
+		};
+		E73A65FF1EBB73A0004181DB /* LiberUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E73A66001EBB73A0004181DB /* LiberUITests.m */,
+				E73A66021EBB73A0004181DB /* Info.plist */,
+			);
+			path = LiberUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E73A65D11EBB73A0004181DB /* Liber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73A66051EBB73A0004181DB /* Build configuration list for PBXNativeTarget "Liber" */;
+			buildPhases = (
+				E73A65CE1EBB73A0004181DB /* Sources */,
+				E73A65CF1EBB73A0004181DB /* Frameworks */,
+				E73A65D01EBB73A0004181DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Liber;
+			productName = Liber;
+			productReference = E73A65D21EBB73A0004181DB /* Liber.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73A65F01EBB73A0004181DB /* LiberTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73A66081EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberTests" */;
+			buildPhases = (
+				E73A65ED1EBB73A0004181DB /* Sources */,
+				E73A65EE1EBB73A0004181DB /* Frameworks */,
+				E73A65EF1EBB73A0004181DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73A65F31EBB73A0004181DB /* PBXTargetDependency */,
+			);
+			name = LiberTests;
+			productName = LiberTests;
+			productReference = E73A65F11EBB73A0004181DB /* LiberTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E73A65FB1EBB73A0004181DB /* LiberUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73A660B1EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberUITests" */;
+			buildPhases = (
+				E73A65F81EBB73A0004181DB /* Sources */,
+				E73A65F91EBB73A0004181DB /* Frameworks */,
+				E73A65FA1EBB73A0004181DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73A65FE1EBB73A0004181DB /* PBXTargetDependency */,
+			);
+			name = LiberUITests;
+			productName = LiberUITests;
+			productReference = E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E73A65CA1EBB73A0004181DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Christian-Schneider";
+				TargetAttributes = {
+					E73A65D11EBB73A0004181DB = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = S4385JPV95;
+						ProvisioningStyle = Automatic;
+					};
+					E73A65F01EBB73A0004181DB = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = S4385JPV95;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E73A65D11EBB73A0004181DB;
+					};
+					E73A65FB1EBB73A0004181DB = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = S4385JPV95;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E73A65D11EBB73A0004181DB;
+					};
+				};
+			};
+			buildConfigurationList = E73A65CD1EBB73A0004181DB /* Build configuration list for PBXProject "Liber" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E73A65C91EBB73A0004181DB;
+			productRefGroup = E73A65D31EBB73A0004181DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E73A65D11EBB73A0004181DB /* Liber */,
+				E73A65F01EBB73A0004181DB /* LiberTests */,
+				E73A65FB1EBB73A0004181DB /* LiberUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E73A65D01EBB73A0004181DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
+				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
+				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65EF1EBB73A0004181DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65FA1EBB73A0004181DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E73A65CE1EBB73A0004181DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73A65E31EBB73A0004181DB /* DetailViewController.m in Sources */,
+				E73A65E01EBB73A0004181DB /* MasterViewController.m in Sources */,
+				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
+				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
+				E73A65D71EBB73A0004181DB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65ED1EBB73A0004181DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73A65F81EBB73A0004181DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E73A65F31EBB73A0004181DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E73A65D11EBB73A0004181DB /* Liber */;
+			targetProxy = E73A65F21EBB73A0004181DB /* PBXContainerItemProxy */;
+		};
+		E73A65FE1EBB73A0004181DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E73A65D11EBB73A0004181DB /* Liber */;
+			targetProxy = E73A65FD1EBB73A0004181DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E73A65E41EBB73A0004181DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E73A65E51EBB73A0004181DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E73A65EA1EBB73A0004181DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E73A66031EBB73A0004181DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E73A66041EBB73A0004181DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E73A66061EBB73A0004181DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = Liber/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E73A66071EBB73A0004181DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = Liber/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E73A66091EBB73A0004181DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = LiberTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.LiberTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Liber.app/Liber";
+			};
+			name = Debug;
+		};
+		E73A660A1EBB73A0004181DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = LiberTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.LiberTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Liber.app/Liber";
+			};
+			name = Release;
+		};
+		E73A660C1EBB73A0004181DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = LiberUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.LiberUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Liber;
+			};
+			name = Debug;
+		};
+		E73A660D1EBB73A0004181DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = S4385JPV95;
+				INFOPLIST_FILE = LiberUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CS.LiberUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Liber;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E73A65CD1EBB73A0004181DB /* Build configuration list for PBXProject "Liber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73A66031EBB73A0004181DB /* Debug */,
+				E73A66041EBB73A0004181DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73A66051EBB73A0004181DB /* Build configuration list for PBXNativeTarget "Liber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73A66061EBB73A0004181DB /* Debug */,
+				E73A66071EBB73A0004181DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E73A66081EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73A66091EBB73A0004181DB /* Debug */,
+				E73A660A1EBB73A0004181DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E73A660B1EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73A660C1EBB73A0004181DB /* Debug */,
+				E73A660D1EBB73A0004181DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */,
+			);
+			currentVersion = E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */;
+			path = Liber.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E73A65CA1EBB73A0004181DB /* Project object */;
+}
