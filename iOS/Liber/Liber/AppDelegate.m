@@ -11,6 +11,7 @@
 #import "MasterViewController.h"
 
 #import <MagicalRecord/MagicalRecord.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
