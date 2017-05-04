@@ -10,6 +10,8 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 
+#import <MagicalRecord/MagicalRecord.h>
+
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
 @end
