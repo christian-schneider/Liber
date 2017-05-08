@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
@@ -24,6 +25,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E732470F1EC0F4D30023ACB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F26B75751D7F6AF700714F70;
+			remoteInfo = "ObjectiveDropboxOfficial iOS";
+		};
+		E73247111EC0F4D30023ACB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F27DE9E21D7FF909003B1CEE;
+			remoteInfo = "ObjectiveDropboxOfficial macOS";
+		};
 		E73A65F21EBB73A0004181DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E73A65CA1EBB73A0004181DB /* Project object */;
@@ -146,6 +161,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -174,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */,
 				E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */,
 				E73A662C1EBB78DC004181DB /* MagicalRecord.framework in Frameworks */,
 			);
@@ -198,6 +215,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E732470B1EC0F4D30023ACB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */,
+				E73247121EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E73A65C91EBB73A0004181DB = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +308,7 @@
 		E73A662A1EBB7885004181DB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */,
 				E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */,
 				E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */,
 			);
@@ -406,6 +433,10 @@
 					ProductGroup = E73A660F1EBB7878004181DB /* Products */;
 					ProjectRef = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
 				},
+				{
+					ProductGroup = E732470B1EC0F4D30023ACB6 /* Products */;
+					ProjectRef = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -417,6 +448,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveDropboxOfficial.framework;
+			remoteRef = E732470F1EC0F4D30023ACB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E73247121EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveDropboxOfficial.framework;
+			remoteRef = E73247111EC0F4D30023ACB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E73A661B1EBB7878004181DB /* MagicalRecord.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -800,6 +845,7 @@
 				E73A66071EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E73A66081EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberTests" */ = {
 			isa = XCConfigurationList;
@@ -808,6 +854,7 @@
 				E73A660A1EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E73A660B1EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberUITests" */ = {
 			isa = XCConfigurationList;
@@ -816,6 +863,7 @@
 				E73A660D1EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
