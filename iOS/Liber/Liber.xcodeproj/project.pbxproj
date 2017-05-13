@@ -800,6 +800,7 @@
 				E73A66071EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E73A66081EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberTests" */ = {
 			isa = XCConfigurationList;
@@ -808,6 +809,7 @@
 				E73A660A1EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E73A660B1EBB73A0004181DB /* Build configuration list for PBXNativeTarget "LiberUITests" */ = {
 			isa = XCConfigurationList;
@@ -816,6 +818,7 @@
 				E73A660D1EBB73A0004181DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
