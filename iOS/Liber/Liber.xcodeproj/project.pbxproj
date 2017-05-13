@@ -22,6 +22,7 @@
 		E73A662D1EBB791B004181DB /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A661B1EBB7878004181DB /* MagicalRecord.framework */; };
 		E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
 		E73A66471EBB7A2F004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
+		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +184,7 @@
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
 		E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
+		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 		E73A65D41EBB73A0004181DB /* Liber */ = {
 			isa = PBXGroup;
 			children = (
+				E75FFE841EC6D44F00881694 /* Resources */,
 				E73A65D81EBB73A0004181DB /* AppDelegate.h */,
 				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
 				E73A65DE1EBB73A0004181DB /* MasterViewController.h */,
@@ -327,6 +330,14 @@
 				E73A66451EBB7A16004181DB /* AFNetworking tvOS Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E75FFE841EC6D44F00881694 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -574,6 +585,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */,
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
 				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
 				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,
