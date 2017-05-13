@@ -2,7 +2,6 @@
 //  MasterViewController.m
 //  Liber
 //
-//  Created by galzu on 04.05.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
@@ -35,6 +34,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    if (![[DBOAuthManager sharedOAuthManager] hasStoredAccessTokens]) {
+        [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
+                                       controller:self
+                                          openURL:^(NSURL *url) {
+                                              [[UIApplication sharedApplication] openURL:url];
+                                          }];
+    }
+    
+    
+
 }
 
 
