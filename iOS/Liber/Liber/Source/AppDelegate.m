@@ -6,9 +6,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DetailViewController.h"
-#import "MasterViewController.h"
-
+#import "LBMasterViewController.h"
+#import "LBCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
@@ -28,9 +27,8 @@
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
 
-    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
-    controller.managedObjectContext = self.persistentContainer.viewContext;
+    // UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+    // MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
     
@@ -88,7 +86,7 @@
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[LBCollectionViewController class]] /*&& ([(LBCollectionViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)*/) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
     } else {

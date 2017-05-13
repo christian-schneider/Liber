@@ -11,8 +11,8 @@
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
-		E73A65E01EBB73A0004181DB /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DF1EBB73A0004181DB /* MasterViewController.m */; };
-		E73A65E31EBB73A0004181DB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* DetailViewController.m */; };
+		E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */; };
+		E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */; };
 		E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E41EBB73A0004181DB /* Main.storyboard */; };
 		E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E71EBB73A0004181DB /* Assets.xcassets */; };
 		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
@@ -23,6 +23,8 @@
 		E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
 		E73A66471EBB7A2F004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
 		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
+		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
+		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,13 +167,13 @@
 		E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E73A65D91EBB73A0004181DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
+		E73A65D91EBB73A0004181DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = "<group>"; };
 		E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Liber.xcdatamodel; sourceTree = "<group>"; };
-		E73A65DE1EBB73A0004181DB /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		E73A65DF1EBB73A0004181DB /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		E73A65E11EBB73A0004181DB /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		E73A65E21EBB73A0004181DB /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMasterViewController.h; path = Source/LBMasterViewController.h; sourceTree = "<group>"; };
+		E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMasterViewController.m; path = Source/LBMasterViewController.m; sourceTree = "<group>"; };
+		E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBCollectionViewController.h; path = Source/LBCollectionViewController.h; sourceTree = "<group>"; };
+		E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBCollectionViewController.m; path = Source/LBCollectionViewController.m; sourceTree = "<group>"; };
 		E73A65E51EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E73A65E71EBB73A0004181DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E73A65EA1EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -185,6 +187,10 @@
 		E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
 		E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
 		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
+		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlaylistsViewController.h; path = Source/LBPlaylistsViewController.h; sourceTree = "<group>"; };
+		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlaylistsViewController.m; path = Source/LBPlaylistsViewController.m; sourceTree = "<group>"; };
+		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/LBRemoteViewController.h; sourceTree = "<group>"; };
+		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/LBRemoteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,18 +256,11 @@
 		E73A65D41EBB73A0004181DB /* Liber */ = {
 			isa = PBXGroup;
 			children = (
-				E75FFE841EC6D44F00881694 /* Resources */,
-				E73A65D81EBB73A0004181DB /* AppDelegate.h */,
-				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
-				E73A65DE1EBB73A0004181DB /* MasterViewController.h */,
-				E73A65DF1EBB73A0004181DB /* MasterViewController.m */,
-				E73A65E11EBB73A0004181DB /* DetailViewController.h */,
-				E73A65E21EBB73A0004181DB /* DetailViewController.m */,
-				E73A65E41EBB73A0004181DB /* Main.storyboard */,
-				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
-				E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */,
+				E75FFEC21EC6DB3A00881694 /* Source */,
 				E73A65EC1EBB73A0004181DB /* Info.plist */,
 				E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */,
+				E75FFEC11EC6DB2100881694 /* Storyboards */,
+				E75FFE841EC6D44F00881694 /* Resources */,
 				E73A65D51EBB73A0004181DB /* Supporting Files */,
 			);
 			path = Liber;
@@ -335,9 +334,60 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
 				E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E75FFEC11EC6DB2100881694 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65E41EBB73A0004181DB /* Main.storyboard */,
+				E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		E75FFEC21EC6DB3A00881694 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65D81EBB73A0004181DB /* AppDelegate.h */,
+				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
+				E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */,
+				E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */,
+				E75FFEC91EC6F1AC00881694 /* Collection */,
+				E75FFECA1EC6F1B800881694 /* Playlists */,
+				E75FFECB1EC6F1C200881694 /* Remote */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		E75FFEC91EC6F1AC00881694 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */,
+				E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
+		E75FFECA1EC6F1B800881694 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */,
+				E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */,
+			);
+			name = Playlists;
+			sourceTree = "<group>";
+		};
+		E75FFECB1EC6F1C200881694 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */,
+				E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */,
+			);
+			name = Remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,8 +663,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73A65E31EBB73A0004181DB /* DetailViewController.m in Sources */,
-				E73A65E01EBB73A0004181DB /* MasterViewController.m in Sources */,
+				E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */,
+				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
+				E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */,
+				E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,

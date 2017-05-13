@@ -1,63 +1,48 @@
 //
-//  DetailViewController.m
+//  LBRemoteViewController.m
 //  Liber
 //
+//  Created by galzu on 13.05.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "LBRemoteViewController.h"
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
-@interface DetailViewController ()
+
+@interface LBRemoteViewController ()
+
+@property (strong, nonatomic) DBUserClient *dropboxClient;
 
 @end
 
-@implementation DetailViewController
+@implementation LBRemoteViewController
 
-- (void) configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = self.detailItem.timestamp.description;
-    }
-}
-
-
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-    
-    
+    // Do any additional setup after loading the view.
 }
 
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-
-}
-
-- (void) didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+/*
+#pragma mark - Navigation
 
-#pragma mark - Managing the detail item
-
-- (void) setDetailItem:(Event *)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
-        [self configureView];
-    }
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+
 
 - (IBAction) myButtonInControllerPressed:(UIButton*)sender {
     
     self.dropboxClient = [DBClientsManager authorizedClient];
-
+    
     [[self.dropboxClient.filesRoutes listFolder:@""]
      setResponseBlock:^(DBFILESListFolderResult *response, DBFILESListFolderError *routeError, DBRequestError *networkError) {
          if (response) {
@@ -118,6 +103,5 @@
         }
     }
 }
-
 
 @end
