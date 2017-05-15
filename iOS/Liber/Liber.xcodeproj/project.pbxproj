@@ -172,8 +172,8 @@
 		E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Liber.xcdatamodel; sourceTree = "<group>"; };
 		E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMasterViewController.h; path = Source/LBMasterViewController.h; sourceTree = "<group>"; };
 		E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMasterViewController.m; path = Source/LBMasterViewController.m; sourceTree = "<group>"; };
-		E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBCollectionViewController.h; path = Source/LBCollectionViewController.h; sourceTree = "<group>"; };
-		E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBCollectionViewController.m; path = Source/LBCollectionViewController.m; sourceTree = "<group>"; };
+		E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBCollectionViewController.h; path = Source/Collection/LBCollectionViewController.h; sourceTree = "<group>"; };
+		E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBCollectionViewController.m; path = Source/Collection/LBCollectionViewController.m; sourceTree = "<group>"; };
 		E73A65E51EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E73A65E71EBB73A0004181DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E73A65EA1EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -187,10 +187,10 @@
 		E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
 		E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
 		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
-		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlaylistsViewController.h; path = Source/LBPlaylistsViewController.h; sourceTree = "<group>"; };
-		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlaylistsViewController.m; path = Source/LBPlaylistsViewController.m; sourceTree = "<group>"; };
-		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/LBRemoteViewController.h; sourceTree = "<group>"; };
-		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/LBRemoteViewController.m; sourceTree = "<group>"; };
+		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
+		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
+		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
+		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/Remote/LBRemoteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +379,7 @@
 				E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */,
 			);
 			name = Playlists;
+			path = Source/Playlists;
 			sourceTree = "<group>";
 		};
 		E75FFECB1EC6F1C200881694 /* Remote */ = {

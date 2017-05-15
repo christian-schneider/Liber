@@ -60,6 +60,8 @@
                  NSLog(@"List folder complete.");
              }
          } else {
+             NSString* message = networkError.userMessage ? networkError.userMessage : networkError.nsError.localizedDescription;
+             [self presentErrorAlertWithTitle:@"Network error" andMessage:message];
              NSLog(@"%@\n%@\n", routeError, networkError);
          }
      }];
@@ -102,6 +104,14 @@
             NSLog(@"Deleted data: %@\n", deletedMetadata);
         }
     }
+}
+
+#pragma mark - Convenience
+
+- (void) presentErrorAlertWithTitle:(NSString*)title andMessage:(NSString*)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
