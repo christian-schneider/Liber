@@ -184,15 +184,18 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Remote" id="kGS-W6-gWH"/>
+                    <connections>
+                        <segue destination="qSq-4H-bch" kind="show" identifier="showFolder" id="Mfr-X2-6cX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dci-Uq-wG9" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2385" y="128"/>
         </scene>
-        <!--View Controller-->
+        <!--Dropbox Folder View Controller-->
         <scene sceneID="clZ-vp-9xN">
             <objects>
-                <viewController id="qSq-4H-bch" sceneMemberID="viewController">
+                <viewController id="qSq-4H-bch" customClass="LBDropboxFolderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EY2-bJ-ikM"/>
                         <viewControllerLayoutGuide type="bottom" id="LK9-YS-Kaa"/>
@@ -205,7 +208,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xel-Dt-37G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="folderTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="folderTableViewCell" id="xel-Dt-37G">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xel-Dt-37G" id="OaR-GS-xQr">
@@ -213,7 +216,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fileTableViewCell" id="08T-3F-yRm">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="08T-3F-yRm" id="AwE-Cj-96h">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qSq-4H-bch" id="1fM-oM-wnP"/>
+                                    <outlet property="delegate" destination="qSq-4H-bch" id="cVL-2y-OQ3"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -224,6 +239,9 @@
                             <constraint firstItem="vqS-7Q-qRm" firstAttribute="top" secondItem="7Hu-uU-s37" secondAttribute="top" id="hv7-3V-eA4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="vqS-7Q-qRm" id="olC-gX-0F4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aY7-0s-DIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

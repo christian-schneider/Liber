@@ -25,6 +25,11 @@
 		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
+		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
+		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
+		E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */; };
+		E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */; };
+		E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +196,16 @@
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
 		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/Remote/LBRemoteViewController.m; sourceTree = "<group>"; };
+		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
+		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDropboxFolderViewController.m; path = Source/Remote/Dropbox/LBDropboxFolderViewController.m; sourceTree = "<group>"; };
+		E7A5C1681EC976BC00700156 /* LBRemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFile.h; path = Source/Remote/LBRemoteFile.h; sourceTree = "<group>"; };
+		E7A5C1691EC976BC00700156 /* LBRemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFile.m; path = Source/Remote/LBRemoteFile.m; sourceTree = "<group>"; };
+		E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolder.h; path = Source/Remote/LBRemoteFolder.h; sourceTree = "<group>"; };
+		E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolder.m; path = Source/Remote/LBRemoteFolder.m; sourceTree = "<group>"; };
+		E7A5C16E1EC977DA00700156 /* LBRemoteFileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFileTableViewCell.h; path = Source/Remote/LBRemoteFileTableViewCell.h; sourceTree = "<group>"; };
+		E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFileTableViewCell.m; path = Source/Remote/LBRemoteFileTableViewCell.m; sourceTree = "<group>"; };
+		E7A5C1711EC977F400700156 /* LBRemoteFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolderTableViewCell.h; path = Source/Remote/LBRemoteFolderTableViewCell.h; sourceTree = "<group>"; };
+		E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolderTableViewCell.m; path = Source/Remote/LBRemoteFolderTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,8 +402,26 @@
 			children = (
 				E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */,
 				E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */,
+				E7A5C1681EC976BC00700156 /* LBRemoteFile.h */,
+				E7A5C1691EC976BC00700156 /* LBRemoteFile.m */,
+				E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */,
+				E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */,
+				E7A5C16E1EC977DA00700156 /* LBRemoteFileTableViewCell.h */,
+				E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */,
+				E7A5C1711EC977F400700156 /* LBRemoteFolderTableViewCell.h */,
+				E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */,
+				E7A5C1531EC9741900700156 /* Dropbox */,
 			);
 			name = Remote;
+			sourceTree = "<group>";
+		};
+		E7A5C1531EC9741900700156 /* Dropbox */ = {
+			isa = PBXGroup;
+			children = (
+				E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */,
+				E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */,
+			);
+			name = Dropbox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -665,11 +698,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */,
+				E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */,
+				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
+				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */,
+				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
+				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

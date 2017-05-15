@@ -2,7 +2,6 @@
 //  LiberUITests.m
 //  LiberUITests
 //
-//  Created by galzu on 04.05.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
