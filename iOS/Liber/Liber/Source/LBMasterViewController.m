@@ -16,15 +16,16 @@
 
 @end
 
+
 @implementation LBMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.menuEntries = @[
-        @{@"title": NSLocalizedString(@"Collection", @""),  @"segue": @"showCollection"},
-        @{@"title": NSLocalizedString(@"Playlists", @""),   @"segue": @"showPlaylists"},
-        @{@"title": NSLocalizedString(@"Remote", @""),      @"segue": @"showRemote"}
+        @{@"title" : NSLocalizedString(@"Collection", @""),  @"segue" : @"showCollection"},
+        @{@"title" : NSLocalizedString(@"Playlists", @""),   @"segue" : @"showPlaylists"},
+        @{@"title" : NSLocalizedString(@"Remote", @""),      @"segue" : @"showRemote"}
     ];
 
     //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
@@ -53,9 +54,10 @@
 }
 
 
-#pragma mark - Segues
+#pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if ([[segue identifier] isEqualToString:@"showCollection"]) {
         NSLog(@"Switching to collection VC");
         /*
@@ -80,23 +82,27 @@
 
 #pragma mark - Table View delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.menuEntries.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [[self.menuEntries objectAtIndex:indexPath.row] objectForKey:@"title"];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSDictionary* entry = [self.menuEntries objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:[entry objectForKey:@"segue"] sender:self];

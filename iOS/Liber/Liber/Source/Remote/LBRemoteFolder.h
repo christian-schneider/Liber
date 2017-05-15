@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface LBRemoteFolder : NSObject
+
+@property (nonatomic, strong) NSString* path;
+@property (nonatomic, strong) NSString* name;
 
 @end

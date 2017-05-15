@@ -11,7 +11,5 @@
 @interface LBMasterViewController : UIViewController
 
 
-
-
 @end
 

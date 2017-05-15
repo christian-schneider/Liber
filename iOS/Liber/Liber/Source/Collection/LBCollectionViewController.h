@@ -11,6 +11,5 @@
 @interface LBCollectionViewController : UIViewController
 
 
-
 @end
 
