@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
+		E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F54391ECBA850006D265D /* AVFoundation.framework */; };
 		E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
@@ -170,6 +172,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E71F54241ECBA711006D265D /* LBFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBFilePlayer.h; path = Source/LBFilePlayer.h; sourceTree = "<group>"; };
+		E71F54251ECBA711006D265D /* LBFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBFilePlayer.m; path = Source/LBFilePlayer.m; sourceTree = "<group>"; };
+		E71F54391ECBA850006D265D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -216,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
 				E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */,
 				E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */,
 				E73A662C1EBB78DC004181DB /* MagicalRecord.framework in Frameworks */,
@@ -241,6 +247,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E71F54381ECBA850006D265D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E71F54391ECBA850006D265D /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E732470B1EC0F4D30023ACB6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +272,7 @@
 				E73A65F41EBB73A0004181DB /* LiberTests */,
 				E73A65FF1EBB73A0004181DB /* LiberUITests */,
 				E73A65D31EBB73A0004181DB /* Products */,
+				E71F54381ECBA850006D265D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -378,6 +393,8 @@
 				E75FFECA1EC6F1B800881694 /* Playlists */,
 				E75FFECB1EC6F1C200881694 /* Remote */,
 				E7A5C1741ECA38DC00700156 /* Util */,
+				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
+				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -718,6 +735,7 @@
 				E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */,
+				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,

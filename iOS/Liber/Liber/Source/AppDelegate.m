@@ -21,9 +21,8 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
@@ -33,6 +32,8 @@
     // MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
+    
+    self.filePlayer = [[LBFilePlayer alloc] init];
     
     return YES;
 }
