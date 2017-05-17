@@ -1,12 +1,12 @@
 [submodule "Vendor/MagicalRecord"]
-	path = Vendor/MagicalRecord
+	path = iOS/Vendor/MagicalRecord
 	url = https://github.com/magicalpanda/MagicalRecord.git
 [submodule "Vendor/AFNetworking"]
-	path = Vendor/AFNetworking
+	path = iOS/Vendor/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking
 [submodule "Vendor/Dropbox"]
-	path = Vendor/Dropbox
+	path = iOS/Vendor/Dropbox
 	url = https://github.com/dropbox/dropbox-sdk-obj-c
 [submodule "Vendor/libid3-ios"]
-	path = Vendor/libid3-ios
+	path = iOS/Vendor/libid3-ios
 	url = https://github.com/pietbrauer/libid3-ios

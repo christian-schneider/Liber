@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
 		E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F54391ECBA850006D265D /* AVFoundation.framework */; };
-		E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
@@ -20,10 +19,6 @@
 		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
-		E73A662C1EBB78DC004181DB /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A661B1EBB7878004181DB /* MagicalRecord.framework */; };
-		E73A662D1EBB791B004181DB /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A661B1EBB7878004181DB /* MagicalRecord.framework */; };
-		E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
-		E73A66471EBB7A2F004181DB /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73A66391EBB7A16004181DB /* AFNetworking.framework */; };
 		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
@@ -34,27 +29,16 @@
 		E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */; };
 		E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */; };
 		E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.m */; };
-		E7C32B551ECCF5770038048E /* LibID3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B4C1ECCEEE20038048E /* LibID3.framework */; };
-		E7C32B561ECCF5770038048E /* LibID3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B4C1ECCEEE20038048E /* LibID3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7C32B6C1ECCF58A0038048E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6B1ECCF58A0038048E /* libc++.tbd */; };
 		E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */; };
+		E7C32BB51ECD031C0038048E /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */; };
+		E7C32BB71ECD031C0038048E /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; };
+		E7C32BB81ECD031C0038048E /* ObjectiveDropboxOfficial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */; };
+		E7C32BB91ECD032F0038048E /* LibID3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B981ECD02FD0038048E /* LibID3.framework */; };
+		E7C32BBA1ECD032F0038048E /* LibID3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B981ECD02FD0038048E /* LibID3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E732470F1EC0F4D30023ACB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F26B75751D7F6AF700714F70;
-			remoteInfo = "ObjectiveDropboxOfficial iOS";
-		};
-		E73247111EC0F4D30023ACB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F27DE9E21D7FF909003B1CEE;
-			remoteInfo = "ObjectiveDropboxOfficial macOS";
-		};
 		E73A65F21EBB73A0004181DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E73A65CA1EBB73A0004181DB /* Project object */;
@@ -69,128 +53,142 @@
 			remoteGlobalIDString = E73A65D11EBB73A0004181DB;
 			remoteInfo = Liber;
 		};
-		E73A661A1EBB7878004181DB /* PBXContainerItemProxy */ = {
+		E7C32B791ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 905D07181A63DE190076B54E;
-			remoteInfo = "MagicalRecord for iOS";
-		};
-		E73A661C1EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9004F5211A94CBCF00A61312;
-			remoteInfo = "MagicalRecord for iOS Tests";
-		};
-		E73A661E1EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 905D073B1A63DE690076B54E;
-			remoteInfo = "MagicalRecord for OS X";
-		};
-		E73A66201EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9004F5661A94CBF900A61312;
-			remoteInfo = "MagicalRecord for OS X Tests";
-		};
-		E73A66221EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C7CF97AB17498414008D9D13;
-			remoteInfo = "libMagicalRecord for iOS";
-		};
-		E73A66241EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C7CF97FF174984CA008D9D13;
-			remoteInfo = "libMagicalRecord for iOS Tests";
-		};
-		E73A66261EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C7CF97BB1749843F008D9D13;
-			remoteInfo = "libMagicalRecord for OS X";
-		};
-		E73A66281EBB7878004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C7CF9816174984E4008D9D13;
-			remoteInfo = "libMagicalRecord for OS X Tests";
-		};
-		E73A66381EBB7A16004181DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 299522391BBF104D00859F49;
 			remoteInfo = "AFNetworking iOS";
 		};
-		E73A663A1EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B7B1ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 299522651BBF129200859F49;
 			remoteInfo = "AFNetworking watchOS";
 		};
-		E73A663C1EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B7D1ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 299522771BBF136400859F49;
 			remoteInfo = "AFNetworking OS X";
 		};
-		E73A663E1EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B7F1ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2987B0A51BC408A200179A4C;
 			remoteInfo = "AFNetworking tvOS";
 		};
-		E73A66401EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B811ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 298D7C3B1BC2C79500FD3B3E;
 			remoteInfo = "AFNetworking iOS Tests";
 		};
-		E73A66421EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B831ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 298D7C4A1BC2C7B200FD3B3E;
 			remoteInfo = "AFNetworking Mac OS X Tests";
 		};
-		E73A66441EBB7A16004181DB /* PBXContainerItemProxy */ = {
+		E7C32B851ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+			containerPortal = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2987B0AE1BC408A200179A4C;
 			remoteInfo = "AFNetworking tvOS Tests";
 		};
-		E7C32B491ECCEEE20038048E /* PBXContainerItemProxy */ = {
+		E7C32B8C1ECD02F30038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			containerPortal = E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F26B75751D7F6AF700714F70;
+			remoteInfo = "ObjectiveDropboxOfficial iOS";
+		};
+		E7C32B8E1ECD02F30038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F27DE9E21D7FF909003B1CEE;
+			remoteInfo = "ObjectiveDropboxOfficial macOS";
+		};
+		E7C32B951ECD02FD0038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B901ECD02FD0038048E /* libid3.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 325B854314CFED4E0061C897;
 			remoteInfo = Example;
 		};
-		E7C32B4B1ECCEEE20038048E /* PBXContainerItemProxy */ = {
+		E7C32B971ECD02FD0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			containerPortal = E7C32B901ECD02FD0038048E /* libid3.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 236017DC1E5466C7006BC587;
 			remoteInfo = "libid3-ios";
 		};
-		E7C32B571ECCF5770038048E /* PBXContainerItemProxy */ = {
+		E7C32BA51ECD03030038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 905D07181A63DE190076B54E;
+			remoteInfo = "MagicalRecord for iOS";
+		};
+		E7C32BA71ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9004F5211A94CBCF00A61312;
+			remoteInfo = "MagicalRecord for iOS Tests";
+		};
+		E7C32BA91ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 905D073B1A63DE690076B54E;
+			remoteInfo = "MagicalRecord for OS X";
+		};
+		E7C32BAB1ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9004F5661A94CBF900A61312;
+			remoteInfo = "MagicalRecord for OS X Tests";
+		};
+		E7C32BAD1ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C7CF97AB17498414008D9D13;
+			remoteInfo = "libMagicalRecord for iOS";
+		};
+		E7C32BAF1ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C7CF97FF174984CA008D9D13;
+			remoteInfo = "libMagicalRecord for iOS Tests";
+		};
+		E7C32BB11ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C7CF97BB1749843F008D9D13;
+			remoteInfo = "libMagicalRecord for OS X";
+		};
+		E7C32BB31ECD03030038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C7CF9816174984E4008D9D13;
+			remoteInfo = "libMagicalRecord for OS X Tests";
+		};
+		E7C32BBB1ECD032F0038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B901ECD02FD0038048E /* libid3.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 236017DB1E5466C7006BC587;
 			remoteInfo = "libid3-ios";
@@ -204,7 +202,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7C32B561ECCF5770038048E /* LibID3.framework in Embed Frameworks */,
+				E7C32BBA1ECD032F0038048E /* LibID3.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +213,6 @@
 		E71F54241ECBA711006D265D /* LBFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBFilePlayer.h; path = Source/LBFilePlayer.h; sourceTree = "<group>"; };
 		E71F54251ECBA711006D265D /* LBFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBFilePlayer.m; path = Source/LBFilePlayer.m; sourceTree = "<group>"; };
 		E71F54391ECBA850006D265D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
@@ -235,8 +232,6 @@
 		E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A66001EBB73A0004181DB /* LiberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberUITests.m; sourceTree = "<group>"; };
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
-		E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
 		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
@@ -256,9 +251,12 @@
 		E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+InfoMessage.m"; path = "Source/Util/UIViewController+InfoMessage.m"; sourceTree = "<group>"; };
 		E7C32B301ECCE55C0038048E /* LBImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBImporter.h; path = Source/LBImporter.h; sourceTree = "<group>"; };
 		E7C32B311ECCE55C0038048E /* LBImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBImporter.m; path = Source/LBImporter.m; sourceTree = "<group>"; };
-		E7C32B441ECCEEE20038048E /* libid3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libid3.xcodeproj; path = "../../Vendor/libid3-ios/libid3.xcodeproj"; sourceTree = "<group>"; };
 		E7C32B6B1ECCF58A0038048E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
+		E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
+		E7C32B901ECD02FD0038048E /* libid3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libid3.xcodeproj; path = "../Vendor/libid3-ios/libid3.xcodeproj"; sourceTree = "<group>"; };
+		E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,13 +264,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C32BB51ECD031C0038048E /* AFNetworking.framework in Frameworks */,
+				E7C32BB71ECD031C0038048E /* MagicalRecord.framework in Frameworks */,
+				E7C32BB91ECD032F0038048E /* LibID3.framework in Frameworks */,
+				E7C32BB81ECD031C0038048E /* ObjectiveDropboxOfficial.framework in Frameworks */,
 				E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */,
 				E7C32B6C1ECCF58A0038048E /* libc++.tbd in Frameworks */,
-				E7C32B551ECCF5770038048E /* LibID3.framework in Frameworks */,
 				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
-				E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */,
-				E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */,
-				E73A662C1EBB78DC004181DB /* MagicalRecord.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +278,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73A66471EBB7A2F004181DB /* AFNetworking.framework in Frameworks */,
-				E73A662D1EBB791B004181DB /* MagicalRecord.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,15 +299,6 @@
 				E71F54391ECBA850006D265D /* AVFoundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E732470B1EC0F4D30023ACB6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */,
-				E73247121EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E73A65C91EBB73A0004181DB = {
@@ -375,44 +362,15 @@
 			path = LiberUITests;
 			sourceTree = "<group>";
 		};
-		E73A660F1EBB7878004181DB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E73A661B1EBB7878004181DB /* MagicalRecord.framework */,
-				E73A661D1EBB7878004181DB /* MagicalRecord for iOS Tests.xctest */,
-				E73A661F1EBB7878004181DB /* MagicalRecord.framework */,
-				E73A66211EBB7878004181DB /* MagicalRecord for OS X Tests.xctest */,
-				E73A66231EBB7878004181DB /* libMagicalRecord.a */,
-				E73A66251EBB7878004181DB /* libMagicalRecord for iOS Tests.xctest */,
-				E73A66271EBB7878004181DB /* libMagicalRecord.dylib */,
-				E73A66291EBB7878004181DB /* libMagicalRecord for OS X Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E73A662A1EBB7885004181DB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				E7C32B441ECCEEE20038048E /* libid3.xcodeproj */,
-				E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */,
-				E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */,
-				E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */,
+				E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */,
+				E7C32B901ECD02FD0038048E /* libid3.xcodeproj */,
+				E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */,
+				E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		E73A662F1EBB7A16004181DB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E73A66391EBB7A16004181DB /* AFNetworking.framework */,
-				E73A663B1EBB7A16004181DB /* AFNetworking.framework */,
-				E73A663D1EBB7A16004181DB /* AFNetworking.framework */,
-				E73A663F1EBB7A16004181DB /* AFNetworking.framework */,
-				E73A66411EBB7A16004181DB /* AFNetworking iOS Tests.xctest */,
-				E73A66431EBB7A16004181DB /* AFNetworking Mac OS X Tests.xctest */,
-				E73A66451EBB7A16004181DB /* AFNetworking tvOS Tests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E75FFE841EC6D44F00881694 /* Resources */ = {
@@ -507,11 +465,49 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
-		E7C32B451ECCEEE20038048E /* Products */ = {
+		E7C32B701ECD02EC0038048E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7C32B4A1ECCEEE20038048E /* Example.app */,
-				E7C32B4C1ECCEEE20038048E /* LibID3.framework */,
+				E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */,
+				E7C32B7C1ECD02EC0038048E /* AFNetworking.framework */,
+				E7C32B7E1ECD02EC0038048E /* AFNetworking.framework */,
+				E7C32B801ECD02EC0038048E /* AFNetworking.framework */,
+				E7C32B821ECD02EC0038048E /* AFNetworking iOS Tests.xctest */,
+				E7C32B841ECD02EC0038048E /* AFNetworking Mac OS X Tests.xctest */,
+				E7C32B861ECD02EC0038048E /* AFNetworking tvOS Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7C32B881ECD02F30038048E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */,
+				E7C32B8F1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7C32B911ECD02FD0038048E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7C32B961ECD02FD0038048E /* Example.app */,
+				E7C32B981ECD02FD0038048E /* LibID3.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7C32B9A1ECD03030038048E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7C32BA61ECD03030038048E /* MagicalRecord.framework */,
+				E7C32BA81ECD03030038048E /* MagicalRecord for iOS Tests.xctest */,
+				E7C32BAA1ECD03030038048E /* MagicalRecord.framework */,
+				E7C32BAC1ECD03030038048E /* MagicalRecord for OS X Tests.xctest */,
+				E7C32BAE1ECD03030038048E /* libMagicalRecord.a */,
+				E7C32BB01ECD03030038048E /* libMagicalRecord for iOS Tests.xctest */,
+				E7C32BB21ECD03030038048E /* libMagicalRecord.dylib */,
+				E7C32BB41ECD03030038048E /* libMagicalRecord for OS X Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -531,7 +527,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E7C32B581ECCF5770038048E /* PBXTargetDependency */,
+				E7C32BBC1ECD032F0038048E /* PBXTargetDependency */,
 			);
 			name = Liber;
 			productName = Liber;
@@ -615,20 +611,20 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E73A662F1EBB7A16004181DB /* Products */;
-					ProjectRef = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+					ProductGroup = E7C32B701ECD02EC0038048E /* Products */;
+					ProjectRef = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 				},
 				{
-					ProductGroup = E7C32B451ECCEEE20038048E /* Products */;
-					ProjectRef = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+					ProductGroup = E7C32B911ECD02FD0038048E /* Products */;
+					ProjectRef = E7C32B901ECD02FD0038048E /* libid3.xcodeproj */;
 				},
 				{
-					ProductGroup = E73A660F1EBB7878004181DB /* Products */;
-					ProjectRef = E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */;
+					ProductGroup = E7C32B9A1ECD03030038048E /* Products */;
+					ProjectRef = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
 				},
 				{
-					ProductGroup = E732470B1EC0F4D30023ACB6 /* Products */;
-					ProjectRef = E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */;
+					ProductGroup = E7C32B881ECD02F30038048E /* Products */;
+					ProjectRef = E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -641,137 +637,137 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E73247101EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ObjectiveDropboxOfficial.framework;
-			remoteRef = E732470F1EC0F4D30023ACB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73247121EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ObjectiveDropboxOfficial.framework;
-			remoteRef = E73247111EC0F4D30023ACB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A661B1EBB7878004181DB /* MagicalRecord.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MagicalRecord.framework;
-			remoteRef = E73A661A1EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A661D1EBB7878004181DB /* MagicalRecord for iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "MagicalRecord for iOS Tests.xctest";
-			remoteRef = E73A661C1EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A661F1EBB7878004181DB /* MagicalRecord.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MagicalRecord.framework;
-			remoteRef = E73A661E1EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66211EBB7878004181DB /* MagicalRecord for OS X Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "MagicalRecord for OS X Tests.xctest";
-			remoteRef = E73A66201EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66231EBB7878004181DB /* libMagicalRecord.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMagicalRecord.a;
-			remoteRef = E73A66221EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66251EBB7878004181DB /* libMagicalRecord for iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "libMagicalRecord for iOS Tests.xctest";
-			remoteRef = E73A66241EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66271EBB7878004181DB /* libMagicalRecord.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libMagicalRecord.dylib;
-			remoteRef = E73A66261EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66291EBB7878004181DB /* libMagicalRecord for OS X Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "libMagicalRecord for OS X Tests.xctest";
-			remoteRef = E73A66281EBB7878004181DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73A66391EBB7A16004181DB /* AFNetworking.framework */ = {
+		E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AFNetworking.framework;
-			remoteRef = E73A66381EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B791ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A663B1EBB7A16004181DB /* AFNetworking.framework */ = {
+		E7C32B7C1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AFNetworking.framework;
-			remoteRef = E73A663A1EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B7B1ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A663D1EBB7A16004181DB /* AFNetworking.framework */ = {
+		E7C32B7E1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AFNetworking.framework;
-			remoteRef = E73A663C1EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B7D1ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A663F1EBB7A16004181DB /* AFNetworking.framework */ = {
+		E7C32B801ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AFNetworking.framework;
-			remoteRef = E73A663E1EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B7F1ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A66411EBB7A16004181DB /* AFNetworking iOS Tests.xctest */ = {
+		E7C32B821ECD02EC0038048E /* AFNetworking iOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "AFNetworking iOS Tests.xctest";
-			remoteRef = E73A66401EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B811ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A66431EBB7A16004181DB /* AFNetworking Mac OS X Tests.xctest */ = {
+		E7C32B841ECD02EC0038048E /* AFNetworking Mac OS X Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "AFNetworking Mac OS X Tests.xctest";
-			remoteRef = E73A66421EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B831ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E73A66451EBB7A16004181DB /* AFNetworking tvOS Tests.xctest */ = {
+		E7C32B861ECD02EC0038048E /* AFNetworking tvOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "AFNetworking tvOS Tests.xctest";
-			remoteRef = E73A66441EBB7A16004181DB /* PBXContainerItemProxy */;
+			remoteRef = E7C32B851ECD02EC0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E7C32B4A1ECCEEE20038048E /* Example.app */ = {
+		E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveDropboxOfficial.framework;
+			remoteRef = E7C32B8C1ECD02F30038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32B8F1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveDropboxOfficial.framework;
+			remoteRef = E7C32B8E1ECD02F30038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32B961ECD02FD0038048E /* Example.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = Example.app;
-			remoteRef = E7C32B491ECCEEE20038048E /* PBXContainerItemProxy */;
+			remoteRef = E7C32B951ECD02FD0038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E7C32B4C1ECCEEE20038048E /* LibID3.framework */ = {
+		E7C32B981ECD02FD0038048E /* LibID3.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LibID3.framework;
-			remoteRef = E7C32B4B1ECCEEE20038048E /* PBXContainerItemProxy */;
+			remoteRef = E7C32B971ECD02FD0038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BA61ECD03030038048E /* MagicalRecord.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MagicalRecord.framework;
+			remoteRef = E7C32BA51ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BA81ECD03030038048E /* MagicalRecord for iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "MagicalRecord for iOS Tests.xctest";
+			remoteRef = E7C32BA71ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BAA1ECD03030038048E /* MagicalRecord.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MagicalRecord.framework;
+			remoteRef = E7C32BA91ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BAC1ECD03030038048E /* MagicalRecord for OS X Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "MagicalRecord for OS X Tests.xctest";
+			remoteRef = E7C32BAB1ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BAE1ECD03030038048E /* libMagicalRecord.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMagicalRecord.a;
+			remoteRef = E7C32BAD1ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BB01ECD03030038048E /* libMagicalRecord for iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "libMagicalRecord for iOS Tests.xctest";
+			remoteRef = E7C32BAF1ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BB21ECD03030038048E /* libMagicalRecord.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libMagicalRecord.dylib;
+			remoteRef = E7C32BB11ECD03030038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32BB41ECD03030038048E /* libMagicalRecord for OS X Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "libMagicalRecord for OS X Tests.xctest";
+			remoteRef = E7C32BB31ECD03030038048E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -856,10 +852,10 @@
 			target = E73A65D11EBB73A0004181DB /* Liber */;
 			targetProxy = E73A65FD1EBB73A0004181DB /* PBXContainerItemProxy */;
 		};
-		E7C32B581ECCF5770038048E /* PBXTargetDependency */ = {
+		E7C32BBC1ECD032F0038048E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libid3-ios";
-			targetProxy = E7C32B571ECCF5770038048E /* PBXContainerItemProxy */;
+			targetProxy = E7C32BBB1ECD032F0038048E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -980,10 +976,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S4385JPV95;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include/**";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -994,10 +990,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S4385JPV95;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include/**";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
