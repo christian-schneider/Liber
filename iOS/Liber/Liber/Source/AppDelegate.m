@@ -34,6 +34,7 @@
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
     
     self.filePlayer = [[LBFilePlayer alloc] init];
+    self.importer = [[LBImporter alloc] init];
     
     return YES;
 }

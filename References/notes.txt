@@ -4,3 +4,6 @@ http://www.forumancientcoins.com/moonmoth/coins/repub_052.html
 http://www.forumancientcoins.com/moonmoth/coins/repub_070.html	
 http://www.forumancientcoins.com/moonmoth/coins/pics/gallienus/gallienus_052.jpg
 LIBERO P CONS AVG, meaning Dedicated to Father Liber
+
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/Project Templates/iOS

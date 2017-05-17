@@ -33,7 +33,7 @@
 }
 
 
-- (void) play:(NSString*)path artist:(NSString*)artist title:(NSString*)title image:(UIImage*)image {
+- (void) play:(NSString*)path artist:(NSString*)artist trackTitle:(NSString*)trackTitle image:(UIImage*)image {
     
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: path];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
@@ -54,7 +54,7 @@
     MPNowPlayingInfoCenter* mpic = [MPNowPlayingInfoCenter defaultCenter];
     mpic.nowPlayingInfo = @{
         MPMediaItemPropertyArtist: artist,
-        MPMediaItemPropertyTitle: title,
+        MPMediaItemPropertyTitle: trackTitle,
         MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
         MPNowPlayingInfoPropertyElapsedPlaybackTime: @0,
         MPNowPlayingInfoPropertyPlaybackRate: @1,

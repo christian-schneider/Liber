@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString* path;
 @property (nonatomic, strong) NSString* name;
+@property (readwrite) BOOL isPlayableMediaFile;
 
 @end

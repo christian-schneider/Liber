@@ -7,3 +7,6 @@
 [submodule "Vendor/Dropbox"]
 	path = Vendor/Dropbox
 	url = https://github.com/dropbox/dropbox-sdk-obj-c
+[submodule "Vendor/libid3-ios"]
+	path = Vendor/libid3-ios
+	url = https://github.com/pietbrauer/libid3-ios

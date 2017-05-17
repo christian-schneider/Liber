@@ -10,6 +10,9 @@
 #import "UIViewController+InfoMessage.h"
 #import "LBRemoteFolder.h"
 #import "LBRemoteFile.h"
+#import "AppDelegate.h"
+#import <id3/tag.h>
+
 
 
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -20,6 +23,8 @@
 @property (nonatomic, strong) NSMutableArray<LBRemoteFile*>* fileEntries;
 
 @property (strong, nonatomic) DBUserClient* dropboxClient;
+
+@property (weak, nonatomic) AppDelegate* appDelegate ;
 
 @end
 
@@ -36,6 +41,8 @@
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
     
     self.dropboxClient = [DBClientsManager authorizedClient];
+    
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
 }
 
@@ -102,6 +109,8 @@
 
 - (void) handleEntries:(NSArray<DBFILESMetadata *> *)entries {
     
+    
+    
     for (DBFILESMetadata *entry in entries) {
         if ([entry isKindOfClass:[DBFILESFileMetadata class]]) {
             
@@ -110,6 +119,7 @@
             LBRemoteFile* remoteFile = [[LBRemoteFile alloc] init];
             remoteFile.path = fileMetadata.pathLower;
             remoteFile.name = fileMetadata.name;
+            remoteFile.isPlayableMediaFile = [self.appDelegate.importer isPlayableMediaFile:remoteFile.path];
             [self.fileEntries addObject:remoteFile];
             
         } else if ([entry isKindOfClass:[DBFILESFolderMetadata class]]) {
@@ -187,6 +197,67 @@
         nextVC.folderPath = remoteFolder.path;
         [self.navigationController showViewController:nextVC sender:self];
     }
+    
+    if (indexPath.section == 1) {
+        LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
+        // determine if file is playable / supported media type
+        if (remoteFile.isPlayableMediaFile) {
+            NSLog(@"we do have a playable media file!!") ;
+            [self downloadAndPlayFileAtPath:remoteFile.path];
+        }
+        
+        // download file
+        // play file
+        
+        
+    }
+}
+
+- (void) downloadAndPlayFileAtPath:(NSString*)path {
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *outputDirectory = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
+    NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current"];
+    
+    [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
+                         NSURL *destination) {
+          if (result) {
+              NSLog(@"%@\n", result);
+              NSData *data = [[NSFileManager defaultManager] contentsAtPath:[destination path]];
+              NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+              NSLog(@"%@\n", dataStr);
+              
+              NSString* artist = @"Unknown Artist";
+              NSString* trackTitle = path.lastPathComponent.stringByDeletingPathExtension;
+              
+              if ([path.pathExtension isEqualToString:@"mp3"]) {
+                  
+                  // not working atm..
+                  /*
+                  ID3_Tag tag;
+                  tag.Link([outputUrl.absoluteString UTF8String]);
+                  
+                  ID3_Frame *titleFrame = tag.Find(ID3FID_TITLE);
+                  unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
+                  NSString *title = [NSString stringWithCString:(char const *) value encoding:NSUnicodeStringEncoding];
+                  NSLog(@"The title before is %@", title);
+                  */
+                  
+                  // this works ;)
+                  NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:outputUrl];
+                  NSLog(@"thee tags: %@", id3Tags) ;
+                  artist = [id3Tags objectForKey:@"artist"];
+                  trackTitle = [id3Tags objectForKey:@"title"];
+              }
+              
+              [self.appDelegate.filePlayer play:destination.path artist:artist trackTitle:trackTitle image:nil];
+          } else {
+              NSLog(@"%@\n%@\n", routeError, networkError);
+          }
+      }] setProgressBlock:^(int64_t bytesDownloaded, int64_t totalBytesDownloaded, int64_t totalBytesExpectedToDownload) {
+          NSLog(@"%lld\n%lld\n%lld\n", bytesDownloaded, totalBytesDownloaded, totalBytesExpectedToDownload);
+      }];
 }
 
 @end

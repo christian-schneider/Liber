@@ -4,17 +4,19 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : 9223372036854775807,
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : 9223372036854775807,
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : 9223372036854775807,
     "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 9223372036854775807,
-    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : 9223372036854775807
+    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F7BCCB5F-7940-4710-81C7-A8361F3EF839",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : "Liber\/Vendor\/MagicalRecord\/",
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : "Liber\/",
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : "Liber\/Vendor\/Dropbox\/",
     "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "Liber\/Vendor\/AFNetworking\/",
-    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : "Liber\/Vendor\/MagicalRecord\/"
+    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : "Liber\/Vendor\/libid3-ios\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Liber",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -34,6 +36,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/magicalpanda\/MagicalRecord.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "958932E9D08E4465709D54DB1E7CECF23B0F442E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pietbrauer\/libid3-ios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AFNetworking\/AFNetworking",

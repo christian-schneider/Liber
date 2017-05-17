@@ -27,12 +27,17 @@
 		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
-		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
+		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
 		E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */; };
 		E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */; };
 		E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */; };
 		E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */; };
+		E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.m */; };
+		E7C32B551ECCF5770038048E /* LibID3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B4C1ECCEEE20038048E /* LibID3.framework */; };
+		E7C32B561ECCF5770038048E /* LibID3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B4C1ECCEEE20038048E /* LibID3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7C32B6C1ECCF58A0038048E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6B1ECCF58A0038048E /* libc++.tbd */; };
+		E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +174,42 @@
 			remoteGlobalIDString = 2987B0AE1BC408A200179A4C;
 			remoteInfo = "AFNetworking tvOS Tests";
 		};
+		E7C32B491ECCEEE20038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 325B854314CFED4E0061C897;
+			remoteInfo = Example;
+		};
+		E7C32B4B1ECCEEE20038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 236017DC1E5466C7006BC587;
+			remoteInfo = "libid3-ios";
+		};
+		E7C32B571ECCF5770038048E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 236017DB1E5466C7006BC587;
+			remoteInfo = "libid3-ios";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E7C32B6A1ECCF5770038048E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E7C32B561ECCF5770038048E /* LibID3.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E71F54241ECBA711006D265D /* LBFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBFilePlayer.h; path = Source/LBFilePlayer.h; sourceTree = "<group>"; };
@@ -203,7 +243,7 @@
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
 		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/Remote/LBRemoteViewController.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
-		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDropboxFolderViewController.m; path = Source/Remote/Dropbox/LBDropboxFolderViewController.m; sourceTree = "<group>"; };
+		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LBDropboxFolderViewController.mm; path = Source/Remote/Dropbox/LBDropboxFolderViewController.mm; sourceTree = "<group>"; };
 		E7A5C1681EC976BC00700156 /* LBRemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFile.h; path = Source/Remote/LBRemoteFile.h; sourceTree = "<group>"; };
 		E7A5C1691EC976BC00700156 /* LBRemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFile.m; path = Source/Remote/LBRemoteFile.m; sourceTree = "<group>"; };
 		E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolder.h; path = Source/Remote/LBRemoteFolder.h; sourceTree = "<group>"; };
@@ -214,6 +254,11 @@
 		E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolderTableViewCell.m; path = Source/Remote/LBRemoteFolderTableViewCell.m; sourceTree = "<group>"; };
 		E7A5C1751ECA394700700156 /* UIViewController+InfoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+InfoMessage.h"; path = "Source/Util/UIViewController+InfoMessage.h"; sourceTree = "<group>"; };
 		E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+InfoMessage.m"; path = "Source/Util/UIViewController+InfoMessage.m"; sourceTree = "<group>"; };
+		E7C32B301ECCE55C0038048E /* LBImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBImporter.h; path = Source/LBImporter.h; sourceTree = "<group>"; };
+		E7C32B311ECCE55C0038048E /* LBImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBImporter.m; path = Source/LBImporter.m; sourceTree = "<group>"; };
+		E7C32B441ECCEEE20038048E /* libid3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libid3.xcodeproj; path = "../../Vendor/libid3-ios/libid3.xcodeproj"; sourceTree = "<group>"; };
+		E7C32B6B1ECCF58A0038048E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +266,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */,
+				E7C32B6C1ECCF58A0038048E /* libc++.tbd in Frameworks */,
+				E7C32B551ECCF5770038048E /* LibID3.framework in Frameworks */,
 				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
 				E73247131EC0F4E50023ACB6 /* ObjectiveDropboxOfficial.framework in Frameworks */,
 				E73A66461EBB7A23004181DB /* AFNetworking.framework in Frameworks */,
@@ -250,6 +298,8 @@
 		E71F54381ECBA850006D265D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */,
+				E7C32B6B1ECCF58A0038048E /* libc++.tbd */,
 				E71F54391ECBA850006D265D /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -343,6 +393,7 @@
 		E73A662A1EBB7885004181DB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E7C32B441ECCEEE20038048E /* libid3.xcodeproj */,
 				E732470A1EC0F4D30023ACB6 /* ObjectiveDropboxOfficial.xcodeproj */,
 				E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */,
 				E73A660E1EBB7878004181DB /* MagicalRecord.xcodeproj */,
@@ -395,6 +446,8 @@
 				E7A5C1741ECA38DC00700156 /* Util */,
 				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
 				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
+				E7C32B301ECCE55C0038048E /* LBImporter.h */,
+				E7C32B311ECCE55C0038048E /* LBImporter.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -440,7 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */,
-				E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */,
+				E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */,
 			);
 			name = Dropbox;
 			sourceTree = "<group>";
@@ -454,6 +507,15 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		E7C32B451ECCEEE20038048E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7C32B4A1ECCEEE20038048E /* Example.app */,
+				E7C32B4C1ECCEEE20038048E /* LibID3.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -464,10 +526,12 @@
 				E73A65CE1EBB73A0004181DB /* Sources */,
 				E73A65CF1EBB73A0004181DB /* Frameworks */,
 				E73A65D01EBB73A0004181DB /* Resources */,
+				E7C32B6A1ECCF5770038048E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E7C32B581ECCF5770038048E /* PBXTargetDependency */,
 			);
 			name = Liber;
 			productName = Liber;
@@ -553,6 +617,10 @@
 				{
 					ProductGroup = E73A662F1EBB7A16004181DB /* Products */;
 					ProjectRef = E73A662E1EBB7A16004181DB /* AFNetworking.xcodeproj */;
+				},
+				{
+					ProductGroup = E7C32B451ECCEEE20038048E /* Products */;
+					ProjectRef = E7C32B441ECCEEE20038048E /* libid3.xcodeproj */;
 				},
 				{
 					ProductGroup = E73A660F1EBB7878004181DB /* Products */;
@@ -692,6 +760,20 @@
 			remoteRef = E73A66441EBB7A16004181DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E7C32B4A1ECCEEE20038048E /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = E7C32B491ECCEEE20038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7C32B4C1ECCEEE20038048E /* LibID3.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LibID3.framework;
+			remoteRef = E7C32B4B1ECCEEE20038048E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -730,7 +812,7 @@
 				E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */,
 				E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */,
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
-				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
+				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
@@ -740,6 +822,7 @@
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
+				E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +855,11 @@
 			isa = PBXTargetDependency;
 			target = E73A65D11EBB73A0004181DB /* Liber */;
 			targetProxy = E73A65FD1EBB73A0004181DB /* PBXContainerItemProxy */;
+		};
+		E7C32B581ECCF5770038048E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libid3-ios";
+			targetProxy = E7C32B571ECCF5770038048E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -892,8 +980,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S4385JPV95;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include/**";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -904,8 +994,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S4385JPV95;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include/**";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

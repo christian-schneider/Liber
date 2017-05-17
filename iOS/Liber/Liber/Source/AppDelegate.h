@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "LBFilePlayer.h"
+#import "LBImporter.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,6 +18,7 @@
 - (void)saveContext;
 
 @property (strong, nonatomic) LBFilePlayer* filePlayer;
+@property (strong, nonatomic) LBImporter* importer;
 
 
 @end
