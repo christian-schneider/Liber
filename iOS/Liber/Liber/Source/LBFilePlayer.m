@@ -25,6 +25,12 @@
 - (id) init {
     if (self = [super init]) {
         self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+        
+        MPRemoteCommandCenter *remoteCommandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+        [[remoteCommandCenter nextTrackCommand] addTarget:self action:@selector(nextTrack)];
+        [[remoteCommandCenter previousTrackCommand] addTarget:self action:@selector(previousTrack)];
+        [[remoteCommandCenter playCommand] addTarget:self action:@selector(play)];
+        [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pause)];
     }
     return self;
 }
@@ -79,8 +85,8 @@
     self.playingArtist = @"";
     self.playingTitle = @"";
     self.playingImage = nil;
-    
 }
+
 
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
     
@@ -97,6 +103,27 @@
     [player prepareToPlay];
     self.isPlaying = [player play];
     NSLog(@"tried to play; success? %d", self.isPlaying);
+}
+
+
+- (void) nextTrack {
+    NSLog(@"next track");
+}
+
+
+- (void) previousTrack {
+    NSLog(@"previous track");
+    [self.player setCurrentTime:0];
+}
+
+
+- (void) play {
+    [self.player play];
+}
+
+
+- (void) pause {
+    [self.player pause];
 }
 
 
