@@ -232,6 +232,7 @@
 		E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A66001EBB73A0004181DB /* LiberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberUITests.m; sourceTree = "<group>"; };
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7448AD91ECDE57F0095E754 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
@@ -294,6 +295,7 @@
 		E71F54381ECBA850006D265D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7448AD91ECDE57F0095E754 /* AVKit.framework */,
 				E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */,
 				E7C32B6B1ECCF58A0038048E /* libc++.tbd */,
 				E71F54391ECBA850006D265D /* AVFoundation.framework */,
@@ -583,6 +585,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = S4385JPV95;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E73A65F01EBB73A0004181DB = {
 						CreatedOnToolsVersion = 8.3.2;

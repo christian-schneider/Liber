@@ -8,6 +8,8 @@
 #import "LBImporter.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <CoreFoundation/CoreFoundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
 
 
 @implementation LBImporter
@@ -57,6 +59,23 @@
     CFRelease(piDict);
     
     return tagsDictionary;
+}
+
+- (UIImage*) imageForItemAtFileURL:(NSURL*)url {
+    
+    if (!url.isFileURL) {
+        url = [NSURL fileURLWithPath:url.absoluteString];
+    }
+
+    AVURLAsset *avURLAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+    for (NSString *format in [avURLAsset availableMetadataFormats]) {
+        for (AVMetadataItem *metadataItem in [avURLAsset metadataForFormat:format]) {
+            if ([metadataItem.commonKey isEqualToString:@"artwork"]) {
+                return [UIImage imageWithData:(NSData*)metadataItem.value];
+            }
+        }
+    }
+    return nil;
 }
 
 @end

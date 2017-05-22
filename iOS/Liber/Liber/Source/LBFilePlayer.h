@@ -12,7 +12,13 @@
 
 @property (nonatomic, strong) AVAudioPlayer *player;
 
-- (void) play: (NSString*) path; // dont use!! temporary, todo: remove
 - (void) play:(NSString*)path artist:(NSString*)artist trackTitle:(NSString*)trackTitle image:(UIImage*)image;
+
+
+@property (readonly) BOOL isPlaying;
+
+@property (nonatomic, strong) NSString* playingArtist;
+@property (nonatomic, strong) NSString* playingTitle;
+@property (nonatomic, strong) UIImage* playingImage;
 
 @end

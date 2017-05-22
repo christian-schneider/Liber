@@ -17,14 +17,13 @@
 
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) DBUserClient* dropboxClient;
+@property (weak, nonatomic) AppDelegate* appDelegate ;
+
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (nonatomic, strong) NSMutableArray<LBRemoteFolder*>* folderEntries;
 @property (nonatomic, strong) NSMutableArray<LBRemoteFile*>* fileEntries;
-
-@property (strong, nonatomic) DBUserClient* dropboxClient;
-
-@property (weak, nonatomic) AppDelegate* appDelegate ;
 
 @end
 
@@ -35,16 +34,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.dropboxClient = [DBClientsManager authorizedClient];
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     self.folderEntries = [NSMutableArray arrayWithCapacity:10];
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
-    
-    self.dropboxClient = [DBClientsManager authorizedClient];
-    
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
 }
+
 
 - (void) viewWillAppear:(BOOL)animated {
     
@@ -108,8 +105,6 @@
 
 
 - (void) handleEntries:(NSArray<DBFILESMetadata *> *)entries {
-    
-    
     
     for (DBFILESMetadata *entry in entries) {
         if ([entry isKindOfClass:[DBFILESFileMetadata class]]) {
@@ -190,34 +185,27 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        // folder
+    if (indexPath.section == 0) {       // folder
         LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
         LBDropboxFolderViewController *nextVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dropboxFolderViewController"];
         nextVC.folderPath = remoteFolder.path;
         [self.navigationController showViewController:nextVC sender:self];
     }
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 1) {       // file
         LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
-        // determine if file is playable / supported media type
         if (remoteFile.isPlayableMediaFile) {
-            NSLog(@"we do have a playable media file!!") ;
             [self downloadAndPlayFileAtPath:remoteFile.path];
         }
-        
-        // download file
-        // play file
-        
-        
     }
 }
+
 
 - (void) downloadAndPlayFileAtPath:(NSString*)path {
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *outputDirectory = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
-    NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current"];
+    NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current.mp3"];
     
     [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
       setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,

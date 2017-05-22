@@ -8,53 +8,57 @@
 #import "LBFilePlayer.h"
 @import MediaPlayer;
 @import AVFoundation;
+#import "AppDelegate.h"
 
 
 @interface LBFilePlayer() <AVAudioPlayerDelegate>
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
+
+@property (readwrite) BOOL isPlaying;
 
 @end
 
 
 @implementation LBFilePlayer
 
-
-- (void) play:(NSString*)path {
-    
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: path];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
-    
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:nil];
-
-    [self.player setDelegate: self];
-    [self.player prepareToPlay];
-    BOOL playing = [self.player play];
-    NSLog(@"trying to play %@ %d", path, playing);
+- (id) init {
+    if (self = [super init]) {
+        self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    }
+    return self;
 }
 
 
 - (void) play:(NSString*)path artist:(NSString*)artist trackTitle:(NSString*)trackTitle image:(UIImage*)image {
     
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: path];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
+    self.playingArtist = artist ? artist : @"Unknow Artist";
+    self.playingTitle = trackTitle ? trackTitle : @"Unknown Title";
+    self.playingImage = image;
+    
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:path];
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:nil];
     [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:nil];
     
-    [self.player setDelegate: self];
+    [self.player setDelegate:self];
     [self.player prepareToPlay];
-    BOOL playing = [self.player play];
-    NSLog(@"trying to play %@ %d", path, playing);
+    self.isPlaying = [self.player play];
     
+    // locked screen and control center:
+    
+    // this tries to be clever: if the method gets sent in a valid image, it is used
+    // else it tries to get it directly from the file
+
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
-        return image;
+        self.playingImage = self.playingImage ? self.playingImage : [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
+        return self.playingImage;
     }] ;
     
-    // this info shows up in the locked screen and control center
-    MPNowPlayingInfoCenter* mpic = [MPNowPlayingInfoCenter defaultCenter];
-    mpic.nowPlayingInfo = @{
-        MPMediaItemPropertyArtist: artist,
-        MPMediaItemPropertyTitle: trackTitle,
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{
+        MPMediaItemPropertyArtist: self.playingArtist,
+        MPMediaItemPropertyTitle: self.playingTitle,
         MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
         MPNowPlayingInfoPropertyElapsedPlaybackTime: @0,
         MPNowPlayingInfoPropertyPlaybackRate: @1,
@@ -65,10 +69,17 @@
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)success {
     
+    // TODO:
+    // check the play queue, if there is another file in the queue, call play and return
+    
     NSLog(@"audio finished %d", success);
     [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
-    [[AVAudioSession sharedInstance] setActive: YES withOptions:0 error:nil];
+    self.isPlaying = NO;
+    self.playingArtist = @"";
+    self.playingTitle = @"";
+    self.playingImage = nil;
+    
 }
 
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
@@ -79,14 +90,13 @@
 -(void) audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)options {
     
     NSLog(@"audio player interruption ended with options %lu", (unsigned long)options);
-    
     if (options & AVAudioSessionInterruptionOptionShouldResume) {
         NSLog(@"should resume");
         // should always try to resume
     }
     [player prepareToPlay];
-    BOOL playing = [player play];
-    NSLog(@"tried to play; success? %d", playing);
+    self.isPlaying = [player play];
+    NSLog(@"tried to play; success? %d", self.isPlaying);
 }
 
 
