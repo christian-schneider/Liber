@@ -10,3 +10,6 @@
 [submodule "Vendor/libid3-ios"]
 	path = iOS/Vendor/libid3-ios
 	url = https://github.com/pietbrauer/libid3-ios
+[submodule "iOS/Vendor/iOS/Vendor/mp3lame-for-iOS"]
+	path = iOS/Vendor/mp3lame-for-iOS
+	url = https://github.com/wuqiong/mp3lame-for-iOS
