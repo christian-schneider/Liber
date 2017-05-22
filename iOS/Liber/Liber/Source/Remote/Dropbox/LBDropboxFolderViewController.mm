@@ -14,7 +14,6 @@
 #import <id3/tag.h>
 
 
-
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) DBUserClient* dropboxClient;
@@ -46,6 +45,9 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
+    // TODO: don't call this here, the folder's content might get listed several times.
+    // introduce sentinel
     [[self.dropboxClient.filesRoutes listFolder:self.folderPath]
      setResponseBlock:^(DBFILESListFolderResult *response, DBFILESListFolderError *routeError, DBRequestError *networkError) {
          if (response) {
@@ -115,8 +117,9 @@
             remoteFile.path = fileMetadata.pathLower;
             remoteFile.name = fileMetadata.name;
             remoteFile.isPlayableMediaFile = [self.appDelegate.importer isPlayableMediaFile:remoteFile.path];
-            [self.fileEntries addObject:remoteFile];
-            
+            if (remoteFile.isPlayableMediaFile) {
+                [self.fileEntries addObject:remoteFile];
+            }
         } else if ([entry isKindOfClass:[DBFILESFolderMetadata class]]) {
             
             DBFILESFolderMetadata *folderMetadata = (DBFILESFolderMetadata *)entry;
@@ -246,6 +249,35 @@
       }] setProgressBlock:^(int64_t bytesDownloaded, int64_t totalBytesDownloaded, int64_t totalBytesExpectedToDownload) {
           NSLog(@"%lld\n%lld\n%lld\n", bytesDownloaded, totalBytesDownloaded, totalBytesExpectedToDownload);
       }];
+}
+
+
+- (IBAction) showImportActionController {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Import", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Folder", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        // OK button tapped.
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    if (self.folderEntries.count > 0) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Folder and subfolders", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // Distructive button tapped.
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+        }]];
+    }
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 @end

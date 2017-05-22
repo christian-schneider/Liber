@@ -11,5 +11,7 @@
 
 @property (nonatomic, strong) NSString* folderPath;
 
+- (IBAction) showImportActionController;
+
 
 @end

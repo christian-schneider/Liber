@@ -16,9 +16,8 @@
 
 
 @property (readonly) BOOL isPlaying;
-
-@property (nonatomic, strong) NSString* playingArtist;
-@property (nonatomic, strong) NSString* playingTitle;
-@property (nonatomic, strong) UIImage* playingImage;
+@property (readonly) NSString* playingArtist;
+@property (readonly) NSString* playingTitle;
+@property (readonly) UIImage* playingImage;
 
 @end

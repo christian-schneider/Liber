@@ -17,6 +17,14 @@
 - (BOOL) isPlayableMediaFile:(NSString*)path {
 
     NSArray* supportedMediaExtensions = @[
+        @"mp3",
+        @"mp4",
+        @"m4a"
+        
+        // below are all the supported audio formats file endings by iOS
+        // atm, limit to files which usually have embedded image data
+                                          
+        /*
         @"aac",
         @"adts",
         @"ac3",
@@ -31,6 +39,7 @@
         @"au",
         @"sd2",
         @"wav"
+        */
     ];
     NSString* extension = path.pathExtension.lowercaseString;
     return [supportedMediaExtensions containsObject:extension];

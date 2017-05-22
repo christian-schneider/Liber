@@ -6,9 +6,9 @@
 //
 
 #import "LBFilePlayer.h"
+#import "AppDelegate.h"
 @import MediaPlayer;
 @import AVFoundation;
-#import "AppDelegate.h"
 
 
 @interface LBFilePlayer() <AVAudioPlayerDelegate>
@@ -16,6 +16,9 @@
 @property (nonatomic, weak) AppDelegate* appDelegate;
 
 @property (readwrite) BOOL isPlaying;
+@property (nonatomic, strong) NSString* playingArtist;
+@property (nonatomic, strong) NSString* playingTitle;
+@property (nonatomic, strong) UIImage* playingImage;
 
 @end
 
@@ -38,8 +41,10 @@
 
 - (void) play:(NSString*)path artist:(NSString*)artist trackTitle:(NSString*)trackTitle image:(UIImage*)image {
     
+    if (nil == path) return;
+    
     self.playingArtist = artist ? artist : @"Unknow Artist";
-    self.playingTitle = trackTitle ? trackTitle : @"Unknown Title";
+    self.playingTitle = trackTitle ? trackTitle : path.lastPathComponent;
     self.playingImage = image;
     
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:path];
@@ -56,6 +61,7 @@
     
     // this tries to be clever: if the method gets sent in a valid image, it is used
     // else it tries to get it directly from the file
+    // if the app ends up only supporting mp3's then this image parameter might well be removed
 
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
         self.playingImage = self.playingImage ? self.playingImage : [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
@@ -118,6 +124,7 @@
 
 
 - (void) play {
+    [self.player prepareToPlay];
     [self.player play];
 }
 
