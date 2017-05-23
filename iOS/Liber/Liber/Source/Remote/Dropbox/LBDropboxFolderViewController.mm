@@ -12,6 +12,7 @@
 #import "LBRemoteFile.h"
 #import "AppDelegate.h"
 #import <id3/tag.h>
+#import "LBImporter.h"
 
 
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -116,7 +117,7 @@
             LBRemoteFile* remoteFile = [[LBRemoteFile alloc] init];
             remoteFile.path = fileMetadata.pathLower;
             remoteFile.name = fileMetadata.name;
-            remoteFile.isPlayableMediaFile = [self.appDelegate.importer isPlayableMediaFile:remoteFile.path];
+            remoteFile.isPlayableMediaFile = [self.appDelegate.importer isPlayableMediaFileAtPath:remoteFile.path];
             if (remoteFile.isPlayableMediaFile) {
                 [self.fileEntries addObject:remoteFile];
             }
@@ -206,9 +207,14 @@
 
 - (void) downloadAndPlayFileAtPath:(NSString*)path {
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *outputDirectory = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
-    NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current.mp3"];
+    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    //NSURL *outputDirectory = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
+    //NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current.mp3"];
+    
+    [self.appDelegate.importer cleanupTempDirectory];
+    
+    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:@"current"] stringByAppendingPathExtension:path.pathExtension];
+    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
     
     [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
       setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
@@ -219,28 +225,26 @@
               NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
               NSLog(@"%@\n", dataStr);
               
-              NSString* artist = @"Unknown Artist";
+              NSString* artist = @"";
               NSString* trackTitle = path.lastPathComponent.stringByDeletingPathExtension;
+                  
+              // not working atm.. TODO: check if ID3_Tag library is actually useful
+              /*
+              ID3_Tag tag;
+              tag.Link([outputUrl.absoluteString UTF8String]);
               
-              if ([path.pathExtension isEqualToString:@"mp3"]) {
-                  
-                  // not working atm..
-                  /*
-                  ID3_Tag tag;
-                  tag.Link([outputUrl.absoluteString UTF8String]);
-                  
-                  ID3_Frame *titleFrame = tag.Find(ID3FID_TITLE);
-                  unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
-                  NSString *title = [NSString stringWithCString:(char const *) value encoding:NSUnicodeStringEncoding];
-                  NSLog(@"The title before is %@", title);
-                  */
-                  
-                  // this works ;)
-                  NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:outputUrl];
-                  NSLog(@"thee tags: %@", id3Tags) ;
-                  artist = [id3Tags objectForKey:@"artist"];
-                  trackTitle = [id3Tags objectForKey:@"title"];
-              }
+              ID3_Frame *titleFrame = tag.Find(ID3FID_TITLE);
+              unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
+              NSString *title = [NSString stringWithCString:(char const *) value encoding:NSUnicodeStringEncoding];
+              NSLog(@"The title before is %@", title);
+              */
+              
+              // this works ;)
+              NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:outputUrl];
+              NSLog(@"the tags: %@", id3Tags) ;
+              artist = [id3Tags objectForKey:@"artist"];
+              trackTitle = [id3Tags objectForKey:@"title"];
+              
               
               [self.appDelegate.filePlayer play:destination.path artist:artist trackTitle:trackTitle image:nil];
           } else {
@@ -261,23 +265,44 @@
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Folder", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        // OK button tapped.
-        
+        [self importThisFolder];
         [self dismissViewControllerAnimated:YES completion:^{
+            
         }];
     }]];
     
-    if (self.folderEntries.count > 0) {
-        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Folder and subfolders", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-            // Distructive button tapped.
-            [self dismissViewControllerAnimated:YES completion:^{
-            }];
-        }]];
-    }
-    
     [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+
+- (void) importThisFolder {
+    
+    [self.appDelegate.importer cleanupTempDirectory];
+    for (LBRemoteFile* remoteFile in self.fileEntries) {
+        [self downloadFileAndImportIntoLibrary:remoteFile.path];
+    }
+}
+
+
+- (void) downloadFileAndImportIntoLibrary:(NSString*)path {
+    
+    
+    
+    NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
+    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
+                          stringByAppendingPathExtension:path.pathExtension];
+    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
+    
+    [[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+     setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
+                        NSURL *destination) {
+         if (result) {
+             [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path];
+         }
+         else {
+             NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
+         }
+     }];
 }
 
 @end

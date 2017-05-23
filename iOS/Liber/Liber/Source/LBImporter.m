@@ -14,7 +14,7 @@
 
 @implementation LBImporter
 
-- (BOOL) isPlayableMediaFile:(NSString*)path {
+- (BOOL) isPlayableMediaFileAtPath:(NSString*)path {
 
     NSArray* supportedMediaExtensions = @[
         @"mp3",
@@ -70,6 +70,7 @@
     return tagsDictionary;
 }
 
+
 - (UIImage*) imageForItemAtFileURL:(NSURL*)url {
     
     if (!url.isFileURL) {
@@ -85,6 +86,47 @@
         }
     }
     return nil;
+}
+
+
+- (NSString *) sanitizeFileNameString:(NSString *)fileName {
+    NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
+    return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
+}
+
+
+- (void) importFileIntoLibraryAtPath:(NSString*)filePath {
+    
+    NSLog(@"import this file: %@", filePath); 
+}
+
+
+- (void) cleanupTempDirectory {
+    
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSError* error;
+    NSArray* cacheFiles = [fileManager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];
+    if (error) NSLog(@"cleanupTempDirectory: %@", error.localizedDescription);
+    for(NSString * file in cacheFiles) {
+        if ([file.lastPathComponent hasPrefix:@"current"] || [file.lastPathComponent hasPrefix:@"import"]) {
+            error = nil;
+            NSString * filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:file];
+            NSLog(@"filePath to remove = %@", filePath);
+            BOOL removed = [fileManager removeItemAtPath:filePath error:&error];
+            if (!removed) NSLog(@"Not removed: %@", filePath);
+            if(error) NSLog(@"cleanupTempDirectory: %@", [error description]);
+        }
+        
+    }
+}
+
+
+- (NSString*) generateUUID {
+    
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
+    return (__bridge_transfer NSString *)uuidStringRef;
 }
 
 @end

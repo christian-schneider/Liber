@@ -43,7 +43,7 @@
     
     if (nil == path) return;
     
-    self.playingArtist = artist ? artist : @"Unknow Artist";
+    self.playingArtist = artist ? artist : @"";
     self.playingTitle = trackTitle ? trackTitle : path.lastPathComponent;
     self.playingImage = image;
     

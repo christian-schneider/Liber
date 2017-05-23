@@ -10,8 +10,14 @@
 
 @interface LBImporter : NSObject
 
-- (BOOL) isPlayableMediaFile:(NSString*)path;
+- (void) importFileIntoLibraryAtPath:(NSString*)filePath;
+
+- (BOOL) isPlayableMediaFileAtPath:(NSString*)path;
 - (NSDictionary *)id3TagsForURL:(NSURL *)resourceUrl;
 - (UIImage*) imageForItemAtFileURL:(NSURL*)url;
+
+- (NSString *) sanitizeFileNameString:(NSString *)fileName;
+- (void) cleanupTempDirectory;
+- (NSString*) generateUUID;
 
 @end
