@@ -14,6 +14,22 @@
 
 @implementation LBImporter
 
+
+- (void) importFileIntoLibraryAtPath:(NSString*)filePath originalFilename:(NSString*)originalFilename {
+    
+    // find artist name, track title, album name, and image (all optional) from file
+    // copy to folder with appropriate path
+    // find or create album and artist
+    // check for track duplicate
+    // create track entry in db
+    
+    NSLog(@"import this file: %@", filePath);
+    
+    NSLog(@"--- original filename: %@", originalFilename);
+}
+
+
+
 - (BOOL) isPlayableMediaFileAtPath:(NSString*)path {
 
     NSArray* supportedMediaExtensions = @[
@@ -95,10 +111,6 @@
 }
 
 
-- (void) importFileIntoLibraryAtPath:(NSString*)filePath {
-    
-    NSLog(@"import this file: %@", filePath); 
-}
 
 
 - (void) cleanupTempDirectory {

@@ -10,7 +10,7 @@
 
 @interface LBImporter : NSObject
 
-- (void) importFileIntoLibraryAtPath:(NSString*)filePath;
+- (void) importFileIntoLibraryAtPath:(NSString*)filePath originalFilename:(NSString*)originalFilename;
 
 - (BOOL) isPlayableMediaFileAtPath:(NSString*)path;
 - (NSDictionary *)id3TagsForURL:(NSURL *)resourceUrl;

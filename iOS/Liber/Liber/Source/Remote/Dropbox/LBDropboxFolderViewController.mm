@@ -297,7 +297,7 @@
      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
                         NSURL *destination) {
          if (result) {
-             [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path];
+             [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
          }
          else {
              NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
