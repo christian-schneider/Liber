@@ -8,7 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "Liber+CoreDataModel.h"
 
-@interface LBCollectionViewController : UIViewController
+@interface LBMusicCollectionViewController : UIViewController 
+
 
 
 @end

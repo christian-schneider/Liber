@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "LBMasterViewController.h"
-#import "LBCollectionViewController.h"
+#import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
@@ -97,7 +97,7 @@
 
 - (BOOL) splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
     
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[LBCollectionViewController class]] /*&& ([(LBCollectionViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)*/) {
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[LBMusicCollectionViewController class]] /*&& ([(LBMusicCollectionViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)*/) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
     } else {
