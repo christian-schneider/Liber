@@ -41,16 +41,6 @@
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    
-    if (![[DBOAuthManager sharedOAuthManager] hasStoredAccessTokens]) {
-        [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
-                                       controller:self
-                                          openURL:^(NSURL *url) {
-                                              [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                                                  NSLog(@"success");
-                                              }];
-                                          }];
-    }
 }
 
 
