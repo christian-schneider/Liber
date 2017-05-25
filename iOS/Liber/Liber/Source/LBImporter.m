@@ -11,6 +11,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "Album+CoreDataClass.h"
+#import "Artist+CoreDataClass.h"
+#import "Track+CoreDataClass.h"
+#import <MagicalRecord/MagicalRecord.h>
+
 
 
 @interface LBImporter()
@@ -35,30 +40,92 @@
 - (void) importFileIntoLibraryAtPath:(NSString*)filePath originalFilename:(NSString*)originalFilename {
     
     // find artist name, track title, album name, and image (all optional) from file
-    
-    NSURL* fileURL = [NSURL fileURLWithPath:filePath];
-
-    NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:fileURL];
-
-    NSString* artist = [id3Tags objectForKey:@"artist"];
-    NSString* trackTitle = [id3Tags objectForKey:@"title"];
-    NSString* albumTitle = [id3Tags objectForKey:@"album"];
-    
-    if (!artist && !albumTitle) {
-        
-    }
-    
-    UIImage* artwork = [self imageForItemAtFileURL:fileURL];
-    
-    
-    // copy to folder with appropriate path - in case none of the above move to 'Files' folder
+    // copy to folder with appropriate path - in case none of the above move to respective 'Unknown' folders
     // find or create album and artist
     // check for track duplicate
     // create track entry in db
     
-    NSLog(@"import this file: %@", filePath);
+    NSURL* fileURL          = [NSURL fileURLWithPath:filePath];
+    NSDictionary* id3Tags   = [self.appDelegate.importer id3TagsForURL:fileURL];
+
+    NSString* artist        = [id3Tags objectForKey:@"artist"];
+    NSString* trackTitle    = [id3Tags objectForKey:@"title"];
+    NSString* albumTitle    = [id3Tags objectForKey:@"album"];
+    UIImage* artwork        = [self imageForItemAtFileURL:fileURL];
     
-    NSLog(@"--- original filename: %@", originalFilename);
+    if (!artist)        artist = NSLocalizedString(@"Unknow Artist", nil);
+    if (!albumTitle)    albumTitle = NSLocalizedString(@"Unknown Album", nil);
+    if (!trackTitle)    trackTitle = originalFilename.lastPathComponent.stringByDeletingPathExtension;
+    
+    NSString* safeArtist        = [self sanitizeFileNameString:artist];
+    NSString* safeAlbumTitle    = [self sanitizeFileNameString:albumTitle];
+    NSString* targetFolderPath  = [safeArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeArtist, safeAlbumTitle]];
+    
+    [self createFolderInDocumentsDirIfNotExisting:targetFolderPath];
+    [self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename];
+    [self storeTrackForArtistName:artist albumTitle:albumTitle trackTitle:trackTitle image:artwork];
+}
+
+
+- (void) storeTrackForArtistName:(NSString*)artistName albumTitle:(NSString*)albumTitle trackTitle:(NSString*)trackTitle image:(UIImage*)image {
+    
+    Artist* artist = [Artist MR_findFirstByAttribute:@"name" withValue:artistName];
+    if (!artist) {
+        artist = [Artist MR_createEntity];
+        artist.name = artistName;
+    }
+    
+    Album* album = [Album MR_findFirstByAttribute:@"title" withValue:albumTitle];
+    if (!album) {
+        album = [Album MR_createEntity];
+        album.title = albumTitle;
+        album.artist = artist;
+        if (image) {
+            NSData* imageData = UIImageJPEGRepresentation(image, 100.f);
+            album.image = imageData;
+        }
+    }
+    
+    Track* track = [Track MR_findFirstByAttribute:@"title" withValue:trackTitle];
+    if (!track) {
+        track = [Track MR_createEntity];
+        track.title = trackTitle;
+        track.album = album;
+        track.artist = artist;
+    }
+    
+    [artist addAlbumsObject:album];
+    [artist addTracksObject:track];
+    [album addTracksObject:track];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+
+- (void) copyFileAtPath:(NSString*)filePath toDocumentsDirectoryInFolder:(NSString*)folderPath fileName:(NSString*)fileName {
+    
+    NSString* targetPath = [[self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath] stringByAppendingPathComponent:fileName];
+    NSError* error;
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    [fileManager moveItemAtPath:filePath toPath:targetPath error:&error];
+    if (error) {
+        NSLog(@"error moving file: %@", error.localizedDescription);
+    }
+}
+
+
+- (void) createFolderInDocumentsDirIfNotExisting:(NSString*)folderPath {
+    
+    NSString* fullPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath];
+    
+    NSError * error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:fullPath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+    }
 }
 
 
@@ -173,5 +240,13 @@
     CFRelease(uuidRef);
     return (__bridge_transfer NSString *)uuidStringRef;
 }
+
+
+- (NSString *)applicationDocumentsDirectoryPath {
+    
+    return [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
+}
+
+                                  
 
 @end

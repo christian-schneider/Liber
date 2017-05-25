@@ -295,6 +295,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E70B89C21ED702BA006A691A /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		E71F54381ECBA850006D265D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +419,7 @@
 				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
 				E7C32B311ECCE55C0038048E /* LBImporter.m */,
+				E70B89C21ED702BA006A691A /* ManagedObjects */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -587,7 +595,6 @@
 				TargetAttributes = {
 					E73A65D11EBB73A0004181DB = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = S4385JPV95;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -986,7 +993,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S4385JPV95;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -997,6 +1005,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1004,7 +1013,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S4385JPV95;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1015,6 +1025,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				PRODUCT_BUNDLE_IDENTIFIER = CS.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
