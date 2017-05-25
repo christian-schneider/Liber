@@ -211,6 +211,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E70B89C31ED70C5E006A691A /* Album+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+CoreDataClass.h"; path = "Source/ManagedObjects/Album+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70B89C41ED70C5E006A691A /* Album+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Album+CoreDataClass.m"; path = "Source/ManagedObjects/Album+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70B89C51ED70C5E006A691A /* Album+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+CoreDataProperties.h"; path = "Source/ManagedObjects/Album+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70B89C61ED70C5E006A691A /* Album+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Album+CoreDataProperties.m"; path = "Source/ManagedObjects/Album+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E70B89C71ED70C5E006A691A /* Artist+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataClass.h"; path = "Source/ManagedObjects/Artist+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70B89C81ED70C5E006A691A /* Artist+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+CoreDataClass.m"; path = "Source/ManagedObjects/Artist+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70B89C91ED70C5E006A691A /* Artist+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataProperties.h"; path = "Source/ManagedObjects/Artist+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70B89CA1ED70C5E006A691A /* Artist+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+CoreDataProperties.m"; path = "Source/ManagedObjects/Artist+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E70B89DD1ED70EAA006A691A /* Track+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Track+CoreDataClass.h"; path = "Source/ManagedObjects/Track+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70B89DE1ED70EAA006A691A /* Track+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Track+CoreDataClass.m"; path = "Source/ManagedObjects/Track+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70B89DF1ED70EAA006A691A /* Track+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Track+CoreDataProperties.h"; path = "Source/ManagedObjects/Track+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70B89E01ED70EAA006A691A /* Track+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Track+CoreDataProperties.m"; path = "Source/ManagedObjects/Track+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E71F54241ECBA711006D265D /* LBFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBFilePlayer.h; path = Source/LBFilePlayer.h; sourceTree = "<group>"; };
 		E71F54251ECBA711006D265D /* LBFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBFilePlayer.m; path = Source/LBFilePlayer.m; sourceTree = "<group>"; };
 		E71F54391ECBA850006D265D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -298,6 +310,18 @@
 		E70B89C21ED702BA006A691A /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				E70B89C31ED70C5E006A691A /* Album+CoreDataClass.h */,
+				E70B89C41ED70C5E006A691A /* Album+CoreDataClass.m */,
+				E70B89C51ED70C5E006A691A /* Album+CoreDataProperties.h */,
+				E70B89C61ED70C5E006A691A /* Album+CoreDataProperties.m */,
+				E70B89C71ED70C5E006A691A /* Artist+CoreDataClass.h */,
+				E70B89C81ED70C5E006A691A /* Artist+CoreDataClass.m */,
+				E70B89C91ED70C5E006A691A /* Artist+CoreDataProperties.h */,
+				E70B89CA1ED70C5E006A691A /* Artist+CoreDataProperties.m */,
+				E70B89DD1ED70EAA006A691A /* Track+CoreDataClass.h */,
+				E70B89DE1ED70EAA006A691A /* Track+CoreDataClass.m */,
+				E70B89DF1ED70EAA006A691A /* Track+CoreDataProperties.h */,
+				E70B89E01ED70EAA006A691A /* Track+CoreDataProperties.m */,
 			);
 			name = ManagedObjects;
 			sourceTree = "<group>";

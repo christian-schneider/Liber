@@ -10,6 +10,8 @@
 
 @interface LBCollectionViewController ()
 
+@property (nonatomic, strong) NSArray* albums;
+
 @end
 
 

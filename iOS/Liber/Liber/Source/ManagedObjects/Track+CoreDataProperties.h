@@ -2,6 +2,7 @@
 //  Track+CoreDataProperties.h
 //  Liber
 //
+//  Created by galzu on 25.05.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 

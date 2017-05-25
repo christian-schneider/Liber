@@ -63,40 +63,57 @@
     
     [self createFolderInDocumentsDirIfNotExisting:targetFolderPath];
     [self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename];
-    [self storeTrackForArtistName:artist albumTitle:albumTitle trackTitle:trackTitle image:artwork];
+    [self storeTrackForArtistName:artist
+                       albumTitle:albumTitle
+                       trackTitle:trackTitle
+                            image:artwork
+                         fileName:originalFilename
+                       folderPath:targetFolderPath];
 }
 
 
-- (void) storeTrackForArtistName:(NSString*)artistName albumTitle:(NSString*)albumTitle trackTitle:(NSString*)trackTitle image:(UIImage*)image {
+- (void) storeTrackForArtistName:(NSString*)artistName
+                      albumTitle:(NSString*)albumTitle
+                      trackTitle:(NSString*)trackTitle
+                           image:(UIImage*)image
+                        fileName:(NSString*)fileName
+                      folderPath:(NSString*)folderPath {
     
     Artist* artist = [Artist MR_findFirstByAttribute:@"name" withValue:artistName];
     if (!artist) {
         artist = [Artist MR_createEntity];
-        artist.name = artistName;
     }
+    artist.name = artistName;
     
     Album* album = [Album MR_findFirstByAttribute:@"title" withValue:albumTitle];
     if (!album) {
         album = [Album MR_createEntity];
-        album.title = albumTitle;
-        album.artist = artist;
-        if (image) {
-            NSData* imageData = UIImageJPEGRepresentation(image, 100.f);
-            album.image = imageData;
-        }
+    }
+    album.title = albumTitle;
+    album.path = folderPath;
+    if (image) {
+        NSData* imageData = UIImageJPEGRepresentation(image, 100.f);
+        album.image = imageData;
     }
     
     Track* track = [Track MR_findFirstByAttribute:@"title" withValue:trackTitle];
     if (!track) {
         track = [Track MR_createEntity];
-        track.title = trackTitle;
-        track.album = album;
-        track.artist = artist;
     }
+    track.title = trackTitle;
+    track.fileName = fileName;
+    
+    // relationships
+    
+    track.album = album;
+    track.artist = artist;
+    
+    album.artist = artist;
+    [album addTracksObject:track];
     
     [artist addAlbumsObject:album];
     [artist addTracksObject:track];
-    [album addTracksObject:track];
+    
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
