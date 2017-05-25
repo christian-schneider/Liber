@@ -10,15 +10,48 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+
+
+@interface LBImporter()
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
+
+@end
 
 
 @implementation LBImporter
 
 
+- (id) init {
+    
+    if (self = [super init]) {
+        self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    }
+    return self;
+}
+
+
 - (void) importFileIntoLibraryAtPath:(NSString*)filePath originalFilename:(NSString*)originalFilename {
     
     // find artist name, track title, album name, and image (all optional) from file
-    // copy to folder with appropriate path
+    
+    NSURL* fileURL = [NSURL fileURLWithPath:filePath];
+
+    NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:fileURL];
+
+    NSString* artist = [id3Tags objectForKey:@"artist"];
+    NSString* trackTitle = [id3Tags objectForKey:@"title"];
+    NSString* albumTitle = [id3Tags objectForKey:@"album"];
+    
+    if (!artist && !albumTitle) {
+        
+    }
+    
+    UIImage* artwork = [self imageForItemAtFileURL:fileURL];
+    
+    
+    // copy to folder with appropriate path - in case none of the above move to 'Files' folder
     // find or create album and artist
     // check for track duplicate
     // create track entry in db
