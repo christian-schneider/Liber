@@ -47,12 +47,14 @@
     
     NSURL* fileURL          = [NSURL fileURLWithPath:filePath];
     NSDictionary* id3Tags   = [self.appDelegate.importer id3TagsForURL:fileURL];
-
-    NSString* artist        = [id3Tags objectForKey:@"artist"];
-    NSString* trackTitle    = [id3Tags objectForKey:@"title"];
-    NSString* albumTitle    = [id3Tags objectForKey:@"album"];
+    
+    NSString* albumArtist   = [id3Tags objectForKey:@"TPE2"];
+    NSString* artist        = [id3Tags objectForKey:@"TPE1"];
+    NSString* trackTitle    = [id3Tags objectForKey:@"TIT2"];
+    NSString* albumTitle    = [id3Tags objectForKey:@"TALB"];
     UIImage* artwork        = [self imageForItemAtFileURL:fileURL];
     
+    // albumArtist can be nil
     if (!artist)        artist = NSLocalizedString(@"Unknow Artist", nil);
     if (!albumTitle)    albumTitle = NSLocalizedString(@"Unknown Album", nil);
     if (!trackTitle)    trackTitle = originalFilename.lastPathComponent.stringByDeletingPathExtension;
@@ -63,21 +65,23 @@
     
     [self createFolderInDocumentsDirIfNotExisting:targetFolderPath];
     [self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename];
-    [self storeTrackForArtistName:artist
-                       albumTitle:albumTitle
-                       trackTitle:trackTitle
-                            image:artwork
-                         fileName:originalFilename
-                       folderPath:targetFolderPath];
+    [self storeTrackForArtist:artist
+                  albumArtist:albumArtist
+                   albumTitle:albumTitle
+                   trackTitle:trackTitle
+                        image:artwork
+                     fileName:originalFilename
+                   folderPath:targetFolderPath];
 }
 
 
-- (void) storeTrackForArtistName:(NSString*)artistName
-                      albumTitle:(NSString*)albumTitle
-                      trackTitle:(NSString*)trackTitle
-                           image:(UIImage*)image
-                        fileName:(NSString*)fileName
-                      folderPath:(NSString*)folderPath {
+- (void) storeTrackForArtist:(NSString*)artistName
+                 albumArtist:(NSString*)albumArtist
+                  albumTitle:(NSString*)albumTitle
+                  trackTitle:(NSString*)trackTitle
+                       image:(UIImage*)image
+                    fileName:(NSString*)fileName
+                  folderPath:(NSString*)folderPath {
     
     Artist* artist = [Artist MR_findFirstByAttribute:@"name" withValue:artistName];
     if (!artist) {
@@ -184,17 +188,38 @@
     OSStatus result = AudioFileOpenURL((__bridge CFURLRef)resourceUrl, kAudioFileReadPermission, 0, &fileID);
     
     if (result != noErr) {
-        NSLog(@"Error reading tags: %i", (int)result);
+        return nil;
+    }
+    
+    //read raw ID3Tag size
+    UInt32 id3DataSize = 0;
+    char *rawID3Tag = NULL;
+    result = AudioFileGetPropertyInfo(fileID, kAudioFilePropertyID3Tag, &id3DataSize, NULL);
+    if (result != noErr) {
+        AudioFileClose(fileID);
+        return nil;
+    }
+    
+    rawID3Tag = (char *)malloc(id3DataSize);
+    
+    //read raw ID3Tag
+    result = AudioFileGetProperty(fileID, kAudioFilePropertyID3Tag, &id3DataSize, rawID3Tag);
+    if (result != noErr) {
+        free(rawID3Tag);
+        AudioFileClose(fileID);
         return nil;
     }
     
     CFDictionaryRef piDict = nil;
     UInt32 piDataSize = sizeof(piDict);
     
-    result = AudioFileGetProperty(fileID, kAudioFilePropertyInfoDictionary, &piDataSize, &piDict);
-    if (result != noErr)
-        NSLog(@"Error reading tags. AudioFileGetProperty failed");
+    //this key returns some other dictionary, which works also in iPod library
+    result = AudioFormatGetProperty(kAudioFormatProperty_ID3TagToDictionary, id3DataSize, rawID3Tag, &piDataSize, &piDict);
+    if (result != noErr) {
+        return nil;
+    }
     
+    free(rawID3Tag);
     AudioFileClose(fileID);
     
     NSDictionary *tagsDictionary = [NSDictionary dictionaryWithDictionary:(__bridge NSDictionary*)piDict];
