@@ -6,7 +6,7 @@
 //
 
 #import "LBMasterViewController.h"
-#import "LBCollectionViewController.h"
+#import "LBMusicCollectionViewController.h"
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 

@@ -13,7 +13,7 @@
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
 		E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */; };
-		E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */; };
+		E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */; };
 		E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E41EBB73A0004181DB /* Main.storyboard */; };
 		E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E71EBB73A0004181DB /* Assets.xcassets */; };
 		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
@@ -23,6 +23,7 @@
 		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
+		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
 		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
 		E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */; };
@@ -233,8 +234,8 @@
 		E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Liber.xcdatamodel; sourceTree = "<group>"; };
 		E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMasterViewController.h; path = Source/LBMasterViewController.h; sourceTree = "<group>"; };
 		E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMasterViewController.m; path = Source/LBMasterViewController.m; sourceTree = "<group>"; };
-		E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBCollectionViewController.h; path = Source/Collection/LBCollectionViewController.h; sourceTree = "<group>"; };
-		E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBCollectionViewController.m; path = Source/Collection/LBCollectionViewController.m; sourceTree = "<group>"; };
+		E73A65E11EBB73A0004181DB /* LBMusicCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewController.h; path = Source/Collection/LBMusicCollectionViewController.h; sourceTree = "<group>"; };
+		E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewController.m; path = Source/Collection/LBMusicCollectionViewController.m; sourceTree = "<group>"; };
 		E73A65E51EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E73A65E71EBB73A0004181DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E73A65EA1EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -252,6 +253,8 @@
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
 		E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteViewController.m; path = Source/Remote/LBRemoteViewController.m; sourceTree = "<group>"; };
+		E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewCell.h; path = Source/Collection/LBMusicCollectionViewCell.h; sourceTree = "<group>"; };
+		E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewCell.m; path = Source/Collection/LBMusicCollectionViewCell.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
 		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LBDropboxFolderViewController.mm; path = Source/Remote/Dropbox/LBDropboxFolderViewController.mm; sourceTree = "<group>"; };
 		E7A5C1681EC976BC00700156 /* LBRemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFile.h; path = Source/Remote/LBRemoteFile.h; sourceTree = "<group>"; };
@@ -435,14 +438,14 @@
 				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
 				E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */,
 				E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */,
-				E75FFEC91EC6F1AC00881694 /* Collection */,
-				E75FFECA1EC6F1B800881694 /* Playlists */,
-				E75FFECB1EC6F1C200881694 /* Remote */,
-				E7A5C1741ECA38DC00700156 /* Util */,
 				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
 				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
 				E7C32B311ECCE55C0038048E /* LBImporter.m */,
+				E75FFEC91EC6F1AC00881694 /* Collection */,
+				E75FFECA1EC6F1B800881694 /* Playlists */,
+				E75FFECB1EC6F1C200881694 /* Remote */,
+				E7A5C1741ECA38DC00700156 /* Util */,
 				E70B89C21ED702BA006A691A /* ManagedObjects */,
 			);
 			name = Source;
@@ -451,8 +454,10 @@
 		E75FFEC91EC6F1AC00881694 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				E73A65E11EBB73A0004181DB /* LBCollectionViewController.h */,
-				E73A65E21EBB73A0004181DB /* LBCollectionViewController.m */,
+				E73A65E11EBB73A0004181DB /* LBMusicCollectionViewController.h */,
+				E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */,
+				E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */,
+				E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */,
 			);
 			name = Collection;
 			sourceTree = "<group>";
@@ -852,13 +857,14 @@
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
-				E73A65E31EBB73A0004181DB /* LBCollectionViewController.m in Sources */,
+				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
+				E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */,
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
 				E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
