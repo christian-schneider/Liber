@@ -29,6 +29,7 @@
           @"segue" : @"showDropboxFolder",
           @"api"   : @"Dropbox"},
     ];
+    self.title = NSLocalizedString(@"Import Music", nil);
 
 }
 

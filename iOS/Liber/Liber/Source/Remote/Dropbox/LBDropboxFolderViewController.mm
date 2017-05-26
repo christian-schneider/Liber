@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSMutableArray<LBRemoteFolder*>* folderEntries;
 @property (nonatomic, strong) NSMutableArray<LBRemoteFile*>* fileEntries;
 
+- (IBAction) showImportActionController;
+
 @end
 
 

@@ -15,7 +15,6 @@
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
-		E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */; };
 		E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */; };
 		E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E41EBB73A0004181DB /* Main.storyboard */; };
 		E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E71EBB73A0004181DB /* Assets.xcassets */; };
@@ -241,8 +240,6 @@
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
 		E73A65D91EBB73A0004181DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = "<group>"; };
 		E73A65DC1EBB73A0004181DB /* Liber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Liber.xcdatamodel; sourceTree = "<group>"; };
-		E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMasterViewController.h; path = Source/LBMasterViewController.h; sourceTree = "<group>"; };
-		E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMasterViewController.m; path = Source/LBMasterViewController.m; sourceTree = "<group>"; };
 		E73A65E11EBB73A0004181DB /* LBMusicCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewController.h; path = Source/Collection/LBMusicCollectionViewController.h; sourceTree = "<group>"; };
 		E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewController.m; path = Source/Collection/LBMusicCollectionViewController.m; sourceTree = "<group>"; };
 		E73A65E51EBB73A0004181DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -464,8 +461,6 @@
 			children = (
 				E73A65D81EBB73A0004181DB /* AppDelegate.h */,
 				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
-				E73A65DE1EBB73A0004181DB /* LBMasterViewController.h */,
-				E73A65DF1EBB73A0004181DB /* LBMasterViewController.m */,
 				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
 				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
@@ -890,7 +885,6 @@
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
-				E73A65E01EBB73A0004181DB /* LBMasterViewController.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E7221C7C1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m in Sources */,

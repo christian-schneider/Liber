@@ -6,14 +6,13 @@
 //
 
 #import "AppDelegate.h"
-#import "LBMasterViewController.h"
 #import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
-@interface AppDelegate () <UISplitViewControllerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -23,10 +22,13 @@
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    /*
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+     
+     */
 
     // UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
     // MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
@@ -90,19 +92,6 @@
         }
     }
     return NO;
-}
-
-
-#pragma mark - Split view
-
-- (BOOL) splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[LBMusicCollectionViewController class]] /*&& ([(LBMusicCollectionViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)*/) {
-        // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-        return YES;
-    } else {
-        return NO;
-    }
 }
 
 

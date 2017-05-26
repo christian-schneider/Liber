@@ -12,12 +12,18 @@
 #import "Track+CoreDataClass.h"
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
+#import "LBPlaylistsViewController.h"
+#import "LBRemoteViewController.h"
 
 
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
+
+- (IBAction) actionBarButtonItemAction;
+- (IBAction) filterBarButtonItemAction;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem* filterBarButtonItem;
 
 @end
 
@@ -35,6 +41,7 @@
     
     [super viewWillAppear:animated];
     self.displayItems = [Album MR_findAll];
+    self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
 }
 
 - (void) didReceiveMemoryWarning {
@@ -73,6 +80,61 @@
     LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
     albumViewController.album = album;
     [self.navigationController pushViewController:albumViewController animated:YES];
+}
+
+
+- (IBAction) actionBarButtonItemAction {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    /*
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Playlists", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        LBPlaylistsViewController* pVC = (LBPlaylistsViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PlaylistsViewController"];
+        [self.navigationController pushViewController:pVC animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    */
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import Music", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        LBRemoteViewController* rVC = (LBRemoteViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteViewController"];
+        [self.navigationController pushViewController:rVC animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+
+- (IBAction) filterBarButtonItemAction {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Filter" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        self.filterBarButtonItem.title = NSLocalizedString(@"Artist", nil);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        self.filterBarButtonItem.title = NSLocalizedString(@"Track", nil);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 

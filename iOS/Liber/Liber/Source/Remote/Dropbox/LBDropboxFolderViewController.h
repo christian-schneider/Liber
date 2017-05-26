@@ -7,11 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LBDropboxFolderViewController : UIViewController
 
 @property (nonatomic, strong) NSString* folderPath;
-
-- (IBAction) showImportActionController;
-
 
 @end
