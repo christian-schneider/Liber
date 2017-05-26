@@ -11,6 +11,7 @@
 #import "Artist+CoreDataClass.h"
 #import "Track+CoreDataClass.h"
 #import "LBMusicCollectionViewCell.h"
+#import "LBAlbumViewController.h"
 
 
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -27,15 +28,12 @@
 - (void) viewDidLoad {
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-  
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
     self.displayItems = [Album MR_findAll];
 }
 
@@ -67,5 +65,15 @@
     [colViewCell.imageView setImage:[UIImage imageWithData:album.image]];
     return colViewCell;
 }
+
+
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Album* album = [self.displayItems objectAtIndex:indexPath.row];
+    LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
+    albumViewController.album = album;
+    [self.navigationController pushViewController:albumViewController animated:YES];
+}
+
 
 @end

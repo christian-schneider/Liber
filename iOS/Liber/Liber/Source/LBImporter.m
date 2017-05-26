@@ -17,7 +17,6 @@
 #import <MagicalRecord/MagicalRecord.h>
 
 
-
 @interface LBImporter()
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
@@ -52,7 +51,8 @@
     NSString* artist        = [id3Tags objectForKey:@"TPE1"];
     NSString* trackTitle    = [id3Tags objectForKey:@"TIT2"];
     NSString* albumTitle    = [id3Tags objectForKey:@"TALB"];
-    UIImage* artwork        = [self imageForItemAtFileURL:fileURL];
+    NSNumber* trackIndex    = [id3Tags objectForKey:@"TRCK"];
+    UIImage* artwork        = [self imageForItemAtFileURL:fileURL];         // set breakpoint here to inspect the tags returned by a specific file
     
     // albumArtist can be nil
     if (!artist)        artist = NSLocalizedString(@"Unknow Artist", nil);
@@ -60,8 +60,14 @@
     if (!trackTitle)    trackTitle = originalFilename.lastPathComponent.stringByDeletingPathExtension;
     
     NSString* safeArtist        = [self sanitizeFileNameString:artist];
+    NSString* safeAlbumArtist   = [self sanitizeFileNameString:albumArtist];
     NSString* safeAlbumTitle    = [self sanitizeFileNameString:albumTitle];
-    NSString* targetFolderPath  = [safeArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeArtist, safeAlbumTitle]];
+    NSString* targetFolderPath = nil;
+    if (albumArtist && albumArtist.length > 0) {
+        targetFolderPath = [safeAlbumArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeAlbumArtist, safeAlbumTitle]];
+    } else {
+        targetFolderPath = [safeArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeArtist, safeAlbumTitle]];
+    }
     
     [self createFolderInDocumentsDirIfNotExisting:targetFolderPath];
     [self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename];
@@ -69,6 +75,7 @@
                   albumArtist:albumArtist
                    albumTitle:albumTitle
                    trackTitle:trackTitle
+                      atIndex:trackIndex
                         image:artwork
                      fileName:originalFilename
                    folderPath:targetFolderPath];
@@ -79,9 +86,16 @@
                  albumArtist:(NSString*)albumArtist
                   albumTitle:(NSString*)albumTitle
                   trackTitle:(NSString*)trackTitle
+                     atIndex:(NSNumber*)index
                        image:(UIImage*)image
                     fileName:(NSString*)fileName
                   folderPath:(NSString*)folderPath {
+    
+    Artist* albumArtistEntity = [Artist MR_findFirstByAttribute:@"name" withValue:albumArtist];
+    if (albumArtist && !albumArtistEntity) {
+        albumArtistEntity = [Artist MR_createEntity];
+        albumArtistEntity.name = albumArtist;
+    }
     
     Artist* artist = [Artist MR_findFirstByAttribute:@"name" withValue:artistName];
     if (!artist) {
@@ -106,18 +120,20 @@
     }
     track.title = trackTitle;
     track.fileName = fileName;
+    if (index) {
+        track.index = index.integerValue;
+    }
     
     // relationships
     
     track.album = album;
     track.artist = artist;
     
-    album.artist = artist;
+    album.artist = albumArtistEntity ? albumArtistEntity : artist ;
     [album addTracksObject:track];
     
     [artist addAlbumsObject:album];
     [artist addTracksObject:track];
-    
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
@@ -248,11 +264,11 @@
 
 
 - (NSString *) sanitizeFileNameString:(NSString *)fileName {
+    
+    if (!fileName) return nil;
     NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
     return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
 }
-
-
 
 
 - (void) cleanupTempDirectory {
@@ -270,7 +286,6 @@
             if (!removed) NSLog(@"Not removed: %@", filePath);
             if(error) NSLog(@"cleanupTempDirectory: %@", [error description]);
         }
-        
     }
 }
 
@@ -288,7 +303,5 @@
     
     return [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
 }
-
-                                  
 
 @end

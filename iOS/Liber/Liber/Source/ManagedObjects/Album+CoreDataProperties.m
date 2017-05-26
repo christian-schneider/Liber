@@ -2,6 +2,7 @@
 //  Album+CoreDataProperties.m
 //  Liber
 //
+//  Created by galzu on 26.05.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
@@ -18,5 +19,6 @@
 @dynamic title;
 @dynamic artist;
 @dynamic tracks;
+@dynamic albumArtist;
 
 @end
