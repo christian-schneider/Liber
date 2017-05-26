@@ -4,19 +4,21 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : 9223372036854775807,
     "958932E9D08E4465709D54DB1E7CECF23B0F442E" : 9223372036854775807,
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : 9223372036854775807,
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : 9223372036854775807,
     "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 9223372036854775807,
-    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : 9223372036854775807
+    "8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F7BCCB5F-7940-4710-81C7-A8361F3EF839",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : "Liber\/Vendor\/MagicalRecord\/",
+    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : "Liber\/iOS\/Vendor\/libid3-ios\/",
+    "958932E9D08E4465709D54DB1E7CECF23B0F442E" : "Liber\/iOS\/Vendor\/MagicalRecord\/",
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : "Liber\/",
-    "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : "Liber\/Vendor\/Dropbox\/",
-    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "Liber\/Vendor\/AFNetworking\/",
-    "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : "Liber\/Vendor\/libid3-ios\/"
+    "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : "Liber\/iOS\/Vendor\/Dropbox\/",
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "Liber\/iOS\/Vendor\/AFNetworking\/",
+    "8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB" : "Liber\/iOS\/Vendor\/MagicalRecord\/Carthage\/Checkouts\/expecta\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Liber",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -31,6 +33,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dropbox\/dropbox-sdk-obj-c",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/specta\/expecta.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/magicalpanda\/MagicalRecord.git",
