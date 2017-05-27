@@ -14,6 +14,7 @@
 #import "LBAlbumViewController.h"
 #import "LBPlaylistsViewController.h"
 #import "LBRemoteViewController.h"
+#import "AppDelegate.h"
 
 
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate> {
@@ -52,6 +53,10 @@
     lpgr.delegate = self;
     lpgr.delaysTouchesBegan = YES;
     [self.collectionView addGestureRecognizer:lpgr];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateDisplayItems];
+    }];
 }
 
 

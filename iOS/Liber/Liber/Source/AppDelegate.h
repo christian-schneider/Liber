@@ -10,6 +10,10 @@
 #import "LBFilePlayer.h"
 #import "LBImporter.h"
 
+
+extern NSString* const LBMusicItemAddedToCollection;
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

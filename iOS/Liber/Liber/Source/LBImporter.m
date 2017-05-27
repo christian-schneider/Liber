@@ -79,6 +79,8 @@
                         image:artwork
                      fileName:originalFilename
                    folderPath:targetFolderPath];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBMusicItemAddedToCollection object:nil];
 }
 
 

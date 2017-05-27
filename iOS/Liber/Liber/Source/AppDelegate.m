@@ -12,6 +12,9 @@
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
+NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
+
+
 @interface AppDelegate ()
 
 @end
@@ -21,17 +24,6 @@
 
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    /*
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
-    splitViewController.delegate = self;
-     
-     */
-
-    // UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-    // MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
     
