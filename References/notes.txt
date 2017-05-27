@@ -10,3 +10,6 @@ LIBERO P CONS AVG, meaning Dedicated to Father Liber
 
 example of mp3 encoding with lame:
 https://stackoverflow.com/questions/31452202/ios-swift-merge-and-convert-wav-files-to-mp3
+
+
+Icons: https://www.iconfinder.com/iconsets/feather

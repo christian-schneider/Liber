@@ -10,6 +10,6 @@
 @interface LBAlbumTrackTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel* trackTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel* trackDurationLabel;
+@property (nonatomic, weak) IBOutlet UIImageView* playIconImageView;
 
 @end

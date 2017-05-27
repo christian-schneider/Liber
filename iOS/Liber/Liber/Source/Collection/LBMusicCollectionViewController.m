@@ -103,6 +103,8 @@
     Album* album = [self.displayItems objectAtIndex:indexPath.row];
     colViewCell.artistName.text = album.artist.name;
     colViewCell.albumTitle.text = album.title;
+    colViewCell.albumTitle.lineBreakMode = NSLineBreakByWordWrapping;
+    colViewCell.albumTitle.numberOfLines = 2;
     [colViewCell.imageView setImage:[UIImage imageWithData:album.image]];
     return colViewCell;
 }

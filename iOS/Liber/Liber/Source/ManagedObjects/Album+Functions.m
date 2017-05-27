@@ -10,7 +10,7 @@
 
 @implementation Album (Functions)
 
-- (NSArray*) ordereTracks {
+- (NSArray*) orderedTracks {
     
     NSSortDescriptor *sortNameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     NSArray *sortDescriptors = @[sortNameDescriptor];

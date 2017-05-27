@@ -13,6 +13,7 @@
 #import "LBAlbumArtworkTableViewCell.h"
 #import "LBAlbumTrackTableViewCell.h"
 #import "AppDelegate.h"
+#import "Album+Functions.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -74,10 +75,10 @@
         LBAlbumTrackTableViewCell* cell = (LBAlbumTrackTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumTrackTableViewCell"];
         Track* track = [[self.album orderedTracks] objectAtIndex:indexPath.row];
         if (self.album.artist != track.artist) {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
+            cell.trackTitleLabel.text = [NSString stringWithFormat:@"%@ - %@", track.artist.name, track.title];
         }
         else {
-            cell.textLabel.text = track.title;
+            cell.trackTitleLabel.text = track.title;
         }
         return cell;
     }
@@ -86,7 +87,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return indexPath.section == 0 ? 324.f : 44.f ;
+    return indexPath.section == 0 ? 360.f : 44.f ;
 }
 
 @end

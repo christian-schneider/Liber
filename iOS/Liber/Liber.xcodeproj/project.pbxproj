@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */; };
 		E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */; };
+		E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */; };
+		E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E70CADBF1ED9DBCF005E8C39 /* play-outline.png */; };
 		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
 		E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F54391ECBA850006D265D /* AVFoundation.framework */; };
 		E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */; };
@@ -195,6 +197,20 @@
 		E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+Functions.m"; path = "Source/ManagedObjects/Artist+Functions.m"; sourceTree = "<group>"; };
 		E70CADB71ED9C8A8005E8C39 /* Album+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+Functions.h"; path = "Source/ManagedObjects/Album+Functions.h"; sourceTree = "<group>"; };
 		E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Album+Functions.m"; path = "Source/ManagedObjects/Album+Functions.m"; sourceTree = "<group>"; };
+		E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause-outline.png"; path = "Resources/pause-outline.png"; sourceTree = "<group>"; };
+		E70CADBF1ED9DBCF005E8C39 /* play-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-outline.png"; path = "Resources/play-outline.png"; sourceTree = "<group>"; };
+		E70CADC31ED9DD81005E8C39 /* Artist+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataClass.h"; path = "Source/ManagedObjects/Generated/Artist+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70CADC41ED9DD81005E8C39 /* Artist+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Artist+CoreDataClass.m"; path = "Source/ManagedObjects/Generated/Artist+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70CADC51ED9DD81005E8C39 /* Artist+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataProperties.h"; path = "Source/ManagedObjects/Generated/Artist+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70CADC61ED9DD81005E8C39 /* Artist+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Artist+CoreDataProperties.m"; path = "Source/ManagedObjects/Generated/Artist+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E70CADC71ED9DD81005E8C39 /* Track+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Track+CoreDataClass.h"; path = "Source/ManagedObjects/Generated/Track+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70CADC81ED9DD81005E8C39 /* Track+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Track+CoreDataClass.m"; path = "Source/ManagedObjects/Generated/Track+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70CADC91ED9DD81005E8C39 /* Track+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Track+CoreDataProperties.h"; path = "Source/ManagedObjects/Generated/Track+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70CADCA1ED9DD81005E8C39 /* Track+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Track+CoreDataProperties.m"; path = "Source/ManagedObjects/Generated/Track+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E70CADCB1ED9DD81005E8C39 /* Album+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Album+CoreDataClass.h"; path = "Source/ManagedObjects/Generated/Album+CoreDataClass.h"; sourceTree = "<group>"; };
+		E70CADCC1ED9DD81005E8C39 /* Album+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Album+CoreDataClass.m"; path = "Source/ManagedObjects/Generated/Album+CoreDataClass.m"; sourceTree = "<group>"; };
+		E70CADCD1ED9DD81005E8C39 /* Album+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Album+CoreDataProperties.h"; path = "Source/ManagedObjects/Generated/Album+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E70CADCE1ED9DD81005E8C39 /* Album+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Album+CoreDataProperties.m"; path = "Source/ManagedObjects/Generated/Album+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E71F54241ECBA711006D265D /* LBFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBFilePlayer.h; path = Source/LBFilePlayer.h; sourceTree = "<group>"; };
 		E71F54251ECBA711006D265D /* LBFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBFilePlayer.m; path = Source/LBFilePlayer.m; sourceTree = "<group>"; };
 		E71F54391ECBA850006D265D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -285,12 +301,32 @@
 		E70B89C21ED702BA006A691A /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				E70CADC21ED9DD59005E8C39 /* Generated */,
 				E70CADB41ED9C7EC005E8C39 /* Artist+Functions.h */,
 				E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */,
 				E70CADB71ED9C8A8005E8C39 /* Album+Functions.h */,
 				E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */,
 			);
 			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		E70CADC21ED9DD59005E8C39 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				E70CADC31ED9DD81005E8C39 /* Artist+CoreDataClass.h */,
+				E70CADC41ED9DD81005E8C39 /* Artist+CoreDataClass.m */,
+				E70CADC51ED9DD81005E8C39 /* Artist+CoreDataProperties.h */,
+				E70CADC61ED9DD81005E8C39 /* Artist+CoreDataProperties.m */,
+				E70CADC71ED9DD81005E8C39 /* Track+CoreDataClass.h */,
+				E70CADC81ED9DD81005E8C39 /* Track+CoreDataClass.m */,
+				E70CADC91ED9DD81005E8C39 /* Track+CoreDataProperties.h */,
+				E70CADCA1ED9DD81005E8C39 /* Track+CoreDataProperties.m */,
+				E70CADCB1ED9DD81005E8C39 /* Album+CoreDataClass.h */,
+				E70CADCC1ED9DD81005E8C39 /* Album+CoreDataClass.m */,
+				E70CADCD1ED9DD81005E8C39 /* Album+CoreDataProperties.h */,
+				E70CADCE1ED9DD81005E8C39 /* Album+CoreDataProperties.m */,
+			);
+			name = Generated;
 			sourceTree = "<group>";
 		};
 		E71F54381ECBA850006D265D /* Frameworks */ = {
@@ -390,6 +426,8 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */,
+				E70CADBF1ED9DBCF005E8C39 /* play-outline.png */,
 				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
 				E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */,
 			);
@@ -773,6 +811,8 @@
 			files = (
 				E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */,
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
+				E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */,
+				E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */,
 				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
 				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,
 			);

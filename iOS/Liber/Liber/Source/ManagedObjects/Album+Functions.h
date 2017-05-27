@@ -9,6 +9,6 @@
 
 @interface Album (Functions)
 
-- (NSArray*) ordereTracks;
+- (NSArray*) orderedTracks;
 
 @end
