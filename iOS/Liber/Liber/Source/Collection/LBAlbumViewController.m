@@ -8,9 +8,11 @@
 #import "LBAlbumViewController.h"
 #import "Album+CoreDataClass.h"
 #import "Artist+CoreDataClass.h"
+#import "Artist+Functions.h"
 #import "Track+CoreDataClass.h"
 #import "LBAlbumArtworkTableViewCell.h"
 #import "LBAlbumTrackTableViewCell.h"
+#import "AppDelegate.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -25,6 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
 }
 
 
@@ -66,8 +72,13 @@
     }
     else {
         LBAlbumTrackTableViewCell* cell = (LBAlbumTrackTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumTrackTableViewCell"];
-        Track* track = [self.album.tracks.allObjects objectAtIndex:indexPath.row];
-        cell.textLabel.text = track.title;
+        Track* track = [[self.album orderedTracks] objectAtIndex:indexPath.row];
+        if (self.album.artist != track.artist) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
+        }
+        else {
+            cell.textLabel.text = track.title;
+        }
         return cell;
     }
 }

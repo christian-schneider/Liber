@@ -12,4 +12,9 @@
 
 @implementation Artist
 
+- (NSString*) description {
+    
+    return [NSString stringWithFormat:@"Artist: %@", self.name];
+}
+
 @end

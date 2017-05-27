@@ -131,11 +131,17 @@
     track.album = album;
     track.artist = artist;
     
+    NSLog(@"**** album artist %@", albumArtistEntity.name);
+    
     album.artist = albumArtistEntity ? albumArtistEntity : artist ;
+    
+    NSLog(@" --- after assignment: %@", album.artist.name);
     [album addTracksObject:track];
     
     [artist addAlbumsObject:album];
     [artist addTracksObject:track];
+    
+    NSLog(@" now adding this album: %@ for Artist: %@", album.title, album.artist.name);
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
