@@ -7,17 +7,18 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+@class Track;
+
 
 @interface LBFilePlayer : NSObject
 
-@property (nonatomic, strong) AVAudioPlayer *player;
-
-- (void) play:(NSString*)path artist:(NSString*)artist trackTitle:(NSString*)trackTitle image:(UIImage*)image;
-
+- (void) playTrack:(Track*)track;
 
 @property (readonly) BOOL isPlaying;
-@property (readonly) NSString* playingArtist;
-@property (readonly) NSString* playingTitle;
-@property (readonly) UIImage* playingImage;
+@property (readonly) BOOL isPaused;
+- (void) pausePlaying;
+- (void) continuePlaying;
+- (Track*) currentTrack;
+- (void) stopPlaying;
 
 @end

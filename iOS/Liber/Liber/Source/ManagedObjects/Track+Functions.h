@@ -7,6 +7,9 @@
 
 #import "Track+CoreDataClass.h"
 
+
 @interface Track (Functions)
+
+- (NSString*) fullPath; 
 
 @end

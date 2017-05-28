@@ -7,22 +7,21 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "LBFilePlayer.h"
 #import "LBImporter.h"
 #import "LBPlayQueue.h"
 
 
 extern NSString* const LBMusicItemAddedToCollection;
+extern NSString* const LBPlayQueuePlayItemChanged;
+extern NSString* const LBPlayQueuePlayStatusChanged;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) LBFilePlayer* filePlayer;
 @property (strong, nonatomic) LBImporter* importer;
 @property (strong, nonatomic) LBPlayQueue* playQueue;
-
 
 @end
 

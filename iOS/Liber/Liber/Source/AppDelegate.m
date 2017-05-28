@@ -13,6 +13,8 @@
 
 
 NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
+NSString* const LBPlayQueuePlayItemChanged = @"LBPlayQueuePlayItemChanged";
+NSString* const LBPlayQueuePlayStatusChanged = @"LBPlayQueuePlayStatusChanged";
 
 
 @interface AppDelegate ()
@@ -26,12 +28,10 @@ NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
+    [MagicalRecord setupAutoMigratingCoreDataStack];
     
-    self.filePlayer = [[LBFilePlayer alloc] init];
     self.importer = [[LBImporter alloc] init];
     self.playQueue = [[LBPlayQueue alloc] init];
-    
-    [MagicalRecord setupAutoMigratingCoreDataStack];
     
     return YES;
 }

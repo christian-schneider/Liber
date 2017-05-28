@@ -20,4 +20,6 @@
 - (void) cleanupTempDirectory;
 - (NSString*) generateUUID;
 
+- (NSString *)applicationDocumentsDirectoryPath;
+
 @end

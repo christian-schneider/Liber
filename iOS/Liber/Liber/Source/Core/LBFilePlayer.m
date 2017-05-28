@@ -6,19 +6,29 @@
 //
 
 #import "LBFilePlayer.h"
+#import "LBImporter.h"
 #import "AppDelegate.h"
+#import "Track+Functions.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
 @import MediaPlayer;
 @import AVFoundation;
 
 
 @interface LBFilePlayer() <AVAudioPlayerDelegate>
 
+@property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, weak) AppDelegate* appDelegate;
 
+@property (nonatomic, strong) Track* currentTrack;
 @property (readwrite) BOOL isPlaying;
+@property (readwrite) BOOL isPaused;
+
 @property (nonatomic, strong) NSString* playingArtist;
 @property (nonatomic, strong) NSString* playingTitle;
 @property (nonatomic, strong) UIImage* playingImage;
+
+@property (nonatomic, strong) NSDictionary* nowPlayingInfo;
 
 @end
 
@@ -32,10 +42,57 @@
         MPRemoteCommandCenter *remoteCommandCenter = [MPRemoteCommandCenter sharedCommandCenter];
         [[remoteCommandCenter nextTrackCommand] addTarget:self action:@selector(nextTrack)];
         [[remoteCommandCenter previousTrackCommand] addTarget:self action:@selector(previousTrack)];
-        [[remoteCommandCenter playCommand] addTarget:self action:@selector(play)];
-        [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pause)];
+        [[remoteCommandCenter playCommand] addTarget:self action:@selector(continuePlaying)];
+        [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pausePlaying)];
     }
     return self;
+}
+
+
+- (void) playTrack:(Track*)track {
+    
+    self.currentTrack = track;
+    UIImage* image = [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:track.fullPath]];
+    if (!image) {
+        image = [UIImage imageWithData:track.album.image];
+    }
+    [self play:track.fullPath artist:track.artist.name trackTitle:track.title image:image];
+    [self.player prepareToPlay];
+    [self.player play];
+}
+
+
+- (void) pausePlaying {
+
+    [self.player pause];
+    self.isPlaying = NO;
+    [self updateRemoteControls];
+}
+
+
+- (void) continuePlaying {
+    
+    [self.player play];
+    self.isPlaying = YES;
+    [self updateRemoteControls];
+}
+
+
+- (void) stopPlaying {
+    
+    [self.player stop];
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
+    self.isPlaying = NO;
+    self.playingArtist = @"";
+    self.playingTitle = @"";
+    self.playingImage = nil;
+}
+
+
+- (Track*) currentTrack {
+    
+    return self.currentTrack;
 }
 
 
@@ -47,11 +104,14 @@
     self.playingTitle = trackTitle ? trackTitle : path.lastPathComponent;
     self.playingImage = image;
     
+    NSError* error;
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:path];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-    
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:nil];
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+    if (error) NSLog(@"AVAudioPlayer init: %@", error.description);
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&error];
+    if (error) NSLog(@"AVAudioPlayer setCategory: %@", error.description);
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:&error];
+    if (error) NSLog(@"AVAudioPlayer setActive: %@", error.description);
     
     [self.player setDelegate:self];
     [self.player prepareToPlay];
@@ -68,7 +128,7 @@
         return self.playingImage;
     }] ;
     
-    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{
+    self.nowPlayingInfo = @{
         MPMediaItemPropertyArtist: self.playingArtist,
         MPMediaItemPropertyTitle: self.playingTitle,
         MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
@@ -76,21 +136,15 @@
         MPNowPlayingInfoPropertyPlaybackRate: @1,
         MPMediaItemPropertyArtwork: artwork
     };
+    
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = self.nowPlayingInfo;
 }
 
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)success {
     
-    // TODO:
-    // check the play queue, if there is another file in the queue, call play and return
-    
-    NSLog(@"audio finished %d", success);
-    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
-    self.isPlaying = NO;
-    self.playingArtist = @"";
-    self.playingTitle = @"";
-    self.playingImage = nil;
+    [self stopPlaying];
+    [self.appDelegate.playQueue playNextTrack];
 }
 
 
@@ -113,24 +167,31 @@
 
 
 - (void) nextTrack {
-    NSLog(@"next track");
+    [self.appDelegate.playQueue playNextTrack];
 }
 
 
 - (void) previousTrack {
-    NSLog(@"previous track");
-    [self.player setCurrentTime:0];
+    [self.appDelegate.playQueue playPreviousTrack];
 }
 
 
-- (void) play {
-    [self.player prepareToPlay];
-    [self.player play];
-}
 
-
-- (void) pause {
-    [self.player pause];
+- (void) updateRemoteControls {
+    
+    if (self.player) {
+        
+        MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
+        NSMutableDictionary *displayInfo = [NSMutableDictionary dictionaryWithDictionary: self.nowPlayingInfo];
+        
+        float playbackRate = self.isPlaying ? 1.0f : 0.0f;
+        [displayInfo setObject:[NSNumber numberWithFloat:playbackRate] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+        
+        infoCenter.nowPlayingInfo = displayInfo;
+    }
+    else {
+        self.nowPlayingInfo = @{};
+    }
 }
 
 

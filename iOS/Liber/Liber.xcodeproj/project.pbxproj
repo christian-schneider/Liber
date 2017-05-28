@@ -307,12 +307,12 @@
 		E701BEDA1EDAC06600422F62 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
-				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
 				E7C32B311ECCE55C0038048E /* LBImporter.m */,
 				E73502D11EDAC0CA0049DF5F /* LBPlayQueue.h */,
 				E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */,
+				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
+				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";

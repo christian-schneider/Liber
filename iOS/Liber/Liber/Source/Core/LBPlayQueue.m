@@ -6,11 +6,14 @@
 //
 
 #import "LBPlayQueue.h"
+#import "LBFilePlayer.h"
+#import "Track+CoreDataClass.h" 
 
 
 @interface LBPlayQueue()
 
 @property (nonatomic, strong) NSMutableArray<Track*>* queue;
+@property (nonatomic, strong) LBFilePlayer* filePlayer;
 
 @end
 
@@ -21,8 +24,54 @@
     
     if (self = [super init]) {
         self.queue = [NSMutableArray arrayWithCapacity:10];
+        self.filePlayer = [[LBFilePlayer alloc] init]; 
     }
     return self;
+}
+
+
+- (void) clearQueue {
+    
+    self.currentTrack = nil;
+    [self.queue removeAllObjects];
+    [self.filePlayer stopPlaying];
+}
+
+
+- (void) startOrPauseTrack:(Track*)track {
+    
+    if (!self.filePlayer.isPlaying) {
+        self.currentTrack = track;
+        [self.filePlayer playTrack:track];
+        return;
+    }
+    
+    if (self.currentTrack == track) {
+        if (self.filePlayer.isPlaying) {
+            [self.filePlayer pausePlaying];
+        }
+        else {
+            [self.filePlayer continuePlaying];
+        }
+    }
+}
+
+
+- (void) playNextTrack {
+    
+    if (self.nextTrack) {
+        [self.filePlayer stopPlaying];
+        [self startOrPauseTrack:self.nextTrack];
+    }
+}
+
+
+- (void) playPreviousTrack {
+    
+    if (self.previuosTrack) {
+        [self.filePlayer stopPlaying];
+        [self startOrPauseTrack:self.previuosTrack];
+    }
 }
 
 
@@ -43,7 +92,7 @@
     if (self.queue.count == 0) return nil;
 
     NSInteger indexOfCurrentTrack = [self.queue indexOfObject:self.currentTrack];
-    NSInteger indexOfNextTrack = indexOfCurrentTrack++;
+    NSInteger indexOfNextTrack = indexOfCurrentTrack + 1;
     if (self.queue.count > indexOfNextTrack) {
         return [self.queue objectAtIndex:indexOfNextTrack];
     }
@@ -62,7 +111,7 @@
     }
     
     NSInteger indexOfCurrentTrack = [self.queue indexOfObject:self.currentTrack];
-    NSInteger indexOfPreviousTrack = indexOfCurrentTrack--;
+    NSInteger indexOfPreviousTrack = indexOfCurrentTrack - 1;
     if (indexOfPreviousTrack >= 0) {
         return [self.queue objectAtIndex:indexOfPreviousTrack];
     }
@@ -100,5 +149,6 @@
     }
     return played;
 }
+
 
 @end

@@ -18,7 +18,7 @@
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) DBUserClient* dropboxClient;
-@property (weak, nonatomic) AppDelegate* appDelegate ;
+@property (nonatomic, weak) AppDelegate* appDelegate ;
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
@@ -198,15 +198,18 @@
         [self.navigationController showViewController:nextVC sender:self];
     }
     
+    /*
     if (indexPath.section == 1) {       // file
         LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
         if (remoteFile.isPlayableMediaFile) {
             [self downloadAndPlayFileAtPath:remoteFile.path];
         }
     }
+     */
 }
 
 
+/*
 - (void) downloadAndPlayFileAtPath:(NSString*)path {
     
     //NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -229,19 +232,7 @@
               
               NSString* artist = @"";
               NSString* trackTitle = path.lastPathComponent.stringByDeletingPathExtension;
-                  
-              // not working atm.. TODO: check if ID3_Tag library is actually useful
-              /*
-              ID3_Tag tag;
-              tag.Link([outputUrl.absoluteString UTF8String]);
-              
-              ID3_Frame *titleFrame = tag.Find(ID3FID_TITLE);
-              unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
-              NSString *title = [NSString stringWithCString:(char const *) value encoding:NSUnicodeStringEncoding];
-              NSLog(@"The title before is %@", title);
-              */
-              
-              // this works ;)
+ 
               NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:outputUrl];
               NSLog(@"the tags: %@", id3Tags) ;
               artist = [id3Tags objectForKey:@"artist"];
@@ -256,6 +247,7 @@
           NSLog(@"%lld\n%lld\n%lld\n", bytesDownloaded, totalBytesDownloaded, totalBytesExpectedToDownload);
       }];
 }
+ */
 
 
 - (IBAction) showImportActionController {

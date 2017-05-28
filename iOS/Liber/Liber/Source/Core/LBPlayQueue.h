@@ -12,14 +12,14 @@
 
 - (void) addTrack:(Track*)track;
 - (void) addTracks:(NSArray<Track*>*)tracks;
+- (void) startOrPauseTrack:(Track*)track;
+- (void) clearQueue;
+
+- (void) playNextTrack;
+- (void) playPreviousTrack;
 
 @property (nonatomic, strong) Track* currentTrack;
 - (Track*) nextTrack;
 - (Track*) previuosTrack;
-
-- (NSArray<Track*>*) allTracks;
-- (NSArray<Track*>*) upcomingTracksIncludingPlaying;
-- (NSArray<Track*>*) playedTracks;
-
 
 @end

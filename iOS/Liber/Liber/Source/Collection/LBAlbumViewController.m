@@ -19,15 +19,18 @@
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
+@property (nonatomic, weak) AppDelegate* appDelegate ;
 
 @end
 
 
 @implementation LBAlbumViewController
 
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];
@@ -39,12 +42,6 @@
     
     [super viewWillAppear:animated];
     if (!self.album) return ;
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -88,6 +85,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return indexPath.section == 0 ? 360.f : 44.f ;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LBPlayQueue* playQueue = self.appDelegate.playQueue;
+    Track* selectedTrack = [self.album.orderedTracks objectAtIndex:indexPath.row];
+    
+    [playQueue clearQueue];
+    [playQueue addTracks:self.album.orderedTracks];
+    [playQueue setCurrentTrack:selectedTrack];
+    [playQueue startOrPauseTrack:selectedTrack];
 }
 
 @end
