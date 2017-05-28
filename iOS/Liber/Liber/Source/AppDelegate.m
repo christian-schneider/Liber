@@ -8,7 +8,6 @@
 #import "AppDelegate.h"
 #import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
-#import <AFNetworking/AFNetworking.h>
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
