@@ -29,6 +29,7 @@ NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
     
     self.filePlayer = [[LBFilePlayer alloc] init];
     self.importer = [[LBImporter alloc] init];
+    self.playQueue = [[LBPlayQueue alloc] init];
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
     

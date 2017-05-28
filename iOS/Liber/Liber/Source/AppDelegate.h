@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "LBFilePlayer.h"
 #import "LBImporter.h"
+#import "LBPlayQueue.h"
 
 
 extern NSString* const LBMusicItemAddedToCollection;
@@ -20,6 +21,7 @@ extern NSString* const LBMusicItemAddedToCollection;
 
 @property (strong, nonatomic) LBFilePlayer* filePlayer;
 @property (strong, nonatomic) LBImporter* importer;
+@property (strong, nonatomic) LBPlayQueue* playQueue;
 
 
 @end
