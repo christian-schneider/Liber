@@ -32,6 +32,10 @@ NSString* const LBPlayQueuePlayStatusChanged = @"LBPlayQueuePlayStatusChanged";
     self.importer = [[LBImporter alloc] init];
     self.playQueue = [[LBPlayQueue alloc] init];
     
+    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [UINavigationBar appearance].tintColor = [UIColor blackColor];
+    }
+    
     return YES;
 }
 

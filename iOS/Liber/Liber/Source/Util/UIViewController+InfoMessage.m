@@ -14,6 +14,7 @@
 - (void) presentInformalAlertWithTitle:(NSString*)title andMessage:(NSString*)message {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
+    alertController.view.tintColor = [UIColor blackColor];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

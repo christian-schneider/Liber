@@ -265,6 +265,7 @@
         }];
     }]];
     
+    actionSheet.view.tintColor = [UIColor blackColor];
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 

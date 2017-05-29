@@ -145,6 +145,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
+    actionSheet.view.tintColor = [UIColor blackColor];
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -172,6 +173,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
+    actionSheet.view.tintColor = [UIColor blackColor];
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 

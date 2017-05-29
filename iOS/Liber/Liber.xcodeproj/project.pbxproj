@@ -17,6 +17,7 @@
 		E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */; };
 		E7221C7C1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */; };
 		E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */; };
+		E7221C8A1EDC909B0002CE1A /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7221C891EDC909B0002CE1A /* Liber-Icon.png */; };
 		E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */; };
 		E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502E61EDAC1450049DF5F /* Track+Functions.m */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
@@ -29,7 +30,6 @@
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
 		E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */ = {isa = PBXBuildFile; fileRef = E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
@@ -236,6 +236,7 @@
 		E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumArtworkTableViewCell.m; path = Source/Collection/LBAlbumArtworkTableViewCell.m; sourceTree = "<group>"; };
 		E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumTrackTableViewCell.h; path = Source/Collection/LBAlbumTrackTableViewCell.h; sourceTree = "<group>"; };
 		E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumTrackTableViewCell.m; path = Source/Collection/LBAlbumTrackTableViewCell.m; sourceTree = "<group>"; };
+		E7221C891EDC909B0002CE1A /* Liber-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Liber-Icon.png"; sourceTree = "<group>"; };
 		E73502D11EDAC0CA0049DF5F /* LBPlayQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayQueue.h; path = Source/Core/LBPlayQueue.h; sourceTree = "<group>"; };
 		E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayQueue.m; path = Source/Core/LBPlayQueue.m; sourceTree = "<group>"; };
 		E73502E51EDAC1450049DF5F /* Track+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Track+Functions.h"; path = "Source/ManagedObjects/Track+Functions.h"; sourceTree = "<group>"; };
@@ -259,7 +260,6 @@
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7448AD91ECDE57F0095E754 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		E7448AED1ED368240095E754 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
-		E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DedicatedToPaterLiber.png; path = Resources/DedicatedToPaterLiber.png; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
@@ -457,10 +457,10 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E7221C891EDC909B0002CE1A /* Liber-Icon.png */,
 				E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */,
 				E70CADBF1ED9DBCF005E8C39 /* play-outline.png */,
 				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
-				E75FFE981EC6D4B100881694 /* DedicatedToPaterLiber.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -840,7 +840,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75FFE991EC6D4B100881694 /* DedicatedToPaterLiber.png in Resources */,
+				E7221C8A1EDC909B0002CE1A /* Liber-Icon.png in Resources */,
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
 				E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */,
 				E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */,
