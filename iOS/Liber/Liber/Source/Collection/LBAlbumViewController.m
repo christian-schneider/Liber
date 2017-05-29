@@ -48,6 +48,9 @@
     
     LBAlbumDetailNavigationBarTitleView* titleView = [[LBAlbumDetailNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, 300, 44.0) albumTitle:self.album.title artistName:self.album.artist.name];
     self.navigationItem.titleView = titleView;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
 }
 
 
@@ -70,8 +73,6 @@
     if (indexPath.section == 0) {
         LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumArtworkTableViewCell"];
         cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
-        cell.albumArtistLabel.text = self.album.artist.name;
-        cell.albumTitleLabel.text = self.album.title;
         return cell;
     }
     else {
@@ -87,10 +88,12 @@
     }
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) viewDidLayoutSubviews {
     
-    return indexPath.section == 0 ? 360.f : 44.f ;
+    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
+    LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[self.tableView cellForRowAtIndexPath:path];
+    cell.albumArtHeightConstraint.constant = cell.artworkImageView.frame.size.width;
+    [cell layoutIfNeeded];
 }
 
 

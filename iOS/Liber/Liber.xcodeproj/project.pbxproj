@@ -459,6 +459,17 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		E755D22F1EDCB2A900A78097 /* Custom Views & Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */,
+				E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */,
+				E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */,
+				E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */,
+			);
+			name = "Custom Views & Cells";
+			sourceTree = "<group>";
+		};
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,12 +511,9 @@
 			children = (
 				E73A65E11EBB73A0004181DB /* LBMusicCollectionViewController.h */,
 				E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */,
-				E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */,
-				E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */,
 				E7221C771ED86CDD0002CE1A /* LBAlbumViewController.h */,
 				E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */,
-				E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */,
-				E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */,
+				E755D22F1EDCB2A900A78097 /* Custom Views & Cells */,
 				E7221C801ED88A010002CE1A /* TableViewCells */,
 			);
 			name = Collection;

@@ -10,7 +10,6 @@
 @interface LBAlbumArtworkTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView* artworkImageView;
-@property (nonatomic, weak) IBOutlet UILabel* albumTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel* albumArtistLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint* albumArtHeightConstraint;
 
 @end

@@ -7,6 +7,7 @@
 
 #import "LBAlbumArtworkTableViewCell.h"
 
+
 @implementation LBAlbumArtworkTableViewCell
 
 - (void)awakeFromNib {

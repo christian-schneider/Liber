@@ -149,60 +149,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumArtworkTableViewCell" rowHeight="360" id="7Ww-ZS-YMi" customClass="LBAlbumArtworkTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="360"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumArtworkTableViewCell" rowHeight="44" id="7Ww-ZS-YMi" customClass="LBAlbumArtworkTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Ww-ZS-YMi" id="lqG-SH-pwt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="359.5"/>
+                                        <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Ww-ZS-YMi" id="lqG-SH-pwt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzG-2F-hCR">
-                                                    <rect key="frame" x="67" y="27" width="240" height="240"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzG-2F-hCR">
+                                                    <rect key="frame" x="8" y="8" width="359" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="240" id="2eA-M3-PyK"/>
-                                                        <constraint firstAttribute="height" constant="240" id="9Oc-gE-ch6"/>
+                                                        <constraint firstAttribute="height" constant="27.5" id="7fZ-Mk-ujz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-XT-VdV">
-                                                    <rect key="frame" x="8" y="297" width="359" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="o3Q-oV-uOI"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Z6-L2-4J8">
-                                                    <rect key="frame" x="8" y="323" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="trailing" secondItem="4Z6-L2-4J8" secondAttribute="trailing" id="2nf-dy-us6"/>
-                                                <constraint firstItem="4Z6-L2-4J8" firstAttribute="top" secondItem="PtR-XT-VdV" secondAttribute="bottom" constant="5" id="5N8-di-MMf"/>
-                                                <constraint firstItem="4Z6-L2-4J8" firstAttribute="trailing" secondItem="lqG-SH-pwt" secondAttribute="trailingMargin" id="AK3-R5-JLF"/>
-                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="centerX" secondItem="PtR-XT-VdV" secondAttribute="centerX" id="Gio-ZZ-ig8"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="top" secondItem="kzG-2F-hCR" secondAttribute="bottom" constant="30" id="Mqt-jE-Wqe"/>
-                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="top" secondItem="lqG-SH-pwt" secondAttribute="topMargin" constant="19" id="UGl-rn-2yH"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="leading" secondItem="lqG-SH-pwt" secondAttribute="leadingMargin" id="Y6v-82-tBb"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="trailing" secondItem="lqG-SH-pwt" secondAttribute="trailingMargin" id="Yam-V2-dOK"/>
-                                                <constraint firstItem="4Z6-L2-4J8" firstAttribute="leading" secondItem="lqG-SH-pwt" secondAttribute="leadingMargin" id="Ysv-cH-wHr"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="leading" secondItem="lqG-SH-pwt" secondAttribute="leadingMargin" id="hRu-5u-fOs"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="trailing" secondItem="lqG-SH-pwt" secondAttribute="trailingMargin" id="nJR-oS-KCN"/>
-                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="centerX" secondItem="lqG-SH-pwt" secondAttribute="centerX" id="ojT-0E-Ttx"/>
-                                                <constraint firstItem="PtR-XT-VdV" firstAttribute="leading" secondItem="4Z6-L2-4J8" secondAttribute="leading" id="orC-YZ-E6d"/>
+                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="top" secondItem="lqG-SH-pwt" secondAttribute="topMargin" priority="999" id="5x9-ce-5XP"/>
+                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="bottom" secondItem="lqG-SH-pwt" secondAttribute="bottomMargin" priority="999" id="7pV-TS-syI"/>
+                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="trailing" secondItem="lqG-SH-pwt" secondAttribute="trailingMargin" id="V8z-WZ-egc"/>
+                                                <constraint firstItem="kzG-2F-hCR" firstAttribute="leading" secondItem="lqG-SH-pwt" secondAttribute="leadingMargin" id="waI-Ye-1q5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="albumArtistLabel" destination="PtR-XT-VdV" id="cEM-Le-vpQ"/>
-                                            <outlet property="albumTitleLabel" destination="4Z6-L2-4J8" id="Kcz-IP-5Wt"/>
+                                            <outlet property="albumArtHeightConstraint" destination="7fZ-Mk-ujz" id="5Bu-GJ-tot"/>
                                             <outlet property="artworkImageView" destination="kzG-2F-hCR" id="g8J-Py-gfE"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTrackTableViewCell" id="4Dg-xE-tSd" customClass="LBAlbumTrackTableViewCell">
-                                        <rect key="frame" x="0.0" y="388" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Dg-xE-tSd" id="5RY-Hf-KGI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
