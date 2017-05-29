@@ -27,10 +27,13 @@
     self.menuEntries = @[
         @{@"title" : @"Dropbox",
           @"segue" : @"showDropboxFolder",
-          @"api"   : @"Dropbox"},
+          @"api"   : @"Dropbox",
+          @"image" : @"Dropbox-icon"},
     ];
+    
     self.title = NSLocalizedString(@"Import Music", nil);
-
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) didReceiveMemoryWarning {
@@ -53,13 +56,18 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary* entryDict = [self.menuEntries objectAtIndex:indexPath.row];
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"remoteTableViewCell"];
-    cell.textLabel.text = [[self.menuEntries objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.textLabel.text = [entryDict objectForKey:@"title"];
+    cell.imageView.image = [UIImage imageNamed:[entryDict objectForKey:@"image"]];
     return cell;
 }
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary* entry = [self.menuEntries objectAtIndex:indexPath.row];
     NSString* api = [entry objectForKey:@"api"];

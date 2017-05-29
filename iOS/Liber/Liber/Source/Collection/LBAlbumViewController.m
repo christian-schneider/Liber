@@ -14,6 +14,7 @@
 #import "LBAlbumTrackTableViewCell.h"
 #import "AppDelegate.h"
 #import "Album+Functions.h"
+#import "LBAlbumDetailNavigationBarTitleView.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -35,6 +36,8 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];
     }];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -42,6 +45,9 @@
     
     [super viewWillAppear:animated];
     if (!self.album) return ;
+    
+    LBAlbumDetailNavigationBarTitleView* titleView = [[LBAlbumDetailNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, 300, 44.0) albumTitle:self.album.title artistName:self.album.artist.name];
+    self.navigationItem.titleView = titleView;
 }
 
 

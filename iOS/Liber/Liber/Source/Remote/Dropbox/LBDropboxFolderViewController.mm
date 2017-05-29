@@ -42,6 +42,8 @@
     
     self.folderEntries = [NSMutableArray arrayWithCapacity:10];
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
