@@ -32,6 +32,7 @@
 		E755D22A1EDC9DC600A78097 /* Dropbox-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2281EDC9DC600A78097 /* Dropbox-icon.png */; };
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
 		E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */; };
+		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
@@ -265,6 +266,8 @@
 		E755D2291EDC9DC600A78097 /* Liber-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Liber-Icon.png"; path = "Resources/Liber-Icon.png"; sourceTree = "<group>"; };
 		E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumDetailNavigationBarTitleView.h; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.h; sourceTree = "<group>"; };
 		E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumDetailNavigationBarTitleView.m; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.m; sourceTree = "<group>"; };
+		E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayingTrackProgressCell.h; path = Source/Collection/LBPlayingTrackProgressCell.h; sourceTree = "<group>"; };
+		E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayingTrackProgressCell.m; path = Source/Collection/LBPlayingTrackProgressCell.m; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */,
 				E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */,
 				E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */,
+				E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */,
+				E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -890,6 +895,7 @@
 				E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */,
 				E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */,
 				E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */,
+				E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */,
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,

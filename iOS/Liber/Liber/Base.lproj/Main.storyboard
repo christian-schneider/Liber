@@ -175,8 +175,83 @@
                                             <outlet property="artworkImageView" destination="kzG-2F-hCR" id="g8J-Py-gfE"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayingTrackProgressCell" rowHeight="125" id="duM-ND-AjB" customClass="LBPlayingTrackProgressCell">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="125"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="duM-ND-AjB" id="ful-P9-4Ae">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hI-SU-f1y">
+                                                    <rect key="frame" x="8" y="10.5" width="359" height="35"/>
+                                                    <subviews>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-5e-lFj">
+                                                            <rect key="frame" x="38" y="2" width="283" height="31"/>
+                                                        </slider>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRs-t9-4NP">
+                                                            <rect key="frame" x="327" y="10" width="32" height="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okr-Bm-ETO">
+                                                            <rect key="frame" x="0.0" y="10" width="32" height="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="qpa-5e-lFj" firstAttribute="leading" secondItem="okr-Bm-ETO" secondAttribute="trailing" constant="8" symbolic="YES" id="5co-WL-Ih1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="LRs-t9-4NP" secondAttribute="trailing" id="7fP-Uf-cUr"/>
+                                                        <constraint firstItem="okr-Bm-ETO" firstAttribute="baseline" secondItem="LRs-t9-4NP" secondAttribute="baseline" id="8yg-ga-wYI"/>
+                                                        <constraint firstItem="qpa-5e-lFj" firstAttribute="top" secondItem="3hI-SU-f1y" secondAttribute="top" constant="2" id="9GM-Qg-Pgg"/>
+                                                        <constraint firstItem="okr-Bm-ETO" firstAttribute="leading" secondItem="3hI-SU-f1y" secondAttribute="leading" id="Lc0-uy-jFm"/>
+                                                        <constraint firstItem="LRs-t9-4NP" firstAttribute="leading" secondItem="qpa-5e-lFj" secondAttribute="trailing" constant="8" symbolic="YES" id="Mvu-Qa-oIt"/>
+                                                        <constraint firstItem="okr-Bm-ETO" firstAttribute="centerY" secondItem="qpa-5e-lFj" secondAttribute="centerY" id="Ww0-Xf-69c"/>
+                                                        <constraint firstItem="okr-Bm-ETO" firstAttribute="centerY" secondItem="3hI-SU-f1y" secondAttribute="centerY" id="wbV-b7-VMa"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvW-l8-gJC">
+                                                    <rect key="frame" x="8" y="58.5" width="359" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-44-NcV">
+                                                    <rect key="frame" x="174" y="82" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="bLk-bM-MKE"/>
+                                                        <constraint firstAttribute="width" constant="27" id="zc3-sV-xY4"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="play-outline.png"/>
+                                                    <connections>
+                                                        <action selector="playPauseButtonPressed" destination="duM-ND-AjB" eventType="touchUpInside" id="Kwd-MN-Bjn"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5xY-44-NcV" secondAttribute="bottom" constant="7.5" id="2in-iy-ITY"/>
+                                                <constraint firstItem="3hI-SU-f1y" firstAttribute="leading" secondItem="ful-P9-4Ae" secondAttribute="leadingMargin" id="2un-yF-6Ue"/>
+                                                <constraint firstItem="3hI-SU-f1y" firstAttribute="top" secondItem="ful-P9-4Ae" secondAttribute="topMargin" constant="2.5" id="LmY-Hk-i8L"/>
+                                                <constraint firstItem="3hI-SU-f1y" firstAttribute="trailing" secondItem="ful-P9-4Ae" secondAttribute="trailingMargin" id="RaK-dk-Zss"/>
+                                                <constraint firstItem="gvW-l8-gJC" firstAttribute="trailing" secondItem="ful-P9-4Ae" secondAttribute="trailingMargin" id="RmI-4e-3Pn"/>
+                                                <constraint firstItem="gvW-l8-gJC" firstAttribute="leading" secondItem="ful-P9-4Ae" secondAttribute="leadingMargin" id="cYa-FD-A3L"/>
+                                                <constraint firstItem="5xY-44-NcV" firstAttribute="centerX" secondItem="ful-P9-4Ae" secondAttribute="centerX" id="irn-e5-R0D"/>
+                                                <constraint firstItem="5xY-44-NcV" firstAttribute="top" secondItem="gvW-l8-gJC" secondAttribute="bottom" constant="7.5" id="rCX-DH-PUX"/>
+                                                <constraint firstItem="gvW-l8-gJC" firstAttribute="top" secondItem="3hI-SU-f1y" secondAttribute="bottom" constant="13" id="rzK-f5-6kP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="elapsedTimeLabel" destination="okr-Bm-ETO" id="M9n-q5-CfV"/>
+                                            <outlet property="playPauseButton" destination="5xY-44-NcV" id="a9J-S9-tap"/>
+                                            <outlet property="timeSlider" destination="qpa-5e-lFj" id="wvu-eD-YF5"/>
+                                            <outlet property="totalTimeLabel" destination="LRs-t9-4NP" id="BfN-IL-ydr"/>
+                                            <outlet property="trackTitleLabel" destination="gvW-l8-gJC" id="fIk-vu-dlr"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTrackTableViewCell" id="4Dg-xE-tSd" customClass="LBAlbumTrackTableViewCell">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="197" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Dg-xE-tSd" id="5RY-Hf-KGI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

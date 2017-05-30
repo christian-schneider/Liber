@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "Album+Functions.h"
 #import "LBAlbumDetailNavigationBarTitleView.h"
+#import "LBPlayingTrackProgressCell.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -56,14 +57,14 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    return 3;
 }
 
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 0) return 1;
-    if (section == 1) return self.album.tracks.count;
+    if (section < 2) return 1;
+    if (section == 2) return self.album.tracks.count;
     return 0;
 }
 
@@ -73,6 +74,12 @@
     if (indexPath.section == 0) {
         LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumArtworkTableViewCell"];
         cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else if (indexPath.section == 1) {
+        LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else {
@@ -88,6 +95,7 @@
     }
 }
 
+
 - (void) viewDidLayoutSubviews {
     
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -101,13 +109,15 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    LBPlayQueue* playQueue = self.appDelegate.playQueue;
-    Track* selectedTrack = [self.album.orderedTracks objectAtIndex:indexPath.row];
-    
-    [playQueue clearQueue];
-    [playQueue addTracks:self.album.orderedTracks];
-    [playQueue setCurrentTrack:selectedTrack];
-    [playQueue startOrPauseTrack:selectedTrack];
+    if (indexPath.section == 2) {
+        LBPlayQueue* playQueue = self.appDelegate.playQueue;
+        Track* selectedTrack = [self.album.orderedTracks objectAtIndex:indexPath.row];
+        
+        [playQueue clearQueue];
+        [playQueue addTracks:self.album.orderedTracks];
+        [playQueue setCurrentTrack:selectedTrack];
+        [playQueue startOrPauseTrack:selectedTrack];
+    }
 }
 
 @end
