@@ -16,6 +16,7 @@
 #import "Album+Functions.h"
 #import "LBAlbumDetailNavigationBarTitleView.h"
 #import "LBPlayingTrackProgressCell.h"
+#import "UIImage+Functions.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -27,7 +28,6 @@
 
 
 @implementation LBAlbumViewController
-
 
 - (void)viewDidLoad {
     
@@ -54,6 +54,19 @@
     self.tableView.estimatedRowHeight = 44.0;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    [self startObservingPlayProgress];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    [self stopObservingPlayProgress];
+}
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -75,11 +88,17 @@
         LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumArtworkTableViewCell"];
         cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         return cell;
     }
     else if (indexPath.section == 1) {
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.timeSlider.value = 0.0;
+        cell.currentTimeLabel.text = @"0:00";
+        cell.durationLabel.text = @"0:00";
+        [cell.timeSlider setThumbImage:[UIImage imageWithImage:[UIImage imageNamed:@"circle-gray"] scaledToSize:CGSizeMake(17.0, 17.0)] forState:UIControlStateNormal];
+        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         return cell;
     }
     else {
@@ -119,5 +138,28 @@
         [playQueue startOrPauseTrack:selectedTrack];
     }
 }
+
+
+#pragma mark - Observe Play Progress
+
+- (void) startObservingPlayProgress {
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary* progressDict = note.object;
+        
+        NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
+        LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[self.tableView cellForRowAtIndexPath:path];
+        cell.currentTimeLabel.text = [progressDict objectForKey:@"currentTime"];
+        cell.durationLabel.text = [progressDict objectForKey:@"duration"];
+        cell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
+    }];
+}
+
+
+- (void) stopObservingPlayProgress {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackPlayProgress object:nil];
+}
+
 
 @end

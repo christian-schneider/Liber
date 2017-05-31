@@ -14,6 +14,7 @@
 extern NSString* const LBMusicItemAddedToCollection;
 extern NSString* const LBPlayQueuePlayItemChanged;
 extern NSString* const LBPlayQueuePlayStatusChanged;
+extern NSString* const LBCurrentTrackPlayProgress;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

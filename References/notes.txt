@@ -13,3 +13,5 @@ https://stackoverflow.com/questions/31452202/ios-swift-merge-and-convert-wav-fil
 
 
 Icons: https://www.iconfinder.com/iconsets/feather
+
+BarButtonItems size 25/50/75

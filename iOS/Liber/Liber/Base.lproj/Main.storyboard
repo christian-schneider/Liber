@@ -109,13 +109,13 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="zp8-Z3-mbQ">
+                        <barButtonItem key="leftBarButtonItem" image="LayersIcon" id="zp8-Z3-mbQ">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="filterBarButtonItemAction" destination="JEX-9P-axG" id="FV3-DI-SbY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UK0-Dz-kOy">
+                        <barButtonItem key="rightBarButtonItem" image="InIcon" style="plain" id="UK0-Dz-kOy">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="actionBarButtonItemAction" destination="JEX-9P-axG" id="2S5-2N-c9Q"/>
@@ -188,14 +188,20 @@
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-5e-lFj">
                                                             <rect key="frame" x="38" y="2" width="283" height="31"/>
                                                         </slider>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRs-t9-4NP">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRs-t9-4NP">
                                                             <rect key="frame" x="327" y="10" width="32" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="JJU-yo-fAt"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okr-Bm-ETO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okr-Bm-ETO">
                                                             <rect key="frame" x="0.0" y="10" width="32" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="24e-c9-Ckc"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -243,10 +249,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="elapsedTimeLabel" destination="okr-Bm-ETO" id="M9n-q5-CfV"/>
+                                            <outlet property="currentTimeLabel" destination="okr-Bm-ETO" id="RBP-Qv-Q7F"/>
+                                            <outlet property="durationLabel" destination="LRs-t9-4NP" id="PIY-FE-8Ct"/>
                                             <outlet property="playPauseButton" destination="5xY-44-NcV" id="a9J-S9-tap"/>
                                             <outlet property="timeSlider" destination="qpa-5e-lFj" id="wvu-eD-YF5"/>
-                                            <outlet property="totalTimeLabel" destination="LRs-t9-4NP" id="BfN-IL-ydr"/>
                                             <outlet property="trackTitleLabel" destination="gvW-l8-gJC" id="fIk-vu-dlr"/>
                                         </connections>
                                     </tableViewCell>
@@ -457,6 +463,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="InIcon" width="25" height="25"/>
+        <image name="LayersIcon" width="25" height="25"/>
         <image name="play-outline.png" width="128" height="128"/>
     </resources>
 </document>

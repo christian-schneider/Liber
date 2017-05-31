@@ -65,7 +65,6 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
     self.searchBarHeightConstraint.constant = 0.0f;
     [self updateDisplayItems];
 }
@@ -140,12 +139,14 @@
     }]];
     */
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import Music", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    UIAlertAction* dropboxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dropbox", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         LBRemoteViewController* rVC = (LBRemoteViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteViewController"];
         [self.navigationController pushViewController:rVC animated:YES];
         [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
+    }];
+    [dropboxAction setValue:[[UIImage imageNamed:@"DropboxIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
+    [actionSheet addAction:dropboxAction];
     
     actionSheet.view.tintColor = [UIColor blackColor];
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -161,17 +162,17 @@
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
+        //self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        self.filterBarButtonItem.title = NSLocalizedString(@"Artist", nil);
+        //self.filterBarButtonItem.title = NSLocalizedString(@"Artist", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        self.filterBarButtonItem.title = NSLocalizedString(@"Track", nil);
+        //self.filterBarButtonItem.title = NSLocalizedString(@"Track", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     

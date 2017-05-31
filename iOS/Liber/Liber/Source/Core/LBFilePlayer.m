@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) NSDictionary* nowPlayingInfo;
 
+@property (nonatomic, strong) NSTimer* progressTimer;
+
 @end
 
 
@@ -59,6 +61,15 @@
     [self play:track.fullPath artist:track.artist.name trackTitle:track.title image:image];
     [self.player prepareToPlay];
     [self.player play];
+    [self startProgressTimer];
+}
+
+
+- (NSString*) formatTime:(float)time {
+    
+    int minutes = time / 60;
+    int seconds = (int)time % 60;
+    return [NSString stringWithFormat:@"%@%d:%@%d", minutes / 10 ? [NSString stringWithFormat:@"%d", minutes / 10] : @"", minutes % 10, [NSString stringWithFormat:@"%d", seconds / 10], seconds % 10];
 }
 
 
@@ -144,6 +155,7 @@
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)success {
     
     [self stopPlaying];
+    [self stopProgressTimer];
     [self.appDelegate.playQueue playNextTrack];
 }
 
@@ -176,7 +188,6 @@
 }
 
 
-
 - (void) updateRemoteControls {
     
     if (self.player) {
@@ -192,6 +203,27 @@
     else {
         self.nowPlayingInfo = @{};
     }
+}
+
+
+- (void) startProgressTimer {
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        
+        NSDictionary* timeProgressDict = @{
+                                           @"currentTime" : [self formatTime:self.player.currentTime],
+                                           @"duration" : [self formatTime:self.player.duration],
+                                           @"currentPercent" : [NSNumber numberWithDouble:self.player.currentTime / self.player.duration]
+                                           };
+        [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
+    }];
+}
+
+
+- (void) stopProgressTimer {
+    
+    [self.progressTimer invalidate];
+    self.progressTimer = nil;
 }
 
 

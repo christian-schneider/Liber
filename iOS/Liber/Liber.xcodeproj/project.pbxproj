@@ -33,6 +33,11 @@
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
 		E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */; };
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
+		E755D2341EDF203700A78097 /* circle-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2331EDF203700A78097 /* circle-outline.png */; };
+		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
+		E755D2391EDF236200A78097 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2381EDF236200A78097 /* circle.png */; };
+		E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D23A1EDF254D00A78097 /* circle-gray.png */; };
+		E755D23D1EDF278000A78097 /* in-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D23C1EDF278000A78097 /* in-icon.png */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
@@ -268,6 +273,12 @@
 		E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumDetailNavigationBarTitleView.m; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.m; sourceTree = "<group>"; };
 		E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayingTrackProgressCell.h; path = Source/Collection/LBPlayingTrackProgressCell.h; sourceTree = "<group>"; };
 		E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayingTrackProgressCell.m; path = Source/Collection/LBPlayingTrackProgressCell.m; sourceTree = "<group>"; };
+		E755D2331EDF203700A78097 /* circle-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-outline.png"; path = "Resources/circle-outline.png"; sourceTree = "<group>"; };
+		E755D2351EDF209C00A78097 /* UIImage+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Functions.h"; path = "Source/Util/UIImage+Functions.h"; sourceTree = "<group>"; };
+		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
+		E755D2381EDF236200A78097 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = Resources/circle.png; sourceTree = "<group>"; };
+		E755D23A1EDF254D00A78097 /* circle-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-gray.png"; path = "Resources/circle-gray.png"; sourceTree = "<group>"; };
+		E755D23C1EDF278000A78097 /* in-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "in-icon.png"; path = "Resources/in-icon.png"; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
@@ -478,6 +489,10 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E755D23C1EDF278000A78097 /* in-icon.png */,
+				E755D23A1EDF254D00A78097 /* circle-gray.png */,
+				E755D2381EDF236200A78097 /* circle.png */,
+				E755D2331EDF203700A78097 /* circle-outline.png */,
 				E755D2281EDC9DC600A78097 /* Dropbox-icon.png */,
 				E755D2291EDC9DC600A78097 /* Liber-Icon.png */,
 				E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */,
@@ -566,6 +581,8 @@
 			children = (
 				E7A5C1751ECA394700700156 /* UIViewController+InfoMessage.h */,
 				E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */,
+				E755D2351EDF209C00A78097 /* UIImage+Functions.h */,
+				E755D2361EDF209C00A78097 /* UIImage+Functions.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -863,8 +880,12 @@
 			files = (
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
 				E755D22A1EDC9DC600A78097 /* Dropbox-icon.png in Resources */,
+				E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */,
 				E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */,
+				E755D2391EDF236200A78097 /* circle.png in Resources */,
+				E755D23D1EDF278000A78097 /* in-icon.png in Resources */,
 				E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */,
+				E755D2341EDF203700A78097 /* circle-outline.png in Resources */,
 				E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */,
 				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
 				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,
@@ -901,6 +922,7 @@
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
+				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
