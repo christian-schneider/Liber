@@ -13,7 +13,7 @@
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
 #import "LBPlaylistsViewController.h"
-#import "LBRemoteViewController.h"
+#import "LBDropboxFolderViewController.h"
 #import "AppDelegate.h"
 
 
@@ -70,8 +70,6 @@
 }
 
 
-
-
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -87,11 +85,11 @@
 }
 
 
-
-- (BOOL)prefersStatusBarHidden {
+- (BOOL) prefersStatusBarHidden {
  
-    return self.navigationController.isNavigationBarHidden;
+    return YES;
 }
+
 
 
 #pragma mark - Collection View
@@ -151,8 +149,9 @@
     
     UIAlertAction* dropboxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dropbox", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        LBRemoteViewController* rVC = (LBRemoteViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteViewController"];
-        [self.navigationController pushViewController:rVC animated:YES];
+        LBDropboxFolderViewController* dropboxFolderVC = (LBDropboxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
+        dropboxFolderVC.folderPath = @"";
+        [self.navigationController pushViewController:dropboxFolderVC animated:YES];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     [dropboxAction setValue:[[UIImage imageNamed:@"DropboxIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
@@ -193,7 +192,7 @@
 
 #pragma mark - Search Bar
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
     if (decelerate) {
         [self.searchBar resignFirstResponder];
@@ -215,6 +214,7 @@
 
 
 - (BOOL) showSearchBar {
+    
     return showSearchBar;
 }
 
@@ -226,9 +226,11 @@
     if (showSearchBar ) {
         self.searchBarHeightConstraint.constant = 50.0f;
         [self.searchBar becomeFirstResponder];
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
     else {
         self.searchBarHeightConstraint.constant = 0.0f;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
     
     [UIView animateWithDuration:0.25
@@ -241,6 +243,10 @@
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     NSLog(@"Filter now for: %@", searchText);
+    if ([searchText isEqualToString:@""]) {
+        self.searchBarHeightConstraint.constant = 50.0f;
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    }
 }
 
 

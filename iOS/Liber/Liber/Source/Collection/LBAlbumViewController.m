@@ -85,7 +85,7 @@
 
 - (BOOL)prefersStatusBarHidden {
     
-    return self.navigationController.isNavigationBarHidden;
+    return YES;
 }
 
 

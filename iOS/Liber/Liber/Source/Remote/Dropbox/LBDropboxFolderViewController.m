@@ -11,7 +11,6 @@
 #import "LBRemoteFolder.h"
 #import "LBRemoteFile.h"
 #import "AppDelegate.h"
-#import <id3/tag.h>
 #import "LBImporter.h"
 
 
@@ -26,6 +25,8 @@
 @property (nonatomic, strong) NSMutableArray<LBRemoteFile*>* fileEntries;
 
 - (IBAction) showImportActionController;
+
+@property (readwrite) BOOL loaded;
 
 @end
 
@@ -44,6 +45,11 @@
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.tableView.refreshControl = refreshControl;
+    
 }
 
 
@@ -51,8 +57,51 @@
     
     [super viewWillAppear:animated];
     
-    // TODO: don't call this here, the folder's content might get listed several times.
-    // introduce sentinel
+    if (![DBClientsManager authorizedClient]) {
+        [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
+                                       controller:self
+                                          openURL:^(NSURL *url) {
+                                              [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                                                  [self listRemoteFolder];
+                                              }];
+                                          }];
+    }
+    
+    if ([self.folderPath isEqualToString:@""]) {
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DropboxIcon"]];
+        imageView.userInteractionEnabled = YES;
+        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleViewTapped:)]];
+        self.navigationItem.titleView = imageView;
+    }
+    else {
+        self.title = self.folderPath.lastPathComponent.stringByDeletingPathExtension.capitalizedString;
+    }
+    self.navigationController.hidesBarsOnSwipe = NO;
+    
+    if (!self.loaded) {
+        [self listRemoteFolder];
+    }
+}
+
+
+- (BOOL) prefersStatusBarHidden {
+    
+    return YES;
+}
+
+
+- (void) refresh:(UIRefreshControl*)refreshControl {
+    
+    [refreshControl endRefreshing];
+    [self.folderEntries removeAllObjects];
+    [self.fileEntries removeAllObjects];
+    [self.tableView reloadData];
+    [self listRemoteFolder];
+}
+
+
+- (void) listRemoteFolder {
+    
     [[self.dropboxClient.filesRoutes listFolder:self.folderPath]
      setResponseBlock:^(DBFILESListFolderResult *response, DBFILESListFolderError *routeError, DBRequestError *networkError) {
          if (response) {
@@ -63,11 +112,10 @@
              [self handleEntries:entries];
              
              if (hasMore) {
-                 NSLog(@"Folder is large enough where we need to call `listFolderContinue:`");
-                 
                  [self listFolderContinueWithClient:self.dropboxClient cursor:cursor];
              } else {
-                 NSLog(@"List folder complete.");
+                 // NSLog(@"List folder complete.");
+                 self.loaded = YES;
              }
              [self.tableView reloadData];
          } else {
@@ -76,13 +124,6 @@
              NSLog(@"%@\n%@\n", routeError, networkError);
          }
      }];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -102,6 +143,7 @@
                  [self listFolderContinueWithClient:client cursor:cursor];
              } else {
                  NSLog(@"List folder complete.");
+                 self.loaded = YES;
              }
              [self.tableView reloadData];
          } else {
@@ -135,22 +177,12 @@
             [self.folderEntries addObject:remoteFolder];
             
         } else if ([entry isKindOfClass:[DBFILESDeletedMetadata class]]) {
+            
             DBFILESDeletedMetadata *deletedMetadata = (DBFILESDeletedMetadata *)entry;
             NSLog(@"Deleted data: %@\n", deletedMetadata);
         }
     }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -180,6 +212,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"folderTableViewCell"];
         LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
         cell.textLabel.text = remoteFolder.name;
+        cell.imageView.image = [UIImage imageNamed:@"FolderIcon"];
     }
     if (indexPath.section == 1) {
         // files
@@ -195,61 +228,11 @@
     
     if (indexPath.section == 0) {       // folder
         LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
-        LBDropboxFolderViewController *nextVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dropboxFolderViewController"];
+        LBDropboxFolderViewController *nextVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
         nextVC.folderPath = remoteFolder.path;
         [self.navigationController showViewController:nextVC sender:self];
     }
-    
-    /*
-    if (indexPath.section == 1) {       // file
-        LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
-        if (remoteFile.isPlayableMediaFile) {
-            [self downloadAndPlayFileAtPath:remoteFile.path];
-        }
-    }
-     */
 }
-
-
-/*
-- (void) downloadAndPlayFileAtPath:(NSString*)path {
-    
-    //NSFileManager *fileManager = [NSFileManager defaultManager];
-    //NSURL *outputDirectory = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
-    //NSURL *outputUrl = [outputDirectory URLByAppendingPathComponent:@"current.mp3"];
-    
-    [self.appDelegate.importer cleanupTempDirectory];
-    
-    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:@"current"] stringByAppendingPathExtension:path.pathExtension];
-    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
-    
-    [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
-      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
-                         NSURL *destination) {
-          if (result) {
-              NSLog(@"%@\n", result);
-              NSData *data = [[NSFileManager defaultManager] contentsAtPath:[destination path]];
-              NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-              NSLog(@"%@\n", dataStr);
-              
-              NSString* artist = @"";
-              NSString* trackTitle = path.lastPathComponent.stringByDeletingPathExtension;
- 
-              NSDictionary* id3Tags = [self.appDelegate.importer id3TagsForURL:outputUrl];
-              NSLog(@"the tags: %@", id3Tags) ;
-              artist = [id3Tags objectForKey:@"artist"];
-              trackTitle = [id3Tags objectForKey:@"title"];
-              
-              
-              [self.appDelegate.filePlayer play:destination.path artist:artist trackTitle:trackTitle image:nil];
-          } else {
-              NSLog(@"%@\n%@\n", routeError, networkError);
-          }
-      }] setProgressBlock:^(int64_t bytesDownloaded, int64_t totalBytesDownloaded, int64_t totalBytesExpectedToDownload) {
-          NSLog(@"%lld\n%lld\n%lld\n", bytesDownloaded, totalBytesDownloaded, totalBytesExpectedToDownload);
-      }];
-}
- */
 
 
 - (IBAction) showImportActionController {
@@ -283,8 +266,6 @@
 
 - (void) downloadFileAndImportIntoLibrary:(NSString*)path {
     
-    
-    
     NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
     NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
                           stringByAppendingPathExtension:path.pathExtension];
@@ -301,5 +282,27 @@
          }
      }];
 }
+
+
+- (void) titleViewTapped:(UIGestureRecognizer*)recognizer {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Logout", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [DBClientsManager unlinkAndResetClients];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
+    }];
+    [actionSheet addAction:logoutAction];
+    
+    actionSheet.view.tintColor = [UIColor blackColor];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
 
 @end

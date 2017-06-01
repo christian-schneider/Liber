@@ -37,7 +37,7 @@
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
-		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */; };
+		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
 		E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */; };
 		E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */; };
@@ -279,7 +279,7 @@
 		E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewCell.h; path = Source/Collection/LBMusicCollectionViewCell.h; sourceTree = "<group>"; };
 		E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewCell.m; path = Source/Collection/LBMusicCollectionViewCell.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
-		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LBDropboxFolderViewController.mm; path = Source/Remote/Dropbox/LBDropboxFolderViewController.mm; sourceTree = "<group>"; };
+		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDropboxFolderViewController.m; path = Source/Remote/Dropbox/LBDropboxFolderViewController.m; sourceTree = "<group>"; };
 		E7A5C1681EC976BC00700156 /* LBRemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFile.h; path = Source/Remote/LBRemoteFile.h; sourceTree = "<group>"; };
 		E7A5C1691EC976BC00700156 /* LBRemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFile.m; path = Source/Remote/LBRemoteFile.m; sourceTree = "<group>"; };
 		E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolder.h; path = Source/Remote/LBRemoteFolder.h; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */,
-				E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.mm */,
+				E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */,
 			);
 			name = Dropbox;
 			sourceTree = "<group>";
@@ -903,7 +903,7 @@
 				E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */,
 				E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */,
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
-				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */,
+				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
 				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,

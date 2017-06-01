@@ -42,6 +42,12 @@
 }
 
 
+- (BOOL) prefersStatusBarHidden {
+    
+    return YES;
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 1;
@@ -77,7 +83,9 @@
             [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
                                            controller:self
                                               openURL:^(NSURL *url) {
-                                                  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                                                  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                                                      //
+                                                  }];
             }];
         }
         
