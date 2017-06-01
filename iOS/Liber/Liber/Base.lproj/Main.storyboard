@@ -453,7 +453,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6TB-1g-NwG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="0L0-vb-IOb">
+                        <barButtonItem key="rightBarButtonItem" image="InIcon" id="0L0-vb-IOb">
                             <connections>
                                 <action selector="showImportActionController" destination="qSq-4H-bch" id="PrR-Lb-8fb"/>
                             </connections>

@@ -246,13 +246,13 @@
 
 - (IBAction) showImportActionController {
     
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Import", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Folder", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import Media Files", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self importThisFolder];
         [self dismissViewControllerAnimated:YES completion:^{
             
