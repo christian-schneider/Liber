@@ -53,6 +53,7 @@
     NSString* albumTitle    = [id3Tags objectForKey:@"TALB"];
     NSNumber* trackIndex    = [id3Tags objectForKey:@"TRCK"];
     UIImage* artwork        = [self imageForItemAtFileURL:fileURL];         // set breakpoint here to inspect the tags returned by a specific file
+    double duration         = [self durationOfMediaAtFileURL:fileURL];
     
     // albumArtist can be nil
     if (!artist)        artist = NSLocalizedString(@"Unknow Artist", nil);
@@ -75,6 +76,7 @@
                   albumArtist:albumArtist
                    albumTitle:albumTitle
                    trackTitle:trackTitle
+                     duration:duration
                       atIndex:trackIndex
                         image:artwork
                      fileName:originalFilename
@@ -88,6 +90,7 @@
                  albumArtist:(NSString*)albumArtist
                   albumTitle:(NSString*)albumTitle
                   trackTitle:(NSString*)trackTitle
+                    duration:(double)duration
                      atIndex:(NSNumber*)index
                        image:(UIImage*)image
                     fileName:(NSString*)fileName
@@ -125,23 +128,20 @@
     if (index) {
         track.index = index.integerValue;
     }
+    track.duration = duration;
     
     // relationships
     
     track.album = album;
     track.artist = artist;
     
-    NSLog(@"**** album artist %@", albumArtistEntity.name);
-    
     album.artist = albumArtistEntity ? albumArtistEntity : artist ;
-    
-    NSLog(@" --- after assignment: %@", album.artist.name);
     [album addTracksObject:track];
     
     [artist addAlbumsObject:album];
     [artist addTracksObject:track];
     
-    NSLog(@" now adding this album: %@ for Artist: %@", album.title, album.artist.name);
+    //NSLog(@" now adding this album: %@ for Artist: %@", album.title, album.artist.name);
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
@@ -174,17 +174,16 @@
 }
 
 
-
 - (BOOL) isPlayableMediaFileAtPath:(NSString*)path {
 
+    // atm, limit to files which usually have or can have embedded image data
     NSArray* supportedMediaExtensions = @[
         @"mp3",
         @"mp4",
         @"m4a"
         
         // below are all the supported audio formats file endings by iOS
-        // atm, limit to files which usually have embedded image data
-                                          
+        // the current duration method should work on all of these
         /*
         @"aac",
         @"adts",
@@ -311,5 +310,17 @@
     
     return [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
 }
+
+
+- (double) durationOfMediaAtFileURL:(NSURL*)url {
+    
+    double duration = 0.0;
+    NSError* error;
+    AVAudioPlayer* avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    if (!error) duration = avAudioPlayer.duration;
+    return duration;
+}
+
+
 
 @end

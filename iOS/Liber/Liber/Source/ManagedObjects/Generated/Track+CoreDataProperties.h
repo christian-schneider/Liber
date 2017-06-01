@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Track *> *)fetchRequest;
 
-@property (nonatomic) float duration;
+@property (nonatomic) double duration;
 @property (nullable, nonatomic, copy) NSString *fileName;
 @property (nonatomic) int16_t index;
 @property (nullable, nonatomic, copy) NSString *title;

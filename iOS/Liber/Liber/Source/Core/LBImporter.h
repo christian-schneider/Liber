@@ -15,6 +15,7 @@
 - (BOOL) isPlayableMediaFileAtPath:(NSString*)path;
 - (NSDictionary *)id3TagsForURL:(NSURL *)resourceUrl;
 - (UIImage*) imageForItemAtFileURL:(NSURL*)url;
+- (double) durationOfMediaAtFileURL:(NSURL*)url;
 
 - (NSString *) sanitizeFileNameString:(NSString *)fileName;
 - (void) cleanupTempDirectory;

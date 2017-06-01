@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIViewController (InfoMessage)
 
 - (void) presentInformalAlertWithTitle:(NSString*)title andMessage:(NSString*)message;

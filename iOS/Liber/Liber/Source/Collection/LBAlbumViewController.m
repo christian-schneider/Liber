@@ -17,6 +17,7 @@
 #import "LBAlbumDetailNavigationBarTitleView.h"
 #import "LBPlayingTrackProgressCell.h"
 #import "UIImage+Functions.h"
+#import "NSString+Functions.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -98,7 +99,7 @@
         cell.currentTimeLabel.text = @"0:00";
         cell.durationLabel.text = @"0:00";
         [cell.timeSlider setThumbImage:[UIImage imageWithImage:[UIImage imageNamed:@"circle-gray"] scaledToSize:CGSizeMake(17.0, 17.0)] forState:UIControlStateNormal];
-        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+        //cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         return cell;
     }
     else {
@@ -110,6 +111,8 @@
         else {
             cell.trackTitleLabel.text = track.title;
         }
+        cell.trackNumberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+        cell.trackDurationLabel = [NSString formatTime:track.duration];
         return cell;
     }
 }

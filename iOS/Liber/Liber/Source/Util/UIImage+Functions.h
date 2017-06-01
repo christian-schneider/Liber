@@ -5,7 +5,7 @@
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 
 @interface UIImage (Functions)

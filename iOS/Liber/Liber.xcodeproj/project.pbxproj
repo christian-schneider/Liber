@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */; };
 		E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */; };
-		E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */; };
-		E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E70CADBF1ED9DBCF005E8C39 /* play-outline.png */; };
 		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
 		E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F54391ECBA850006D265D /* AVFoundation.framework */; };
 		E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,15 +27,13 @@
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
 		E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E755D22A1EDC9DC600A78097 /* Dropbox-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2281EDC9DC600A78097 /* Dropbox-icon.png */; };
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
 		E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */; };
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
-		E755D2341EDF203700A78097 /* circle-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2331EDF203700A78097 /* circle-outline.png */; };
 		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
 		E755D2391EDF236200A78097 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2381EDF236200A78097 /* circle.png */; };
 		E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D23A1EDF254D00A78097 /* circle-gray.png */; };
-		E755D23D1EDF278000A78097 /* in-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D23C1EDF278000A78097 /* in-icon.png */; };
+		E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E75FFEC81EC6F1A200881694 /* LBRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC71EC6F1A200881694 /* LBRemoteViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
@@ -221,8 +217,6 @@
 		E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+Functions.m"; path = "Source/ManagedObjects/Artist+Functions.m"; sourceTree = "<group>"; };
 		E70CADB71ED9C8A8005E8C39 /* Album+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+Functions.h"; path = "Source/ManagedObjects/Album+Functions.h"; sourceTree = "<group>"; };
 		E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Album+Functions.m"; path = "Source/ManagedObjects/Album+Functions.m"; sourceTree = "<group>"; };
-		E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause-outline.png"; path = "Resources/pause-outline.png"; sourceTree = "<group>"; };
-		E70CADBF1ED9DBCF005E8C39 /* play-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-outline.png"; path = "Resources/play-outline.png"; sourceTree = "<group>"; };
 		E70CADC31ED9DD81005E8C39 /* Artist+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataClass.h"; path = "Source/ManagedObjects/Generated/Artist+CoreDataClass.h"; sourceTree = "<group>"; };
 		E70CADC41ED9DD81005E8C39 /* Artist+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Artist+CoreDataClass.m"; path = "Source/ManagedObjects/Generated/Artist+CoreDataClass.m"; sourceTree = "<group>"; };
 		E70CADC51ED9DD81005E8C39 /* Artist+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Artist+CoreDataProperties.h"; path = "Source/ManagedObjects/Generated/Artist+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -267,18 +261,17 @@
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7448AD91ECDE57F0095E754 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		E7448AED1ED368240095E754 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
-		E755D2281EDC9DC600A78097 /* Dropbox-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Dropbox-icon.png"; path = "Resources/Dropbox-icon.png"; sourceTree = "<group>"; };
 		E755D2291EDC9DC600A78097 /* Liber-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Liber-Icon.png"; path = "Resources/Liber-Icon.png"; sourceTree = "<group>"; };
 		E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumDetailNavigationBarTitleView.h; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.h; sourceTree = "<group>"; };
 		E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumDetailNavigationBarTitleView.m; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.m; sourceTree = "<group>"; };
 		E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayingTrackProgressCell.h; path = Source/Collection/LBPlayingTrackProgressCell.h; sourceTree = "<group>"; };
 		E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayingTrackProgressCell.m; path = Source/Collection/LBPlayingTrackProgressCell.m; sourceTree = "<group>"; };
-		E755D2331EDF203700A78097 /* circle-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-outline.png"; path = "Resources/circle-outline.png"; sourceTree = "<group>"; };
 		E755D2351EDF209C00A78097 /* UIImage+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Functions.h"; path = "Source/Util/UIImage+Functions.h"; sourceTree = "<group>"; };
 		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
 		E755D2381EDF236200A78097 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = Resources/circle.png; sourceTree = "<group>"; };
 		E755D23A1EDF254D00A78097 /* circle-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-gray.png"; path = "Resources/circle-gray.png"; sourceTree = "<group>"; };
-		E755D23C1EDF278000A78097 /* in-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "in-icon.png"; path = "Resources/in-icon.png"; sourceTree = "<group>"; };
+		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
+		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
 		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E75FFEC61EC6F1A200881694 /* LBRemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteViewController.h; path = Source/Remote/LBRemoteViewController.h; sourceTree = "<group>"; };
@@ -489,14 +482,9 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E755D23C1EDF278000A78097 /* in-icon.png */,
 				E755D23A1EDF254D00A78097 /* circle-gray.png */,
 				E755D2381EDF236200A78097 /* circle.png */,
-				E755D2331EDF203700A78097 /* circle-outline.png */,
-				E755D2281EDC9DC600A78097 /* Dropbox-icon.png */,
 				E755D2291EDC9DC600A78097 /* Liber-Icon.png */,
-				E70CADBE1ED9DBCF005E8C39 /* pause-outline.png */,
-				E70CADBF1ED9DBCF005E8C39 /* play-outline.png */,
 				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -583,6 +571,8 @@
 				E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */,
 				E755D2351EDF209C00A78097 /* UIImage+Functions.h */,
 				E755D2361EDF209C00A78097 /* UIImage+Functions.m */,
+				E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */,
+				E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -879,13 +869,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
-				E755D22A1EDC9DC600A78097 /* Dropbox-icon.png in Resources */,
 				E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */,
-				E70CADC11ED9DBCF005E8C39 /* play-outline.png in Resources */,
 				E755D2391EDF236200A78097 /* circle.png in Resources */,
-				E755D23D1EDF278000A78097 /* in-icon.png in Resources */,
-				E70CADC01ED9DBCF005E8C39 /* pause-outline.png in Resources */,
-				E755D2341EDF203700A78097 /* circle-outline.png in Resources */,
 				E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */,
 				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
 				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,
@@ -920,6 +905,7 @@
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.mm in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
+				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
 				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,

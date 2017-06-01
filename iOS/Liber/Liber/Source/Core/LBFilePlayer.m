@@ -11,6 +11,7 @@
 #import "Track+Functions.h"
 #import "Album+Functions.h"
 #import "Artist+Functions.h"
+#import "NSString+Functions.h"
 @import MediaPlayer;
 @import AVFoundation;
 
@@ -62,14 +63,6 @@
     [self.player prepareToPlay];
     [self.player play];
     [self startProgressTimer];
-}
-
-
-- (NSString*) formatTime:(float)time {
-    
-    int minutes = time / 60;
-    int seconds = (int)time % 60;
-    return [NSString stringWithFormat:@"%@%d:%@%d", minutes / 10 ? [NSString stringWithFormat:@"%d", minutes / 10] : @"", minutes % 10, [NSString stringWithFormat:@"%d", seconds / 10], seconds % 10];
 }
 
 
@@ -211,10 +204,10 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
         
         NSDictionary* timeProgressDict = @{
-                                           @"currentTime" : [self formatTime:self.player.currentTime],
-                                           @"duration" : [self formatTime:self.player.duration],
-                                           @"currentPercent" : [NSNumber numberWithDouble:self.player.currentTime / self.player.duration]
-                                           };
+            @"currentTime" : [NSString formatTime:self.player.currentTime],
+            @"duration" : [NSString formatTime:self.player.duration],
+            @"currentPercent" : [NSNumber numberWithDouble:self.player.currentTime / self.player.duration]
+        };
         [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
     }];
 }
