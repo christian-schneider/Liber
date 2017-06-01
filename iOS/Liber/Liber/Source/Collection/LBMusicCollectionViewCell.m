@@ -7,6 +7,7 @@
 
 #import "LBMusicCollectionViewCell.h"
 
+
 @implementation LBMusicCollectionViewCell
 
 @end

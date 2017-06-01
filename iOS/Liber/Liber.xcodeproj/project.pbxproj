@@ -388,10 +388,10 @@
 			children = (
 				E7221C7A1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.h */,
 				E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */,
-				E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */,
-				E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */,
 				E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */,
 				E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */,
+				E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */,
+				E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";

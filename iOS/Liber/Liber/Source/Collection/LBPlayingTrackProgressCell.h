@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ Used in LBAlbumViewController. There is only ever one instance of such a cell. The
+ album view controller stores a reference to this, as it is frequently updated in case 
+ the track currently played by the global player is part of the displayed album.
+ */
 @interface LBPlayingTrackProgressCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel* currentTimeLabel;
@@ -16,5 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIButton* playPauseButton;
 
 - (IBAction) playPauseButtonPressed;
+- (IBAction) previousButtonPressed;
+- (IBAction) nextButtonPressed;
 
 @end

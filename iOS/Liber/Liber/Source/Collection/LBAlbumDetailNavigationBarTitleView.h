@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LBAlbumDetailNavigationBarTitleView : UIView
 
 @property (nonatomic, strong) UILabel* albumTitleLabel;

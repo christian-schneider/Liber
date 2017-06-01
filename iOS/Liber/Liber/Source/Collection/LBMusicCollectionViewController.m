@@ -70,10 +70,13 @@
 }
 
 
+
+
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
     [self updateDisplayItems];
+    self.navigationController.hidesBarsOnSwipe = YES;
 }
 
 
@@ -81,6 +84,13 @@
     
     self.displayItems = [Album MR_findAll];
     [self.collectionView reloadData];
+}
+
+
+
+- (BOOL)prefersStatusBarHidden {
+ 
+    return self.navigationController.isNavigationBarHidden;
 }
 
 

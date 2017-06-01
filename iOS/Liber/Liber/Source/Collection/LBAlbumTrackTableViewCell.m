@@ -7,17 +7,18 @@
 
 #import "LBAlbumTrackTableViewCell.h"
 
+
 @implementation LBAlbumTrackTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+
+- (void) didMoveToSuperview {
+    
+    // called after loading of storyboard is complete but before dequeue happens
+    
+    self.trackTitleLabel.text = @"";
+    self.trackNumberLabel.text = @"";
+    self.trackDurationLabel.text = @"0:00";
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

@@ -6,34 +6,38 @@
 //
 
 #import "LBAlbumViewController.h"
-#import "Album+CoreDataClass.h"
-#import "Artist+CoreDataClass.h"
-#import "Artist+Functions.h"
-#import "Track+CoreDataClass.h"
-#import "LBAlbumArtworkTableViewCell.h"
-#import "LBAlbumTrackTableViewCell.h"
 #import "AppDelegate.h"
-#import "Album+Functions.h"
-#import "LBAlbumDetailNavigationBarTitleView.h"
-#import "LBPlayingTrackProgressCell.h"
+#import "LBPlayQueue.h"
 #import "UIImage+Functions.h"
 #import "NSString+Functions.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
+#import "Track+Functions.h"
+#import "LBAlbumArtworkTableViewCell.h"
+#import "LBPlayingTrackProgressCell.h"
+#import "LBAlbumTrackTableViewCell.h"
+#import "LBAlbumDetailNavigationBarTitleView.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) AppDelegate* appDelegate ;
+@property (nonatomic, weak) LBPlayQueue* playQueue;
+
+@property (nonatomic, weak) IBOutlet UITableView* tableView;
+@property (nonatomic, weak) LBPlayingTrackProgressCell* playingTrackCell;
 
 @end
 
 
 @implementation LBAlbumViewController
 
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    self.playQueue = self.appDelegate.playQueue;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];
@@ -55,6 +59,7 @@
     self.tableView.estimatedRowHeight = 44.0;
 }
 
+
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -68,6 +73,23 @@
     [self stopObservingPlayProgress];
 }
 
+
+- (void) viewDidLayoutSubviews {
+    
+    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
+    LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[self.tableView cellForRowAtIndexPath:path];
+    cell.albumArtHeightConstraint.constant = cell.artworkImageView.frame.size.width;
+    [cell layoutIfNeeded];
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return self.navigationController.isNavigationBarHidden;
+}
+
+
+#pragma mark - TableView delegate & dataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -94,36 +116,18 @@
     }
     else if (indexPath.section == 1) {
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.timeSlider.value = 0.0;
-        cell.currentTimeLabel.text = @"0:00";
-        cell.durationLabel.text = @"0:00";
-        [cell.timeSlider setThumbImage:[UIImage imageWithImage:[UIImage imageNamed:@"circle-gray"] scaledToSize:CGSizeMake(17.0, 17.0)] forState:UIControlStateNormal];
-        //cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+        cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
+        self.playingTrackCell = cell;
         return cell;
     }
     else {
         LBAlbumTrackTableViewCell* cell = (LBAlbumTrackTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumTrackTableViewCell"];
         Track* track = [[self.album orderedTracks] objectAtIndex:indexPath.row];
-        if (self.album.artist != track.artist) {
-            cell.trackTitleLabel.text = [NSString stringWithFormat:@"%@ - %@", track.artist.name, track.title];
-        }
-        else {
-            cell.trackTitleLabel.text = track.title;
-        }
+        cell.trackTitleLabel.text = track.displayTrackTitle;
         cell.trackNumberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-        cell.trackDurationLabel = [NSString formatTime:track.duration];
+        cell.trackDurationLabel.text = [NSString formatTime:track.duration];
         return cell;
     }
-}
-
-
-- (void) viewDidLayoutSubviews {
-    
-    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
-    LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[self.tableView cellForRowAtIndexPath:path];
-    cell.albumArtHeightConstraint.constant = cell.artworkImageView.frame.size.width;
-    [cell layoutIfNeeded];
 }
 
 
@@ -132,13 +136,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 2) {
-        LBPlayQueue* playQueue = self.appDelegate.playQueue;
         Track* selectedTrack = [self.album.orderedTracks objectAtIndex:indexPath.row];
-        
-        [playQueue clearQueue];
-        [playQueue addTracks:self.album.orderedTracks];
-        [playQueue setCurrentTrack:selectedTrack];
-        [playQueue startOrPauseTrack:selectedTrack];
+        [self.playQueue clearQueue];
+        [self.playQueue addTracks:self.album.orderedTracks];
+        [self.playQueue setCurrentTrack:selectedTrack];
+        [self.playQueue startOrPauseTrack:selectedTrack];
     }
 }
 
@@ -148,13 +150,13 @@
 - (void) startObservingPlayProgress {
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        NSDictionary* progressDict = note.object;
         
-        NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
-        LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[self.tableView cellForRowAtIndexPath:path];
-        cell.currentTimeLabel.text = [progressDict objectForKey:@"currentTime"];
-        cell.durationLabel.text = [progressDict objectForKey:@"duration"];
-        cell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
+        if (self.playingTrackCell) {
+            NSDictionary* progressDict = note.object;
+            self.playingTrackCell.currentTimeLabel.text = [progressDict objectForKey:@"currentTime"];
+            self.playingTrackCell.durationLabel.text = [progressDict objectForKey:@"duration"];
+            self.playingTrackCell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
+        }
     }];
 }
 
