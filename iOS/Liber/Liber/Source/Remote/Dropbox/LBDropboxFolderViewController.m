@@ -34,9 +34,13 @@
 @implementation LBDropboxFolderViewController
 
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.tableView.refreshControl = refreshControl;
     
     self.dropboxClient = [DBClientsManager authorizedClient];
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
@@ -45,17 +49,12 @@
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    self.tableView.refreshControl = refreshControl;
-    
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated {
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     if (![DBClientsManager authorizedClient]) {
         [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
@@ -78,7 +77,10 @@
     }
     self.navigationController.hidesBarsOnSwipe = NO;
     
-    if (!self.loaded) {
+    if (!self.loaded && [DBClientsManager authorizedClient]) {
+        // if the user logs out, then logs in again self.dropboxClient can be nil!!
+        // if this is the case, assign the new instance
+        self.dropboxClient = [DBClientsManager authorizedClient];
         [self listRemoteFolder];
     }
 }
@@ -92,7 +94,6 @@
 
 - (void) refresh:(UIRefreshControl*)refreshControl {
     
-    [refreshControl endRefreshing];
     [self.folderEntries removeAllObjects];
     [self.fileEntries removeAllObjects];
     [self.tableView reloadData];
@@ -101,6 +102,9 @@
 
 
 - (void) listRemoteFolder {
+    
+    [self.tableView.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - self.tableView.refreshControl.frame.size.height) animated:YES];
     
     [[self.dropboxClient.filesRoutes listFolder:self.folderPath]
      setResponseBlock:^(DBFILESListFolderResult *response, DBFILESListFolderError *routeError, DBRequestError *networkError) {
@@ -114,8 +118,7 @@
              if (hasMore) {
                  [self listFolderContinueWithClient:self.dropboxClient cursor:cursor];
              } else {
-                 // NSLog(@"List folder complete.");
-                 self.loaded = YES;
+                 [self listFolderCompleted];
              }
              [self.tableView reloadData];
          } else {
@@ -142,14 +145,20 @@
              if (hasMore) {
                  [self listFolderContinueWithClient:client cursor:cursor];
              } else {
-                 NSLog(@"List folder complete.");
-                 self.loaded = YES;
+                 [self listFolderCompleted];
              }
              [self.tableView reloadData];
          } else {
              NSLog(@"%@\n%@\n", routeError, networkError);
          }
      }];
+}
+
+
+- (void) listFolderCompleted {
+    
+    self.loaded = YES;
+    [self.tableView.refreshControl endRefreshing];
 }
 
 
