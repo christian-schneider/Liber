@@ -221,9 +221,9 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
         
         NSDictionary* timeProgressDict = @{
-            @"currentTime" : [NSString formatTime:self.player.currentTime],
-            @"duration" : [NSString formatTime:self.player.duration],
-            @"currentPercent" : [NSNumber numberWithDouble:self.player.currentTime / self.player.duration]
+            @"currentTime"      : self.currentTrackCurrentTime,
+            @"duration"         : self.currentTrackDuration,
+            @"currentPercent"   : [NSNumber numberWithDouble:self.currentTrackCurrentPercent]
         };
         [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
     }];
@@ -235,6 +235,25 @@
     [self.progressTimer invalidate];
     self.progressTimer = nil;
 }
+
+
+- (double) currentTrackCurrentPercent {
+    
+    return self.player.currentTime / self.player.duration ;
+}
+
+
+- (NSString*) currentTrackCurrentTime {
+    
+    return [NSString formatTime:self.player.currentTime];
+}
+
+
+- (NSString*) currentTrackDuration {
+    
+    return [NSString formatTime:self.player.duration] ;
+}
+
 
 
 @end

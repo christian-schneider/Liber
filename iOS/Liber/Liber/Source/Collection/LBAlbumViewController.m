@@ -128,7 +128,7 @@
         return cell;
     }
     else if (indexPath.section == 1) {
-        Track* currentTrack = self.appDelegate.playQueue.currentTrack;
+        Track* currentTrack = self.playQueue.currentTrack;
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
         [cell initialize];
         cell.album = self.album;
@@ -137,11 +137,14 @@
             cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
         }
         else {
-            cell.trackTitleLabel.text = self.appDelegate.playQueue.currentTrack.displayTrackTitle;
+            cell.trackTitleLabel.text = self.playQueue.currentTrack.displayTrackTitle;
         }
         
         if ([self.album.tracks containsObject:currentTrack]) { // the album with the current track currently played is displayed in this VC
             [cell updatePlayButtonImage:self.playQueue.isPlaying];
+            cell.timeSlider.value = self.playQueue.currentTrackCurrentPercent;
+            cell.currentTimeLabel.text = self.playQueue.currentTrackCurrentTime;
+            cell.durationLabel.text = self.playQueue.currentTrackDuration;
         }
         self.playingTrackCell = cell;
         return cell;

@@ -26,6 +26,9 @@
 - (Track*) nextTrack;
 - (Track*) previuosTrack;
 
-- (BOOL) isPlaying; 
+- (BOOL) isPlaying;
+- (double) currentTrackCurrentPercent;
+- (NSString*) currentTrackCurrentTime;
+- (NSString*) currentTrackDuration;
 
 @end

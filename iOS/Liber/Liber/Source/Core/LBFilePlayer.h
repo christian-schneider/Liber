@@ -23,6 +23,9 @@
 - (void) stopPlaying;
 
 
+- (double) currentTrackCurrentPercent;
+- (NSString*) currentTrackCurrentTime;
+- (NSString*) currentTrackDuration;
 
 
 /**

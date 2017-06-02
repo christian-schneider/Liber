@@ -151,6 +151,24 @@
 }
 
 
+- (double) currentTrackCurrentPercent {
+ 
+    return self.filePlayer.currentTrackCurrentPercent;
+}
+
+
+- (NSString*) currentTrackCurrentTime {
+    
+    return self.filePlayer.currentTrackCurrentTime;
+}
+
+
+- (NSString*) currentTrackDuration {
+    
+    return self.filePlayer.currentTrackDuration;
+}
+
+
 - (NSArray<Track*>*) upcomingTracksIncludingPlaying {
     
     if (self.queue.count == 0) return nil;
@@ -175,6 +193,8 @@
     }
     return played;
 }
+
+
 
 
 @end
