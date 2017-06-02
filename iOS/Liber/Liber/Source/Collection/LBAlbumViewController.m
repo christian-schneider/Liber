@@ -191,7 +191,13 @@
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackStatusChanged object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-
+        
+        // This should really just be [self.tableView reloadData]. the "dynamic/adaptive" height of the
+        // album art tableViewCell is causing troubles when partially in the view when the reload happens
+        // as a temporary workaround, the albumArtTableViewCell at position 0 is never reloaded.
+        // That's what all this fuss is about.
+        // TODO: see if putting the actual album into a section header would remove these layouting troubles. 
+        
         NSMutableArray* indexPathsToReload = [NSMutableArray arrayWithCapacity:self.album.tracks.count+1];
         [indexPathsToReload addObject:[NSIndexPath indexPathForRow:0 inSection:1]];
         for (int i = 0 ; i < self.album.tracks.count ; i++) {
@@ -202,6 +208,7 @@
         [intersection intersectSet:[NSSet setWithArray:[self.tableView indexPathsForVisibleRows]]];
         
         [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
+
     }];
 }
 

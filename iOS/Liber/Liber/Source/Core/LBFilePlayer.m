@@ -64,11 +64,20 @@
     [self.player prepareToPlay];
     [self.player play];
     [self startProgressTimer];
+    // this ugly workaround is only need for when the user enters a new album and before pressing on the big
+    // play button has scrubbed on the slider. really only in this case, this call is relevant to quickly update the position
+    // it is not optimal, but it is in relation with the reloading of the table view in AlbumVC causing problems with
+    // the adaptive square album art image table cell height when directly using [self.tableView reloadData].
+    // for further inspection see the workaround in addObserverForName:LBCurrentTrackStatusChanged in AlbumVC
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self postProgressNotification];
+    });
 }
 
 
 - (void) pausePlaying {
 
+    [self stopProgressTimer];
     [self.player pause];
     self.isPlaying = NO;
     [self updateRemoteControls];
@@ -77,14 +86,17 @@
 
 - (void) continuePlaying {
     
+    
     [self.player play];
     self.isPlaying = YES;
     [self updateRemoteControls];
+    [self startProgressTimer];
 }
 
 
 - (void) stopPlaying {
     
+    [self stopProgressTimer];
     [self.player stop];
     self.isPlaying = NO;
     self.playingArtist = @"";
@@ -184,7 +196,6 @@
     }
     [player prepareToPlay];
     self.isPlaying = [player play];
-    NSLog(@"tried to play; success? %d", self.isPlaying);
 }
 
 
@@ -219,13 +230,7 @@
 - (void) startProgressTimer {
     
     [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        
-        NSDictionary* timeProgressDict = @{
-            @"currentTime"      : self.currentTrackCurrentTime,
-            @"duration"         : self.currentTrackDuration,
-            @"currentPercent"   : [NSNumber numberWithDouble:self.currentTrackCurrentPercent]
-        };
-        [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
+        [self postProgressNotification];
     }];
 }
 
@@ -234,6 +239,17 @@
     
     [self.progressTimer invalidate];
     self.progressTimer = nil;
+}
+
+
+- (void) postProgressNotification {
+    
+    NSDictionary* timeProgressDict = @{
+        @"currentTime"      : self.currentTrackCurrentTime,
+        @"duration"         : self.currentTrackDuration,
+        @"currentPercent"   : [NSNumber numberWithDouble:self.currentTrackCurrentPercent]
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
 }
 
 
@@ -257,12 +273,9 @@
 
 - (void) setTrackCurrentTimeRelative:(float)value {
     
-    NSLog(@"fileplayer current time %f", self.player.currentTime);
-    NSLog(@"trying to set to: %f", value * self.player.duration);
-    
+    if (self.isPlaying) [self stopProgressTimer];
     self.player.currentTime = value * self.player.duration;
-    
-    //self.player.currentTime = value * self.currentTrack.duration;
+    if (self.isPlaying) [self startProgressTimer];
 }
 
 
