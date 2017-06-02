@@ -37,7 +37,6 @@
     Track* selectedTrack = [album.orderedTracks objectAtIndex:index];
     [self clearQueue];
     [self addTracks:album.orderedTracks];
-    [self setCurrentTrack:selectedTrack];
     [self startOrPauseTrack:selectedTrack];
 }
 
@@ -52,7 +51,7 @@
 
 - (void) startOrPauseTrack:(Track*)track {
     
-    if (!self.filePlayer.isPlaying) {
+    if (!self.filePlayer.isPlaying && !(self.currentTrack == track)) {
         self.currentTrack = track;
         [self.filePlayer playTrack:track];
         [self postNotificationStatusChangedWithTrack:track];
@@ -166,6 +165,12 @@
 - (NSString*) currentTrackDuration {
     
     return self.filePlayer.currentTrackDuration;
+}
+
+
+- (void) setTrackCurrentTimeRelative:(float)value {
+    
+    [self.filePlayer setTrackCurrentTimeRelative:value];
 }
 
 

@@ -255,5 +255,15 @@
 }
 
 
+- (void) setTrackCurrentTimeRelative:(float)value {
+    
+    NSLog(@"fileplayer current time %f", self.player.currentTime);
+    NSLog(@"trying to set to: %f", value * self.player.duration);
+    
+    self.player.currentTime = value * self.player.duration;
+    
+    //self.player.currentTime = value * self.currentTrack.duration;
+}
+
 
 @end

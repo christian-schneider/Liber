@@ -31,4 +31,13 @@
 - (NSString*) currentTrackCurrentTime;
 - (NSString*) currentTrackDuration;
 
+
+/**
+ This sets the playback time of the current track, if there is one. 
+ Range: 0.0 - 1.0
+
+ @param value The target value.
+ */
+- (void) setTrackCurrentTimeRelative:(float)value;
+
 @end

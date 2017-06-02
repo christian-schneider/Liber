@@ -22,6 +22,7 @@
     self.durationLabel.text = @"0:00";
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.timeSlider setThumbImage:[UIImage imageNamed:@"TrackSliderHandle"] forState:UIControlStateNormal];
+    [self.timeSlider addTarget:self action:@selector(timeSliderUpdated:) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -56,6 +57,13 @@
     
     UIImage* buttonImage = isPlaying ? [UIImage imageNamed:@"PauseIconLarge"] : [UIImage imageNamed:@"PlayIconLarge"];
     [self.playPauseButton setImage:buttonImage forState:UIControlStateNormal];
+}
+
+
+- (void) timeSliderUpdated:(UISlider*)timeSlider {
+    
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
+    [appDelegate.playQueue setTrackCurrentTimeRelative:timeSlider.value];
 }
 
 
