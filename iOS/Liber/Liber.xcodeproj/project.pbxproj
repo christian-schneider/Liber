@@ -31,8 +31,6 @@
 		E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */; };
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
 		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
-		E755D2391EDF236200A78097 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2381EDF236200A78097 /* circle.png */; };
-		E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D23A1EDF254D00A78097 /* circle-gray.png */; };
 		E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */; };
 		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
@@ -267,8 +265,6 @@
 		E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayingTrackProgressCell.m; path = Source/Collection/LBPlayingTrackProgressCell.m; sourceTree = "<group>"; };
 		E755D2351EDF209C00A78097 /* UIImage+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Functions.h"; path = "Source/Util/UIImage+Functions.h"; sourceTree = "<group>"; };
 		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
-		E755D2381EDF236200A78097 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = Resources/circle.png; sourceTree = "<group>"; };
-		E755D23A1EDF254D00A78097 /* circle-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-gray.png"; path = "Resources/circle-gray.png"; sourceTree = "<group>"; };
 		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
 		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
 		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
@@ -479,8 +475,6 @@
 		E75FFE841EC6D44F00881694 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E755D23A1EDF254D00A78097 /* circle-gray.png */,
-				E755D2381EDF236200A78097 /* circle.png */,
 				E755D2291EDC9DC600A78097 /* Liber-Icon.png */,
 				E73A65E71EBB73A0004181DB /* Assets.xcassets */,
 			);
@@ -541,10 +535,7 @@
 				E7A5C1691EC976BC00700156 /* LBRemoteFile.m */,
 				E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */,
 				E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */,
-				E7A5C16E1EC977DA00700156 /* LBRemoteFileTableViewCell.h */,
-				E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */,
-				E7A5C1711EC977F400700156 /* LBRemoteFolderTableViewCell.h */,
-				E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */,
+				E7FFD7061EE174F9009FF307 /* TableViewCells */,
 				E7A5C1531EC9741900700156 /* Dropbox */,
 			);
 			name = Remote;
@@ -608,6 +599,17 @@
 				E7C32BB41ECD03030038048E /* libMagicalRecord for OS X Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E7FFD7061EE174F9009FF307 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E7A5C16E1EC977DA00700156 /* LBRemoteFileTableViewCell.h */,
+				E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */,
+				E7A5C1711EC977F400700156 /* LBRemoteFolderTableViewCell.h */,
+				E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -864,8 +866,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */,
-				E755D23B1EDF254D00A78097 /* circle-gray.png in Resources */,
-				E755D2391EDF236200A78097 /* circle.png in Resources */,
 				E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */,
 				E73A65E81EBB73A0004181DB /* Assets.xcassets in Resources */,
 				E73A65E61EBB73A0004181DB /* Main.storyboard in Resources */,

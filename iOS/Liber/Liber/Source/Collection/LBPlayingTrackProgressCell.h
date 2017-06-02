@@ -25,4 +25,6 @@
 - (IBAction) previousButtonPressed;
 - (IBAction) nextButtonPressed;
 
+- (void) initialize;
+
 @end

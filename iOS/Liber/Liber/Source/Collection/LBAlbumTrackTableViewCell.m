@@ -11,9 +11,7 @@
 @implementation LBAlbumTrackTableViewCell
 
 
-- (void) didMoveToSuperview {
-    
-    // called after loading of storyboard is complete but before dequeue happens
+- (void) initialize {
     
     self.trackTitleLabel.text = @"";
     self.trackNumberLabel.text = @"";

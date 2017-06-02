@@ -18,4 +18,6 @@
 @property (nonatomic, weak) IBOutlet UILabel* trackNumberLabel;
 @property (nonatomic, weak) IBOutlet UILabel* trackDurationLabel;
 
+- (void) initialize;
+
 @end

@@ -44,6 +44,8 @@
     }];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
 }
 
 
@@ -54,9 +56,6 @@
     
     LBAlbumDetailNavigationBarTitleView* titleView = [[LBAlbumDetailNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, 300, 44.0) albumTitle:self.album.title artistName:self.album.artist.name];
     self.navigationItem.titleView = titleView;
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44.0;
 }
 
 
@@ -78,8 +77,7 @@
     
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
     LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[self.tableView cellForRowAtIndexPath:path];
-    cell.albumArtHeightConstraint.constant = cell.artworkImageView.frame.size.width;
-    [cell layoutIfNeeded];
+    [cell adjustLayout];
 }
 
 
@@ -109,19 +107,22 @@
     
     if (indexPath.section == 0) {
         LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumArtworkTableViewCell"];
-        cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+        [cell initialize];
+        if (self.album.image) {
+            cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
+        }
         return cell;
     }
     else if (indexPath.section == 1) {
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
+        [cell initialize];
         cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
         self.playingTrackCell = cell;
         return cell;
     }
     else {
         LBAlbumTrackTableViewCell* cell = (LBAlbumTrackTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumTrackTableViewCell"];
+        [cell initialize];
         Track* track = [[self.album orderedTracks] objectAtIndex:indexPath.row];
         cell.trackTitleLabel.text = track.displayTrackTitle;
         cell.trackNumberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];

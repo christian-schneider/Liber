@@ -17,4 +17,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView* artworkImageView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* albumArtHeightConstraint;
 
+- (void) initialize;
+- (void) adjustLayout; 
+
 @end

@@ -34,6 +34,8 @@
 @implementation LBDropboxFolderViewController
 
 
+#pragma mark - View Lifecycle
+
 - (void) viewDidLoad {
     
     [super viewDidLoad];
@@ -49,6 +51,8 @@
     self.fileEntries = [NSMutableArray arrayWithCapacity:10];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
 }
 
 
@@ -101,6 +105,8 @@
 }
 
 
+#pragma mark - Dropbox Listing
+
 - (void) listRemoteFolder {
     
     [self.tableView.refreshControl beginRefreshing];
@@ -120,7 +126,7 @@
              } else {
                  [self listFolderCompleted];
              }
-             [self.tableView reloadData];
+             [self sortAndReloadData];
          } else {
              NSString* message = networkError.userMessage ? networkError.userMessage : networkError.nsError.localizedDescription;
              [self presentInformalAlertWithTitle:@"Network error" andMessage:message];
@@ -147,7 +153,7 @@
              } else {
                  [self listFolderCompleted];
              }
-             [self.tableView reloadData];
+             [self sortAndReloadData];
          } else {
              NSLog(@"%@\n%@\n", routeError, networkError);
          }
@@ -194,6 +200,19 @@
 }
 
 
+- (void) sortAndReloadData {
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.folderEntries = [self.folderEntries sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+    self.fileEntries = [self.fileEntries sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - TableView Delegate & DataSource
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 2; // folders first, then files
@@ -228,6 +247,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"fileTableViewCell"];
         LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
         cell.textLabel.text = remoteFile.name;
+        cell.imageView.image = [UIImage imageNamed:@"AudioFileIcon"];
     }
     return cell ;
 }
@@ -243,6 +263,8 @@
     }
 }
 
+
+#pragma mark - Importing
 
 - (IBAction) showImportActionController {
     
@@ -292,6 +314,8 @@
      }];
 }
 
+
+#pragma mark - Logout Dropbox
 
 - (void) titleViewTapped:(UIGestureRecognizer*)recognizer {
     
