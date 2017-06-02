@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LBFilePlayer.h"
 #import "Track+CoreDataClass.h" 
+#import "Album+Functions.h"
 
 
 @interface LBPlayQueue()
@@ -28,6 +29,16 @@
         self.filePlayer = [[LBFilePlayer alloc] init]; 
     }
     return self;
+}
+
+
+- (void) playAlbum:(Album*)album trackAtIndex:(NSInteger)index {
+    
+    Track* selectedTrack = [album.orderedTracks objectAtIndex:index];
+    [self clearQueue];
+    [self addTracks:album.orderedTracks];
+    [self setCurrentTrack:selectedTrack];
+    [self startOrPauseTrack:selectedTrack];
 }
 
 
@@ -131,6 +142,12 @@
 - (NSArray<Track*>*) allTracks {
     
     return self.queue;
+}
+
+
+- (BOOL) isPlaying {
+    
+    return self.filePlayer.isPlaying;
 }
 
 

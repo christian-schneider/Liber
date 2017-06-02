@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Album;
 
 
 /**
@@ -14,6 +15,8 @@
  the track currently played by the global player is part of the displayed album.
  */
 @interface LBPlayingTrackProgressCell : UITableViewCell
+
+@property (nonatomic, weak) Album* album;
 
 @property (nonatomic, weak) IBOutlet UILabel* currentTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel* durationLabel;
@@ -26,5 +29,7 @@
 - (IBAction) nextButtonPressed;
 
 - (void) initialize;
+
+- (void) updatePlayButtonImage:(BOOL)isPlaying;
 
 @end

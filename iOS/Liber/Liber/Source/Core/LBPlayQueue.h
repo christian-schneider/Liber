@@ -6,9 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Track;
+@class Track, Album;
+
 
 @interface LBPlayQueue : NSObject
+
+
+- (void) playAlbum:(Album*)album trackAtIndex:(NSInteger)index; 
 
 - (void) addTrack:(Track*)track;
 - (void) addTracks:(NSArray<Track*>*)tracks;
@@ -18,11 +22,10 @@
 - (void) playNextTrack;
 - (void) playPreviousTrack;
 
-- (BOOL) hasNextTrack;
-- (BOOL) hasPreviousTrack;
-
 @property (nonatomic, strong) Track* currentTrack;
 - (Track*) nextTrack;
 - (Track*) previuosTrack;
+
+- (BOOL) isPlaying; 
 
 @end

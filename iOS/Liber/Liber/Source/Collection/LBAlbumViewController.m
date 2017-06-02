@@ -90,6 +90,19 @@
 
 #pragma mark - TableView delegate & dataSource
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        return self.view.frame.size.width;
+    }
+    else if (indexPath.section == 1) {
+        return 125.0;
+    }
+    else {
+        return 44.0;
+    }
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 3;
@@ -115,13 +128,20 @@
         return cell;
     }
     else if (indexPath.section == 1) {
+        Track* currentTrack = self.appDelegate.playQueue.currentTrack;
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
         [cell initialize];
-        if (!self.appDelegate.playQueue.currentTrack) {
+        cell.album = self.album;
+        
+        if (!currentTrack || ![self.album.tracks containsObject:currentTrack]) {
             cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
         }
         else {
             cell.trackTitleLabel.text = self.appDelegate.playQueue.currentTrack.displayTrackTitle;
+        }
+        
+        if ([self.album.tracks containsObject:currentTrack]) { // the album with the current track currently played is displayed in this VC
+            [cell updatePlayButtonImage:self.playQueue.isPlaying];
         }
         self.playingTrackCell = cell;
         return cell;
@@ -145,11 +165,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 2) {
-        Track* selectedTrack = [self.album.orderedTracks objectAtIndex:indexPath.row];
-        [self.playQueue clearQueue];
-        [self.playQueue addTracks:self.album.orderedTracks];
-        [self.playQueue setCurrentTrack:selectedTrack];
-        [self.playQueue startOrPauseTrack:selectedTrack];
+        [self.playQueue playAlbum:self.album trackAtIndex:indexPath.row];
     }
 }
 
@@ -160,11 +176,14 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
-        if (self.playingTrackCell) {
-            NSDictionary* progressDict = note.object;
-            self.playingTrackCell.currentTimeLabel.text = [progressDict objectForKey:@"currentTime"];
-            self.playingTrackCell.durationLabel.text = [progressDict objectForKey:@"duration"];
-            self.playingTrackCell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
+        Track* currentTrack = self.appDelegate.playQueue.currentTrack;
+        if ([self.album.tracks containsObject:currentTrack]) {
+            if (self.playingTrackCell) {
+                NSDictionary* progressDict = note.object;
+                self.playingTrackCell.currentTimeLabel.text = [progressDict objectForKey:@"currentTime"];
+                self.playingTrackCell.durationLabel.text = [progressDict objectForKey:@"duration"];
+                self.playingTrackCell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
+            }
         }
     }];
     
@@ -176,7 +195,10 @@
             [indexPathsToReload addObject:[NSIndexPath indexPathForRow:i inSection:2]];
         }
         
-        [self.tableView reloadRowsAtIndexPaths:indexPathsToReload withRowAnimation:UITableViewRowAnimationNone];
+        NSMutableSet *intersection = [NSMutableSet setWithArray:indexPathsToReload];
+        [intersection intersectSet:[NSSet setWithArray:[self.tableView indexPathsForVisibleRows]]];
+        
+        [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 

@@ -22,7 +22,7 @@
 - (void) adjustLayout {
     
     self.albumArtHeightConstraint.constant = self.artworkImageView.frame.size.width;
-    [self layoutIfNeeded];
+    //[self layoutIfNeeded];
 }
 
 

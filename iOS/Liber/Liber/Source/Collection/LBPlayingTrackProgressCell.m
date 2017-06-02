@@ -8,6 +8,7 @@
 #import "LBPlayingTrackProgressCell.h"
 #import "AppDelegate.h"
 #import "LBPlayQueue.h"
+#import "Album+Functions.h"
 
 
 @implementation LBPlayingTrackProgressCell
@@ -27,7 +28,13 @@
 - (IBAction) playPauseButtonPressed {
     
     AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
-    [appDelegate.playQueue startOrPauseTrack:appDelegate.playQueue.currentTrack];
+    if (!appDelegate.playQueue.currentTrack ||
+        (appDelegate.playQueue.currentTrack && ![self.album.tracks containsObject:appDelegate.playQueue.currentTrack])) {
+        [appDelegate.playQueue playAlbum:self.album trackAtIndex:0];
+    }
+    else {
+        [appDelegate.playQueue startOrPauseTrack:appDelegate.playQueue.currentTrack];
+    }
 }
 
 
@@ -42,6 +49,13 @@
     
     AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
     [appDelegate.playQueue playNextTrack];
+}
+
+
+- (void) updatePlayButtonImage:(BOOL)isPlaying {
+    
+    UIImage* buttonImage = isPlaying ? [UIImage imageNamed:@"PauseIconLarge"] : [UIImage imageNamed:@"PlayIconLarge"];
+    [self.playPauseButton setImage:buttonImage forState:UIControlStateNormal];
 }
 
 
