@@ -6,6 +6,8 @@
 //
 
 #import "LBPlayingTrackProgressCell.h"
+#import "AppDelegate.h"
+#import "LBPlayQueue.h"
 
 
 @implementation LBPlayingTrackProgressCell
@@ -24,19 +26,22 @@
 
 - (IBAction) playPauseButtonPressed {
     
-    NSLog(@"playPause button pressed");
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
+    [appDelegate.playQueue startOrPauseTrack:appDelegate.playQueue.currentTrack];
 }
 
 
 - (IBAction) previousButtonPressed {
     
-    NSLog(@"previous button pressed");
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
+    [appDelegate.playQueue playPreviousTrack];
 }
 
 
 - (IBAction) nextButtonPressed {
     
-    NSLog(@"next button pressed");
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
+    [appDelegate.playQueue playNextTrack];
 }
 
 

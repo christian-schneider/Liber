@@ -8,6 +8,7 @@
 #import "LBAlbumViewController.h"
 #import "AppDelegate.h"
 #import "LBPlayQueue.h"
+#import "LBFilePlayer.h"
 #import "UIImage+Functions.h"
 #import "NSString+Functions.h"
 #import "Album+Functions.h"
@@ -62,14 +63,14 @@
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    [self startObservingPlayProgress];
+    [self startObserving];
 }
 
 
 - (void) viewDidDisappear:(BOOL)animated {
     
     [super viewDidDisappear:animated];
-    [self stopObservingPlayProgress];
+    [self stopObserving];
 }
 
 
@@ -116,7 +117,12 @@
     else if (indexPath.section == 1) {
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
         [cell initialize];
-        cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
+        if (!self.appDelegate.playQueue.currentTrack) {
+            cell.trackTitleLabel.text = ((Track*)[self.album.orderedTracks objectAtIndex:0]).displayTrackTitle;
+        }
+        else {
+            cell.trackTitleLabel.text = self.appDelegate.playQueue.currentTrack.displayTrackTitle;
+        }
         self.playingTrackCell = cell;
         return cell;
     }
@@ -124,7 +130,9 @@
         LBAlbumTrackTableViewCell* cell = (LBAlbumTrackTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumTrackTableViewCell"];
         [cell initialize];
         Track* track = [[self.album orderedTracks] objectAtIndex:indexPath.row];
+        BOOL isCurrentTrack = self.appDelegate.playQueue.currentTrack == track;
         cell.trackTitleLabel.text = track.displayTrackTitle;
+        cell.trackTitleLabel.font = isCurrentTrack ? [UIFont boldSystemFontOfSize:15.0] : [UIFont systemFontOfSize:15.0];
         cell.trackNumberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
         cell.trackDurationLabel.text = [NSString formatTime:track.duration];
         return cell;
@@ -148,9 +156,9 @@
 
 #pragma mark - Observe Play Progress
 
-- (void) startObservingPlayProgress {
+- (void) startObserving {
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         if (self.playingTrackCell) {
             NSDictionary* progressDict = note.object;
@@ -159,12 +167,24 @@
             self.playingTrackCell.timeSlider.value = ((NSNumber*)[progressDict objectForKey:@"currentPercent"]).floatValue;
         }
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackStatusChanged object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+
+        NSMutableArray* indexPathsToReload = [NSMutableArray arrayWithCapacity:self.album.tracks.count+1];
+        [indexPathsToReload addObject:[NSIndexPath indexPathForRow:0 inSection:1]];
+        for (int i = 0 ; i < self.album.tracks.count ; i++) {
+            [indexPathsToReload addObject:[NSIndexPath indexPathForRow:i inSection:2]];
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:indexPathsToReload withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 
-- (void) stopObservingPlayProgress {
+- (void) stopObserving {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackPlayProgress object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackStatusChanged object:nil];
 }
 
 

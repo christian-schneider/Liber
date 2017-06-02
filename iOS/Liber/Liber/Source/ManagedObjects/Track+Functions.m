@@ -25,7 +25,7 @@
     
     NSString* displayTrackTitle = @"";
     if (self.album.artist != self.artist) {
-        displayTrackTitle = [NSString stringWithFormat:@"%@ - %@", self.album.artist.name, self.title];
+        displayTrackTitle = [NSString stringWithFormat:@"%@ - %@", self.artist.name, self.title];
     }
     else {
         displayTrackTitle = self.title;

@@ -18,6 +18,9 @@
 - (void) playNextTrack;
 - (void) playPreviousTrack;
 
+- (BOOL) hasNextTrack;
+- (BOOL) hasPreviousTrack;
+
 @property (nonatomic, strong) Track* currentTrack;
 - (Track*) nextTrack;
 - (Track*) previuosTrack;

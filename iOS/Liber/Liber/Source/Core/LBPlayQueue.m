@@ -6,6 +6,7 @@
 //
 
 #import "LBPlayQueue.h"
+#import "AppDelegate.h"
 #import "LBFilePlayer.h"
 #import "Track+CoreDataClass.h" 
 
@@ -43,6 +44,7 @@
     if (!self.filePlayer.isPlaying) {
         self.currentTrack = track;
         [self.filePlayer playTrack:track];
+        [self postNotificationStatusChangedWithTrack:track];
         return;
     }
     
@@ -53,7 +55,14 @@
         else {
             [self.filePlayer continuePlaying];
         }
+        [self postNotificationStatusChangedWithTrack:track];
     }
+}
+
+
+- (void) postNotificationStatusChangedWithTrack:(Track*)track {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:track];
 }
 
 

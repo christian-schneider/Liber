@@ -21,9 +21,7 @@
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, weak) AppDelegate* appDelegate;
 
-@property (nonatomic, strong) Track* currentTrack;
 @property (readwrite) BOOL isPlaying;
-@property (readwrite) BOOL isPaused;
 
 @property (nonatomic, strong) NSString* playingArtist;
 @property (nonatomic, strong) NSString* playingTitle;
@@ -54,12 +52,15 @@
 
 - (void) playTrack:(Track*)track {
     
+    if (!track) return;
+    
     self.currentTrack = track;
     UIImage* image = [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:track.fullPath]];
     if (!image) {
         image = [UIImage imageWithData:track.album.image];
     }
-    [self play:track.fullPath artist:track.artist.name trackTitle:track.title image:image];
+    NSString* displayArtistName = [NSString stringWithFormat:@"%@ - %@", track.album.artist.name, track.album.title];
+    [self play:track.fullPath artist:displayArtistName trackTitle:track.displayTrackTitle image:image];
     [self.player prepareToPlay];
     [self.player play];
     [self startProgressTimer];
@@ -85,8 +86,6 @@
 - (void) stopPlaying {
     
     [self.player stop];
-    //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    //[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
     self.isPlaying = NO;
     self.playingArtist = @"";
     self.playingTitle = @"";
@@ -94,9 +93,22 @@
 }
 
 
+- (void) deactivateAudioSession {
+    
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
+}
+
+
 - (Track*) currentTrack {
     
     return self.currentTrack;
+}
+
+
+- (BOOL) isPaused {
+    
+    return self.currentTrack && !self.isPlaying ;
 }
 
 
@@ -149,7 +161,12 @@
     
     [self stopPlaying];
     [self stopProgressTimer];
-    [self.appDelegate.playQueue playNextTrack];
+    if (self.appDelegate.playQueue.nextTrack) {
+        [self.appDelegate.playQueue playNextTrack];
+    }
+    else {
+        [self deactivateAudioSession];
+    }
 }
 
 
