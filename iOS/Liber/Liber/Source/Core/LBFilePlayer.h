@@ -19,7 +19,6 @@
 @property (readonly) BOOL isPaused;
 - (void) pausePlaying;
 - (void) continuePlaying;
-- (Track*) currentTrack;
 - (void) stopPlaying;
 
 

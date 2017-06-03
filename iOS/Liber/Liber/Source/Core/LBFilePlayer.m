@@ -41,14 +41,16 @@
         self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
         
         MPRemoteCommandCenter *remoteCommandCenter = [MPRemoteCommandCenter sharedCommandCenter];
-        [[remoteCommandCenter nextTrackCommand] addTarget:self action:@selector(nextTrack)];
-        [[remoteCommandCenter previousTrackCommand] addTarget:self action:@selector(previousTrack)];
-        [[remoteCommandCenter playCommand] addTarget:self action:@selector(continuePlaying)];
-        [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pausePlaying)];
+        [[remoteCommandCenter nextTrackCommand] addTarget:self action:@selector(nextTrackFromLockScreen)];
+        [[remoteCommandCenter previousTrackCommand] addTarget:self action:@selector(previousTrackFromLockScreen)];
+        [[remoteCommandCenter playCommand] addTarget:self action:@selector(continuePlayingFromLockScreen)];
+        [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pausePlayingFromLockScreen)];
     }
     return self;
 }
 
+
+#pragma mark - Playing a Track
 
 - (void) playTrack:(Track*)track {
     
@@ -72,61 +74,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self postProgressNotification];
     });
-}
-
-
-- (void) pausePlaying {
-
-    [self stopProgressTimer];
-    [self.player pause];
-    self.isPlaying = NO;
-    [self postNotificationCurrentTrackStatusChanged];
-}
-
-
-- (void) continuePlaying {
-    
-    [self.player play];
-    self.isPlaying = YES;
-    [self startProgressTimer];
-    [self postNotificationCurrentTrackStatusChanged];
-}
-
-
-- (void) stopPlaying {
-    
-    [self stopProgressTimer];
-    [self.player stop];
-    self.isPlaying = NO;
-    self.playingArtist = @"";
-    self.playingTitle = @"";
-    self.playingImage = nil;
-    [self postNotificationCurrentTrackStatusChanged];
-}
-
-
-- (void) postNotificationCurrentTrackStatusChanged {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:nil];
-}
-
-
-- (void) deactivateAudioSession {
-    
-    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
-}
-
-
-- (Track*) currentTrack {
-    
-    return self.currentTrack;
-}
-
-
-- (BOOL) isPaused {
-    
-    return self.currentTrack && !self.isPlaying ;
 }
 
 
@@ -156,24 +103,77 @@
     // this tries to be clever: if the method gets sent in a valid image, it is used
     // else it tries to get it directly from the file
     // if the app ends up only supporting mp3's then this image parameter might well be removed
-
+    
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
         self.playingImage = self.playingImage ? self.playingImage : [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
         return self.playingImage;
     }] ;
     
     self.nowPlayingInfo = @{
-        MPMediaItemPropertyArtist: self.playingArtist,
-        MPMediaItemPropertyTitle: self.playingTitle,
-        MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
-        MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSString stringWithFormat:@"%f", self.player.currentTime],
-        MPNowPlayingInfoPropertyPlaybackRate: @1,
-        MPMediaItemPropertyArtwork: artwork
-    };
+                            MPMediaItemPropertyArtist: self.playingArtist,
+                            MPMediaItemPropertyTitle: self.playingTitle,
+                            MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
+                            MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSString stringWithFormat:@"%f", self.player.currentTime],
+                            MPNowPlayingInfoPropertyPlaybackRate: @1,
+                            MPMediaItemPropertyArtwork: artwork
+                            };
     
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = self.nowPlayingInfo;
 }
 
+
+#pragma mark - Pause Continue Stop
+
+- (void) continuePlaying {
+    
+    [self.player play];
+    self.isPlaying = YES;
+    [self startProgressTimer];
+    [self postNotificationCurrentTrackStatusChanged];
+}
+
+
+- (void) pausePlaying {
+
+    [self stopProgressTimer];
+    [self.player pause];
+    self.isPlaying = NO;
+    [self postNotificationCurrentTrackStatusChanged];
+}
+
+
+- (void) stopPlaying {
+    
+    [self stopProgressTimer];
+    [self.player stop];
+    self.isPlaying = NO;
+    self.playingArtist = @"";
+    self.playingTitle = @"";
+    self.playingImage = nil;
+    [self postNotificationCurrentTrackStatusChanged];
+}
+
+
+- (void) postNotificationCurrentTrackStatusChanged {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:nil];
+}
+
+
+- (void) deactivateAudioSession {
+    
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:0 error:nil];
+}
+
+
+- (BOOL) isPaused {
+    
+    return self.currentTrack && !self.isPlaying ;
+}
+
+
+#pragma mark - AVAudioPlayerDelegate
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)success {
     
@@ -207,15 +207,33 @@
 }
 
 
-- (void) nextTrack {
+#pragma mark - Lock Screen action handling
+
+- (void) nextTrackFromLockScreen {
+    
     [self.appDelegate.playQueue playNextTrack];
 }
 
 
-- (void) previousTrack {
+- (void) previousTrackFromLockScreen {
+    
     [self.appDelegate.playQueue playPreviousTrack];
 }
 
+
+- (void) pausePlayingFromLockScreen {
+    
+    [self pausePlaying];
+}
+
+
+- (void) continuePlayingFromLockScreen {
+    
+    [self continuePlaying];
+}
+
+
+#pragma mark - Progress Timer
 
 - (void) startProgressTimer {
     
@@ -242,6 +260,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackPlayProgress object:timeProgressDict];
 }
 
+
+#pragma mark - Time display and manipulation
 
 - (double) currentTrackCurrentPercent {
     
