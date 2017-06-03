@@ -58,7 +58,7 @@
     if (!self.filePlayer.isPlaying && !(self.currentTrack == track)) {
         self.currentTrack = track;
         [self.filePlayer playTrack:track];
-        [self postNotificationStatusChangedWithTrack:track];
+        [self postNotificationCurrentTrackStatusChanged];
         return;
     }
     
@@ -69,14 +69,14 @@
         else {
             [self.filePlayer continuePlaying];
         }
-        [self postNotificationStatusChangedWithTrack:track];
+        [self postNotificationCurrentTrackStatusChanged];
     }
 }
 
 
-- (void) postNotificationStatusChangedWithTrack:(Track*)track {
+- (void) postNotificationCurrentTrackStatusChanged {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:track];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:nil];
 }
 
 
@@ -95,7 +95,7 @@
         [self.filePlayer stopPlaying];
         [self startOrPauseTrack:self.previuosTrack];
     }
-    else if (self.isPlaying) { // in this case, just restart the first track
+    else { // in this case, just restart the first track
         [self.filePlayer setCurrentTrackCurrentTimeRelative:0.0];
     }
 }

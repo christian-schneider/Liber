@@ -80,6 +80,7 @@
     [self stopProgressTimer];
     [self.player pause];
     self.isPlaying = NO;
+    [self postNotificationCurrentTrackStatusChanged];
 }
 
 
@@ -88,6 +89,7 @@
     [self.player play];
     self.isPlaying = YES;
     [self startProgressTimer];
+    [self postNotificationCurrentTrackStatusChanged];
 }
 
 
@@ -99,6 +101,13 @@
     self.playingArtist = @"";
     self.playingTitle = @"";
     self.playingImage = nil;
+    [self postNotificationCurrentTrackStatusChanged];
+}
+
+
+- (void) postNotificationCurrentTrackStatusChanged {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBCurrentTrackStatusChanged object:nil];
 }
 
 
