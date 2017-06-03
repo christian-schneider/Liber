@@ -16,7 +16,6 @@
 @property (nonatomic, strong) Track* currentTrack;
 
 @property (readonly) BOOL isPlaying;
-@property (readonly) BOOL isPaused;
 - (void) pausePlaying;
 - (void) continuePlaying;
 - (void) stopPlaying;

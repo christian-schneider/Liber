@@ -23,10 +23,6 @@
 
 @property (readwrite) BOOL isPlaying;
 
-@property (nonatomic, strong) NSString* playingArtist;
-@property (nonatomic, strong) NSString* playingTitle;
-@property (nonatomic, strong) UIImage* playingImage;
-
 @property (nonatomic, strong) NSDictionary* nowPlayingInfo;
 
 @property (nonatomic, strong) NSTimer* progressTimer;
@@ -81,9 +77,8 @@
     
     if (nil == path) return;
     
-    self.playingArtist = artist ? artist : @"";
-    self.playingTitle = trackTitle ? trackTitle : path.lastPathComponent;
-    self.playingImage = image;
+    NSString* playingArtist = artist ? artist : @"";
+    NSString* playingTitle = trackTitle ? trackTitle : path.lastPathComponent;
     
     NSError* error;
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:path];
@@ -99,24 +94,19 @@
     self.isPlaying = [self.player play];
     
     // locked screen and control center:
-    
-    // this tries to be clever: if the method gets sent in a valid image, it is used
-    // else it tries to get it directly from the file
-    // if the app ends up only supporting mp3's then this image parameter might well be removed
-    
+  
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
-        self.playingImage = self.playingImage ? self.playingImage : [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
-        return self.playingImage;
+        return [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
     }] ;
     
     self.nowPlayingInfo = @{
-                            MPMediaItemPropertyArtist: self.playingArtist,
-                            MPMediaItemPropertyTitle: self.playingTitle,
-                            MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
-                            MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSString stringWithFormat:@"%f", self.player.currentTime],
-                            MPNowPlayingInfoPropertyPlaybackRate: @1,
-                            MPMediaItemPropertyArtwork: artwork
-                            };
+        MPMediaItemPropertyArtist:                      playingArtist,
+        MPMediaItemPropertyTitle:                       playingTitle,
+        MPMediaItemPropertyPlaybackDuration:            [NSString stringWithFormat:@"%f", self.player.duration],
+        MPNowPlayingInfoPropertyElapsedPlaybackTime:    [NSString stringWithFormat:@"%f", self.player.currentTime],
+        MPNowPlayingInfoPropertyPlaybackRate:           @1,
+        MPMediaItemPropertyArtwork:                     artwork
+    };
     
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = self.nowPlayingInfo;
 }
@@ -147,9 +137,6 @@
     [self stopProgressTimer];
     [self.player stop];
     self.isPlaying = NO;
-    self.playingArtist = @"";
-    self.playingTitle = @"";
-    self.playingImage = nil;
     [self postNotificationCurrentTrackStatusChanged];
 }
 
