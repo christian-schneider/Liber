@@ -12,7 +12,6 @@
 #import "Track+CoreDataClass.h"
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
-#import "LBPlaylistsViewController.h"
 #import "LBDropboxFolderViewController.h"
 #import "AppDelegate.h"
 
@@ -27,7 +26,7 @@
 
 - (IBAction) actionBarButtonItemAction;
 - (IBAction) filterBarButtonItemAction;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* filterBarButtonItem;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* filterBarButtonItem;
 
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 
@@ -81,7 +80,9 @@
 - (void) updateDisplayItems {
     
     self.displayItems = [Album MR_findAll];
+    [self updateFilterButtonVisibilityStatus];
     [self.collectionView reloadData];
+    
 }
 
 
@@ -128,6 +129,19 @@
 }
 
 
+/*
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat height = self.view.frame.size.height;
+    CGFloat width  = self.view.frame.size.width;
+    // in case you you want the cell to be 40% of your controllers view
+    return CGSizeMake(width*0.4,height*0.4);
+}
+*/
+
+
 #pragma mark - Actions
 
 - (IBAction) actionBarButtonItemAction {
@@ -138,22 +152,8 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
-    /*
-    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Playlists", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        LBPlaylistsViewController* pVC = (LBPlaylistsViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PlaylistsViewController"];
-        [self.navigationController pushViewController:pVC animated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    */
-    
     UIAlertAction* dropboxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dropbox", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        /*
-        LBRemoteViewController* rVC = (LBRemoteViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteViewController"];
-        [self.navigationController pushViewController:rVC animated:YES];
-        
-        */
         LBDropboxFolderViewController* dropboxFolderVC = (LBDropboxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
         dropboxFolderVC.folderPath = @"";
         [self.navigationController pushViewController:dropboxFolderVC animated:YES];
@@ -258,6 +258,17 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     [self.searchBar resignFirstResponder];
+}
+
+
+- (void) updateFilterButtonVisibilityStatus {
+    
+    if (self.displayItems.count == 0) {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    else {
+        self.navigationItem.leftBarButtonItem = self.filterBarButtonItem;
+    }
 }
 
 

@@ -40,6 +40,6 @@
  
  @param value The target value.
  */
-- (void) setTrackCurrentTimeRelative:(float)value;
+- (void) setCurrentTrackCurrentTimeRelative:(float)value;
 
 @end

@@ -14,6 +14,7 @@
 NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
 NSString* const LBPlayQueuePlayItemChanged = @"LBPlayQueuePlayItemChanged";
 NSString* const LBPlayQueuePlayStatusChanged = @"LBPlayQueuePlayStatusChanged";
+NSString* const LBPlayQueueFinishedPlaying = @"LBPlayQueueFinishedPlaying";
 NSString* const LBCurrentTrackPlayProgress = @"LBCurrentTrackPlayProgress";
 NSString* const LBCurrentTrackStatusChanged = @"LBCurrentTrackStatusChanged";
 

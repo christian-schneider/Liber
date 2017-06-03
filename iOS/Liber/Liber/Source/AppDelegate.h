@@ -14,6 +14,7 @@
 extern NSString* const LBMusicItemAddedToCollection;
 extern NSString* const LBPlayQueuePlayItemChanged;
 extern NSString* const LBPlayQueuePlayStatusChanged;
+extern NSString* const LBPlayQueueFinishedPlaying;
 extern NSString* const LBCurrentTrackPlayProgress;
 extern NSString* const LBCurrentTrackStatusChanged;
 
@@ -21,10 +22,10 @@ extern NSString* const LBCurrentTrackStatusChanged;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
 
-@property (strong, nonatomic) LBPlayQueue* playQueue;
-@property (strong, nonatomic) LBImporter* importer;
+@property (nonatomic, strong) LBPlayQueue* playQueue;
+@property (nonatomic, strong) LBImporter* importer;
 
 
 @end

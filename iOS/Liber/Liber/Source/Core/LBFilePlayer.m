@@ -160,7 +160,7 @@
         MPMediaItemPropertyArtist: self.playingArtist,
         MPMediaItemPropertyTitle: self.playingTitle,
         MPMediaItemPropertyPlaybackDuration: [NSString stringWithFormat:@"%f", self.player.duration],
-        MPNowPlayingInfoPropertyElapsedPlaybackTime: @0,
+        MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSString stringWithFormat:@"%f", self.player.currentTime],
         MPNowPlayingInfoPropertyPlaybackRate: @1,
         MPMediaItemPropertyArtwork: artwork
     };
@@ -177,7 +177,9 @@
         [self.appDelegate.playQueue playNextTrack];
     }
     else {
+        self.currentTrack = nil;
         [self deactivateAudioSession];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LBPlayQueueFinishedPlaying object:nil];
     }
 }
 
@@ -271,11 +273,16 @@
 }
 
 
-- (void) setTrackCurrentTimeRelative:(float)value {
+- (void) setCurrentTrackCurrentTimeRelative:(float)value {
     
     if (self.isPlaying) [self stopProgressTimer];
     self.player.currentTime = value * self.player.duration;
     if (self.isPlaying) [self startProgressTimer];
+    
+    NSMutableDictionary* newPlayingInfo = self.nowPlayingInfo.mutableCopy;    
+    [newPlayingInfo setObject:[NSString stringWithFormat:@"%f", self.player.currentTime] forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
+    self.nowPlayingInfo = newPlayingInfo;
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = self.nowPlayingInfo;
 }
 
 

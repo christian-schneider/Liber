@@ -26,7 +26,11 @@
     
     if (self = [super init]) {
         self.queue = [NSMutableArray arrayWithCapacity:10];
-        self.filePlayer = [[LBFilePlayer alloc] init]; 
+        self.filePlayer = [[LBFilePlayer alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:LBPlayQueueFinishedPlaying object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            [self clearQueue];
+        }];
     }
     return self;
 }
@@ -168,9 +172,9 @@
 }
 
 
-- (void) setTrackCurrentTimeRelative:(float)value {
+- (void) setCurrentTrackCurrentTimeRelative:(float)value {
     
-    [self.filePlayer setTrackCurrentTimeRelative:value];
+    [self.filePlayer setCurrentTrackCurrentTimeRelative:value];
 }
 
 

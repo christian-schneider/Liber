@@ -16,7 +16,7 @@
 
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) DBUserClient* dropboxClient;
+@property (nonatomic, strong) DBUserClient* dropboxClient;
 @property (nonatomic, weak) AppDelegate* appDelegate ;
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
@@ -235,15 +235,13 @@
     
     UITableViewCell* cell ;
     
-    if (indexPath.section == 0) {
-        // folders
+    if (indexPath.section == 0) {  // folders
         cell = [tableView dequeueReusableCellWithIdentifier:@"folderTableViewCell"];
         LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
         cell.textLabel.text = remoteFolder.name;
         cell.imageView.image = [UIImage imageNamed:@"FolderIcon"];
     }
-    if (indexPath.section == 1) {
-        // files
+    if (indexPath.section == 1) {  // files
         cell = [tableView dequeueReusableCellWithIdentifier:@"fileTableViewCell"];
         LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
         cell.textLabel.text = remoteFile.name;

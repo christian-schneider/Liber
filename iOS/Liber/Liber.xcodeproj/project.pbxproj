@@ -32,7 +32,6 @@
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
 		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
 		E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */; };
-		E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
 		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
@@ -267,8 +266,6 @@
 		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
 		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
 		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
-		E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPlaylistsViewController.h; sourceTree = "<group>"; };
-		E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPlaylistsViewController.m; sourceTree = "<group>"; };
 		E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewCell.h; path = Source/Collection/LBMusicCollectionViewCell.h; sourceTree = "<group>"; };
 		E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewCell.m; path = Source/Collection/LBMusicCollectionViewCell.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
@@ -497,7 +494,6 @@
 				E73A65D91EBB73A0004181DB /* AppDelegate.m */,
 				E701BEDA1EDAC06600422F62 /* Core */,
 				E75FFEC91EC6F1AC00881694 /* Collection */,
-				E75FFECA1EC6F1B800881694 /* Playlists */,
 				E75FFECB1EC6F1C200881694 /* Remote */,
 				E7A5C1741ECA38DC00700156 /* Util */,
 				E70B89C21ED702BA006A691A /* ManagedObjects */,
@@ -516,16 +512,6 @@
 				E7221C801ED88A010002CE1A /* TableViewCells */,
 			);
 			name = Collection;
-			sourceTree = "<group>";
-		};
-		E75FFECA1EC6F1B800881694 /* Playlists */ = {
-			isa = PBXGroup;
-			children = (
-				E75FFEC31EC6EF9D00881694 /* LBPlaylistsViewController.h */,
-				E75FFEC41EC6EF9D00881694 /* LBPlaylistsViewController.m */,
-			);
-			name = Playlists;
-			path = Source/Playlists;
 			sourceTree = "<group>";
 		};
 		E75FFECB1EC6F1C200881694 /* Remote */ = {
@@ -900,7 +886,6 @@
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
 				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
-				E75FFEC51EC6EF9D00881694 /* LBPlaylistsViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,

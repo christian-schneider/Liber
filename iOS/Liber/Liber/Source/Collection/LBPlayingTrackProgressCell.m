@@ -35,7 +35,7 @@
         float timeSliderCurrentValue = self.timeSlider.value;
         [appDelegate.playQueue playAlbum:self.album trackAtIndex:0];
         if (timeSliderCurrentValue > 0.0) {
-            [appDelegate.playQueue setTrackCurrentTimeRelative:self.timeSlider.value];
+            [appDelegate.playQueue setCurrentTrackCurrentTimeRelative:self.timeSlider.value];
         }
     }
     else {
@@ -69,7 +69,7 @@
     
     AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
     if ([self.album.tracks containsObject:appDelegate.playQueue.currentTrack]) {
-        [appDelegate.playQueue setTrackCurrentTimeRelative:timeSlider.value];
+        [appDelegate.playQueue setCurrentTrackCurrentTimeRelative:timeSlider.value];
     }
 }
 

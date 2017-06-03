@@ -82,7 +82,7 @@
 }
 
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL) prefersStatusBarHidden {
     
     return YES;
 }
@@ -173,6 +173,31 @@
 }
 
 
+- (void) handleCurrentTrackStatusChanged {
+    
+    // This should really just be [self.tableView reloadData]. the "dynamic/adaptive" height of the
+    // album art tableViewCell is causing troubles when partially in the view when the reload happens
+    // as a temporary workaround, the albumArtTableViewCell at position 0 is never reloaded.
+    // That's what all this fuss is about.
+    // TODO: see if putting the actual album into a section header would remove these layouting troubles.
+    
+    NSMutableArray* indexPathsToReload = [NSMutableArray arrayWithCapacity:self.album.tracks.count+1];
+    [indexPathsToReload addObject:[NSIndexPath indexPathForRow:0 inSection:1]];
+    for (int i = 0 ; i < self.album.tracks.count ; i++) {
+        [indexPathsToReload addObject:[NSIndexPath indexPathForRow:i inSection:2]];
+    }
+    
+    NSMutableSet *intersection = [NSMutableSet setWithArray:indexPathsToReload];
+    [intersection intersectSet:[NSSet setWithArray:[self.tableView indexPathsForVisibleRows]]];
+    
+    [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
+    
+    // in case the queue finished playing while in lock screen, when the user comes back and the last played album
+    // is still displayed in this vc, the play / pause button still shows the pause image, which is wrong. 
+    [self.playingTrackCell updatePlayButtonImage:self.playQueue.isPlaying];
+}
+
+
 #pragma mark - Observe Play Progress
 
 - (void) startObserving {
@@ -192,23 +217,13 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackStatusChanged object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
-        // This should really just be [self.tableView reloadData]. the "dynamic/adaptive" height of the
-        // album art tableViewCell is causing troubles when partially in the view when the reload happens
-        // as a temporary workaround, the albumArtTableViewCell at position 0 is never reloaded.
-        // That's what all this fuss is about.
-        // TODO: see if putting the actual album into a section header would remove these layouting troubles. 
+        [self handleCurrentTrackStatusChanged];
+    }];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBPlayQueueFinishedPlaying object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
-        NSMutableArray* indexPathsToReload = [NSMutableArray arrayWithCapacity:self.album.tracks.count+1];
-        [indexPathsToReload addObject:[NSIndexPath indexPathForRow:0 inSection:1]];
-        for (int i = 0 ; i < self.album.tracks.count ; i++) {
-            [indexPathsToReload addObject:[NSIndexPath indexPathForRow:i inSection:2]];
-        }
-        
-        NSMutableSet *intersection = [NSMutableSet setWithArray:indexPathsToReload];
-        [intersection intersectSet:[NSSet setWithArray:[self.tableView indexPathsForVisibleRows]]];
-        
-        [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
-
+        [self handleCurrentTrackStatusChanged];
     }];
 }
 
@@ -217,6 +232,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackPlayProgress object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackStatusChanged object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBPlayQueueFinishedPlaying object:nil];
 }
 
 
