@@ -193,7 +193,7 @@
     [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
     
     // in case the queue finished playing while in lock screen, when the user comes back and the last played album
-    // is still displayed in this vc, the play / pause button still shows the pause image, which is wrong. 
+    // is still displayed in this vc, the play / pause button still shows the pause image, which is wrong.
     [self.playingTrackCell updatePlayButtonImage:self.playQueue.isPlaying];
 }
 

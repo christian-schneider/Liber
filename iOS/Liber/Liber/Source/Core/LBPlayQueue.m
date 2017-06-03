@@ -95,6 +95,9 @@
         [self.filePlayer stopPlaying];
         [self startOrPauseTrack:self.previuosTrack];
     }
+    else if (self.isPlaying) { // in this case, just restart the first track
+        [self.filePlayer setCurrentTrackCurrentTimeRelative:0.0];
+    }
 }
 
 
@@ -130,7 +133,7 @@
     if (self.queue.count == 0) return nil;
     
     if (self.currentTrack == self.queue.firstObject) {
-        return self.currentTrack;
+        return nil;
     }
     
     NSInteger indexOfCurrentTrack = [self.queue indexOfObject:self.currentTrack];

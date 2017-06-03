@@ -80,16 +80,13 @@
     [self stopProgressTimer];
     [self.player pause];
     self.isPlaying = NO;
-    [self updateRemoteControls];
 }
 
 
 - (void) continuePlaying {
     
-    
     [self.player play];
     self.isPlaying = YES;
-    [self updateRemoteControls];
     [self startProgressTimer];
 }
 
@@ -184,7 +181,7 @@
 }
 
 
-- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+- (void) audioPlayerBeginInterruption:(AVAudioPlayer *)player {
     
     NSLog(@"audio player interrupted at %f", self.player.currentTime);
 }
@@ -208,24 +205,6 @@
 
 - (void) previousTrack {
     [self.appDelegate.playQueue playPreviousTrack];
-}
-
-
-- (void) updateRemoteControls {
-    
-    if (self.player) {
-        
-        MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
-        NSMutableDictionary *displayInfo = [NSMutableDictionary dictionaryWithDictionary: self.nowPlayingInfo];
-        
-        float playbackRate = self.isPlaying ? 1.0f : 0.0f;
-        [displayInfo setObject:[NSNumber numberWithFloat:playbackRate] forKey:MPNowPlayingInfoPropertyPlaybackRate];
-        
-        infoCenter.nowPlayingInfo = displayInfo;
-    }
-    else {
-        self.nowPlayingInfo = @{};
-    }
 }
 
 
