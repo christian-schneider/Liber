@@ -53,12 +53,8 @@
     if (!track) return;
     
     self.currentTrack = track;
-    UIImage* image = [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:track.fullPath]];
-    if (!image) {
-        image = [UIImage imageWithData:track.album.image];
-    }
     NSString* displayArtistName = [NSString stringWithFormat:@"%@ - %@", track.album.artist.name, track.album.title];
-    [self play:track.fullPath artist:displayArtistName trackTitle:track.displayTrackTitle image:image];
+    [self play:track.fullPath artist:displayArtistName trackTitle:track.displayTrackTitle image:track.artwork];
     [self.player prepareToPlay];
     [self.player play];
     [self startProgressTimer];

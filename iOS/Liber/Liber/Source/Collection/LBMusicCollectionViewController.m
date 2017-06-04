@@ -7,19 +7,19 @@
 
 #import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
-#import "Album+CoreDataClass.h"
-#import "Artist+CoreDataClass.h"
-#import "Track+CoreDataClass.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
+#import "Track+Functions.h"
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
 #import "LBDropboxFolderViewController.h"
 #import "AppDelegate.h"
+#import "LBPlayQueue.h"
 
 
-@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate> {
-    
-    BOOL showSearchBar;
-}
+@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate>
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
 
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
@@ -33,6 +33,9 @@
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* searchBarHeightConstraint;
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
+@property (nonatomic, readwrite) BOOL showSearchBar;
+
+@property (nonatomic, strong) UIImageView* nowPlayingAlbumImageView;
 
 @end
 
@@ -43,6 +46,8 @@
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     self.collectionView.alwaysBounceVertical = YES;
     self.searchBar.returnKeyType = UIReturnKeyDone;
@@ -58,6 +63,11 @@
     }];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    
+    self.nowPlayingAlbumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25.0, 25.0)];
+    self.nowPlayingAlbumImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNowPlayingAlbum:)];
+    [self.nowPlayingAlbumImageView addGestureRecognizer:tapRecognizer];
 }
 
 
@@ -74,6 +84,15 @@
     [super viewDidAppear:animated];
     [self updateDisplayItems];
     self.navigationController.hidesBarsOnSwipe = YES;
+
+    if (self.appDelegate.playQueue.currentTrack) {
+        self.nowPlayingAlbumImageView.image = self.appDelegate.playQueue.currentTrack.artwork;
+        self.navigationItem.titleView = self.nowPlayingAlbumImageView;
+    }
+    else {
+        self.nowPlayingAlbumImageView.image = nil;
+        self.navigationItem.titleView = nil;
+    }
 }
 
 
@@ -82,7 +101,6 @@
     self.displayItems = [Album MR_findAll];
     [self updateFilterButtonVisibilityStatus];
     [self.collectionView reloadData];
-    
 }
 
 
@@ -123,9 +141,7 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Album* album = [self.displayItems objectAtIndex:indexPath.row];
-    LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
-    albumViewController.album = album;
-    [self.navigationController pushViewController:albumViewController animated:YES];
+    [self pushAlbumViewControllerForAlbum:album];
 }
 
 
@@ -143,6 +159,15 @@
 
 
 #pragma mark - Actions
+
+
+- (void) pushAlbumViewControllerForAlbum:(Album*)album {
+    
+    LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
+    albumViewController.album = album;
+    [self.navigationController pushViewController:albumViewController animated:YES];
+}
+
 
 - (IBAction) actionBarButtonItemAction {
     
@@ -195,6 +220,12 @@
 }
 
 
+- (void) showNowPlayingAlbum:(UIGestureRecognizer*)tapRecognizer {
+    
+    [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album];
+}
+
+
 #pragma mark - Search Bar
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -204,23 +235,17 @@
     }
     
     if(scrollView.contentOffset.y < 0) {
-        [self setShowSearchBar:!showSearchBar];
+        [self setShowSearchBar:!self.showSearchBar];
     }
 }
 
 
 - (void) setShowSearchBar:(BOOL)show {
     
-    if (showSearchBar != show) {
-        showSearchBar = show;
+    if (_showSearchBar != show) {
+        _showSearchBar = show;
         [self updateSearchBarVisibility];
     }
-}
-
-
-- (BOOL) showSearchBar {
-    
-    return showSearchBar;
 }
 
 
@@ -228,7 +253,7 @@
     
     [self.view layoutIfNeeded];
     
-    if (showSearchBar ) {
+    if (self.showSearchBar ) {
         self.searchBarHeightConstraint.constant = 50.0f;
         [self.searchBar becomeFirstResponder];
         [self.navigationController setNavigationBarHidden:YES animated:YES];

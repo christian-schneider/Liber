@@ -6,6 +6,7 @@
 //
 
 #import "Track+CoreDataClass.h"
+#import <UIKit/UIKit.h>
 
 
 @interface Track (Functions)
@@ -26,5 +27,8 @@
  @return Either just 'track title' or 'artist name - track title' string.
  */
 - (NSString*) displayTrackTitle;
+
+
+- (UIImage*) artwork;
 
 @end
