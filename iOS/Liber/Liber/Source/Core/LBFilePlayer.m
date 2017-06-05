@@ -41,6 +41,11 @@
         [[remoteCommandCenter previousTrackCommand] addTarget:self action:@selector(previousTrackFromLockScreen)];
         [[remoteCommandCenter playCommand] addTarget:self action:@selector(continuePlayingFromLockScreen)];
         [[remoteCommandCenter pauseCommand] addTarget:self action:@selector(pausePlayingFromLockScreen)];
+         
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(routeChanged:)
+                                                     name:AVAudioSessionRouteChangeNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -280,5 +285,14 @@
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = self.nowPlayingInfo;
 }
 
+
+#pragma mark - Handle Route Change
+
+
+- (void) routeChanged:(NSNotification*)notification {
+    
+    NSLog(@"Note: %@", notification) ;
+    NSLog(@"") ;
+}
 
 @end
