@@ -59,6 +59,8 @@
     
     LBAlbumDetailNavigationBarTitleView* titleView = [[LBAlbumDetailNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, 300, 44.0) albumTitle:self.album.title artistName:self.album.artist.name];
     self.navigationItem.titleView = titleView;
+    
+    self.navigationController.navigationBar.topItem.title = @"";  
 }
 
 

@@ -11,10 +11,18 @@
 #import "Album+Functions.h"
 
 
+@interface LBPlayingTrackProgressCell()
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
+
+@end
+
 @implementation LBPlayingTrackProgressCell
 
 
 - (void) initialize {
+    
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     self.trackTitleLabel.text = @"";
     self.timeSlider.value = 0.0;
@@ -28,7 +36,7 @@
 
 - (IBAction) playPauseButtonPressed {
     
-    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
+    AppDelegate* appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate ;
     if (!appDelegate.playQueue.currentTrack ||
         (appDelegate.playQueue.currentTrack && ![self.album.tracks containsObject:appDelegate.playQueue.currentTrack])) {
         
@@ -46,15 +54,13 @@
 
 - (IBAction) previousButtonPressed {
     
-    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
-    [appDelegate.playQueue playPreviousTrack];
+    [self.appDelegate.playQueue playPreviousTrack];
 }
 
 
 - (IBAction) nextButtonPressed {
     
-    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
-    [appDelegate.playQueue playNextTrack];
+    [self.appDelegate.playQueue playNextTrack];
 }
 
 
@@ -67,9 +73,8 @@
 
 - (void) timeSliderUpdated:(UISlider*)timeSlider {
     
-    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate ;
-    if ([self.album.tracks containsObject:appDelegate.playQueue.currentTrack]) {
-        [appDelegate.playQueue setCurrentTrackCurrentTimeRelative:timeSlider.value];
+    if ([self.album.tracks containsObject:self.appDelegate.playQueue.currentTrack]) {
+        [self.appDelegate.playQueue setCurrentTrackCurrentTimeRelative:timeSlider.value];
     }
 }
 

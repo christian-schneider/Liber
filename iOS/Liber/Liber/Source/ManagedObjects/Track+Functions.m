@@ -8,6 +8,7 @@
 #import "Track+Functions.h"
 #import "Album+Functions.h"
 #import "Artist+Functions.h"
+#import "AppDelegate.h"
 
 
 @implementation Track (Functions)
@@ -20,7 +21,6 @@
 }
 
 
-
 - (NSString*) displayTrackTitle {
     
     NSString* displayTrackTitle = @"";
@@ -31,6 +31,17 @@
         displayTrackTitle = self.title;
     }
     return displayTrackTitle;
+}
+
+
+- (UIImage*) artwork {
+    
+    AppDelegate* appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    UIImage* image = [appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:self.fullPath]];
+    if (!image) {
+        image = [UIImage imageWithData:self.album.image];
+    }
+    return image;
 }
 
 

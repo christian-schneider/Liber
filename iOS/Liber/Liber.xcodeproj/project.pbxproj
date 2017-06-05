@@ -27,6 +27,7 @@
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
 		E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7483B7A1EE55C30004A72FB /* LBDownloadsViewController.m */; };
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
 		E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */; };
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
@@ -257,6 +258,8 @@
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7448AD91ECDE57F0095E754 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		E7448AED1ED368240095E754 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
+		E7483B791EE55C30004A72FB /* LBDownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadsViewController.h; path = Source/Remote/LBDownloadsViewController.h; sourceTree = "<group>"; };
+		E7483B7A1EE55C30004A72FB /* LBDownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadsViewController.m; path = Source/Remote/LBDownloadsViewController.m; sourceTree = "<group>"; };
 		E755D2291EDC9DC600A78097 /* Liber-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Liber-Icon.png"; path = "Resources/Liber-Icon.png"; sourceTree = "<group>"; };
 		E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumDetailNavigationBarTitleView.h; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.h; sourceTree = "<group>"; };
 		E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumDetailNavigationBarTitleView.m; path = Source/Collection/LBAlbumDetailNavigationBarTitleView.m; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 		E75FFECB1EC6F1C200881694 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				E7483B791EE55C30004A72FB /* LBDownloadsViewController.h */,
+				E7483B7A1EE55C30004A72FB /* LBDownloadsViewController.m */,
 				E7A5C1681EC976BC00700156 /* LBRemoteFile.h */,
 				E7A5C1691EC976BC00700156 /* LBRemoteFile.m */,
 				E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */,
@@ -888,6 +893,7 @@
 				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
+				E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,

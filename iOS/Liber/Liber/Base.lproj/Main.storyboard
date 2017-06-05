@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vC3-pB-5Vb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vC3-pB-5Vb">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -109,22 +110,31 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
-                        <barButtonItem key="leftBarButtonItem" image="LayersIcon" id="zp8-Z3-mbQ">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="filterBarButtonItemAction" destination="JEX-9P-axG" id="FV3-DI-SbY"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem image="LayersIcon" id="zp8-Z3-mbQ">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="filterBarButtonItemAction" destination="JEX-9P-axG" id="FV3-DI-SbY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="AudioFileIcon" id="SKI-ls-eib">
+                                <connections>
+                                    <action selector="nowPlayingBarButtonItemAction" destination="JEX-9P-axG" id="5DG-rk-G2o"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" image="InIcon" id="UK0-Dz-kOy">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <action selector="actionBarButtonItemAction" destination="JEX-9P-axG" id="2S5-2N-c9Q"/>
+                                <action selector="importMusicBarButtonItemAction" destination="JEX-9P-axG" id="7iS-uX-LUX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="hYf-k6-zJh" id="vwz-Li-6QF"/>
                         <outlet property="filterBarButtonItem" destination="zp8-Z3-mbQ" id="N9R-MA-nDm"/>
+                        <outlet property="importMusicBarButtonItem" destination="UK0-Dz-kOy" id="r4Z-yc-hHB"/>
+                        <outlet property="nowPlayingBarButtonItem" destination="SKI-ls-eib" id="QSx-bx-ED2"/>
                         <outlet property="searchBar" destination="hag-Dl-AdP" id="DMj-lA-4Lj"/>
                         <outlet property="searchBarHeightConstraint" destination="UFL-PJ-tvj" id="CPa-VV-DjC"/>
                     </connections>
@@ -132,6 +142,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="706.875" y="107.74647887323944"/>
+        </scene>
+        <!--Downloads View Controller-->
+        <scene sceneID="0sN-5c-Jwg">
+            <objects>
+                <viewController storyboardIdentifier="DownloadsViewController" id="8eQ-Cb-agk" customClass="LBDownloadsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qlZ-YI-kx5"/>
+                        <viewControllerLayoutGuide type="bottom" id="QZU-bE-oKb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GP1-r5-LWp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ndg-FY-37Z">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadTableViewCell" id="DtE-hU-m5a">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtE-hU-m5a" id="beF-IV-RXe">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8eQ-Cb-agk" id="z0q-ks-bDh"/>
+                                    <outlet property="delegate" destination="8eQ-Cb-agk" id="Pi4-yR-Z1b"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ndg-FY-37Z" firstAttribute="top" secondItem="GP1-r5-LWp" secondAttribute="top" id="47O-Fh-1cE"/>
+                            <constraint firstAttribute="trailing" secondItem="Ndg-FY-37Z" secondAttribute="trailing" id="EKI-79-b2E"/>
+                            <constraint firstItem="Ndg-FY-37Z" firstAttribute="leading" secondItem="GP1-r5-LWp" secondAttribute="leading" id="SGA-6W-83D"/>
+                            <constraint firstItem="Ndg-FY-37Z" firstAttribute="bottom" secondItem="QZU-bE-oKb" secondAttribute="top" id="qyf-Sh-wst"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Ndg-FY-37Z" id="ZLP-44-x48"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HgG-jM-rAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815.625" y="786.97183098591552"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="w6R-JV-Y1P">
@@ -472,6 +529,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AudioFileIcon" width="25" height="25"/>
         <image name="BackwardIcon" width="25" height="25"/>
         <image name="ForwardIcon" width="25" height="25"/>
         <image name="InIcon" width="25" height="25"/>

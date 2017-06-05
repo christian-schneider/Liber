@@ -7,42 +7,50 @@
 
 #import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
-#import "Album+CoreDataClass.h"
-#import "Artist+CoreDataClass.h"
-#import "Track+CoreDataClass.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
+#import "Track+Functions.h"
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
 #import "LBDropboxFolderViewController.h"
 #import "AppDelegate.h"
+#import "LBPlayQueue.h"
+#import "LBDownloadsViewController.h"
 
 
-@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate> {
-    
-    BOOL showSearchBar;
-}
+@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate>
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
 
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
 
-- (IBAction) actionBarButtonItemAction;
-- (IBAction) filterBarButtonItemAction;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* importMusicBarButtonItem; 
+- (IBAction) importMusicBarButtonItemAction;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* filterBarButtonItem;
+- (IBAction) filterBarButtonItemAction;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* nowPlayingBarButtonItem;
+- (IBAction) nowPlayingBarButtonItemAction;
+
+@property (nonatomic, strong) UIBarButtonItem* downloadsInProgressBarButtonItem;
+@property (nonatomic, strong) UIActivityIndicatorView* activityIndicator;
 
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 
-
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* searchBarHeightConstraint;
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
+@property (nonatomic, readwrite) BOOL showSearchBar;
 
 @end
 
 
 @implementation LBMusicCollectionViewController
 
-
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     self.collectionView.alwaysBounceVertical = YES;
     self.searchBar.returnKeyType = UIReturnKeyDone;
@@ -57,7 +65,12 @@
         [self updateDisplayItems];
     }];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator.hidesWhenStopped = YES;
+    self.downloadsInProgressBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+    UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
+    [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
+    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.downloadsInProgressBarButtonItem];
 }
 
 
@@ -66,6 +79,27 @@
     [super viewWillAppear:animated];
     self.searchBarHeightConstraint.constant = 0.0f;
     [self updateDisplayItems];
+    
+    if (self.appDelegate.playQueue.currentTrack) {
+        self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem, self.filterBarButtonItem];
+    }
+    else {
+        self.nowPlayingBarButtonItem.image = nil;
+        self.navigationItem.leftBarButtonItems = @[self.filterBarButtonItem];
+    }
+}
+
+
+- (UIImage*) imageAlbumArtResizedForBarButtonImtem:(UIImage*)albumArt {
+
+    CGFloat length = 30.0;
+    CGRect rect = CGRectMake(0,0,length,length);
+    UIGraphicsBeginImageContext(rect.size);
+    [albumArt drawInRect:rect];
+    UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [UIImage imageWithData:UIImagePNGRepresentation(resizedImage)];
 }
 
 
@@ -80,9 +114,7 @@
 - (void) updateDisplayItems {
     
     self.displayItems = [Album MR_findAll];
-    [self updateFilterButtonVisibilityStatus];
     [self.collectionView reloadData];
-    
 }
 
 
@@ -90,7 +122,6 @@
  
     return YES;
 }
-
 
 
 #pragma mark - Collection View
@@ -123,9 +154,7 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Album* album = [self.displayItems objectAtIndex:indexPath.row];
-    LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
-    albumViewController.album = album;
-    [self.navigationController pushViewController:albumViewController animated:YES];
+    [self pushAlbumViewControllerForAlbum:album];
 }
 
 
@@ -144,7 +173,16 @@
 
 #pragma mark - Actions
 
-- (IBAction) actionBarButtonItemAction {
+
+- (void) pushAlbumViewControllerForAlbum:(Album*)album {
+    
+    LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
+    albumViewController.album = album;
+    [self.navigationController pushViewController:albumViewController animated:YES];
+}
+
+
+- (IBAction) importMusicBarButtonItemAction {
     
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -176,22 +214,34 @@
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Artist", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Track", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     actionSheet.view.tintColor = [UIColor blackColor];
     [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+
+- (IBAction) nowPlayingBarButtonItemAction {
+    
+    if (self.appDelegate.playQueue.currentTrack) {
+        [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album];
+    }
+}
+
+
+- (void) showDownloadsInProgressBarButtonItemAction:(UIGestureRecognizer*)tapGestureRecognizer {
+
+    LBDownloadsViewController* downloadsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DownloadsViewController"];
+    [self.navigationController pushViewController:downloadsVC animated:YES];
 }
 
 
@@ -204,23 +254,17 @@
     }
     
     if(scrollView.contentOffset.y < 0) {
-        [self setShowSearchBar:!showSearchBar];
+        [self setShowSearchBar:!self.showSearchBar];
     }
 }
 
 
 - (void) setShowSearchBar:(BOOL)show {
     
-    if (showSearchBar != show) {
-        showSearchBar = show;
+    if (_showSearchBar != show) {
+        _showSearchBar = show;
         [self updateSearchBarVisibility];
     }
-}
-
-
-- (BOOL) showSearchBar {
-    
-    return showSearchBar;
 }
 
 
@@ -228,7 +272,7 @@
     
     [self.view layoutIfNeeded];
     
-    if (showSearchBar ) {
+    if (self.showSearchBar ) {
         self.searchBarHeightConstraint.constant = 50.0f;
         [self.searchBar becomeFirstResponder];
         [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -261,17 +305,6 @@
 }
 
 
-- (void) updateFilterButtonVisibilityStatus {
-    
-    if (self.displayItems.count == 0) {
-        self.navigationItem.leftBarButtonItem = nil;
-    }
-    else {
-        self.navigationItem.leftBarButtonItem = self.filterBarButtonItem;
-    }
-}
-
-
 #pragma mark - Item Delete
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
@@ -290,6 +323,5 @@
         NSLog(@"Ask to delete %@", album.title);
     }
 }
-
 
 @end
