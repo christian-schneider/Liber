@@ -15,6 +15,7 @@
 #import "LBDropboxFolderViewController.h"
 #import "AppDelegate.h"
 #import "LBPlayQueue.h"
+#import "LBDownloadsViewController.h"
 
 
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate>
@@ -24,24 +25,26 @@
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
 
-- (IBAction) actionBarButtonItemAction;
-- (IBAction) filterBarButtonItemAction;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* importMusicBarButtonItem; 
+- (IBAction) importMusicBarButtonItemAction;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* filterBarButtonItem;
+- (IBAction) filterBarButtonItemAction;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* nowPlayingBarButtonItem;
+- (IBAction) nowPlayingBarButtonItemAction;
+
+@property (nonatomic, strong) UIBarButtonItem* downloadsInProgressBarButtonItem;
+@property (nonatomic, strong) UIActivityIndicatorView* activityIndicator;
 
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
-
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* searchBarHeightConstraint;
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
 @property (nonatomic, readwrite) BOOL showSearchBar;
 
-@property (nonatomic, strong) UIImageView* nowPlayingAlbumImageView;
-
 @end
 
 
 @implementation LBMusicCollectionViewController
-
 
 - (void) viewDidLoad {
     
@@ -62,12 +65,12 @@
         [self updateDisplayItems];
     }];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
-    
-    self.nowPlayingAlbumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25.0, 25.0)];
-    self.nowPlayingAlbumImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNowPlayingAlbum:)];
-    [self.nowPlayingAlbumImageView addGestureRecognizer:tapRecognizer];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator.hidesWhenStopped = YES;
+    self.downloadsInProgressBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+    UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
+    [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
+    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.downloadsInProgressBarButtonItem];
 }
 
 
@@ -76,6 +79,27 @@
     [super viewWillAppear:animated];
     self.searchBarHeightConstraint.constant = 0.0f;
     [self updateDisplayItems];
+    
+    if (self.appDelegate.playQueue.currentTrack) {
+        self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem, self.filterBarButtonItem];
+    }
+    else {
+        self.nowPlayingBarButtonItem.image = nil;
+        self.navigationItem.leftBarButtonItems = @[self.filterBarButtonItem];
+    }
+}
+
+
+- (UIImage*) imageAlbumArtResizedForBarButtonImtem:(UIImage*)albumArt {
+
+    CGFloat length = 30.0;
+    CGRect rect = CGRectMake(0,0,length,length);
+    UIGraphicsBeginImageContext(rect.size);
+    [albumArt drawInRect:rect];
+    UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [UIImage imageWithData:UIImagePNGRepresentation(resizedImage)];
 }
 
 
@@ -84,22 +108,12 @@
     [super viewDidAppear:animated];
     [self updateDisplayItems];
     self.navigationController.hidesBarsOnSwipe = YES;
-
-    if (self.appDelegate.playQueue.currentTrack) {
-        self.nowPlayingAlbumImageView.image = self.appDelegate.playQueue.currentTrack.artwork;
-        self.navigationItem.titleView = self.nowPlayingAlbumImageView;
-    }
-    else {
-        self.nowPlayingAlbumImageView.image = nil;
-        self.navigationItem.titleView = nil;
-    }
 }
 
 
 - (void) updateDisplayItems {
     
     self.displayItems = [Album MR_findAll];
-    [self updateFilterButtonVisibilityStatus];
     [self.collectionView reloadData];
 }
 
@@ -108,7 +122,6 @@
  
     return YES;
 }
-
 
 
 #pragma mark - Collection View
@@ -169,7 +182,7 @@
 }
 
 
-- (IBAction) actionBarButtonItemAction {
+- (IBAction) importMusicBarButtonItemAction {
     
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -201,17 +214,14 @@
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Album", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Artist", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //self.filterBarButtonItem.title = NSLocalizedString(@"Track", nil);
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
@@ -220,9 +230,18 @@
 }
 
 
-- (void) showNowPlayingAlbum:(UIGestureRecognizer*)tapRecognizer {
+- (IBAction) nowPlayingBarButtonItemAction {
     
-    [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album];
+    if (self.appDelegate.playQueue.currentTrack) {
+        [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album];
+    }
+}
+
+
+- (void) showDownloadsInProgressBarButtonItemAction:(UIGestureRecognizer*)tapGestureRecognizer {
+
+    LBDownloadsViewController* downloadsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DownloadsViewController"];
+    [self.navigationController pushViewController:downloadsVC animated:YES];
 }
 
 
@@ -286,17 +305,6 @@
 }
 
 
-- (void) updateFilterButtonVisibilityStatus {
-    
-    if (self.displayItems.count == 0) {
-        self.navigationItem.leftBarButtonItem = nil;
-    }
-    else {
-        self.navigationItem.leftBarButtonItem = self.filterBarButtonItem;
-    }
-}
-
-
 #pragma mark - Item Delete
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
@@ -315,6 +323,5 @@
         NSLog(@"Ask to delete %@", album.title);
     }
 }
-
 
 @end
