@@ -6,34 +6,26 @@
 //
 
 #import "LBDownloadsViewController.h"
+#import "AppDelegate.h"
+#import "LBDownloadItemTableViewCell.h"
+
 
 @interface LBDownloadsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 
+@property (nonatomic, weak) AppDelegate* appDelegate;
+
 @end
+
 
 @implementation LBDownloadsViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 #pragma mark - TableView data source & delegate
@@ -46,7 +38,11 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
+    LBDownloadItem* downloadItem = [self.appDelegate.downloadManager.downloadQueue objectAtIndex:indexPath.row];
+    
+    LBDownloadItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
+    cell.downloadItem = downloadItem;
+    
     
     return cell;
 }
@@ -54,7 +50,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return self.appDelegate.downloadManager.downloadQueue.count;
 }
 
 @end

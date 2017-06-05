@@ -300,6 +300,7 @@
     LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
     downloadItem.downloadPath = path;
     downloadItem.isDownloading = YES;
+    [self.appDelegate.downloadManager addItemToQueue:downloadItem];
     
     NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
     NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
@@ -312,6 +313,7 @@
          if (result) {
              [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
              [downloadItem downloadComplete];
+             [self.appDelegate.downloadManager removeItemFromQueue:downloadItem];
          }
          else {
              NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);

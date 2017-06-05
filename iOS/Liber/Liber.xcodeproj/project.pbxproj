@@ -44,6 +44,7 @@
 		E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */; };
 		E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.m */; };
 		E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */; };
+		E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8677D1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +297,8 @@
 		E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
 		E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDropboxOfficial.xcodeproj; path = ../Vendor/Dropbox/Source/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.xcodeproj; sourceTree = "<group>"; };
 		E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MagicalRecord.xcodeproj; path = ../Vendor/MagicalRecord/MagicalRecord.xcodeproj; sourceTree = "<group>"; };
+		E7C8677C1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadItemTableViewCell.h; path = Source/Remote/LBDownloadItemTableViewCell.h; sourceTree = "<group>"; };
+		E7C8677D1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadItemTableViewCell.m; path = Source/Remote/LBDownloadItemTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -609,6 +612,8 @@
 				E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */,
 				E7A5C1711EC977F400700156 /* LBRemoteFolderTableViewCell.h */,
 				E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */,
+				E7C8677C1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.h */,
+				E7C8677D1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -902,6 +907,7 @@
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
 				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
+				E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
 				E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */,
