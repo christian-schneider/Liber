@@ -12,6 +12,8 @@
 #import "LBRemoteFile.h"
 #import "AppDelegate.h"
 #import "LBImporter.h"
+#import "LBDownloadItem.h"
+#import "LBDownloadManager.h"
 
 
 @interface LBDropboxFolderViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -295,20 +297,27 @@
 
 - (void) downloadFileAndImportIntoLibrary:(NSString*)path {
     
+    LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
+    downloadItem.downloadPath = path;
+    downloadItem.isDownloading = YES;
+    
     NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
     NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
                           stringByAppendingPathExtension:path.pathExtension];
     NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
     
-    [[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+    [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
                         NSURL *destination) {
          if (result) {
              [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
+             [downloadItem downloadComplete];
          }
          else {
              NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
          }
+     }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+         [downloadItem updateProgressBytesWritten:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
      }];
 }
 

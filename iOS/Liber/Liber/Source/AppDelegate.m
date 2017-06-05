@@ -34,6 +34,7 @@ NSString* const LBCurrentTrackStatusChanged = @"LBCurrentTrackStatusChanged";
     
     self.importer = [[LBImporter alloc] init];
     self.playQueue = [[LBPlayQueue alloc] init];
+    self.downloadManager = [[LBDownloadManager alloc] init];
     
     if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
         [UINavigationBar appearance].tintColor = [UIColor blackColor];

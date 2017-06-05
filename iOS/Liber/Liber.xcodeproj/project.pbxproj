@@ -33,6 +33,8 @@
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
 		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
 		E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */; };
+		E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */; };
+		E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
 		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
@@ -269,6 +271,10 @@
 		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
 		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
 		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
+		E7644D231EE5BF8E00BD46C9 /* LBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadManager.h; path = Source/Core/LBDownloadManager.h; sourceTree = "<group>"; };
+		E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadManager.m; path = Source/Core/LBDownloadManager.m; sourceTree = "<group>"; };
+		E7644D351EE5C11A00BD46C9 /* LBDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadItem.h; path = Source/Core/LBDownloadItem.h; sourceTree = "<group>"; };
+		E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadItem.m; path = Source/Core/LBDownloadItem.m; sourceTree = "<group>"; };
 		E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewCell.h; path = Source/Collection/LBMusicCollectionViewCell.h; sourceTree = "<group>"; };
 		E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewCell.m; path = Source/Collection/LBMusicCollectionViewCell.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
@@ -328,6 +334,10 @@
 				E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */,
 				E71F54241ECBA711006D265D /* LBFilePlayer.h */,
 				E71F54251ECBA711006D265D /* LBFilePlayer.m */,
+				E7644D231EE5BF8E00BD46C9 /* LBDownloadManager.h */,
+				E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */,
+				E7644D351EE5C11A00BD46C9 /* LBDownloadItem.h */,
+				E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -887,6 +897,7 @@
 				E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */,
 				E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */,
 				E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */,
+				E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */,
 				E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */,
 				E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */,
 				E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */,
@@ -899,6 +910,7 @@
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
 				E7221C7C1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m in Sources */,
+				E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */,
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
 				E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */,
