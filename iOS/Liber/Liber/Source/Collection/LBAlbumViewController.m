@@ -14,7 +14,6 @@
 #import "Album+Functions.h"
 #import "Artist+Functions.h"
 #import "Track+Functions.h"
-#import "LBAlbumArtworkTableViewCell.h"
 #import "LBPlayingTrackProgressCell.h"
 #import "LBAlbumTrackTableViewCell.h"
 #import "LBAlbumDetailNavigationBarTitleView.h"
@@ -27,6 +26,9 @@
 
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) LBPlayingTrackProgressCell* playingTrackCell;
+
+@property (nonatomic, strong) UIView* albumArtHeaderView;
+@property (nonatomic, strong) UIImageView* albumArtImageView;
 
 @end
 
@@ -49,6 +51,12 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
+    
+    self.albumArtHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+    self.albumArtHeaderView.backgroundColor = [UIColor redColor];
+    self.albumArtImageView = [[UIImageView alloc] initWithFrame:self.albumArtHeaderView.frame];
+    [self.albumArtHeaderView addSubview:self.albumArtImageView];
+    self.tableView.tableHeaderView = self.albumArtHeaderView;
 }
 
 
@@ -60,7 +68,8 @@
     LBAlbumDetailNavigationBarTitleView* titleView = [[LBAlbumDetailNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, 300, 44.0) albumTitle:self.album.title artistName:self.album.artist.name];
     self.navigationItem.titleView = titleView;
     
-    self.navigationController.navigationBar.topItem.title = @"";  
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.albumArtImageView.image = [UIImage imageWithData:self.album.image];
 }
 
 
@@ -78,14 +87,6 @@
 }
 
 
-- (void) viewDidLayoutSubviews {
-    
-    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
-    LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[self.tableView cellForRowAtIndexPath:path];
-    [cell adjustLayout];
-}
-
-
 - (BOOL) prefersStatusBarHidden {
     
     return YES;
@@ -97,9 +98,6 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        return self.view.frame.size.width;
-    }
-    else if (indexPath.section == 1) {
         return 125.0;
     }
     else {
@@ -109,29 +107,21 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 3;
+    return 2;
 }
 
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section < 2) return 1;
-    if (section == 2) return self.album.tracks.count;
+    if (section == 0) return 1;
+    if (section == 1) return self.album.tracks.count;
     return 0;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (indexPath.section == 0) {
-        LBAlbumArtworkTableViewCell* cell = (LBAlbumArtworkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"AlbumArtworkTableViewCell"];
-        [cell initialize];
-        if (self.album.image) {
-            cell.artworkImageView.image = [UIImage imageWithData:self.album.image];
-        }
-        return cell;
-    }
-    else if (indexPath.section == 1) {
         Track* currentTrack = self.playQueue.currentTrack;
         LBPlayingTrackProgressCell* cell = (LBPlayingTrackProgressCell*)[tableView dequeueReusableCellWithIdentifier:@"PlayingTrackProgressCell"];
         [cell initialize];
@@ -182,7 +172,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         [self.playQueue playAlbum:self.album trackAtIndex:indexPath.row];
     }
 }
@@ -228,22 +218,7 @@
 
 - (void) handleCurrentTrackStatusChanged {
     
-    // This should really just be [self.tableView reloadData]. the "dynamic/adaptive" height of the
-    // album art tableViewCell is causing troubles when partially in the view when the reload happens
-    // as a temporary workaround, the albumArtTableViewCell at position 0 is never reloaded.
-    // That's what all this fuss is about.
-    // TODO: see if putting the actual album into a section header would remove these layouting troubles.
-    
-    NSMutableArray* indexPathsToReload = [NSMutableArray arrayWithCapacity:self.album.tracks.count+1];
-    [indexPathsToReload addObject:[NSIndexPath indexPathForRow:0 inSection:1]];
-    for (int i = 0 ; i < self.album.tracks.count ; i++) {
-        [indexPathsToReload addObject:[NSIndexPath indexPathForRow:i inSection:2]];
-    }
-    
-    NSMutableSet *intersection = [NSMutableSet setWithArray:indexPathsToReload];
-    [intersection intersectSet:[NSSet setWithArray:[self.tableView indexPathsForVisibleRows]]];
-    
-    [self.tableView reloadRowsAtIndexPaths:[intersection allObjects] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadData];
     
     // in case the queue finished playing while in lock screen, when the user comes back and the last played album
     // is still displayed in this vc, the play / pause button still shows the pause image, which is wrong.

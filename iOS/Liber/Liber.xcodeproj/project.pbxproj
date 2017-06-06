@@ -13,7 +13,6 @@
 		E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F54391ECBA850006D265D /* AVFoundation.framework */; };
 		E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */; };
-		E7221C7C1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */; };
 		E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */; };
 		E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */; };
 		E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502E61EDAC1450049DF5F /* Track+Functions.m */; };
@@ -234,8 +233,6 @@
 		E71F54391ECBA850006D265D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E7221C771ED86CDD0002CE1A /* LBAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumViewController.h; path = Source/Collection/LBAlbumViewController.h; sourceTree = "<group>"; };
 		E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumViewController.m; path = Source/Collection/LBAlbumViewController.m; sourceTree = "<group>"; };
-		E7221C7A1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumArtworkTableViewCell.h; path = Source/Collection/LBAlbumArtworkTableViewCell.h; sourceTree = "<group>"; };
-		E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumArtworkTableViewCell.m; path = Source/Collection/LBAlbumArtworkTableViewCell.m; sourceTree = "<group>"; };
 		E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumTrackTableViewCell.h; path = Source/Collection/LBAlbumTrackTableViewCell.h; sourceTree = "<group>"; };
 		E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumTrackTableViewCell.m; path = Source/Collection/LBAlbumTrackTableViewCell.m; sourceTree = "<group>"; };
 		E73502D11EDAC0CA0049DF5F /* LBPlayQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayQueue.h; path = Source/Core/LBPlayQueue.h; sourceTree = "<group>"; };
@@ -392,8 +389,6 @@
 		E7221C801ED88A010002CE1A /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				E7221C7A1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.h */,
-				E7221C7B1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m */,
 				E755D2301EDE03F800A78097 /* LBPlayingTrackProgressCell.h */,
 				E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */,
 				E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */,
@@ -915,7 +910,6 @@
 				E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,
 				E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */,
-				E7221C7C1ED8880F0002CE1A /* LBAlbumArtworkTableViewCell.m in Sources */,
 				E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */,
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
