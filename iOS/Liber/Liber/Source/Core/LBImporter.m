@@ -109,7 +109,7 @@
     artist.name = artistName;
     
     Album* album = [Album MR_findFirstByAttribute:@"title" withValue:albumTitle];
-    if (!album) {
+    if (!album || album.artist != artist) {
         album = [Album MR_createEntity];
     }
     album.title = albumTitle;
