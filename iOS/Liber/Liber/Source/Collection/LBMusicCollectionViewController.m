@@ -74,7 +74,7 @@
     self.downloadsInProgressBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
     UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
     [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
-    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.downloadsInProgressBarButtonItem];
+    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
 }
 
 
@@ -86,11 +86,11 @@
     
     if (self.appDelegate.playQueue.currentTrack) {
         self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem, self.filterBarButtonItem];
+        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem];
     }
     else {
         self.nowPlayingBarButtonItem.image = nil;
-        self.navigationItem.leftBarButtonItems = @[self.filterBarButtonItem];
+        self.navigationItem.leftBarButtonItems = @[];
     }
 }
 
@@ -324,7 +324,6 @@
     }
     else {
         Album* album = [self.displayItems objectAtIndex:indexPath.row];
-        NSLog(@"Ask to delete %@", album.title);
         
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         

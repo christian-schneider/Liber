@@ -35,7 +35,6 @@
 
 @implementation LBAlbumViewController
 
-
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -219,9 +218,6 @@
 - (void) handleCurrentTrackStatusChanged {
     
     [self.tableView reloadData];
-    
-    // in case the queue finished playing while in lock screen, when the user comes back and the last played album
-    // is still displayed in this vc, the play / pause button still shows the pause image, which is wrong.
     [self.playingTrackCell updatePlayButtonImage:self.playQueue.isPlaying];
 }
 

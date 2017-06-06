@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,17 +22,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Liber-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="8a8-cc-daT">
-                                <rect key="frame" x="67" y="214" width="240" height="240"/>
+                                <rect key="frame" x="67" y="214" width="242" height="242"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="foa-KU-W5a"/>
-                                    <constraint firstAttribute="height" constant="240" id="sNI-Ze-Iu1"/>
+                                    <constraint firstAttribute="width" constant="242" id="foa-KU-W5a"/>
+                                    <constraint firstAttribute="height" constant="242" id="sNI-Ze-Iu1"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8a8-cc-daT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZyE-sp-B7w"/>
-                            <constraint firstItem="8a8-cc-daT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fEe-z8-MQq"/>
+                            <constraint firstItem="8a8-cc-daT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="1.5" id="fEe-z8-MQq"/>
                         </constraints>
                     </view>
                 </viewController>

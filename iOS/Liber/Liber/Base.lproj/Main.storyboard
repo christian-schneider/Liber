@@ -110,25 +110,25 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
-                        <leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="AudioFileIcon" id="SKI-ls-eib">
+                            <connections>
+                                <action selector="nowPlayingBarButtonItemAction" destination="JEX-9P-axG" id="5DG-rk-G2o"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="InIcon" id="UK0-Dz-kOy">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="importMusicBarButtonItemAction" destination="JEX-9P-axG" id="7iS-uX-LUX"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="LayersIcon" id="zp8-Z3-mbQ">
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <connections>
                                     <action selector="filterBarButtonItemAction" destination="JEX-9P-axG" id="FV3-DI-SbY"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="AudioFileIcon" id="SKI-ls-eib">
-                                <connections>
-                                    <action selector="nowPlayingBarButtonItemAction" destination="JEX-9P-axG" id="5DG-rk-G2o"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="InIcon" id="UK0-Dz-kOy">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="importMusicBarButtonItemAction" destination="JEX-9P-axG" id="7iS-uX-LUX"/>
-                            </connections>
-                        </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="hYf-k6-zJh" id="vwz-Li-6QF"/>
@@ -188,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgG-jM-rAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="815.625" y="786.97183098591552"/>
+            <point key="canvasLocation" x="2985" y="107"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="w6R-JV-Y1P">
@@ -217,13 +217,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current track title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvW-l8-gJC">
-                                                            <rect key="frame" x="8" y="34" width="304" height="18"/>
+                                                            <rect key="frame" x="8" y="40" width="304" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hI-SU-f1y">
-                                                            <rect key="frame" x="8" y="-6" width="304" height="41"/>
+                                                            <rect key="frame" x="8" y="0.0" width="304" height="41"/>
                                                             <subviews>
                                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-5e-lFj">
                                                                     <rect key="frame" x="38" y="2" width="228" height="38"/>
@@ -259,7 +259,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hiv-Lh-YW2">
-                                                            <rect key="frame" x="8" y="67" width="304" height="37"/>
+                                                            <rect key="frame" x="8" y="73" width="304" height="37"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-44-NcV">
                                                                     <rect key="frame" x="134.5" y="1" width="36" height="36"/>
@@ -309,15 +309,15 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="3hI-SU-f1y" firstAttribute="leading" secondItem="gvW-l8-gJC" secondAttribute="leading" id="EEq-8j-bO4"/>
-                                                        <constraint firstItem="3hI-SU-f1y" firstAttribute="top" secondItem="bir-Lo-mtS" secondAttribute="top" constant="-6" id="GcJ-B2-LFE"/>
+                                                        <constraint firstItem="3hI-SU-f1y" firstAttribute="top" secondItem="bir-Lo-mtS" secondAttribute="top" id="GcJ-B2-LFE"/>
                                                         <constraint firstItem="3hI-SU-f1y" firstAttribute="trailing" secondItem="bir-Lo-mtS" secondAttribute="trailingMargin" id="NLW-rx-Dsv"/>
                                                         <constraint firstItem="3hI-SU-f1y" firstAttribute="trailing" secondItem="gvW-l8-gJC" secondAttribute="trailing" id="YaN-5Z-Tu7"/>
                                                         <constraint firstItem="gvW-l8-gJC" firstAttribute="top" secondItem="3hI-SU-f1y" secondAttribute="bottom" constant="-1" id="cbI-Ql-upb"/>
-                                                        <constraint firstItem="Hiv-Lh-YW2" firstAttribute="bottom" secondItem="bir-Lo-mtS" secondAttribute="bottomMargin" constant="-13" id="gKv-bI-a4B"/>
+                                                        <constraint firstItem="Hiv-Lh-YW2" firstAttribute="bottom" secondItem="bir-Lo-mtS" secondAttribute="bottomMargin" constant="-7" id="gKv-bI-a4B"/>
                                                         <constraint firstItem="gvW-l8-gJC" firstAttribute="leading" secondItem="Hiv-Lh-YW2" secondAttribute="leading" id="h37-ZA-d3E"/>
                                                         <constraint firstItem="gvW-l8-gJC" firstAttribute="trailing" secondItem="Hiv-Lh-YW2" secondAttribute="trailing" id="lyb-cR-Kp7"/>
                                                         <constraint firstItem="3hI-SU-f1y" firstAttribute="leading" secondItem="bir-Lo-mtS" secondAttribute="leadingMargin" id="oal-FA-vXg"/>
-                                                        <constraint firstItem="gvW-l8-gJC" firstAttribute="centerY" secondItem="bir-Lo-mtS" secondAttribute="centerY" constant="-19.5" id="pB7-nN-VlD"/>
+                                                        <constraint firstItem="gvW-l8-gJC" firstAttribute="centerY" secondItem="bir-Lo-mtS" secondAttribute="centerY" constant="-13.5" id="pB7-nN-VlD"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -503,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aY7-0s-DIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="-616"/>
+            <point key="canvasLocation" x="2226" y="107"/>
         </scene>
     </scenes>
     <resources>
