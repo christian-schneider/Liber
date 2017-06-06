@@ -17,6 +17,7 @@ NSString* const LBPlayQueuePlayStatusChanged = @"LBPlayQueuePlayStatusChanged";
 NSString* const LBPlayQueueFinishedPlaying = @"LBPlayQueueFinishedPlaying";
 NSString* const LBCurrentTrackPlayProgress = @"LBCurrentTrackPlayProgress";
 NSString* const LBCurrentTrackStatusChanged = @"LBCurrentTrackStatusChanged";
+NSString* const LBAlbumDeleted = @"LBAlbumDeleted"; 
 
 
 @interface AppDelegate ()

@@ -65,6 +65,10 @@
         [self updateDisplayItems];
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateDisplayItems];
+    }];
+    
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activityIndicator.hidesWhenStopped = YES;
     self.downloadsInProgressBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
@@ -305,7 +309,7 @@
 }
 
 
-#pragma mark - Item Delete
+#pragma mark - Long Press Actions
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
@@ -321,6 +325,21 @@
     else {
         Album* album = [self.displayItems objectAtIndex:indexPath.row];
         NSLog(@"Ask to delete %@", album.title);
+        
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.appDelegate.importer deleteAlbum:album];
+        }]];
+        
+        
+        actionSheet.view.tintColor = [UIColor blackColor];
+        [self presentViewController:actionSheet animated:YES completion:nil];
     }
 }
 

@@ -18,6 +18,7 @@ extern NSString* const LBPlayQueuePlayStatusChanged;
 extern NSString* const LBPlayQueueFinishedPlaying;
 extern NSString* const LBCurrentTrackPlayProgress;
 extern NSString* const LBCurrentTrackStatusChanged;
+extern NSString* const LBAlbumDeleted;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

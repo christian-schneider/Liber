@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class Album;
 
 @interface LBImporter : NSObject
 
@@ -22,5 +23,7 @@
 - (NSString*) generateUUID;
 
 - (NSString *)applicationDocumentsDirectoryPath;
+
+- (void) deleteAlbum:(Album*)album;
 
 @end

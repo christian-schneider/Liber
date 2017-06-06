@@ -11,9 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "Album+CoreDataClass.h"
-#import "Artist+CoreDataClass.h"
-#import "Track+CoreDataClass.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
+#import "Track+Functions.h"
 #import <MagicalRecord/MagicalRecord.h>
 
 
@@ -321,6 +321,37 @@
     return duration;
 }
 
+
+- (void) deleteAlbum:(Album*)album {
+    
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSError* error;
+    NSMutableSet* trackAndAlbumArtists = [NSMutableSet setWithCapacity:1];
+    
+    for (Track* track in album.tracks) {
+        error = nil;
+        [fileManager removeItemAtPath:track.fullPath error:&error];
+        if (error) {
+            NSLog(@"Error removing file: %@", error.description);
+        }
+        [trackAndAlbumArtists addObject:track.artist];
+        [track MR_deleteEntity];
+    }
+    
+    [trackAndAlbumArtists addObject:album.artist];
+    [album MR_deleteEntity];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    for (Artist* artist in trackAndAlbumArtists) {
+        if (artist.albums.count == 0) {
+            [artist MR_deleteEntity];
+        }
+    }
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBAlbumDeleted object:nil];
+}
 
 
 @end
