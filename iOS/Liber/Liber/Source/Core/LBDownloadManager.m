@@ -7,6 +7,7 @@
 
 #import "LBDownloadManager.h"
 #import "LBDownloadItem.h"
+#import "AppDelegate.h"
 
 
 @interface LBDownloadManager()
@@ -30,13 +31,15 @@
 
 - (NSArray*) downloadQueue {
     
-    return self.downloadQueue;
+    return _downloadQueue;
 }
 
 
 - (void) addItemToQueue:(LBDownloadItem*)item {
     
+    if (!item) return;
     [_downloadQueue addObject:item];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LBAddedDownloadItemToQueue object:nil];
 }
 
 
@@ -44,6 +47,7 @@
     
     if ([_downloadQueue containsObject:item]) {
         [_downloadQueue removeObject:item];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LBRemovedDownloadItemFromQueue object:nil];
     }
 }
 

@@ -300,14 +300,14 @@
     LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
     downloadItem.downloadPath = path;
     downloadItem.isDownloading = YES;
-    [self.appDelegate.downloadManager addItemToQueue:downloadItem];
+    
     
     NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
     NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
                           stringByAppendingPathExtension:path.pathExtension];
     NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
     
-    [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+    DBDownloadUrlTask* downloadTask = [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
                         NSURL *destination) {
          if (result) {
@@ -321,6 +321,10 @@
      }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
          [downloadItem updateProgressBytesWritten:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
      }];
+    
+    downloadItem.cancelTarget = downloadTask;
+    downloadItem.cancelSelector = NSSelectorFromString(@"cancel");
+    [self.appDelegate.downloadManager addItemToQueue:downloadItem];
 }
 
 

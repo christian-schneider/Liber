@@ -11,22 +11,18 @@
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
-NSString* const LBMusicItemAddedToCollection = @"LBMusicItemAddedToCollection";
-NSString* const LBPlayQueuePlayItemChanged = @"LBPlayQueuePlayItemChanged";
-NSString* const LBPlayQueuePlayStatusChanged = @"LBPlayQueuePlayStatusChanged";
-NSString* const LBPlayQueueFinishedPlaying = @"LBPlayQueueFinishedPlaying";
-NSString* const LBCurrentTrackPlayProgress = @"LBCurrentTrackPlayProgress";
-NSString* const LBCurrentTrackStatusChanged = @"LBCurrentTrackStatusChanged";
-NSString* const LBAlbumDeleted = @"LBAlbumDeleted"; 
-
-
-@interface AppDelegate ()
-
-@end
+NSString* const LBMusicItemAddedToCollection    = @"LBMusicItemAddedToCollection";
+NSString* const LBPlayQueuePlayItemChanged      = @"LBPlayQueuePlayItemChanged";
+NSString* const LBPlayQueuePlayStatusChanged    = @"LBPlayQueuePlayStatusChanged";
+NSString* const LBPlayQueueFinishedPlaying      = @"LBPlayQueueFinishedPlaying";
+NSString* const LBCurrentTrackPlayProgress      = @"LBCurrentTrackPlayProgress";
+NSString* const LBCurrentTrackStatusChanged     = @"LBCurrentTrackStatusChanged";
+NSString* const LBAlbumDeleted                  = @"LBAlbumDeleted";
+NSString* const LBAddedDownloadItemToQueue      = @"LBAddedDownloadItemToQueue";
+NSString* const LBRemovedDownloadItemFromQueue  = @"LBRemovedDownloadItemFromQueue";
 
 
 @implementation AppDelegate
-
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -94,6 +90,5 @@ NSString* const LBAlbumDeleted = @"LBAlbumDeleted";
     }
     return NO;
 }
-
 
 @end

@@ -21,4 +21,22 @@
     NSLog(@"LBDownloadItem download complete");
 }
 
+
+- (void) cancelDownload {
+    
+    NSLog(@"Cancelling donwload: %@", self);
+    
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self.cancelTarget performSelector:self.cancelSelector];
+    #pragma clang diagnostic pop
+}
+
+
+- (NSString*) description {
+    
+    return [NSString stringWithFormat:@"LBDownloadItem: %@", self.downloadPath];
+}
+
+
 @end

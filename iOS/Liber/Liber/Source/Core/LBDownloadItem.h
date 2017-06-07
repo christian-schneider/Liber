@@ -13,8 +13,14 @@
 @property (nonatomic, strong) NSString* downloadPath;
 @property (nonatomic, readwrite) BOOL isDownloading;
 
+@property (nonatomic, strong) id cancelTarget;
+@property (nonatomic, assign) SEL cancelSelector;
+
+
+
 - (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected;
 
 - (void) downloadComplete;
+- (void) cancelDownload;
 
 @end

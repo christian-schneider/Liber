@@ -46,6 +46,8 @@
 
 @implementation LBMusicCollectionViewController
 
+#pragma mark - View Lifecycle
+
 - (void) viewDidLoad {
     
     [super viewDidLoad];
@@ -60,14 +62,6 @@
     lpgr.delegate = self;
     lpgr.delaysTouchesBegan = YES;
     [self.collectionView addGestureRecognizer:lpgr];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self updateDisplayItems];
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self updateDisplayItems];
-    }];
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activityIndicator.hidesWhenStopped = YES;
@@ -92,18 +86,16 @@
         self.nowPlayingBarButtonItem.image = nil;
         self.navigationItem.leftBarButtonItems = @[];
     }
+    
+    [self updateDownloadsActivityIndicatorStatus];
+    [self startObserving];
 }
 
 
-- (UIImage*) imageAlbumArtResizedForBarButtonImtem:(UIImage*)albumArt {
-
-    CGFloat length = 30.0;
-    CGRect rect = CGRectMake(0,0,length,length);
-    UIGraphicsBeginImageContext(rect.size);
-    [albumArt drawInRect:rect];
-    UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return [UIImage imageWithData:UIImagePNGRepresentation(resizedImage)];
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    [self stopObserving];
 }
 
 
@@ -115,6 +107,15 @@
 }
 
 
+- (BOOL) prefersStatusBarHidden {
+ 
+    return YES;
+}
+
+
+#pragma mark - Status
+
+
 - (void) updateDisplayItems {
     
     self.displayItems = [Album MR_findAll];
@@ -122,9 +123,14 @@
 }
 
 
-- (BOOL) prefersStatusBarHidden {
- 
-    return YES;
+- (void) updateDownloadsActivityIndicatorStatus {
+    
+    if (self.appDelegate.downloadManager.downloadQueue.count > 0) {
+        [self.activityIndicator startAnimating];
+    }
+    else {
+        [self.activityIndicator stopAnimating];
+    }
 }
 
 
@@ -341,5 +347,53 @@
         [self presentViewController:actionSheet animated:YES completion:nil];
     }
 }
+
+
+#pragma mark - Observing
+
+- (void) startObserving {
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateDisplayItems];
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateDisplayItems];
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBAddedDownloadItemToQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        
+        [self updateDownloadsActivityIndicatorStatus];
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBRemovedDownloadItemFromQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        
+        [self updateDownloadsActivityIndicatorStatus];
+    }];
+}
+
+
+- (void) stopObserving {
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:LBMusicItemAddedToCollection object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:LBAlbumDeleted object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:LBAddedDownloadItemToQueue object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:LBRemovedDownloadItemFromQueue object:nil];
+}
+
+
+#pragma mark - Utility 
+
+- (UIImage*) imageAlbumArtResizedForBarButtonImtem:(UIImage*)albumArt {
+    
+    CGFloat length = 30.0;
+    CGRect rect = CGRectMake(0,0,length,length);
+    UIGraphicsBeginImageContext(rect.size);
+    [albumArt drawInRect:rect];
+    UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [UIImage imageWithData:UIImagePNGRepresentation(resizedImage)];
+}
+
 
 @end
