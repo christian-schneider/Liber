@@ -8,6 +8,7 @@
 #import "LBDownloadsViewController.h"
 #import "AppDelegate.h"
 #import "LBDownloadItemTableViewCell.h"
+#import "LBDownloadItem.h"
 
 
 @interface LBDownloadsViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -25,6 +26,21 @@
 
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBAddedDownloadItemToQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBRemovedDownloadItemFromQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
 }
 
 
@@ -42,8 +58,7 @@
     
     LBDownloadItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
     cell.downloadItem = downloadItem;
-    
-    
+    cell.textLabel.text = downloadItem.downloadPath;
     return cell;
 }
 
@@ -52,5 +67,8 @@
     
     return self.appDelegate.downloadManager.downloadQueue.count;
 }
+
+
+
 
 @end

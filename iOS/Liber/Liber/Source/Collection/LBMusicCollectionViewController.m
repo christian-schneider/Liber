@@ -319,9 +319,9 @@
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
-    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-        return;
-    }
+    //if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+    //    return;
+    //}
     
     CGPoint point = [gestureRecognizer locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];

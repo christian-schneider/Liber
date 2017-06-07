@@ -109,7 +109,7 @@
     artist.name = artistName;
     
     Album* album = [Album MR_findFirstByAttribute:@"title" withValue:albumTitle];
-    if (!album || album.artist != artist) {
+    if (!album || (!albumArtistEntity && album.artist != artist)) {
         album = [Album MR_createEntity];
     }
     album.title = albumTitle;
@@ -154,7 +154,9 @@
     NSFileManager* fileManager = [NSFileManager defaultManager];
     [fileManager moveItemAtPath:filePath toPath:targetPath error:&error];
     if (error) {
-        NSLog(@"error moving file: %@", error.localizedDescription);
+        NSLog(@"error moving file: %@ ---- %@", fileName, error.localizedDescription);
+        NSLog(@"filepath: %@", filePath);
+        NSLog(@"targetPath: %@", targetPath);
     }
 }
 
@@ -254,6 +256,8 @@
 
 - (UIImage*) imageForItemAtFileURL:(NSURL*)url {
     
+    if (!url) return nil;
+    
     if (!url.isFileURL) {
         url = [NSURL fileURLWithPath:url.absoluteString];
     }
@@ -270,11 +274,16 @@
 }
 
 
-- (NSString *) sanitizeFileNameString:(NSString *)fileName {
+- (NSString *) sanitizeFileNameString:(NSString *)filename {
     
-    if (!fileName) return nil;
-    NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
-    return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
+    if (!filename) return nil;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]+" options:0 error:nil];
+    return  [regex stringByReplacingMatchesInString:filename options:0 range:NSMakeRange(0, filename.length) withTemplate:@"-"];
+    
+    
+    //NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
+    //return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
 }
 
 

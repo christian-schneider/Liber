@@ -12,7 +12,7 @@
 
 - (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected {
     
-    NSLog(@"LBDownloadItem - download progress %ld %ld %ld", bytesWritten, totalBytesWritten, totalBytesExpected);
+    //NSLog(@"LBDownloadItem - download progress %ld %ld %ld", bytesWritten, totalBytesWritten, totalBytesExpected);
 }
 
 
