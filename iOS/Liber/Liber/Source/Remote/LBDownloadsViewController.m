@@ -25,6 +25,8 @@
 - (void) viewDidLoad {
 
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Downloads", nil); 
 
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -62,7 +64,7 @@
     
     LBDownloadItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
     cell.downloadItem = downloadItem;
-    cell.titleLabel.text = downloadItem.downloadPath;
+    cell.titleLabel.text = downloadItem.downloadPath.lastPathComponent;
     [cell updateProgressBar]; 
     return cell;
 }
