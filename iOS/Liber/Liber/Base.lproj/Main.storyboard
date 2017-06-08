@@ -163,9 +163,43 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtE-hU-m5a" id="beF-IV-RXe">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-ow-xdQ">
+                                                    <rect key="frame" x="8" y="8" width="271" height="2"/>
+                                                </progressView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3G-Px-V4X">
+                                                    <rect key="frame" x="287" y="9" width="25" height="25"/>
+                                                    <state key="normal" title="Button" image="AbortIcon"/>
+                                                    <connections>
+                                                        <action selector="cancelDownload:" destination="DtE-hU-m5a" eventType="touchUpInside" id="y0s-wv-q3d"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug9-in-OJm">
+                                                    <rect key="frame" x="8" y="14" width="271" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="J3G-Px-V4X" firstAttribute="trailing" secondItem="beF-IV-RXe" secondAttribute="trailingMargin" id="6b8-Lm-cFj"/>
+                                                <constraint firstItem="J3G-Px-V4X" firstAttribute="centerY" secondItem="beF-IV-RXe" secondAttribute="centerY" id="Dgu-QR-k4C"/>
+                                                <constraint firstItem="J3G-Px-V4X" firstAttribute="leading" secondItem="ug9-in-OJm" secondAttribute="trailing" constant="8" symbolic="YES" id="OrM-Bz-sFT"/>
+                                                <constraint firstItem="5h9-ow-xdQ" firstAttribute="top" secondItem="beF-IV-RXe" secondAttribute="topMargin" id="RiT-9E-I2d"/>
+                                                <constraint firstItem="5h9-ow-xdQ" firstAttribute="leading" secondItem="beF-IV-RXe" secondAttribute="leadingMargin" id="TCQ-3s-6na"/>
+                                                <constraint firstItem="ug9-in-OJm" firstAttribute="top" secondItem="5h9-ow-xdQ" secondAttribute="bottom" constant="4" id="mDy-S5-4wR"/>
+                                                <constraint firstItem="5h9-ow-xdQ" firstAttribute="leading" secondItem="ug9-in-OJm" secondAttribute="leading" id="piX-1b-l1a"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5h9-ow-xdQ" secondAttribute="trailing" constant="33" id="sPW-hc-cki"/>
+                                                <constraint firstItem="J3G-Px-V4X" firstAttribute="leading" secondItem="5h9-ow-xdQ" secondAttribute="trailing" constant="8" symbolic="YES" id="w8N-ML-bQb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ug9-in-OJm" secondAttribute="bottom" constant="0.5" id="xpV-rQ-4Ms"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="progressView" destination="5h9-ow-xdQ" id="r9D-3X-YRJ"/>
+                                            <outlet property="titleLabel" destination="ug9-in-OJm" id="UBP-uK-rGA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -188,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgG-jM-rAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2985" y="107"/>
+            <point key="canvasLocation" x="2985" y="106.69014084507042"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="w6R-JV-Y1P">
@@ -507,6 +541,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AbortIcon" width="25" height="25"/>
         <image name="AudioFileIcon" width="25" height="25"/>
         <image name="BackwardIcon" width="25" height="25"/>
         <image name="ForwardIcon" width="25" height="25"/>

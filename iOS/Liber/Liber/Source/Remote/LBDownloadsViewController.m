@@ -25,10 +25,14 @@
 - (void) viewDidLoad {
 
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBDownloadItemDownloadProgress object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
 }
+
 
 - (void) viewWillAppear:(BOOL)animated {
     
@@ -58,7 +62,8 @@
     
     LBDownloadItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
     cell.downloadItem = downloadItem;
-    cell.textLabel.text = downloadItem.downloadPath;
+    cell.titleLabel.text = downloadItem.downloadPath;
+    [cell updateProgressBar]; 
     return cell;
 }
 

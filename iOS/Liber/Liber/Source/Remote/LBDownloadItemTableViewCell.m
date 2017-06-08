@@ -11,18 +11,17 @@
 
 @implementation LBDownloadItemTableViewCell
 
-- (void) awakeFromNib {
+- (IBAction) cancelDownload:(UIButton*)sender {
     
-    [super awakeFromNib];
-    // Initialization code
+    [self.downloadItem cancelDownload];
 }
 
 
-- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void) updateProgressBar {
     
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressView.progress = (double)self.downloadItem.totalBytesWritten / self.downloadItem.totalBytesExpected;
+    });
 }
 
 @end

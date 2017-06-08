@@ -20,6 +20,7 @@ NSString* const LBCurrentTrackStatusChanged     = @"LBCurrentTrackStatusChanged"
 NSString* const LBAlbumDeleted                  = @"LBAlbumDeleted";
 NSString* const LBAddedDownloadItemToQueue      = @"LBAddedDownloadItemToQueue";
 NSString* const LBRemovedDownloadItemFromQueue  = @"LBRemovedDownloadItemFromQueue";
+NSString* const LBDownloadItemDownloadProgress  = @"LBDownloadItemDownloadProgress";
 
 
 @implementation AppDelegate

@@ -21,6 +21,7 @@ extern NSString* const LBCurrentTrackStatusChanged;
 extern NSString* const LBAlbumDeleted;
 extern NSString* const LBAddedDownloadItemToQueue;
 extern NSString* const LBRemovedDownloadItemFromQueue;
+extern NSString* const LBDownloadItemDownloadProgress;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

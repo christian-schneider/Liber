@@ -6,30 +6,53 @@
 //
 
 #import "LBDownloadItem.h"
+#import "AppDelegate.h"
+
+
+@interface LBDownloadItem()
+
+@property (nonatomic, readwrite) NSInteger totalBytesWritten;
+@property (nonatomic, readwrite) NSInteger totalBytesExpected;
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
+
+@end
 
 
 @implementation LBDownloadItem
 
+- (id) init {
+    
+    if (self = [super init]) {
+        self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    }
+    return self;
+}
+
+
 - (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected {
     
-    //NSLog(@"LBDownloadItem - download progress %ld %ld %ld", bytesWritten, totalBytesWritten, totalBytesExpected);
+    self.totalBytesWritten = totalBytesWritten;
+    self.totalBytesExpected = totalBytesExpected;
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:LBDownloadItemDownloadProgress object:self];
 }
 
 
 - (void) downloadComplete {
     
-    NSLog(@"LBDownloadItem download complete");
+    [self.appDelegate.downloadManager removeItemFromQueue:self];
 }
 
 
 - (void) cancelDownload {
     
-    NSLog(@"Cancelling donwload: %@", self);
-    
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.cancelTarget performSelector:self.cancelSelector];
     #pragma clang diagnostic pop
+    
+    [self.appDelegate.downloadManager removeItemFromQueue:self];
 }
 
 

@@ -16,6 +16,8 @@
 @property (nonatomic, strong) id cancelTarget;
 @property (nonatomic, assign) SEL cancelSelector;
 
+@property (nonatomic, readonly) NSInteger totalBytesWritten;
+@property (nonatomic, readonly) NSInteger totalBytesExpected;
 
 
 - (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected;

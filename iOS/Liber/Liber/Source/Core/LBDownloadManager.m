@@ -19,7 +19,6 @@
 
 @implementation LBDownloadManager
 
-
 - (id) init {
     
     if (self = [super init]) {
@@ -50,8 +49,5 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:LBRemovedDownloadItemFromQueue object:nil];
     }
 }
-
-
-
 
 @end
