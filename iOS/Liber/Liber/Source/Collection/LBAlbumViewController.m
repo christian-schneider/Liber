@@ -19,7 +19,7 @@
 #import "LBAlbumDetailNavigationBarTitleView.h"
 
 
-@interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) AppDelegate* appDelegate ;
 @property (nonatomic, weak) LBPlayQueue* playQueue;
@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) UIView* albumArtHeaderView;
 @property (nonatomic, strong) UIImageView* albumArtImageView;
+
+@property (nonatomic, readwrite) BOOL presentingEditAlertController;
 
 @end
 
@@ -69,6 +71,12 @@
     
     self.navigationController.navigationBar.topItem.title = @"";
     self.albumArtImageView.image = [UIImage imageWithData:self.album.image];
+    self.albumArtImageView.userInteractionEnabled = YES;
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.delegate = self;
+    lpgr.delaysTouchesBegan = YES;
+    [self.albumArtImageView addGestureRecognizer:lpgr];
 }
 
 
@@ -219,6 +227,66 @@
     
     [self.tableView reloadData];
     [self.playingTrackCell updatePlayButtonImage:self.playQueue.isPlaying];
+}
+
+
+#pragma mark - Long Press  
+
+- (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    
+    if (!self.presentingEditAlertController) {
+        
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            self.presentingEditAlertController = NO;
+        }]];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Edit", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"edit");
+            self.presentingEditAlertController = NO;
+        }]];
+        
+        
+        actionSheet.view.tintColor = [UIColor blackColor];
+        self.presentingEditAlertController = YES;
+        [self presentViewController:actionSheet animated:YES completion:nil];
+        
+    }
+    
+    //if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    //    return;
+    //}
+    
+    
+    
+    /*
+    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    if (indexPath == nil){
+        NSLog(@"couldn't find index path");
+    }
+    else {
+        Album* album = [self.displayItems objectAtIndex:indexPath.row];
+        
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.appDelegate.importer deleteAlbum:album];
+        }]];
+        
+        
+        actionSheet.view.tintColor = [UIColor blackColor];
+        [self presentViewController:actionSheet animated:YES completion:nil];
+    }
+     */
 }
 
 

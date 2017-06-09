@@ -33,6 +33,11 @@
     [NSNotificationCenter.defaultCenter addObserverForName:LBDownloadItemDownloadProgress object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];
     }];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.bounces = NO;
 }
 
 

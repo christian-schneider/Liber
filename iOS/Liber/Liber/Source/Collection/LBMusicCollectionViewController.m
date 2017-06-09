@@ -41,6 +41,8 @@
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
 @property (nonatomic, readwrite) BOOL showSearchBar;
 
+@property (nonatomic, readwrite) BOOL presentingEditAlertController;
+
 @end
 
 
@@ -323,28 +325,34 @@
     //    return;
     //}
     
-    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-    if (indexPath == nil){
-        NSLog(@"couldn't find index path");
-    }
-    else {
-        Album* album = [self.displayItems objectAtIndex:indexPath.row];
+    if (!self.presentingEditAlertController) {
         
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }]];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self.appDelegate.importer deleteAlbum:album];
-        }]];
-        
-        
-        actionSheet.view.tintColor = [UIColor blackColor];
-        [self presentViewController:actionSheet animated:YES completion:nil];
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        if (indexPath == nil){
+            NSLog(@"couldn't find index path");
+        }
+        else {
+            Album* album = [self.displayItems objectAtIndex:indexPath.row];
+            
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                self.presentingEditAlertController = NO;
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                self.presentingEditAlertController = NO;
+                [self.appDelegate.importer deleteAlbum:album];
+            }]];
+            
+            
+            actionSheet.view.tintColor = [UIColor blackColor];
+            self.presentingEditAlertController = YES;
+            [self presentViewController:actionSheet animated:YES completion:nil];
+        }
     }
 }
 
