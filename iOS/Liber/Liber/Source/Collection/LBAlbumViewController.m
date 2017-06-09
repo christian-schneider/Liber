@@ -17,6 +17,7 @@
 #import "LBPlayingTrackProgressCell.h"
 #import "LBAlbumTrackTableViewCell.h"
 #import "LBAlbumDetailNavigationBarTitleView.h"
+#import "LBAlbumEditViewController.h"
 
 
 @interface LBAlbumViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
@@ -76,6 +77,7 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
     lpgr.delaysTouchesBegan = YES;
+    lpgr.cancelsTouchesInView = NO;
     [self.albumArtImageView addGestureRecognizer:lpgr];
 }
 
@@ -247,46 +249,16 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"edit");
             self.presentingEditAlertController = NO;
+            LBAlbumEditViewController* albumEditVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumEditViewController"];
+            albumEditVC.album = self.album;
+            [self.navigationController pushViewController:albumEditVC animated:YES];
         }]];
-        
         
         actionSheet.view.tintColor = [UIColor blackColor];
         self.presentingEditAlertController = YES;
         [self presentViewController:actionSheet animated:YES completion:nil];
         
     }
-    
-    //if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-    //    return;
-    //}
-    
-    
-    
-    /*
-    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-    if (indexPath == nil){
-        NSLog(@"couldn't find index path");
-    }
-    else {
-        Album* album = [self.displayItems objectAtIndex:indexPath.row];
-        
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }]];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self.appDelegate.importer deleteAlbum:album];
-        }]];
-        
-        
-        actionSheet.view.tintColor = [UIColor blackColor];
-        [self presentViewController:actionSheet animated:YES completion:nil];
-    }
-     */
 }
 
 

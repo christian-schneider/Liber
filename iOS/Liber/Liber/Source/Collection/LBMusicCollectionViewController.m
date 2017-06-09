@@ -63,6 +63,7 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
     lpgr.delaysTouchesBegan = YES;
+    lpgr.cancelsTouchesInView = NO;
     [self.collectionView addGestureRecognizer:lpgr];
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

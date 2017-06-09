@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E709E87F1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E87E1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m */; };
+		E709E8911EEB06E10035FC49 /* LBArtistEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E8901EEB06E10035FC49 /* LBArtistEditTableViewCell.m */; };
 		E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */; };
 		E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */; };
 		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
@@ -214,6 +216,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E709E87D1EEB06D20035FC49 /* LBAlbumEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumEditTableViewCell.h; path = Source/Collection/LBAlbumEditTableViewCell.h; sourceTree = "<group>"; };
+		E709E87E1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumEditTableViewCell.m; path = Source/Collection/LBAlbumEditTableViewCell.m; sourceTree = "<group>"; };
+		E709E88F1EEB06E10035FC49 /* LBArtistEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBArtistEditTableViewCell.h; path = Source/Collection/LBArtistEditTableViewCell.h; sourceTree = "<group>"; };
+		E709E8901EEB06E10035FC49 /* LBArtistEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBArtistEditTableViewCell.m; path = Source/Collection/LBArtistEditTableViewCell.m; sourceTree = "<group>"; };
 		E70CADB41ED9C7EC005E8C39 /* Artist+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Artist+Functions.h"; path = "Source/ManagedObjects/Artist+Functions.h"; sourceTree = "<group>"; };
 		E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+Functions.m"; path = "Source/ManagedObjects/Artist+Functions.m"; sourceTree = "<group>"; };
 		E70CADB71ED9C8A8005E8C39 /* Album+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+Functions.h"; path = "Source/ManagedObjects/Album+Functions.h"; sourceTree = "<group>"; };
@@ -586,6 +592,10 @@
 			children = (
 				E770808D1EEAE08E00009088 /* LBTrackEditTableViewCell.h */,
 				E770808E1EEAE08E00009088 /* LBTrackEditTableViewCell.m */,
+				E709E87D1EEB06D20035FC49 /* LBAlbumEditTableViewCell.h */,
+				E709E87E1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m */,
+				E709E88F1EEB06E10035FC49 /* LBArtistEditTableViewCell.h */,
+				E709E8901EEB06E10035FC49 /* LBArtistEditTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -972,7 +982,9 @@
 				E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */,
 				E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */,
 				E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */,
+				E709E8911EEB06E10035FC49 /* LBArtistEditTableViewCell.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
+				E709E87F1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

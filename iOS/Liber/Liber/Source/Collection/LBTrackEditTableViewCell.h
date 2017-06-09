@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Track;
 
-@interface LBTrackEditTableViewCell : UITableViewCell
+@interface LBTrackEditTableViewCell : UITableViewCell <UITextFieldDelegate>
+
+@property (nonatomic, weak) IBOutlet UITextField* textField;
+
+@property (nonatomic, weak) Track* track;
+
+@property (nonatomic, weak) UITableView* tableView; 
+
+- (void) prepareUI;
 
 @end
