@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Artist;
+
 
 @interface LBArtistEditTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) Artist* artist;
+@property (nonatomic, weak) UITableView* tableView;
+
+- (void) prepareUI;
 
 @end

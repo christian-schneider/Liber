@@ -10,3 +10,6 @@
 [submodule "iOS/Vendor/iOS/Vendor/mp3lame-for-iOS"]
 	path = iOS/Vendor/mp3lame-for-iOS
 	url = https://github.com/wuqiong/mp3lame-for-iOS
+[submodule "iOS/Vendor/MLPAutoCompleteTextField"]
+	path = iOS/Vendor/MLPAutoCompleteTextField
+	url = https://github.com/EddyBorja/MLPAutoCompleteTextField.git

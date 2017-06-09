@@ -6,6 +6,7 @@
 //
 
 #import "Album+Functions.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 
 @implementation Album (Functions)
@@ -17,5 +18,18 @@
     return [self.tracks sortedArrayUsingDescriptors:sortDescriptors];
 }
 
+
+- (NSArray*) allAlbumTitles {
+    
+    NSMutableSet* allAlbumTitles = [[NSMutableSet alloc] init];
+    NSArray* allAlbums = [Album MR_findAll];
+    NSSortDescriptor *sortNameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = @[sortNameDescriptor];
+    allAlbums = [allAlbums sortedArrayUsingDescriptors:sortDescriptors];
+    for (Album* album in allAlbums) {
+        [allAlbumTitles addObject:album.title];
+    }
+    return allAlbumTitles.allObjects;
+}
 
 @end

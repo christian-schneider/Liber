@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E709E87F1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E87E1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m */; };
 		E709E8911EEB06E10035FC49 /* LBArtistEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E8901EEB06E10035FC49 /* LBArtistEditTableViewCell.m */; };
+		E709E8A51EEB44410035FC49 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E89F1EEB44410035FC49 /* MLPAutoCompleteTextField.m */; };
+		E709E8A61EEB44410035FC49 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = E709E8A41EEB44410035FC49 /* NSString+Levenshtein.m */; };
 		E70CADB61ED9C7EC005E8C39 /* Artist+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */; };
 		E70CADB91ED9C8A8005E8C39 /* Album+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E70CADB81ED9C8A8005E8C39 /* Album+Functions.m */; };
 		E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F54251ECBA711006D265D /* LBFilePlayer.m */; };
@@ -220,6 +222,13 @@
 		E709E87E1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumEditTableViewCell.m; path = Source/Collection/LBAlbumEditTableViewCell.m; sourceTree = "<group>"; };
 		E709E88F1EEB06E10035FC49 /* LBArtistEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBArtistEditTableViewCell.h; path = Source/Collection/LBArtistEditTableViewCell.h; sourceTree = "<group>"; };
 		E709E8901EEB06E10035FC49 /* LBArtistEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBArtistEditTableViewCell.m; path = Source/Collection/LBArtistEditTableViewCell.m; sourceTree = "<group>"; };
+		E709E89E1EEB44410035FC49 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextField.h; path = Source/ThirdParty/MLPAutoCompleteTextField/MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		E709E89F1EEB44410035FC49 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLPAutoCompleteTextField.m; path = Source/ThirdParty/MLPAutoCompleteTextField/MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		E709E8A01EEB44410035FC49 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextFieldDataSource.h; path = Source/ThirdParty/MLPAutoCompleteTextField/MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		E709E8A11EEB44410035FC49 /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextFieldDelegate.h; path = Source/ThirdParty/MLPAutoCompleteTextField/MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		E709E8A21EEB44410035FC49 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompletionObject.h; path = Source/ThirdParty/MLPAutoCompleteTextField/MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		E709E8A31EEB44410035FC49 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Levenshtein.h"; path = "Source/ThirdParty/MLPAutoCompleteTextField/NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		E709E8A41EEB44410035FC49 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Levenshtein.m"; path = "Source/ThirdParty/MLPAutoCompleteTextField/NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		E70CADB41ED9C7EC005E8C39 /* Artist+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Artist+Functions.h"; path = "Source/ManagedObjects/Artist+Functions.h"; sourceTree = "<group>"; };
 		E70CADB51ED9C7EC005E8C39 /* Artist+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Artist+Functions.m"; path = "Source/ManagedObjects/Artist+Functions.m"; sourceTree = "<group>"; };
 		E70CADB71ED9C8A8005E8C39 /* Album+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Album+Functions.h"; path = "Source/ManagedObjects/Album+Functions.h"; sourceTree = "<group>"; };
@@ -345,6 +354,28 @@
 				E77080851EEAD30200009088 /* Download */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		E709E89D1EEB44280035FC49 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				E709E8A71EEB444C0035FC49 /* MLPAutoCompleteTextField */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		E709E8A71EEB444C0035FC49 /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				E709E89E1EEB44410035FC49 /* MLPAutoCompleteTextField.h */,
+				E709E89F1EEB44410035FC49 /* MLPAutoCompleteTextField.m */,
+				E709E8A01EEB44410035FC49 /* MLPAutoCompleteTextFieldDataSource.h */,
+				E709E8A11EEB44410035FC49 /* MLPAutoCompleteTextFieldDelegate.h */,
+				E709E8A21EEB44410035FC49 /* MLPAutoCompletionObject.h */,
+				E709E8A31EEB44410035FC49 /* NSString+Levenshtein.h */,
+				E709E8A41EEB44410035FC49 /* NSString+Levenshtein.m */,
+			);
+			name = MLPAutoCompleteTextField;
 			sourceTree = "<group>";
 		};
 		E70B89C21ED702BA006A691A /* ManagedObjects */ = {
@@ -513,6 +544,7 @@
 				E75FFECB1EC6F1C200881694 /* Remote */,
 				E7A5C1741ECA38DC00700156 /* Util */,
 				E70B89C21ED702BA006A691A /* ManagedObjects */,
+				E709E89D1EEB44280035FC49 /* ThirdParty */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -975,10 +1007,12 @@
 				E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */,
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
 				E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */,
+				E709E8A61EEB44410035FC49 /* NSString+Levenshtein.m in Sources */,
 				E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */,
 				E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */,
 				E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */,
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
+				E709E8A51EEB44410035FC49 /* MLPAutoCompleteTextField.m in Sources */,
 				E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */,
 				E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */,
 				E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */,
@@ -1151,10 +1185,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
+				LIBRARY_SEARCH_PATHS = "";
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerzonic.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1172,10 +1206,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
+				LIBRARY_SEARCH_PATHS = "";
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerzonic.Liber;
 				PRODUCT_NAME = "$(TARGET_NAME)";

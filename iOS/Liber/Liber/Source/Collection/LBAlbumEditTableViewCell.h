@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MLPAutoCompleteTextField.h"
+@class Album;
 
-@interface LBAlbumEditTableViewCell : UITableViewCell
+
+@interface LBAlbumEditTableViewCell : UITableViewCell <MLPAutoCompleteTextFieldDelegate, MLPAutoCompleteTextFieldDataSource>
+
+@property (nonatomic, weak) Album* album;
+@property (nonatomic, weak) UITableView* tableView;
+
+@property (nonatomic, weak) IBOutlet UIImageView* albumArtImageView;
+@property (nonatomic, weak) IBOutlet MLPAutoCompleteTextField* autocompleteTextField;
+@property (nonatomic, weak) IBOutlet UILabel* titleLabel;
+
+- (void) prepareUI;
 
 @end

@@ -1,17 +1,11 @@
-http://www.forumancientcoins.com/moonmoth/reverse_dionysos.html
-
-http://www.forumancientcoins.com/moonmoth/coins/repub_052.html
-http://www.forumancientcoins.com/moonmoth/coins/repub_070.html	
-http://www.forumancientcoins.com/moonmoth/coins/pics/gallienus/gallienus_052.jpg
-LIBERO P CONS AVG, meaning Dedicated to Father Liber
-
-
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/Project Templates/iOS
 
 example of mp3 encoding with lame:
 https://stackoverflow.com/questions/31452202/ios-swift-merge-and-convert-wav-files-to-mp3
 
-
 Icons: https://www.iconfinder.com/iconsets/feather
 
 BarButtonItems size 25/50/75
+
+git submodule add https://github.com/EddyBorja/MLPAutoCompleteTextField.git iOS/Vendor/MLPAutoCompleteTextField
+$ git rm --cached OtherLibrary/MKStore

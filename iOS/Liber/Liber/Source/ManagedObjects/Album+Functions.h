@@ -11,4 +11,6 @@
 
 - (NSArray*) orderedTracks;
 
+- (NSArray*) allAlbumTitles; 
+
 @end

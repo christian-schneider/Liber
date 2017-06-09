@@ -10,6 +10,8 @@
 #import "Track+Functions.h"
 #import "Artist+Functions.h"
 #import "LBTrackEditTableViewCell.h"
+#import "LBArtistEditTableViewCell.h"
+#import "LBAlbumEditTableViewCell.h"
 
 
 @interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
@@ -64,40 +66,59 @@
 }
 
 
-- (void) editBarButtonItemAction:(UIBarButtonItem*)sender {
-    
-    [self.tableView setEditing:YES animated:YES];
-}
-
-
 #pragma mark - TableView Delegate & DataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
-}
-
-
-- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    LBTrackEditTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"TrackEditTableViewCell"];
-    Track* track = [self.orderedTracks objectAtIndex:indexPath.row];
-    cell.track = track;
-    cell.tableView = self.tableView;
-    [cell prepareUI];
-    return cell;
+    return 3;
 }
 
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    if (section == 0 || section == 1) return 1;
     return self.orderedTracks.count;
+}
+
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        LBAlbumEditTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"AlbumEditTableViewCell"];
+        cell.album = self.album;
+        cell.tableView = self.tableView;
+        [cell prepareUI];
+        return cell;
+        
+    }
+    else if (indexPath.section == 1) {
+        LBArtistEditTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ArtistEditTableViewCell"];
+        cell.artist = self.album.artist;
+        cell.tableView = self.tableView;
+        [cell prepareUI];
+        return cell;
+        
+    }
+    else {
+        LBTrackEditTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"TrackEditTableViewCell"];
+        Track* track = [self.orderedTracks objectAtIndex:indexPath.row];
+        cell.track = track;
+        cell.tableView = self.tableView;
+        [cell prepareUI];
+        return cell;
+    }
 }
 
 
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return YES;
+    return indexPath.section == 2;
+}
+
+
+- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return indexPath.section == 2;
 }
 
 
@@ -108,12 +129,6 @@
         [self.orderedTracks removeObject:trackToRemove];
         [self.tableView reloadData];
     }
-}
-
-
-- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return YES;
 }
 
 

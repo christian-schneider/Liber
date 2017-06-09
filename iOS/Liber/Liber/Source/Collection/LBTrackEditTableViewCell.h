@@ -11,11 +11,12 @@
 
 @interface LBTrackEditTableViewCell : UITableViewCell <UITextFieldDelegate>
 
-@property (nonatomic, weak) IBOutlet UITextField* textField;
-
 @property (nonatomic, weak) Track* track;
+@property (nonatomic, weak) UITableView* tableView;
 
-@property (nonatomic, weak) UITableView* tableView; 
+@property (nonatomic, weak) IBOutlet UITextField* textField;
+@property (nonatomic, weak) IBOutlet UILabel* titleLabel;
+
 
 - (void) prepareUI;
 
