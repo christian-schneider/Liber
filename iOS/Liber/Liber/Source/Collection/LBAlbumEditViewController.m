@@ -12,16 +12,22 @@
 #import "LBTrackEditTableViewCell.h"
 #import "LBArtistEditTableViewCell.h"
 #import "LBAlbumEditTableViewCell.h"
+#import <Photos/Photos.h>
 
 
-@interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
+@property (nonatomic, weak) IBOutlet UIView* albumArtHeaderView;
+@property (nonatomic, weak) IBOutlet UIImageView *albumArtImageView;
+
 
 @property (nonatomic, strong) NSMutableArray* orderedTracks;
 
 - (IBAction)cancelAlbumEditing:(id)sender;
 - (IBAction)saveEditedAlbum:(id)sender;
+
+@property (nonatomic, strong) UIImage* selectedAlbumArt;
 
 @end
 
@@ -33,8 +39,11 @@
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44.0;
+    
+    UITapGestureRecognizer* imageTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAlbumArt:)];
+    [imageTapRecognizer setCancelsTouchesInView:NO];
+    [self.albumArtImageView addGestureRecognizer:imageTapRecognizer];
+    self.albumArtImageView.userInteractionEnabled = YES;
 }
 
 
@@ -50,6 +59,13 @@
     self.navigationController.navigationBar.hidden = NO;
     
     [self.tableView setEditing:YES animated:YES];
+    
+    if (self.selectedAlbumArt) {
+        self.albumArtImageView.image = self.selectedAlbumArt;
+    }
+    else {
+        self.albumArtImageView.image = self.album.artwork;
+    }
 }
 
 
@@ -141,6 +157,12 @@
 }
 
 
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 78.0f;
+}
+
 #pragma mark - Actions
 
 
@@ -156,5 +178,50 @@
     NSLog(@"TODO: implement save");
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+
+- (void) chooseAlbumArt:(UIGestureRecognizer*)recognizer {
+    
+    [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+
+- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
+
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType = sourceType;
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = NO;
+    imagePickerController.modalPresentationStyle = UIModalPresentationPopover;
+    
+    [self presentViewController:imagePickerController animated:YES completion:^{
+        //.. done presenting
+    }];
+}
+
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    self.albumArtImageView.image = image;
+    self.selectedAlbumArt = image;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        //.. done dismissing
+    }];
+    [self.tableView reloadData];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        //.. done dismissing
+    }];
+}
+
+
 
 @end

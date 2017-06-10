@@ -6,11 +6,14 @@
 //
 
 #import "Album+CoreDataClass.h"
+#import <UIKit/UIKit.h>
 
 @interface Album (Functions)
 
 - (NSArray*) orderedTracks;
 
-- (NSArray*) allAlbumTitles; 
+- (NSArray*) allAlbumTitles;
+
+- (UIImage*) artwork;
 
 @end

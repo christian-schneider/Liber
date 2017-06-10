@@ -32,4 +32,10 @@
     return allAlbumTitles.allObjects;
 }
 
+
+- (UIImage*) artwork {
+    
+    return [UIImage imageWithData:self.image];
+}
+
 @end
