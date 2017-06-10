@@ -21,6 +21,9 @@ NSString* const LBAlbumDeleted                  = @"LBAlbumDeleted";
 NSString* const LBAddedDownloadItemToQueue      = @"LBAddedDownloadItemToQueue";
 NSString* const LBRemovedDownloadItemFromQueue  = @"LBRemovedDownloadItemFromQueue";
 NSString* const LBDownloadItemDownloadProgress  = @"LBDownloadItemDownloadProgress";
+NSString* const LBTrackEditEnded                = @"LBTrackEditEnded";
+NSString* const LBArtistEditEnded               = @"LBArtistEditEnded";
+NSString* const LBAlbumEditEnded                = @"LBAlbumEditEnded";
 
 
 @implementation AppDelegate

@@ -22,6 +22,9 @@ extern NSString* const LBAlbumDeleted;
 extern NSString* const LBAddedDownloadItemToQueue;
 extern NSString* const LBRemovedDownloadItemFromQueue;
 extern NSString* const LBDownloadItemDownloadProgress;
+extern NSString* const LBTrackEditEnded;
+extern NSString* const LBArtistEditEnded;
+extern NSString* const LBAlbumEditEnded;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

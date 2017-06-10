@@ -314,11 +314,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xk6-AG-6dj">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xk6-AG-6dj" customClass="MLPAutoCompleteTextField">
                                                     <rect key="frame" x="8" y="37" width="304" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="autoCompleteDataSource" destination="8eQ-09-zmq" id="HDe-Pb-WYM"/>
+                                                        <outlet property="autoCompleteDelegate" destination="8eQ-09-zmq" id="wjm-30-IBA"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -330,6 +334,10 @@
                                                 <constraint firstItem="Xk6-AG-6dj" firstAttribute="top" secondItem="ezS-le-RR6" secondAttribute="bottom" constant="8" symbolic="YES" id="zwc-bq-d8G"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="autocompleteTextField" destination="Xk6-AG-6dj" id="CXX-lj-D9T"/>
+                                            <outlet property="titleLabel" destination="ezS-le-RR6" id="lUB-8u-q6s"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TrackEditTableViewCell" rowHeight="78" id="5Dj-L6-qyO" customClass="LBTrackEditTableViewCell">
                                         <rect key="frame" x="0.0" y="324" width="320" height="78"/>

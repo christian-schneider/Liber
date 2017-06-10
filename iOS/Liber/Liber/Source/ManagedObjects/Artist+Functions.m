@@ -6,9 +6,22 @@
 //
 
 #import "Artist+Functions.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 
 @implementation Artist (Functions)
 
+- (NSArray*) allArtistNames {
+    
+    NSMutableSet* allArtistNames = [[NSMutableSet alloc] init];
+    NSArray* allArtists = [Artist MR_findAll];
+    NSSortDescriptor *sortNameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = @[sortNameDescriptor];
+    allArtists = [allArtists sortedArrayUsingDescriptors:sortDescriptors];
+    for (Artist* artist in allArtists) {
+        [allArtistNames addObject:artist.name];
+    }
+    return allArtistNames.allObjects;
+}
 
 @end

@@ -13,6 +13,7 @@
 #import "LBArtistEditTableViewCell.h"
 #import "LBAlbumEditTableViewCell.h"
 #import <Photos/Photos.h>
+#import "AppDelegate.h"
 
 
 @interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -28,6 +29,9 @@
 - (IBAction)saveEditedAlbum:(id)sender;
 
 @property (nonatomic, strong) UIImage* selectedAlbumArt;
+@property (nonatomic, strong) NSString* editedAlbumTitle;
+@property (nonatomic, strong) NSString* editedArtistName;
+@property (nonatomic, strong) NSMutableArray* editedTrackNames;
 
 @end
 
@@ -44,6 +48,23 @@
     [imageTapRecognizer setCancelsTouchesInView:NO];
     [self.albumArtImageView addGestureRecognizer:imageTapRecognizer];
     self.albumArtImageView.userInteractionEnabled = YES;
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBTrackEditEnded object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        LBTrackEditTableViewCell* cell = (LBTrackEditTableViewCell*)note.object;
+        NSIndexPath* path = [self.tableView indexPathForCell:cell];
+        NSString* editedText = cell.textField.text;
+        [self.editedTrackNames setObject:editedText atIndexedSubscript:path.row]; 
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBAlbumEditEnded object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        LBAlbumEditTableViewCell* cell = (LBAlbumEditTableViewCell*)note.object;
+        self.editedAlbumTitle = cell.autocompleteTextField.text;
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:LBArtistEditEnded object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        LBArtistEditTableViewCell* cell = (LBArtistEditTableViewCell*)note.object;
+        self.editedArtistName = cell.autocompleteTextField.text;
+    }];
 }
 
 
@@ -82,6 +103,20 @@
 }
 
 
+- (void) setAlbum:(Album *)album {
+    
+    if (album != _album) {
+        _album = album;
+        self.editedTrackNames = [NSMutableArray arrayWithCapacity:_album.tracks.count];
+        for (Track* track in _album.tracks) {
+            [self.editedTrackNames addObject:track.title];
+        }
+        self.editedArtistName = self.album.artist.name;
+        self.editedAlbumTitle = self.album.title;
+    }
+}
+
+
 #pragma mark - TableView Delegate & DataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -104,6 +139,7 @@
         cell.album = self.album;
         cell.tableView = self.tableView;
         [cell prepareUI];
+        cell.autocompleteTextField.text = self.editedAlbumTitle;
         return cell;
         
     }
@@ -112,6 +148,7 @@
         cell.artist = self.album.artist;
         cell.tableView = self.tableView;
         [cell prepareUI];
+        cell.autocompleteTextField.text = self.editedArtistName;
         return cell;
         
     }
@@ -121,6 +158,7 @@
         cell.track = track;
         cell.tableView = self.tableView;
         [cell prepareUI];
+        cell.textField.text = [self.editedTrackNames objectAtIndex:indexPath.row];
         return cell;
     }
 }
@@ -153,6 +191,11 @@
     Track* trackToMove = [self.orderedTracks objectAtIndex:sourceIndexPath.row];
     [self.orderedTracks removeObjectAtIndex:sourceIndexPath.row];
     [self.orderedTracks insertObject:trackToMove atIndex:destinationIndexPath.row];
+    
+    NSString* editedTrackTitle = [self.editedTrackNames objectAtIndex:sourceIndexPath.row];
+    [self.editedTrackNames removeObjectAtIndex:sourceIndexPath.row];
+    [self.editedTrackNames insertObject:editedTrackTitle atIndex:destinationIndexPath.row];
+    
     [self.tableView reloadData];
 }
 

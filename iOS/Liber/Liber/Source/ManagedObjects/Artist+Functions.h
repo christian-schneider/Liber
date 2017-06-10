@@ -9,5 +9,6 @@
 
 @interface Artist (Functions)
 
+- (NSArray*) allArtistNames;
 
 @end

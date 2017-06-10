@@ -2,7 +2,6 @@
 //  LBAlbumEditTableViewCell.m
 //  Liber
 //
-//  Created by galzu on 09.06.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
@@ -10,6 +9,7 @@
 #import "Album+Functions.h"
 #import "Track+Functions.h"
 #import "MLPAutoCompleteTextField.h"
+#import "AppDelegate.h"
 
 
 @implementation LBAlbumEditTableViewCell
@@ -18,13 +18,13 @@
 - (void) prepareUI {
     
     self.titleLabel.text = NSLocalizedString(@"Album", nil);
-    self.autocompleteTextField.text = self.album.title;
     self.autocompleteTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     self.autocompleteTextField.returnKeyType = UIReturnKeyDone;
     self.autocompleteTextField.delegate = self;
 }
 
 
+#pragma mark - Autocomplet delegate
 
 - (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
  possibleCompletionsForString:(NSString *)string
@@ -47,29 +47,6 @@
 }
 
 
-- (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField willHideAutoCompleteTableView:(UITableView *)autoCompleteTableView {
-    
-    NSLog(@"Autocomplete table view will be removed from the view hierarchy");
-}
-
-
-- (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField willShowAutoCompleteTableView:(UITableView *)autoCompleteTableView {
-    
-    NSLog(@"Autocomplete table view will be added to the view hierarchy");
-}
-
-
-- (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField didHideAutoCompleteTableView:(UITableView *)autoCompleteTableView {
-    
-    NSLog(@"Autocomplete table view ws removed from the view hierarchy");
-}
-
-
-- (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField didShowAutoCompleteTableView:(UITableView *)autoCompleteTableView {
-    
-    NSLog(@"Autocomplete table view was added to the view hierarchy");
-}
-
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
     
     [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:self] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -78,9 +55,14 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
     
-    NSLog(@"textFieldShouldReturn");
     [textField resignFirstResponder];
     return YES;
+}
+
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:LBAlbumEditEnded object:self];
 }
 
 

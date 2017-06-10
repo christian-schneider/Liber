@@ -2,12 +2,12 @@
 //  LBTrackEditTableViewCell.m
 //  Liber
 //
-//  Created by galzu on 09.06.17.
 //  Copyright © 2017 Christian-Schneider. All rights reserved.
 //
 
 #import "LBTrackEditTableViewCell.h"
 #import "Track+Functions.h"
+#import "AppDelegate.h"
 
 
 @implementation LBTrackEditTableViewCell
@@ -15,7 +15,6 @@
 
 - (void) prepareUI {
     
-    self.textField.text = self.track.title;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.titleLabel.text = self.track.title;
 }
@@ -30,6 +29,12 @@
     
     [self.textField resignFirstResponder]; 
     return YES;
+}
+
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:LBTrackEditEnded object:self];
 }
 
 @end
