@@ -14,9 +14,13 @@
 #import "LBAlbumEditTableViewCell.h"
 #import <Photos/Photos.h>
 #import "AppDelegate.h"
+#import "LBImporter.h"
 
 
 @interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+
+@property (nonatomic, weak) AppDelegate* appDelegate;
 
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) IBOutlet UIView* albumArtHeaderView;
@@ -42,7 +46,9 @@
     
     [super viewDidLoad];
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 220.0f)];
     
     UITapGestureRecognizer* imageTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAlbumArt:)];
     [imageTapRecognizer setCancelsTouchesInView:NO];
@@ -206,22 +212,6 @@
     return 78.0f;
 }
 
-#pragma mark - Actions
-
-
-- (IBAction)cancelAlbumEditing:(id)sender {
- 
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-
-- (IBAction)saveEditedAlbum:(id)sender {
-    
-    NSLog(@"TODO: implement save");
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 
 - (void) chooseAlbumArt:(UIGestureRecognizer*)recognizer {
     
@@ -265,6 +255,26 @@
     }];
 }
 
+
+#pragma mark - Actions
+
+
+- (IBAction)cancelAlbumEditing:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (IBAction)saveEditedAlbum:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    NSInteger i = 0;
+    for (Track* track in self.orderedTracks) {
+        [self.appDelegate.importer writeTagsToFileAndThenReimport:track.fullPath albumTitle:self.editedAlbumTitle albumArtist:nil artist:self.editedArtistName trackTitle:[self.editedTrackNames objectAtIndex:i] trackNumber:i+1 artwor:self.albumArtImageView.image];
+        i++;
+    }
+}
 
 
 @end

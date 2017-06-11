@@ -26,4 +26,12 @@
 
 - (void) deleteAlbum:(Album*)album;
 
+- (BOOL) writeTagsToFileAndThenReimport:(NSString*)filePath
+                             albumTitle:(NSString*)albumTitle
+                            albumArtist:(NSString*)albumArtist
+                                 artist:(NSString*)artist
+                             trackTitle:(NSString*)trackTitle
+                            trackNumber:(NSInteger)trackNumber
+                                 artwor:(UIImage*)artwork; 
+
 @end

@@ -225,6 +225,7 @@
         return nil;
     }
     
+    
     rawID3Tag = (char *)malloc(id3DataSize);
     
     //read raw ID3Tag
@@ -251,6 +252,23 @@
     CFRelease(piDict);
     
     return tagsDictionary;
+}
+
+
+- (BOOL) writeTagsToFileAndThenReimport:(NSString*)filePath
+                             albumTitle:(NSString*)albumTitle
+                            albumArtist:(NSString*)albumArtist
+                                 artist:(NSString*)artist
+                             trackTitle:(NSString*)trackTitle
+                            trackNumber:(NSInteger)trackNumber
+                                 artwor:(UIImage*)artwork {
+    
+    NSURL* fileURL = [NSURL fileURLWithPath:filePath];
+    
+    
+    NSLog(@"let's roll"); 
+    
+    return YES; 
 }
 
 
@@ -361,6 +379,9 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [[NSNotificationCenter defaultCenter] postNotificationName:LBAlbumDeleted object:nil];
 }
+
+
+
 
 
 @end
