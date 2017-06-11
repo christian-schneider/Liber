@@ -15,6 +15,7 @@
 #import "Artist+Functions.h"
 #import "Track+Functions.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import <id3/tag.h>
 
 
 @interface LBImporter()
@@ -266,7 +267,16 @@
     NSURL* fileURL = [NSURL fileURLWithPath:filePath];
     
     
-    NSLog(@"let's roll"); 
+    NSLog(@"let's roll");
+    
+    // Read title tag
+    ID3_Tag tag;
+    tag.Link([filePath UTF8String]);
+    
+    ID3_Frame *titleFrame = tag.Find(ID3FID_LEADARTIST);
+    unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
+    NSString *title = [NSString stringWithCString:(char const *)value encoding:NSUnicodeStringEncoding];
+    NSLog(@"The artist before is %@", title);
     
     return YES; 
 }

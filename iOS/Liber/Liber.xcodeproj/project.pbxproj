@@ -30,6 +30,10 @@
 		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
+		E73DC46B1EEDA27500583F6E /* libid3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4601EEDA21F00583F6E /* libid3.a */; };
+		E73DC46E1EEDA44B00583F6E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46C1EEDA29C00583F6E /* libiconv.tbd */; };
+		E73DC4701EEDA46800583F6E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46F1EEDA46800583F6E /* libstdc++.tbd */; };
+		E73DC4721EEDA47C00583F6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4711EEDA47C00583F6E /* libz.tbd */; };
 		E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7483B7A1EE55C30004A72FB /* LBDownloadsViewController.m */; };
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
@@ -48,7 +52,7 @@
 		E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */; };
 		E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */; };
 		E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */; };
-		E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.m */; };
+		E7C32B321ECCE55C0038048E /* LBImporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.mm */; };
 		E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */; };
 		E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8677D1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -74,6 +78,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = E73A65D11EBB73A0004181DB;
 			remoteInfo = Liber;
+		};
+		E73DC45F1EEDA21F00583F6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 327FED7714CE850000953658;
+			remoteInfo = libid3;
+		};
+		E73DC4611EEDA21F00583F6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 325B854314CFED4E0061C897;
+			remoteInfo = Example;
 		};
 		E744CF4C1EDAF6C700C0FA92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -275,6 +293,10 @@
 		E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A66001EBB73A0004181DB /* LiberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberUITests.m; sourceTree = "<group>"; };
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libid3.xcodeproj; path = "../Vendor/libid3-ios/libid3.xcodeproj"; sourceTree = "<group>"; };
+		E73DC46C1EEDA29C00583F6E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		E73DC46F1EEDA46800583F6E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		E73DC4711EEDA47C00583F6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E7448AD91ECDE57F0095E754 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		E7448AED1ED368240095E754 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
 		E7483B791EE55C30004A72FB /* LBDownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadsViewController.h; path = Source/Remote/LBDownloadsViewController.h; sourceTree = "<group>"; };
@@ -311,7 +333,7 @@
 		E7A5C1751ECA394700700156 /* UIViewController+InfoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+InfoMessage.h"; path = "Source/Util/UIViewController+InfoMessage.h"; sourceTree = "<group>"; };
 		E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+InfoMessage.m"; path = "Source/Util/UIViewController+InfoMessage.m"; sourceTree = "<group>"; };
 		E7C32B301ECCE55C0038048E /* LBImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBImporter.h; path = Source/Core/LBImporter.h; sourceTree = "<group>"; };
-		E7C32B311ECCE55C0038048E /* LBImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBImporter.m; path = Source/Core/LBImporter.m; sourceTree = "<group>"; };
+		E7C32B311ECCE55C0038048E /* LBImporter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LBImporter.mm; path = Source/Core/LBImporter.mm; sourceTree = "<group>"; };
 		E7C32B6B1ECCF58A0038048E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = ../Vendor/AFNetworking/AFNetworking.xcodeproj; sourceTree = "<group>"; };
@@ -326,6 +348,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73DC4721EEDA47C00583F6E /* libz.tbd in Frameworks */,
+				E73DC4701EEDA46800583F6E /* libstdc++.tbd in Frameworks */,
+				E73DC46E1EEDA44B00583F6E /* libiconv.tbd in Frameworks */,
+				E73DC46B1EEDA27500583F6E /* libid3.a in Frameworks */,
 				E71DF7941EEC202F00AA17E3 /* Photos.framework in Frameworks */,
 				E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */,
 				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
@@ -417,6 +443,9 @@
 		E71F54381ECBA850006D265D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E73DC4711EEDA47C00583F6E /* libz.tbd */,
+				E73DC46F1EEDA46800583F6E /* libstdc++.tbd */,
+				E73DC46C1EEDA29C00583F6E /* libiconv.tbd */,
 				E71DF7931EEC202F00AA17E3 /* Photos.framework */,
 				E7448AD91ECDE57F0095E754 /* AVKit.framework */,
 				E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */,
@@ -505,8 +534,18 @@
 				E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */,
 				E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */,
 				E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */,
+				E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		E73DC4541EEDA21F00583F6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E73DC4601EEDA21F00583F6E /* libid3.a */,
+				E73DC4621EEDA21F00583F6E /* Example.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E755D22F1EDCB2A900A78097 /* Custom Views & Cells */ = {
@@ -597,7 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
-				E7C32B311ECCE55C0038048E /* LBImporter.m */,
+				E7C32B311ECCE55C0038048E /* LBImporter.mm */,
 			);
 			name = Import;
 			sourceTree = "<group>";
@@ -818,6 +857,10 @@
 					ProjectRef = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 				},
 				{
+					ProductGroup = E73DC4541EEDA21F00583F6E /* Products */;
+					ProjectRef = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
+				},
+				{
 					ProductGroup = E7C32B9A1ECD03030038048E /* Products */;
 					ProjectRef = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
 				},
@@ -836,6 +879,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E73DC4601EEDA21F00583F6E /* libid3.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libid3.a;
+			remoteRef = E73DC45F1EEDA21F00583F6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E73DC4621EEDA21F00583F6E /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = E73DC4611EEDA21F00583F6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1018,7 +1075,7 @@
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
 				E709E8A51EEB44410035FC49 /* MLPAutoCompleteTextField.m in Sources */,
 				E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */,
-				E7C32B321ECCE55C0038048E /* LBImporter.m in Sources */,
+				E7C32B321ECCE55C0038048E /* LBImporter.mm in Sources */,
 				E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */,
 				E709E8911EEB06E10035FC49 /* LBArtistEditTableViewCell.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
@@ -1189,7 +1246,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -1210,7 +1267,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";

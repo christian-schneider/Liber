@@ -7,5 +7,8 @@ Icons: https://www.iconfinder.com/iconsets/feather
 
 BarButtonItems size 25/50/75
 
-git submodule add https://github.com/EddyBorja/MLPAutoCompleteTextField.git iOS/Vendor/MLPAutoCompleteTextField
+git submodule add https://github.com/rjyo/libid3-ios iOS/Vendor/libid3-ios
 $ git rm --cached OtherLibrary/MKStore
+
+
+https://github.com/rjyo/libid3-ios
