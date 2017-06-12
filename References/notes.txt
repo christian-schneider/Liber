@@ -15,5 +15,7 @@ https://github.com/rjyo/libid3-ios
 
 
 
-TODO: stop audio playback when the album that is currently playing is deleted.
-TODO: import on file level and recursive. cancel all downloads
+TODO: 
+- import on file level and folders recursive. 
+- cancel all downloads
+- write album art
