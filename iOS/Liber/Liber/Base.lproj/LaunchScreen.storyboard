@@ -21,18 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Liber-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="8a8-cc-daT">
-                                <rect key="frame" x="67" y="214" width="242" height="242"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="242" id="foa-KU-W5a"/>
-                                    <constraint firstAttribute="height" constant="242" id="sNI-Ze-Iu1"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LiberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="wS6-Ak-7RU">
+                                <rect key="frame" x="62" y="208" width="250" height="250"/>
+                                <color key="backgroundColor" red="1" green="0.33599245389999999" blue="0.41750391199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8a8-cc-daT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZyE-sp-B7w"/>
-                            <constraint firstItem="8a8-cc-daT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="1.5" id="fEe-z8-MQq"/>
+                            <constraint firstItem="wS6-Ak-7RU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fab-yv-hG2"/>
+                            <constraint firstItem="wS6-Ak-7RU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mdD-Mi-xQo"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Liber-Icon.png" width="1024" height="1024"/>
+        <image name="LiberIcon" width="250" height="250"/>
     </resources>
 </document>
