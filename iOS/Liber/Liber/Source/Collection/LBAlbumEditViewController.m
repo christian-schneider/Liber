@@ -15,6 +15,7 @@
 #import <Photos/Photos.h>
 #import "AppDelegate.h"
 #import "LBImporter.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 
 @interface LBAlbumEditViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -272,8 +273,23 @@
     NSInteger i = 0;
     for (Track* track in self.orderedTracks) {
         [self.appDelegate.importer writeTagsToFileAndThenReimport:track.fullPath albumTitle:self.editedAlbumTitle albumArtist:nil artist:self.editedArtistName trackTitle:[self.editedTrackNames objectAtIndex:i] trackNumber:i+1 artwor:self.albumArtImageView.image];
+        [self.album removeTracksObject:track];
+        [track MR_deleteEntity];
         i++;
     }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    Artist* artist = self.album.artist;
+    if (self.album.tracks.count == 0) {
+        [self.album MR_deleteEntity];
+        [artist removeAlbumsObject:self.album]; 
+    }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    if (artist.albums.count == 0) {
+        [artist MR_deleteEntity];
+    }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 

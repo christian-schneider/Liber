@@ -30,10 +30,6 @@
 		E73A65EB1EBB73A0004181DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73A65E91EBB73A0004181DB /* LaunchScreen.storyboard */; };
 		E73A65F61EBB73A0004181DB /* LiberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65F51EBB73A0004181DB /* LiberTests.m */; };
 		E73A66011EBB73A0004181DB /* LiberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A66001EBB73A0004181DB /* LiberUITests.m */; };
-		E73DC46B1EEDA27500583F6E /* libid3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4601EEDA21F00583F6E /* libid3.a */; };
-		E73DC46E1EEDA44B00583F6E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46C1EEDA29C00583F6E /* libiconv.tbd */; };
-		E73DC4701EEDA46800583F6E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46F1EEDA46800583F6E /* libstdc++.tbd */; };
-		E73DC4721EEDA47C00583F6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4711EEDA47C00583F6E /* libz.tbd */; };
 		E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32BA61ECD03030038048E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7483B7A1EE55C30004A72FB /* LBDownloadsViewController.m */; };
 		E755D22B1EDC9DC600A78097 /* Liber-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E755D2291EDC9DC600A78097 /* Liber-Icon.png */; };
@@ -41,6 +37,12 @@
 		E755D2321EDE03F800A78097 /* LBPlayingTrackProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2311EDE03F800A78097 /* LBPlayingTrackProgressCell.m */; };
 		E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D2361EDF209C00A78097 /* UIImage+Functions.m */; };
 		E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */; };
+		E7573DF71EEF0FD700292972 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46F1EEDA46800583F6E /* libstdc++.tbd */; };
+		E7573DF81EEF0FE400292972 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4711EEDA47C00583F6E /* libz.tbd */; };
+		E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46C1EEDA29C00583F6E /* libiconv.tbd */; };
+		E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
+		E7573E271EEF323400292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
+		E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */; };
 		E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */; };
 		E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E770808A1EEADC8000009088 /* LBAlbumEditViewController.m */; };
@@ -78,20 +80,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = E73A65D11EBB73A0004181DB;
 			remoteInfo = Liber;
-		};
-		E73DC45F1EEDA21F00583F6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 327FED7714CE850000953658;
-			remoteInfo = libid3;
-		};
-		E73DC4611EEDA21F00583F6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 325B854314CFED4E0061C897;
-			remoteInfo = Example;
 		};
 		E744CF4C1EDAF6C700C0FA92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -229,6 +217,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */,
+				E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */,
 				E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -293,7 +282,6 @@
 		E73A65FC1EBB73A0004181DB /* LiberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A66001EBB73A0004181DB /* LiberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiberUITests.m; sourceTree = "<group>"; };
 		E73A66021EBB73A0004181DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libid3.xcodeproj; path = "../Vendor/libid3-ios/libid3.xcodeproj"; sourceTree = "<group>"; };
 		E73DC46C1EEDA29C00583F6E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		E73DC46F1EEDA46800583F6E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		E73DC4711EEDA47C00583F6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -310,6 +298,7 @@
 		E755D2361EDF209C00A78097 /* UIImage+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Functions.m"; path = "Source/Util/UIImage+Functions.m"; sourceTree = "<group>"; };
 		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
 		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
+		E7573E251EEF322B00292972 /* TagLibIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagLibIOS.framework; path = Frameworks/TagLibIOS.framework; sourceTree = "<group>"; };
 		E7644D231EE5BF8E00BD46C9 /* LBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadManager.h; path = Source/Core/LBDownloadManager.h; sourceTree = "<group>"; };
 		E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadManager.m; path = Source/Core/LBDownloadManager.m; sourceTree = "<group>"; };
 		E7644D351EE5C11A00BD46C9 /* LBDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadItem.h; path = Source/Core/LBDownloadItem.h; sourceTree = "<group>"; };
@@ -348,12 +337,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73DC4721EEDA47C00583F6E /* libz.tbd in Frameworks */,
-				E73DC4701EEDA46800583F6E /* libstdc++.tbd in Frameworks */,
-				E73DC46E1EEDA44B00583F6E /* libiconv.tbd in Frameworks */,
-				E73DC46B1EEDA27500583F6E /* libid3.a in Frameworks */,
+				E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */,
+				E7573DF81EEF0FE400292972 /* libz.tbd in Frameworks */,
+				E7573DF71EEF0FD700292972 /* libstdc++.tbd in Frameworks */,
 				E71DF7941EEC202F00AA17E3 /* Photos.framework in Frameworks */,
+				E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */,
 				E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */,
+				E7573E271EEF323400292972 /* TagLibIOS.framework in Frameworks */,
 				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +487,7 @@
 				E75FFEC11EC6DB2100881694 /* Storyboards */,
 				E75FFE841EC6D44F00881694 /* Resources */,
 				E73A65D51EBB73A0004181DB /* Supporting Files */,
+				E7573E241EEF321900292972 /* Frameworks */,
 			);
 			path = Liber;
 			sourceTree = "<group>";
@@ -534,18 +525,8 @@
 				E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */,
 				E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */,
 				E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */,
-				E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		E73DC4541EEDA21F00583F6E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E73DC4601EEDA21F00583F6E /* libid3.a */,
-				E73DC4621EEDA21F00583F6E /* Example.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E755D22F1EDCB2A900A78097 /* Custom Views & Cells */ = {
@@ -557,6 +538,14 @@
 				E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */,
 			);
 			name = "Custom Views & Cells";
+			sourceTree = "<group>";
+		};
+		E7573E241EEF321900292972 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7573E251EEF322B00292972 /* TagLibIOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E75FFE841EC6D44F00881694 /* Resources */ = {
@@ -857,10 +846,6 @@
 					ProjectRef = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 				},
 				{
-					ProductGroup = E73DC4541EEDA21F00583F6E /* Products */;
-					ProjectRef = E73DC4531EEDA21F00583F6E /* libid3.xcodeproj */;
-				},
-				{
 					ProductGroup = E7C32B9A1ECD03030038048E /* Products */;
 					ProjectRef = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
 				},
@@ -879,20 +864,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E73DC4601EEDA21F00583F6E /* libid3.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libid3.a;
-			remoteRef = E73DC45F1EEDA21F00583F6E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E73DC4621EEDA21F00583F6E /* Example.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Example.app;
-			remoteRef = E73DC4611EEDA21F00583F6E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1240,12 +1211,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NEK9822PXX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Liber/Frameworks",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1261,12 +1235,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NEK9822PXX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Liber/Frameworks",
 				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../Vendor/libid3-ios/include";
 				INFOPLIST_FILE = Liber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

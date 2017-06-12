@@ -47,9 +47,9 @@
 
 - (void) clearQueue {
     
+    [self.filePlayer stopPlaying];
     self.currentTrack = nil;
     [self.queue removeAllObjects];
-    [self.filePlayer stopPlaying];
 }
 
 

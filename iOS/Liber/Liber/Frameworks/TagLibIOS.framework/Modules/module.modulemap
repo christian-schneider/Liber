@@ -1,0 +1,6 @@
+framework module TagLibIOS {
+  umbrella header "TagLibIOS.h"
+
+  export *
+  module * { export * }
+}

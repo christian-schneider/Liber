@@ -15,7 +15,14 @@
 #import "Artist+Functions.h"
 #import "Track+Functions.h"
 #import <MagicalRecord/MagicalRecord.h>
-#import <id3/tag.h>
+#import <TagLibIOS/TagLibIOS.h>
+
+
+NSString* const LBAlbumArtist_ID    = @"LBAlbumArtist_ID";
+NSString* const LBArtist_ID         = @"LBArtist_ID";
+NSString* const LBTrackTitle_ID     = @"LBTrackTitle_ID";
+NSString* const LBAlbumTitle_ID     = @"LBAlbumTitle_ID";
+NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 
 
 @interface LBImporter()
@@ -256,7 +263,20 @@
 }
 
 
-- (BOOL) writeTagsToFileAndThenReimport:(NSString*)filePath
+/*
+    Writes the new info tags to an edited track that is still currently stored
+    in the documents directory. After the tags have been written, it moves the file
+    to the tmp folder with a temporary name, then triggers the usual import process.
+    Like this, the edited file should end up in the right place, maybe not at the right 
+    position, because any type of messed up situation could be present now as there 
+    could be already tracks in the target album, with or without indices.
+    This attempt tries to solve this complicated matter as gracefully as possible and
+    this really tries not to be a solve it all solution to this very messy problem domain,
+    it just tries to provide the tools to clean up a broken import resulting from
+    poorely tagged files.
+ 
+*/
+- (void) writeTagsToFileAndThenReimport:(NSString*)filePath
                              albumTitle:(NSString*)albumTitle
                             albumArtist:(NSString*)albumArtist
                                  artist:(NSString*)artist
@@ -264,21 +284,44 @@
                             trackNumber:(NSInteger)trackNumber
                                  artwor:(UIImage*)artwork {
     
-    NSURL* fileURL = [NSURL fileURLWithPath:filePath];
+    TagLib::FileRef taggableFileRef(filePath.UTF8String);
+    taggableFileRef.tag()->setArtist(artist.UTF8String);
+    taggableFileRef.tag()->setAlbum(albumTitle.UTF8String);
+    taggableFileRef.tag()->setTitle(trackTitle.UTF8String);
+    taggableFileRef.tag()->setTrack((uint)trackNumber);
+    taggableFileRef.save();
     
+    if (albumArtist && albumArtist.length > 0) {
+        [self setBandTagWitValue:albumArtist forFileAtPath:filePath];
+    }
+
+    NSString* tempFileName = [@"import-" stringByAppendingString:self.generateUUID];
+    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
+                          stringByAppendingPathExtension:filePath.pathExtension];
+    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
     
-    NSLog(@"let's roll");
+    [NSFileManager.defaultManager moveItemAtURL:[NSURL fileURLWithPath:filePath] toURL:outputUrl error:nil];
+    [self importFileIntoLibraryAtPath:tempPath originalFilename:filePath.lastPathComponent];
+}
+
+
+- (void) setBandTagWitValue:(NSString*)band forFileAtPath:(NSString*)filePath {
     
-    // Read title tag
-    ID3_Tag tag;
-    tag.Link([filePath UTF8String]);
+    TagLib::MPEG::File file(filePath.UTF8String);
+    TagLib::ByteVector handle = "TPE2";
+    TagLib::String value = band.UTF8String;
+    TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
     
-    ID3_Frame *titleFrame = tag.Find(ID3FID_LEADARTIST);
-    unicode_t const *value = titleFrame->GetField(ID3FN_TEXT)->GetRawUnicodeText();
-    NSString *title = [NSString stringWithCString:(char const *)value encoding:NSUnicodeStringEncoding];
-    NSLog(@"The artist before is %@", title);
-    
-    return YES; 
+    if(!tag->frameList(handle).isEmpty()) {
+        tag->frameList(handle).front()->setText(value);
+    }
+    else {
+        TagLib::ID3v2::TextIdentificationFrame *frame =
+        new TagLib::ID3v2::TextIdentificationFrame(handle, TagLib::String::UTF8);
+        tag->addFrame(frame);
+        frame->setText(value);
+    }
+    file.save();
 }
 
 
@@ -308,10 +351,6 @@
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]+" options:0 error:nil];
     return  [regex stringByReplacingMatchesInString:filename options:0 range:NSMakeRange(0, filename.length) withTemplate:@"-"];
-    
-    
-    //NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
-    //return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
 }
 
 
@@ -361,6 +400,10 @@
 
 - (void) deleteAlbum:(Album*)album {
     
+    if (self.appDelegate.playQueue.currentTrack.album == album) {
+        [self.appDelegate.playQueue clearQueue];
+    }
+    
     NSFileManager* fileManager = [NSFileManager defaultManager];
     NSError* error;
     NSMutableSet* trackAndAlbumArtists = [NSMutableSet setWithCapacity:1];
@@ -389,9 +432,6 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [[NSNotificationCenter defaultCenter] postNotificationName:LBAlbumDeleted object:nil];
 }
-
-
-
 
 
 @end

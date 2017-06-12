@@ -26,7 +26,7 @@
 
 - (void) deleteAlbum:(Album*)album;
 
-- (BOOL) writeTagsToFileAndThenReimport:(NSString*)filePath
+- (void) writeTagsToFileAndThenReimport:(NSString*)filePath
                              albumTitle:(NSString*)albumTitle
                             albumArtist:(NSString*)albumArtist
                                  artist:(NSString*)artist

@@ -13,6 +13,6 @@
 [submodule "iOS/Vendor/MLPAutoCompleteTextField"]
 	path = iOS/Vendor/MLPAutoCompleteTextField
 	url = https://github.com/EddyBorja/MLPAutoCompleteTextField.git
-[submodule "iOS/Vendor/libid3-ios"]
-	path = iOS/Vendor/libid3-ios
-	url = https://github.com/rjyo/libid3-ios
+[submodule "taglib-ios"]
+	path = iOS/Vendor/taglib-ios
+	url = https://bitbucket.org/mdahlbom/taglib-ios.git

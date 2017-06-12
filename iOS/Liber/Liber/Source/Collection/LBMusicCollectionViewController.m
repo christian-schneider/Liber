@@ -81,14 +81,7 @@
     self.searchBarHeightConstraint.constant = 0.0f;
     [self updateDisplayItems];
     
-    if (self.appDelegate.playQueue.currentTrack) {
-        self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem];
-    }
-    else {
-        self.nowPlayingBarButtonItem.image = nil;
-        self.navigationItem.leftBarButtonItems = @[];
-    }
+    [self updateNowPlayingBarButtonItem];
     
     [self updateDownloadsActivityIndicatorStatus];
     [self startObserving];
@@ -117,6 +110,19 @@
 
 
 #pragma mark - Status
+
+
+- (void) updateNowPlayingBarButtonItem {
+    
+    if (self.appDelegate.playQueue.currentTrack) {
+        self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem];
+    }
+    else {
+        self.nowPlayingBarButtonItem.image = nil;
+        self.navigationItem.leftBarButtonItems = @[];
+    }
+}
 
 
 - (void) updateDisplayItems {
@@ -367,6 +373,7 @@
     }];
     
     [NSNotificationCenter.defaultCenter addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self updateNowPlayingBarButtonItem];
         [self updateDisplayItems];
     }];
     
