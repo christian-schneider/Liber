@@ -25,8 +25,6 @@
 - (void) viewDidLoad {
 
     [super viewDidLoad];
-    
-    self.title = NSLocalizedString(@"Downloads", nil); 
 
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -52,6 +50,12 @@
     [NSNotificationCenter.defaultCenter addObserverForName:LBRemovedDownloadItemFromQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];
     }];
+}
+
+
+- (BOOL) prefersStatusBarHidden {
+    
+    return YES;
 }
 
 

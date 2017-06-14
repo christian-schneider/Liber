@@ -187,7 +187,7 @@
         } else if ([entry isKindOfClass:[DBFILESFolderMetadata class]]) {
             
             DBFILESFolderMetadata *folderMetadata = (DBFILESFolderMetadata *)entry;
-            NSLog(@"Folder data: %@\n", folderMetadata);
+            //NSLog(@"Folder data: %@\n", folderMetadata);
             LBRemoteFolder* remoteFolder = [[LBRemoteFolder alloc] init];
             remoteFolder.path = folderMetadata.pathLower;
             remoteFolder.name = folderMetadata.name;
