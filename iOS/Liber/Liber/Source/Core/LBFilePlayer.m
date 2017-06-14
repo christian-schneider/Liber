@@ -94,7 +94,7 @@
     [self.player prepareToPlay];
     self.isPlaying = [self.player play];
     
-    // locked screen and control center:
+    // lockscreen and control center:
   
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
         return image;

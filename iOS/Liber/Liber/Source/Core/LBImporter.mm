@@ -74,23 +74,25 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     NSString* targetFolderPath = nil;
     if (albumArtist && albumArtist.length > 0) {
         targetFolderPath = [safeAlbumArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeAlbumArtist, safeAlbumTitle]];
-    } else {
+    }
+    else {
         targetFolderPath = [safeArtist stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ - %@", safeArtist, safeAlbumTitle]];
     }
     
-    [self createFolderInDocumentsDirIfNotExisting:targetFolderPath];
-    [self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename];
-    [self storeTrackForArtist:artist
-                  albumArtist:albumArtist
-                   albumTitle:albumTitle
-                   trackTitle:trackTitle
-                     duration:duration
-                      atIndex:trackIndex
-                        image:artwork
-                     fileName:originalFilename
-                   folderPath:targetFolderPath];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:LBMusicItemAddedToCollection object:nil];
+    if ([self createFolderInDocumentsDirIfNotExisting:targetFolderPath]) {
+        if ([self copyFileAtPath:filePath toDocumentsDirectoryInFolder:targetFolderPath fileName:originalFilename]) {
+            [self storeTrackForArtist:artist
+                          albumArtist:albumArtist
+                           albumTitle:albumTitle
+                           trackTitle:trackTitle
+                             duration:duration
+                              atIndex:trackIndex
+                                image:artwork
+                             fileName:originalFilename
+                           folderPath:targetFolderPath];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LBMusicItemAddedToCollection object:nil];
+        }
+    }
 }
 
 
@@ -155,7 +157,7 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-- (void) copyFileAtPath:(NSString*)filePath toDocumentsDirectoryInFolder:(NSString*)folderPath fileName:(NSString*)fileName {
+- (BOOL) copyFileAtPath:(NSString*)filePath toDocumentsDirectoryInFolder:(NSString*)folderPath fileName:(NSString*)fileName {
     
     NSString* targetPath = [[self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath] stringByAppendingPathComponent:fileName];
     NSError* error;
@@ -165,13 +167,18 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         NSLog(@"error moving file: %@ ---- %@", fileName, error.localizedDescription);
         NSLog(@"filepath: %@", filePath);
         NSLog(@"targetPath: %@", targetPath);
+        return NO;
     }
+    return YES;
 }
 
 
-- (void) createFolderInDocumentsDirIfNotExisting:(NSString*)folderPath {
+- (BOOL) createFolderInDocumentsDirIfNotExisting:(NSString*)folderPath {
     
     NSString* fullPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath];
+    
+    BOOL isDirectory;
+    if ([NSFileManager.defaultManager fileExistsAtPath:folderPath isDirectory:&isDirectory]) return YES && isDirectory;
     
     NSError * error = nil;
     [[NSFileManager defaultManager] createDirectoryAtPath:fullPath
@@ -180,7 +187,9 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
                                                     error:&error];
     if (error != nil) {
         NSLog(@"error creating directory: %@", error);
+        return NO;
     }
+    return YES;
 }
 
 
@@ -404,12 +413,15 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 
 - (void) deleteAlbum:(Album*)album {
     
+    NSString* fullAlbumPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:album.path];
+    NSError* error = nil;
+    
     if (self.appDelegate.playQueue.currentTrack.album == album) {
         [self.appDelegate.playQueue clearQueue];
     }
     
     NSFileManager* fileManager = [NSFileManager defaultManager];
-    NSError* error;
+    
     NSMutableSet* trackAndAlbumArtists = [NSMutableSet setWithCapacity:1];
     
     for (Track* track in album.tracks) {
@@ -418,7 +430,9 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         if (error) {
             NSLog(@"Error removing file: %@", error.description);
         }
-        [trackAndAlbumArtists addObject:track.artist];
+        if (track.artist) {
+            [trackAndAlbumArtists addObject:track.artist];
+        }
         [track MR_deleteEntity];
     }
     
@@ -435,6 +449,25 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [[NSNotificationCenter defaultCenter] postNotificationName:LBAlbumDeleted object:nil];
+    
+    [self deleteDirectoryIfEmpty:fullAlbumPath];
+    [self deleteDirectoryIfEmpty:fullAlbumPath.stringByDeletingLastPathComponent];
+}
+
+
+- (void) deleteDirectoryIfEmpty:(NSString*)path {
+    
+    NSError* error = nil;
+    NSArray *folderContents = [NSFileManager.defaultManager contentsOfDirectoryAtPath:path error:&error];
+    if (folderContents && !error) {
+        if (folderContents.count == 0) {
+            error = nil;
+            [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+        }
+    }
+    if (error) {
+        NSLog(@"Error removing directory: %@", error.description);
+    }
 }
 
 
