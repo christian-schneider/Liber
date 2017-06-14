@@ -349,8 +349,12 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     
     if (!filename) return nil;
     
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]+" options:0 error:nil];
-    return  [regex stringByReplacingMatchesInString:filename options:0 range:NSMakeRange(0, filename.length) withTemplate:@"-"];
+    NSMutableCharacterSet *nullCharacterSet = [NSMutableCharacterSet characterSetWithCharactersInString:@"\0"];
+    filename = filename = [[filename componentsSeparatedByCharactersInSet:nullCharacterSet] componentsJoinedByString:@"" ];
+    filename = [filename stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    filename = [[filename componentsSeparatedByCharactersInSet:[NSCharacterSet illegalCharacterSet]] componentsJoinedByString:@"" ];
+    filename = [[filename componentsSeparatedByCharactersInSet:[NSCharacterSet symbolCharacterSet]] componentsJoinedByString:@"" ];
+    return filename;
 }
 
 

@@ -59,7 +59,7 @@
     
     self.currentTrack = track;
     NSString* displayArtistName = [NSString stringWithFormat:@"%@ - %@", track.album.artist.name, track.album.title];
-    [self play:track.fullPath artist:displayArtistName trackTitle:track.displayTrackTitle image:track.artwork];
+    [self play:track.fullPath artist:displayArtistName trackTitle:track.displayTrackTitle image:track.artwork ? track.artwork : track.album.artwork];
     [self.player prepareToPlay];
     [self.player play];
     [self startProgressTimer];
@@ -97,7 +97,7 @@
     // locked screen and control center:
   
     MPMediaItemArtwork* artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(10.0, 10.0) requestHandler:^UIImage * _Nonnull(CGSize size) {
-        return [self.appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:path]] ;
+        return image;
     }] ;
     
     self.nowPlayingInfo = @{
