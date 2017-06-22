@@ -282,6 +282,7 @@
     }]];
     
     actionSheet.view.tintColor = [UIColor blackColor];
+    actionSheet.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -347,6 +348,8 @@
     [actionSheet addAction:logoutAction];
     
     actionSheet.view.tintColor = [UIColor blackColor];
+    actionSheet.popoverPresentationController.sourceView = self.navigationItem.titleView;
+    actionSheet.popoverPresentationController.sourceRect = self.navigationItem.titleView.bounds;
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 

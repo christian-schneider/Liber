@@ -220,6 +220,7 @@
     [actionSheet addAction:dropboxAction];
     
     actionSheet.view.tintColor = [UIColor blackColor];
+    actionSheet.popoverPresentationController.barButtonItem = self.importMusicBarButtonItem;
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -245,6 +246,7 @@
     }]];
     
     actionSheet.view.tintColor = [UIColor blackColor];
+    actionSheet.popoverPresentationController.barButtonItem = self.filterBarButtonItem;
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -355,9 +357,15 @@
                 [self.appDelegate.importer deleteAlbum:album];
             }]];
             
-            
             actionSheet.view.tintColor = [UIColor blackColor];
             self.presentingEditAlertController = YES;
+            
+            UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            actionSheet.popoverPresentationController.sourceView = cell.contentView;
+            
+            CGRect rect = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath].frame;
+            actionSheet.popoverPresentationController.sourceRect = rect;
+            
             [self presentViewController:actionSheet animated:YES completion:nil];
         }
     }

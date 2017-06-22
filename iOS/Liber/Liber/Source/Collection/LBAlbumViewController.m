@@ -256,6 +256,8 @@
         
         actionSheet.view.tintColor = [UIColor blackColor];
         self.presentingEditAlertController = YES;
+        self.popoverPresentationController.sourceView = self.albumArtImageView;
+        self.popoverPresentationController.sourceRect = self.albumArtImageView.bounds;
         [self presentViewController:actionSheet animated:YES completion:nil];
         
     }

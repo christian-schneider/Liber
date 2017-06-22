@@ -106,6 +106,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
                     fileName:(NSString*)fileName
                   folderPath:(NSString*)folderPath {
     
+    NSLog(@"trying to add the following item for artistName: %@ -- albumArtist: %@ -- albumTitle: %@ -- trackTitle: %@ -- duration: %f -- index: %@ -- fileName: %@", artistName, albumArtist, albumTitle, trackTitle, duration, index, fileName);
+    
     Artist* albumArtistEntity = [Artist MR_findFirstByAttribute:@"name" withValue:albumArtist];
     if (albumArtist && !albumArtistEntity) {
         albumArtistEntity = [Artist MR_createEntity];
