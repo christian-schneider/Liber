@@ -416,22 +416,15 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 - (void) deleteAlbum:(Album*)album {
     
     NSString* fullAlbumPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:album.path];
-    NSError* error = nil;
     
     if (self.appDelegate.playQueue.currentTrack.album == album) {
         [self.appDelegate.playQueue clearQueue];
     }
     
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    
     NSMutableSet* trackAndAlbumArtists = [NSMutableSet setWithCapacity:1];
     
     for (Track* track in album.tracks) {
-        error = nil;
-        [fileManager removeItemAtPath:track.fullPath error:&error];
-        if (error) {
-            NSLog(@"Error removing file: %@", error.description);
-        }
+        [self deleteTrackFile:track.fullPath];
         if (track.artist) {
             [trackAndAlbumArtists addObject:track.artist];
         }
@@ -457,6 +450,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
+#pragma mark -- File System Operations
+
 - (void) deleteDirectoryIfEmpty:(NSString*)path {
     
     NSError* error = nil;
@@ -468,7 +463,22 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         }
     }
     if (error) {
-        NSLog(@"Error removing directory: %@", error.description);
+        NSLog(@"Error removing directory: %@ -- %@", path.lastPathComponent, error.description);
+    }
+}
+
+
+- (void) deleteTrackFile:(NSString*)path {
+    
+    BOOL isDir;
+    if ([NSFileManager.defaultManager fileExistsAtPath:path isDirectory:&isDir]) {
+        if (!isDir) {
+            NSError* error = nil;
+            [NSFileManager.defaultManager removeItemAtPath:path error:&error];
+            if (error) {
+                NSLog(@"Error removing file: %@ -- %@", path.lastPathComponent, error.description);
+            }
+        }
     }
 }
 
