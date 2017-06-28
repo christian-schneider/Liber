@@ -298,34 +298,37 @@
 
 - (void) downloadFileAndImportIntoLibrary:(NSString*)path {
     
-    LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
-    downloadItem.downloadPath = path;
-    downloadItem.isDownloading = YES;
-    
-    
-    NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
-    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
-                          stringByAppendingPathExtension:path.pathExtension];
-    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
-    
-    DBDownloadUrlTask* downloadTask = [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
-     setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
-                        NSURL *destination) {
-         if (result) {
-             [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
-             [downloadItem downloadComplete];
-             [self.appDelegate.downloadManager removeItemFromQueue:downloadItem];
-         }
-         else {
-             NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
-         }
-     }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-         [downloadItem updateProgressBytesWritten:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
-     }];
-    
-    downloadItem.cancelTarget = downloadTask;
-    downloadItem.cancelSelector = NSSelectorFromString(@"cancel");
-    [self.appDelegate.downloadManager addItemToQueue:downloadItem];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
+        downloadItem.downloadPath = path;
+        downloadItem.isDownloading = YES;
+        
+        NSString* tempFileName = [@"import-" stringByAppendingString:self.appDelegate.importer.generateUUID];
+        NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
+                              stringByAppendingPathExtension:path.pathExtension];
+        NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
+        
+        DBDownloadUrlTask* downloadTask = [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+                                            setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
+                                                               NSURL *destination) {
+                                                if (result) {
+                                                    [downloadItem downloadComplete];
+                                                    [self.appDelegate.downloadManager removeItemFromQueue:downloadItem];
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
+                                                    });
+                                                }
+                                                else {
+                                                    NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
+                                                }
+                                            }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                                                [downloadItem updateProgressBytesWritten:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+                                            }];
+        
+        downloadItem.cancelTarget = downloadTask;
+        downloadItem.cancelSelector = NSSelectorFromString(@"cancel");
+        [self.appDelegate.downloadManager addItemToQueue:downloadItem];
+    });
 }
 
 

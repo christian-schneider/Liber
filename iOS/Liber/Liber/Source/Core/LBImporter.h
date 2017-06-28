@@ -25,13 +25,14 @@
 - (NSString *)applicationDocumentsDirectoryPath;
 
 - (void) deleteAlbum:(Album*)album;
+- (void) deleteTrackFile:(NSString*)path;
 
-- (void) writeTagsToFileAndThenReimport:(NSString*)filePath
-                             albumTitle:(NSString*)albumTitle
-                            albumArtist:(NSString*)albumArtist
-                                 artist:(NSString*)artist
-                             trackTitle:(NSString*)trackTitle
-                            trackNumber:(NSInteger)trackNumber
-                                 artwor:(UIImage*)artwork; 
+- (void) writeTagsToFile:(NSString*)filePath
+              albumTitle:(NSString*)albumTitle
+             albumArtist:(NSString*)albumArtist
+                  artist:(NSString*)artist
+              trackTitle:(NSString*)trackTitle
+             trackNumber:(NSInteger)trackNumber
+                  artwor:(UIImage*)artwork;
 
 @end

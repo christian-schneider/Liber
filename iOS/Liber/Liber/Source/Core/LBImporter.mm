@@ -244,7 +244,6 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         return nil;
     }
     
-    
     rawID3Tag = (char *)malloc(id3DataSize);
     
     //read raw ID3Tag
@@ -274,26 +273,13 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-/*
-    Writes the new info tags to an edited track that is still currently stored
-    in the documents directory. After the tags have been written, it moves the file
-    to the tmp folder with a temporary name, then triggers the usual import process.
-    Like this, the edited file should end up in the right place, maybe not at the right 
-    position, because any type of messed up situation could be present now as there 
-    could be already tracks in the target album, with or without indices.
-    This attempt tries to solve this complicated matter as gracefully as possible and
-    this really tries not to be a solve it all solution to this very messy problem domain,
-    it just tries to provide the tools to clean up a broken import resulting from
-    poorely tagged files.
- 
-*/
-- (void) writeTagsToFileAndThenReimport:(NSString*)filePath
-                             albumTitle:(NSString*)albumTitle
-                            albumArtist:(NSString*)albumArtist
-                                 artist:(NSString*)artist
-                             trackTitle:(NSString*)trackTitle
-                            trackNumber:(NSInteger)trackNumber
-                                 artwor:(UIImage*)artwork {
+- (void) writeTagsToFile:(NSString*)filePath
+              albumTitle:(NSString*)albumTitle
+             albumArtist:(NSString*)albumArtist
+                  artist:(NSString*)artist
+              trackTitle:(NSString*)trackTitle
+             trackNumber:(NSInteger)trackNumber
+                  artwor:(UIImage*)artwork {
     
     TagLib::FileRef taggableFileRef(filePath.UTF8String);
     taggableFileRef.tag()->setArtist(artist.UTF8String);
@@ -305,14 +291,6 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     if (albumArtist && albumArtist.length > 0) {
         [self setBandTagWitValue:albumArtist forFileAtPath:filePath];
     }
-
-    NSString* tempFileName = [@"import-" stringByAppendingString:self.generateUUID];
-    NSString* tempPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]
-                          stringByAppendingPathExtension:filePath.pathExtension];
-    NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
-    
-    [NSFileManager.defaultManager moveItemAtURL:[NSURL fileURLWithPath:filePath] toURL:outputUrl error:nil];
-    [self importFileIntoLibraryAtPath:tempPath originalFilename:filePath.lastPathComponent];
 }
 
 
@@ -413,6 +391,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
+#pragma mark - Album delete
+
 - (void) deleteAlbum:(Album*)album {
     
     NSString* fullAlbumPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:album.path];
@@ -450,7 +430,7 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-#pragma mark -- File System Operations
+#pragma mark - File system operations
 
 - (void) deleteDirectoryIfEmpty:(NSString*)path {
     

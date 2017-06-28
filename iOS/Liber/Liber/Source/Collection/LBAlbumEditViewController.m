@@ -266,21 +266,43 @@
 }
 
 
-- (IBAction)saveEditedAlbum:(id)sender {
+- (IBAction) saveEditedAlbum:(id)sender {
     
     [self.navigationController popToRootViewControllerAnimated:YES];
     
+    NSMutableArray* trackPathsToImport = [NSMutableArray arrayWithCapacity:self.orderedTracks.count];
+    
+    // copy media file to temp folder and apply new tags
+    
     NSInteger i = 0;
     for (Track* track in self.orderedTracks) {
-        [self.appDelegate.importer writeTagsToFileAndThenReimport:track.fullPath albumTitle:self.editedAlbumTitle albumArtist:nil artist:self.editedArtistName trackTitle:[self.editedTrackNames objectAtIndex:i] trackNumber:i+1 artwor:self.albumArtImageView.image];
-        [self.album removeTracksObject:track];
-        [track MR_deleteEntity];
+        NSString* tempPath = [NSTemporaryDirectory() stringByAppendingPathComponent:track.fullPath.lastPathComponent];
+        NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
+        NSError* error = nil;
+        [NSFileManager.defaultManager moveItemAtURL:[NSURL fileURLWithPath:track.fullPath] toURL:outputUrl error:&error];
+        if (error) {
+            NSLog(@"moving file failed!!! %@", track.fullPath.lastPathComponent);
+        }
+        else {
+            [trackPathsToImport addObject:tempPath];
+            [self.appDelegate.importer writeTagsToFile:tempPath albumTitle:self.editedAlbumTitle albumArtist:nil artist:self.editedArtistName trackTitle:[self.editedTrackNames objectAtIndex:i] trackNumber:i+1 artwor:self.albumArtImageView.image];
+        }
         i++;
+    }
+    
+    // remove old files from file sys and db
+    
+    for (Track* track in self.orderedTracks.reverseObjectEnumerator) {
+        [self.album removeTracksObject:track];
+        [self.album.artist removeTracksObject:track];
+        [self.orderedTracks removeObject:track];
+        [track MR_deleteEntity];
     }
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
     Artist* artist = self.album.artist;
     if (self.album.tracks.count == 0) {
+        [self.album.artist removeAlbumsObject:self.album];
         [self.album MR_deleteEntity];
         [artist removeAlbumsObject:self.album]; 
     }
@@ -290,6 +312,12 @@
         [artist MR_deleteEntity];
     }
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    // import all files in temp folder
+    
+    for (NSString* path in trackPathsToImport) {
+        [self.appDelegate.importer importFileIntoLibraryAtPath:path originalFilename:path.lastPathComponent];
+    }
 }
 
 
