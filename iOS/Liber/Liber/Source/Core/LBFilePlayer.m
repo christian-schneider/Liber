@@ -287,9 +287,6 @@
 
 - (void) routeChanged:(NSNotification*)notification {
     
-    //NSLog(@"Note: %@", notification) ;
-    //NSLog(@"") ;
-    
     NSInteger routeChangeReason = [notification.userInfo[AVAudioSessionRouteChangeReasonKey] integerValue];
     if (routeChangeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
         // The old device is unavailable == headphones have been unplugged

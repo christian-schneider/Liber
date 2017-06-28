@@ -137,14 +137,14 @@
         cell.album = self.album;
         
         if (!currentTrack || ![self.album.tracks containsObject:currentTrack]) {
-            cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:(Track*)[self.album.orderedTracks objectAtIndex:0]] ;
-        }
-        else {
-            cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:self.playQueue.currentTrack];
+            Track* firstTrack = [self.album.orderedTracks objectAtIndex:0];
+            cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:firstTrack] ;
+            cell.durationLabel.text = [NSString formatTime:firstTrack.duration];
         }
         
         if ([self.album.tracks containsObject:currentTrack]) { // the album with the current track currently played is displayed in this VC
             [cell updatePlayButtonImage:self.playQueue.isPlaying];
+            cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:self.playQueue.currentTrack];
             cell.timeSlider.value = self.playQueue.currentTrackCurrentPercent;
             cell.currentTimeLabel.text = self.playQueue.currentTrackCurrentTime;
             cell.durationLabel.text = self.playQueue.currentTrackDuration;
