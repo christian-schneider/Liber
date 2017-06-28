@@ -43,6 +43,9 @@
 
 @implementation LBAlbumEditViewController
 
+
+#pragma mark - View Lifecycle and Setup
+
 - (void) viewDidLoad {
     
     [super viewDidLoad];
@@ -81,7 +84,7 @@
     
     self.navigationController.navigationBar.topItem.title = @"";
     
-    self.orderedTracks = self.album.tracks.allObjects.mutableCopy;
+    self.orderedTracks = self.album.orderedTracks.mutableCopy;
     
     self.navigationController.hidesBarsOnSwipe = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -115,7 +118,7 @@
     if (album != _album) {
         _album = album;
         self.editedTrackNames = [NSMutableArray arrayWithCapacity:_album.tracks.count];
-        for (Track* track in _album.tracks) {
+        for (Track* track in _album.orderedTracks) {
             [self.editedTrackNames addObject:track.title];
         }
         self.editedArtistName = self.album.artist.name;
@@ -207,12 +210,13 @@
 }
 
 
-
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return 78.0f;
 }
 
+
+#pragma mark - Album Art
 
 - (void) chooseAlbumArt:(UIGestureRecognizer*)recognizer {
     
@@ -220,9 +224,8 @@
 }
 
 
-- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
+- (void) showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
 
-    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     imagePickerController.sourceType = sourceType;
@@ -236,9 +239,8 @@
 }
 
 
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     self.albumArtImageView.image = image;
     self.selectedAlbumArt = image;
@@ -249,8 +251,8 @@
 }
 
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
     [self dismissViewControllerAnimated:YES completion:^{
         //.. done dismissing
     }];
@@ -259,8 +261,7 @@
 
 #pragma mark - Actions
 
-
-- (IBAction)cancelAlbumEditing:(id)sender {
+- (IBAction) cancelAlbumEditing:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -298,18 +299,10 @@
         [self.orderedTracks removeObject:track];
         [track MR_deleteEntity];
     }
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    Artist* artist = self.album.artist;
     if (self.album.tracks.count == 0) {
         [self.album.artist removeAlbumsObject:self.album];
-        [self.album MR_deleteEntity];
-        [artist removeAlbumsObject:self.album]; 
-    }
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
-    if (artist.albums.count == 0) {
-        [artist MR_deleteEntity];
+        [self.appDelegate.importer deleteAlbum:self.album];
     }
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     

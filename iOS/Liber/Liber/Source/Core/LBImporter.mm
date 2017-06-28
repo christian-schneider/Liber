@@ -44,6 +44,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
+#pragma mark - Importer
+
 - (void) importFileIntoLibraryAtPath:(NSString*)filePath originalFilename:(NSString*)originalFilename {
     
     // find artist name, track title, album name, and image (all optional) from file
@@ -159,72 +161,7 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-- (BOOL) copyFileAtPath:(NSString*)filePath toDocumentsDirectoryInFolder:(NSString*)folderPath fileName:(NSString*)fileName {
-    
-    NSString* targetPath = [[self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath] stringByAppendingPathComponent:fileName];
-    NSError* error;
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    [fileManager moveItemAtPath:filePath toPath:targetPath error:&error];
-    if (error) {
-        NSLog(@"error moving file: %@ ---- %@", fileName, error.localizedDescription);
-        NSLog(@"filepath: %@", filePath);
-        NSLog(@"targetPath: %@", targetPath);
-        return NO;
-    }
-    return YES;
-}
-
-
-- (BOOL) createFolderInDocumentsDirIfNotExisting:(NSString*)folderPath {
-    
-    NSString* fullPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath];
-    
-    BOOL isDirectory;
-    if ([NSFileManager.defaultManager fileExistsAtPath:folderPath isDirectory:&isDirectory]) return YES && isDirectory;
-    
-    NSError * error = nil;
-    [[NSFileManager defaultManager] createDirectoryAtPath:fullPath
-                              withIntermediateDirectories:YES
-                                               attributes:nil
-                                                    error:&error];
-    if (error != nil) {
-        NSLog(@"error creating directory: %@", error);
-        return NO;
-    }
-    return YES;
-}
-
-
-- (BOOL) isPlayableMediaFileAtPath:(NSString*)path {
-
-    // atm, limit to files which usually have or can have embedded image data
-    NSArray* supportedMediaExtensions = @[
-        @"mp3",
-        @"mp4",
-        @"m4a"
-        
-        // below are all the supported audio formats file endings by iOS
-        // the current duration method should work on all of these
-        /*
-        @"aac",
-        @"adts",
-        @"ac3",
-        @"aif",
-        @"aiff",
-        @"aifc",
-        @"caf",
-        @"mp3",
-        @"mp4",
-        @"m4a",
-        @"snd",
-        @"au",
-        @"sd2",
-        @"wav"
-        */
-    ];
-    NSString* extension = path.pathExtension.lowercaseString;
-    return [supportedMediaExtensions containsObject:extension];
-}
+#pragma mark - Metadata Tags
 
 - (NSDictionary *)id3TagsForURL:(NSURL *)resourceUrl {
     
@@ -291,6 +228,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     if (albumArtist && albumArtist.length > 0) {
         [self setBandTagWitValue:albumArtist forFileAtPath:filePath];
     }
+    
+    // TODO: set artwork!!
 }
 
 
@@ -313,6 +252,8 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
     file.save();
 }
 
+
+#pragma mark - Various Utility Functions
 
 - (UIImage*) imageForItemAtFileURL:(NSURL*)url {
     
@@ -391,7 +332,75 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-#pragma mark - Album delete
+- (BOOL) copyFileAtPath:(NSString*)filePath toDocumentsDirectoryInFolder:(NSString*)folderPath fileName:(NSString*)fileName {
+    
+    NSString* targetPath = [[self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath] stringByAppendingPathComponent:fileName];
+    NSError* error;
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    [fileManager moveItemAtPath:filePath toPath:targetPath error:&error];
+    if (error) {
+        NSLog(@"error moving file: %@ ---- %@", fileName, error.localizedDescription);
+        NSLog(@"filepath: %@", filePath);
+        NSLog(@"targetPath: %@", targetPath);
+        return NO;
+    }
+    return YES;
+}
+
+
+- (BOOL) createFolderInDocumentsDirIfNotExisting:(NSString*)folderPath {
+    
+    NSString* fullPath = [self.applicationDocumentsDirectoryPath stringByAppendingPathComponent:folderPath];
+    
+    BOOL isDirectory;
+    if ([NSFileManager.defaultManager fileExistsAtPath:folderPath isDirectory:&isDirectory]) return YES && isDirectory;
+    
+    NSError * error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:fullPath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+        return NO;
+    }
+    return YES;
+}
+
+
+- (BOOL) isPlayableMediaFileAtPath:(NSString*)path {
+    
+    // atm, limit to files which usually have or can have embedded image data
+    NSArray* supportedMediaExtensions = @[
+                                          @"mp3",
+                                          @"mp4",
+                                          @"m4a"
+                                          
+                                          // below are all the supported audio formats file endings by iOS
+                                          // the current duration method should work on all of these
+                                          /*
+                                           @"aac",
+                                           @"adts",
+                                           @"ac3",
+                                           @"aif",
+                                           @"aiff",
+                                           @"aifc",
+                                           @"caf",
+                                           @"mp3",
+                                           @"mp4",
+                                           @"m4a",
+                                           @"snd",
+                                           @"au",
+                                           @"sd2",
+                                           @"wav"
+                                           */
+                                          ];
+    NSString* extension = path.pathExtension.lowercaseString;
+    return [supportedMediaExtensions containsObject:extension];
+}
+
+
+#pragma mark - Album Removal
 
 - (void) deleteAlbum:(Album*)album {
     
@@ -430,7 +439,7 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 
-#pragma mark - File system operations
+#pragma mark - File System Operations
 
 - (void) deleteDirectoryIfEmpty:(NSString*)path {
     
@@ -461,6 +470,5 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         }
     }
 }
-
 
 @end
