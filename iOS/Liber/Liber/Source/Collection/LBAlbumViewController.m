@@ -236,7 +236,7 @@
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
-    if (!self.presentingEditAlertController) {
+    if (!self.presentingEditAlertController && !(self.album == self.appDelegate.playQueue.currentTrack.album)) {
         
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
@@ -256,8 +256,14 @@
         
         actionSheet.view.tintColor = [UIColor blackColor];
         self.presentingEditAlertController = YES;
-        self.popoverPresentationController.sourceView = self.albumArtImageView;
-        self.popoverPresentationController.sourceRect = self.albumArtImageView.bounds;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        actionSheet.popoverPresentationController.sourceView = cell.contentView;
+        
+        CGRect rect = cell.contentView.frame;
+        actionSheet.popoverPresentationController.sourceRect = rect;
+        
         [self presentViewController:actionSheet animated:YES completion:nil];
         
     }

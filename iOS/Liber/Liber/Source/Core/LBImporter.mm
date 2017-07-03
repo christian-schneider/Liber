@@ -25,6 +25,14 @@ NSString* const LBAlbumTitle_ID     = @"LBAlbumTitle_ID";
 NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 
 
+struct TagLibImage {
+    TagLibImage(const TagLib::String &m = TagLib::String(), const TagLib::ByteVector &d = TagLib::ByteVector()) :
+    mimeType(m), data(d) {}
+    TagLib::String mimeType;
+    TagLib::ByteVector data;
+};
+
+
 @interface LBImporter()
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
@@ -109,6 +117,7 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
                   folderPath:(NSString*)folderPath {
     
     NSLog(@"trying to add the following item for artistName: %@ -- albumArtist: %@ -- albumTitle: %@ -- trackTitle: %@ -- duration: %f -- index: %@ -- fileName: %@", artistName, albumArtist, albumTitle, trackTitle, duration, index, fileName);
+    
     
     Artist* albumArtistEntity = [Artist MR_findFirstByAttribute:@"name" withValue:albumArtist];
     if (albumArtist && !albumArtistEntity) {
@@ -229,7 +238,13 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         [self setBandTagWitValue:albumArtist forFileAtPath:filePath];
     }
     
-    // TODO: set artwork!!
+    TagLibImage image;
+    image.mimeType = "image/jpeg";
+    image.data = TagLib::ByteVector((char *)[UIImageJPEGRepresentation(artwork, 1.0) bytes]);
+    TagLib::MPEG::File file(filePath.UTF8String);
+    TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
+    [self taglibSetImage:image forTag:tag];
+    file.save();
 }
 
 
@@ -250,6 +265,24 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
         frame->setText(value);
     }
     file.save();
+}
+
+
+- (void) taglibSetImage:(TagLibImage&)image forTag:(TagLib::ID3v2::Tag*)tag {
+    
+    TagLib::ID3v2::FrameList frames = tag->frameList("APIC");
+    TagLib::ID3v2::AttachedPictureFrame *frame = 0;
+    
+    if(frames.isEmpty()) {
+        frame = new TagLib::ID3v2::AttachedPictureFrame;
+        tag->addFrame(frame);
+    }
+    else {
+        frame = static_cast<TagLib::ID3v2::AttachedPictureFrame *>(frames.front());
+    }
+    
+    frame->setPicture(image.data);
+    frame->setMimeType(image.mimeType);
 }
 
 
@@ -472,3 +505,4 @@ NSString* const LBTrackIndex_ID     = @"LBTrackIndex_ID";
 }
 
 @end
+

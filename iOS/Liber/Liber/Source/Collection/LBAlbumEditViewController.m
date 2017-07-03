@@ -269,8 +269,8 @@
 
 - (IBAction) saveEditedAlbum:(id)sender {
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
+    // TODO: display saving overlay with spinner
+        
     NSMutableArray* trackPathsToImport = [NSMutableArray arrayWithCapacity:self.orderedTracks.count];
     
     // copy media file to temp folder and apply new tags
@@ -311,6 +311,9 @@
     for (NSString* path in trackPathsToImport) {
         [self.appDelegate.importer importFileIntoLibraryAtPath:path originalFilename:path.lastPathComponent];
     }
+
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

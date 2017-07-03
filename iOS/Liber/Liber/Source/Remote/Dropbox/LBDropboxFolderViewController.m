@@ -313,10 +313,7 @@
                                                                NSURL *destination) {
                                                 if (result) {
                                                     [downloadItem downloadComplete];
-                                                    [self.appDelegate.downloadManager removeItemFromQueue:downloadItem];
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                        [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
-                                                    });
+                                                    [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
                                                 }
                                                 else {
                                                     NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
