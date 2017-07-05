@@ -61,7 +61,8 @@
                                                             views:viewsDictionary];
     [self addConstraints:constraints];
     
-    if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)) {
+    if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)
+        && !(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)) {
         constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_albumTitleLabel][_artistNameLabel]"
                                                               options:0
                                                               metrics:nil
