@@ -28,6 +28,12 @@
         [self addSubview:_artistNameLabel];
     }
     [self updateConstraintsIfNeeded];
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self removeConstraints:self.constraints];
+        [self updateConstraints];
+    }];
+    
     return self;
 }
 
@@ -55,10 +61,19 @@
                                                             views:viewsDictionary];
     [self addConstraints:constraints];
     
-    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[_albumTitleLabel][_artistNameLabel]"
-                                                          options:0
-                                                          metrics:nil
-                                                            views:viewsDictionary];
+    if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)) {
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_albumTitleLabel][_artistNameLabel]"
+                                                              options:0
+                                                              metrics:nil
+                                                                views:viewsDictionary];
+    }
+    else {
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[_albumTitleLabel][_artistNameLabel]"
+                                                              options:0
+                                                              metrics:nil
+                                                                views:viewsDictionary];
+    }
+    
     [self addConstraints:constraints];
 }
 

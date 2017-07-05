@@ -238,13 +238,16 @@ struct TagLibImage {
         [self setBandTagWitValue:albumArtist forFileAtPath:filePath];
     }
     
-    TagLibImage image;
-    image.mimeType = "image/jpeg";
-    image.data = TagLib::ByteVector((char *)[UIImageJPEGRepresentation(artwork, 1.0) bytes]);
-    TagLib::MPEG::File file(filePath.UTF8String);
-    TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
-    [self taglibSetImage:image forTag:tag];
-    file.save();
+    if (artwork) {
+        TagLibImage image;
+        image.mimeType = "image/jpeg";
+        NSData* imageData = UIImageJPEGRepresentation(artwork, 1.0);
+        image.data = TagLib::ByteVector((const char *)[imageData bytes], (uint)imageData.length);
+        TagLib::MPEG::File file(filePath.UTF8String);
+        TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
+        [self taglibSetImage:image forTag:tag];
+        file.save();
+    }
 }
 
 

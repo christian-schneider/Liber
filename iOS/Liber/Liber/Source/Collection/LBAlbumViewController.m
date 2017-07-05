@@ -55,10 +55,18 @@
     self.tableView.estimatedRowHeight = 44.0;
     
     self.albumArtHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-    self.albumArtHeaderView.backgroundColor = [UIColor redColor];
     self.albumArtImageView = [[UIImageView alloc] initWithFrame:self.albumArtHeaderView.frame];
     [self.albumArtHeaderView addSubview:self.albumArtImageView];
     self.tableView.tableHeaderView = self.albumArtHeaderView;
+    
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        CGFloat newWidth = self.view.frame.size.width;
+        CGRect artworkRect = CGRectMake(0, 0, newWidth, newWidth);
+        self.albumArtHeaderView.frame = artworkRect;
+        self.albumArtImageView.frame = artworkRect;
+        [self.tableView reloadData];
+    }];
 }
 
 
