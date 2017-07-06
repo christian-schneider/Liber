@@ -18,7 +18,7 @@
 #import "LBDownloadsViewController.h"
 
 
-@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate>
+@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
 
@@ -43,6 +43,8 @@
 
 @property (nonatomic, readwrite) BOOL presentingEditAlertController;
 
+@property (nonatomic, readwrite) CGFloat itemSpacing;
+
 @end
 
 
@@ -53,6 +55,8 @@
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.itemSpacing = 4.0;
     
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -72,6 +76,12 @@
     UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
     [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
     self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
+    
+
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.collectionView reloadData];
+    }];
 }
 
 
@@ -177,17 +187,47 @@
 }
 
 
-/*
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return self.itemSpacing;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return self.itemSpacing;
+}
+
+
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat height = self.view.frame.size.height;
-    CGFloat width  = self.view.frame.size.width;
-    // in case you you want the cell to be 40% of your controllers view
-    return CGSizeMake(width*0.4,height*0.4);
+    int numberOfItemsPerLine = 0;
+    
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        
+        if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)) {
+            numberOfItemsPerLine = 6;
+        }
+        else {
+            numberOfItemsPerLine = 4;
+        }
+    }
+    else {
+        if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)) {
+            numberOfItemsPerLine = 4;
+        }
+        else {
+            numberOfItemsPerLine = 2;
+        }
+    }
+    
+    CGFloat screenWidth = self.view.frame.size.width - 2 * self.itemSpacing;
+    CGFloat totalSpacing = self.itemSpacing * numberOfItemsPerLine;
+    CGFloat itemSide = (screenWidth - totalSpacing) / numberOfItemsPerLine;
+    return CGSizeMake(itemSide, itemSide + 40.0);
 }
-*/
+
 
 
 #pragma mark - Actions
