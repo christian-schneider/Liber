@@ -271,14 +271,10 @@
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import Media Files", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self importThisFolder];
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
     }]];
     
     actionSheet.view.tintColor = [UIColor blackColor];
@@ -336,11 +332,9 @@
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Logout", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
         [DBClientsManager unlinkAndResetClients];
         [self.navigationController popToRootViewControllerAnimated:YES];
 

@@ -40,7 +40,6 @@
 		E7573DF81EEF0FE400292972 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC4711EEDA47C00583F6E /* libz.tbd */; };
 		E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46C1EEDA29C00583F6E /* libiconv.tbd */; };
 		E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
-		E7573E271EEF323400292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
 		E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */; };
 		E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */; };
@@ -347,7 +346,6 @@
 				E71DF7941EEC202F00AA17E3 /* Photos.framework in Frameworks */,
 				E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */,
 				E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */,
-				E7573E271EEF323400292972 /* TagLibIOS.framework in Frameworks */,
 				E71F543A1ECBA850006D265D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

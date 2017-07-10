@@ -249,13 +249,10 @@
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
             self.presentingEditAlertController = NO;
         }]];
         
         [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Edit", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"edit");
             self.presentingEditAlertController = NO;
             LBAlbumEditViewController* albumEditVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumEditViewController"];
             albumEditVC.album = self.album;

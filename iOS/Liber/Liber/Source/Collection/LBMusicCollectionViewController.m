@@ -73,7 +73,7 @@ typedef enum : NSUInteger {
     
     // collection view setup
     
-    self.sortByType = LBSortByAlbum;
+    self.sortByType = LBSortByTrack;
     self.itemSpacing = 4.0;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 4.0, 0, 4.0);
@@ -172,11 +172,11 @@ typedef enum : NSUInteger {
             break;
             
         case LBSortByArtist:
-            self.displayItems = [Album MR_findAllSortedBy:@"artist.name" ascending:YES];
+            self.displayItems = [Artist MR_findAllSortedBy:@"name" ascending:YES];
             break;
             
         case LBSortByTrack:
-            self.displayItems = [Album MR_findAllSortedBy:@"" ascending:YES];
+            self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES];
             break;
             
         case LBSortByLastPlayed:
@@ -189,6 +189,7 @@ typedef enum : NSUInteger {
             
     }
     [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 
@@ -205,15 +206,25 @@ typedef enum : NSUInteger {
 
 - (void) showCollectionView {
     
-    self.tableView.hidden = YES;
-    self.collectionView.hidden = NO;
+    if (self.collectionView.hidden == NO) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            self.collectionView.alpha = 1.0;
+        }];
+    }
 }
 
 
 - (void) showTableView {
     
-    self.tableView.hidden = NO;
-    self.collectionView.hidden = YES;
+    if (self.tableView.hidden == NO) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.collectionView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            self.tableView.alpha = 1.0;
+        }];
+    }
 }
 
 
@@ -227,7 +238,10 @@ typedef enum : NSUInteger {
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.displayItems.count;
+    if (self.sortByType == LBSortByAlbum) {
+        return self.displayItems.count;
+    }
+    return 0; 
 }
 
 
@@ -303,7 +317,10 @@ typedef enum : NSUInteger {
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.displayItems.count;
+    if (self.sortByType == LBSortByArtist || self.sortByType == LBSortByTrack) {
+        return self.displayItems.count;
+    }
+    return 0 ; 
 }
 
 
@@ -318,10 +335,18 @@ typedef enum : NSUInteger {
     else if (self.sortByType == LBSortByTrack) {
         LBTrackListTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"TrackListTableViewCell"];
         Track* track = [self.displayItems objectAtIndex:indexPath.row];
-        cell.textLabel.text = track.title;
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", track.artist.name, track.title];
         return cell;
     }
     return [[UITableViewCell alloc] init];
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.sortByType == LBSortByTrack) {
+        Track* track = [self.displayItems objectAtIndex:indexPath.row];
+        [self pushAlbumViewControllerForAlbum:track.album];
+    }
 }
 
 
@@ -341,7 +366,6 @@ typedef enum : NSUInteger {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     UIAlertAction* dropboxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dropbox", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -349,7 +373,6 @@ typedef enum : NSUInteger {
         LBDropboxFolderViewController* dropboxFolderVC = (LBDropboxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
         dropboxFolderVC.folderPath = @"";
         [self.navigationController pushViewController:dropboxFolderVC animated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     [dropboxAction setValue:[[UIImage imageNamed:@"DropboxIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
     [actionSheet addAction:dropboxAction];
@@ -365,23 +388,23 @@ typedef enum : NSUInteger {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Filter" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self showCollectionView];
         self.sortByType = LBSortByAlbum;
         [self updateDisplayItems];
+        
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self showTableView];
         self.sortByType = LBSortByArtist;
         [self updateDisplayItems];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self showTableView];
         self.sortByType = LBSortByTrack;
         [self updateDisplayItems];
     }]];
@@ -488,12 +511,10 @@ typedef enum : NSUInteger {
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
                 self.presentingEditAlertController = NO;
             }]];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
                 self.presentingEditAlertController = NO;
                 [self.appDelegate.importer deleteAlbum:album];
             }]];
