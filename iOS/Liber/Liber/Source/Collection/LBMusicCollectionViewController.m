@@ -61,6 +61,7 @@
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
     self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 4.0, 0, 4.0);
     self.searchBar.returnKeyType = UIReturnKeyDone;
     self.searchBar.enablesReturnKeyAutomatically = NO;
     
@@ -76,8 +77,6 @@
     UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
     [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
     self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
-    
-
     
     [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self.collectionView reloadData];
