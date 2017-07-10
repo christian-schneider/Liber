@@ -16,14 +16,25 @@
 #import "AppDelegate.h"
 #import "LBPlayQueue.h"
 #import "LBDownloadsViewController.h"
+#import "LBArtistListTableViewCell.h"
+#import "LBTrackListTableViewCell.h"
+
+typedef enum : NSUInteger {
+    LBSortByAlbum,
+    LBSortByArtist,
+    LBSortByTrack,
+    LBSortByLastPlayed,
+    LBSortByLastAdded
+} LBSortByType;
 
 
-@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate>
+@interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
 
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* importMusicBarButtonItem; 
 - (IBAction) importMusicBarButtonItemAction;
@@ -45,6 +56,8 @@
 
 @property (nonatomic, readwrite) CGFloat itemSpacing;
 
+@property (nonatomic, readwrite) LBSortByType sortByType;
+
 @end
 
 
@@ -56,14 +69,14 @@
     
     [super viewDidLoad];
     
-    self.itemSpacing = 4.0;
-    
     self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     
+    // collection view setup
+    
+    self.sortByType = LBSortByAlbum;
+    self.itemSpacing = 4.0;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 4.0, 0, 4.0);
-    self.searchBar.returnKeyType = UIReturnKeyDone;
-    self.searchBar.enablesReturnKeyAutomatically = NO;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
@@ -71,22 +84,31 @@
     lpgr.cancelsTouchesInView = NO;
     [self.collectionView addGestureRecognizer:lpgr];
     
+    [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.collectionView reloadData];
+    }];
+    
+    // search bar
+    
+    self.searchBar.returnKeyType = UIReturnKeyDone;
+    self.searchBar.enablesReturnKeyAutomatically = NO;
+    
+    // navigation bar
+    
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activityIndicator.hidesWhenStopped = YES;
     self.downloadsInProgressBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
     UITapGestureRecognizer* downloadTapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDownloadsInProgressBarButtonItemAction:)];
     [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
-    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
     
-    [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self.collectionView reloadData];
-    }];
+    self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
     self.searchBarHeightConstraint.constant = 0.0f;
     [self updateDisplayItems];
     
@@ -94,6 +116,13 @@
     
     [self updateDownloadsActivityIndicatorStatus];
     [self startObserving];
+    
+    if (self.sortByType == LBSortByAlbum) {
+        [self showCollectionView];
+    }
+    else {
+        [self showTableView];
+    }
 }
 
 
@@ -120,7 +149,6 @@
 
 #pragma mark - Status
 
-
 - (void) updateNowPlayingBarButtonItem {
     
     if (self.appDelegate.playQueue.currentTrack) {
@@ -136,7 +164,30 @@
 
 - (void) updateDisplayItems {
     
-    self.displayItems = [Album MR_findAll];
+    switch (self.sortByType) {
+            
+        default:
+        case LBSortByAlbum:
+            self.displayItems = [Album MR_findAllSortedBy:@"title" ascending:YES];
+            break;
+            
+        case LBSortByArtist:
+            self.displayItems = [Album MR_findAllSortedBy:@"artist.name" ascending:YES];
+            break;
+            
+        case LBSortByTrack:
+            self.displayItems = [Album MR_findAllSortedBy:@"" ascending:YES];
+            break;
+            
+        case LBSortByLastPlayed:
+            self.displayItems = [Album MR_findAllSortedBy:@"" ascending:YES];
+            break ;
+            
+        case LBSortByLastAdded:
+            self.displayItems = [Album MR_findAllSortedBy:@"" ascending:YES];
+            break;
+            
+    }
     [self.collectionView reloadData];
 }
 
@@ -152,7 +203,21 @@
 }
 
 
-#pragma mark - Collection View
+- (void) showCollectionView {
+    
+    self.tableView.hidden = YES;
+    self.collectionView.hidden = NO;
+}
+
+
+- (void) showTableView {
+    
+    self.tableView.hidden = NO;
+    self.collectionView.hidden = YES;
+}
+
+
+#pragma mark - Collection View (Albums)
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
@@ -228,6 +293,37 @@
 }
 
 
+#pragma mark - Table View (Artists and Tracks)
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+}
+
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.displayItems.count;
+}
+
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.sortByType == LBSortByArtist) {
+        LBArtistListTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ArtistListTableViewCell"];
+        Artist* artist = [self.displayItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = artist.name;
+        return cell;
+    }
+    else if (self.sortByType == LBSortByTrack) {
+        LBTrackListTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"TrackListTableViewCell"];
+        Track* track = [self.displayItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = track.title;
+        return cell;
+    }
+    return [[UITableViewCell alloc] init];
+}
+
 
 #pragma mark - Actions
 
@@ -274,14 +370,20 @@
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.sortByType = LBSortByAlbum;
+        [self updateDisplayItems];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Artist", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.sortByType = LBSortByArtist;
+        [self updateDisplayItems];
     }]];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Track", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.sortByType = LBSortByTrack;
+        [self updateDisplayItems];
     }]];
     
     actionSheet.view.tintColor = [UIColor blackColor];

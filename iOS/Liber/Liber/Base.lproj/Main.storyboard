@@ -98,14 +98,44 @@
                                     <outlet property="delegate" destination="JEX-9P-axG" id="QpZ-Qk-Roe"/>
                                 </connections>
                             </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E7m-u8-uIa">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistListTableViewCell" rowHeight="80" id="QCL-9z-Rpp" customClass="LBArtistListTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCL-9z-Rpp" id="y9O-92-Yfg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackListTableViewCell" id="AbG-xu-Zti" customClass="LBTrackListTableViewCell">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbG-xu-Zti" id="X9R-E2-xiA">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JEX-9P-axG" id="wwu-sN-SNF"/>
+                                    <outlet property="delegate" destination="JEX-9P-axG" id="svm-T0-eec"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="E7m-u8-uIa" firstAttribute="top" secondItem="hag-Dl-AdP" secondAttribute="bottom" id="6eN-zB-sed"/>
+                            <constraint firstAttribute="trailing" secondItem="E7m-u8-uIa" secondAttribute="trailing" id="DVC-jd-wTW"/>
                             <constraint firstItem="hYf-k6-zJh" firstAttribute="top" secondItem="hag-Dl-AdP" secondAttribute="bottom" id="DZz-QL-ZH3"/>
                             <constraint firstItem="hag-Dl-AdP" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="H0O-1U-aSE"/>
                             <constraint firstItem="hag-Dl-AdP" firstAttribute="trailing" secondItem="hYf-k6-zJh" secondAttribute="trailing" id="J8B-pY-xw9"/>
                             <constraint firstAttribute="trailing" secondItem="hag-Dl-AdP" secondAttribute="trailing" id="Qe1-pc-miQ"/>
+                            <constraint firstItem="E7m-u8-uIa" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="XUp-BE-lSo"/>
                             <constraint firstItem="hYf-k6-zJh" firstAttribute="bottom" secondItem="GAO-Cl-Wes" secondAttribute="top" id="bgV-if-82z"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="E7m-u8-uIa" secondAttribute="bottom" id="f6c-je-H6s"/>
                             <constraint firstItem="hag-Dl-AdP" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="mhX-Wa-3jm"/>
                             <constraint firstItem="hag-Dl-AdP" firstAttribute="leading" secondItem="hYf-k6-zJh" secondAttribute="leading" id="pBU-hG-Inm"/>
                         </constraints>
@@ -139,6 +169,7 @@
                         <outlet property="nowPlayingBarButtonItem" destination="SKI-ls-eib" id="QSx-bx-ED2"/>
                         <outlet property="searchBar" destination="hag-Dl-AdP" id="DMj-lA-4Lj"/>
                         <outlet property="searchBarHeightConstraint" destination="UFL-PJ-tvj" id="CPa-VV-DjC"/>
+                        <outlet property="tableView" destination="E7m-u8-uIa" id="AFp-bI-SLI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
