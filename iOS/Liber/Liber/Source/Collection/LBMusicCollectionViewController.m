@@ -33,7 +33,6 @@ typedef enum : NSUInteger {
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
-
 @property (nonatomic, strong) NSArray* observers;
 
 @property (nonatomic, strong) NSArray* displayItems;
@@ -55,12 +54,15 @@ typedef enum : NSUInteger {
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* searchBarHeightConstraint;
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
 @property (nonatomic, readwrite) BOOL showSearchBar;
+@property (nonatomic, strong) NSString* currentSearchString;
 
 @property (nonatomic, readwrite) BOOL presentingEditAlertController;
 
 @property (nonatomic, readwrite) CGFloat itemSpacing;
 
 @property (nonatomic, readwrite) LBSortByType sortByType;
+
+
 
 @end
 
@@ -119,7 +121,7 @@ typedef enum : NSUInteger {
     
     [super viewWillAppear:animated];
     
-    self.searchBarHeightConstraint.constant = 0.0f;
+    [self updateSearchBarVisibility];
     [self updateDisplayItems];
     
     [self updateNowPlayingBarButtonItem];
@@ -194,19 +196,47 @@ typedef enum : NSUInteger {
 
 - (void) updateDisplayItems {
     
+    BOOL gotSearchString = ![self.currentSearchString isEqualToString:@""] && self.currentSearchString;
+   
     switch (self.sortByType) {
             
         default:
         case LBSortByAlbum:
-            self.displayItems = [Album MR_findAllSortedBy:@"title" ascending:YES];
+            if (gotSearchString) {
+                NSPredicate* predicate = [NSPredicate predicateWithFormat:
+                    @"(title CONTAINS[cd] %@) OR (artist.name CONTAINS[cd] %@)",
+                    self.currentSearchString,
+                    self.currentSearchString];
+                self.displayItems = [Album MR_findAllSortedBy:@"title" ascending:YES withPredicate:predicate];
+            }
+            else {
+                self.displayItems = [Album MR_findAllSortedBy:@"title" ascending:YES];
+            }
             break;
             
         case LBSortByArtist:
-            self.displayItems = [Artist MR_findAllSortedBy:@"name" ascending:YES];
+            if (gotSearchString) {
+                NSPredicate* predicate = [NSPredicate predicateWithFormat:
+                                          @"(name CONTAINS[cd] %@)",
+                                          self.currentSearchString];
+                self.displayItems = [Artist MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate];
+            }
+            else {
+                self.displayItems = [Artist MR_findAllSortedBy:@"name" ascending:YES];
+            }
             break;
             
         case LBSortByTrack:
-            self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES];
+            if (gotSearchString) {
+                NSPredicate* predicate = [NSPredicate predicateWithFormat:
+                                          @"(title CONTAINS[cd] %@) OR (artist.name CONTAINS[cd] %@)",
+                                          self.currentSearchString,
+                                          self.currentSearchString];
+                self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES withPredicate:predicate];
+            }
+            else {
+                self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES];
+            }
             break;
             
         case LBSortByLastPlayed:
@@ -476,6 +506,8 @@ typedef enum : NSUInteger {
 
 - (void) setShowSearchBar:(BOOL)show {
     
+    if (_showSearchBar && ![self.currentSearchString isEqualToString:@""]) return ;
+    
     if (_showSearchBar != show) {
         _showSearchBar = show;
         [self updateSearchBarVisibility];
@@ -490,11 +522,11 @@ typedef enum : NSUInteger {
     if (self.showSearchBar ) {
         self.searchBarHeightConstraint.constant = 50.0f;
         [self.searchBar becomeFirstResponder];
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        //[self.navigationController setNavigationBarHidden:YES animated:YES];
     }
     else {
         self.searchBarHeightConstraint.constant = 0.0f;
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        //[self.navigationController setNavigationBarHidden:NO animated:YES];
     }
     
     [UIView animateWithDuration:0.25
@@ -506,11 +538,14 @@ typedef enum : NSUInteger {
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
-    NSLog(@"Filter now for: %@", searchText);
-    if ([searchText isEqualToString:@""]) {
+    self.currentSearchString = searchText;
+    /*
+    if ([self.currentSearchString isEqualToString:@""]) {
         self.searchBarHeightConstraint.constant = 50.0f;
         [self.navigationController setNavigationBarHidden:YES animated:NO];
     }
+     */
+    [self updateDisplayItems];
 }
 
 
