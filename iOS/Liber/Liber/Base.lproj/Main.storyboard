@@ -102,16 +102,62 @@
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistListTableViewCell" rowHeight="80" id="QCL-9z-Rpp" customClass="LBArtistListTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistListTableViewCell" rowHeight="106" id="QCL-9z-Rpp" customClass="LBArtistListTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCL-9z-Rpp" id="y9O-92-Yfg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jE-zB-8AT">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-Bf-3Hz">
+                                                    <rect key="frame" x="8" y="37" width="304" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JH8-dl-sM6">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ArtistAlbumsCollectionViewCell" id="AXG-Vc-QQY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </view>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="QCL-9z-Rpp" id="wUa-kG-9FH"/>
+                                                        <outlet property="delegate" destination="QCL-9z-Rpp" id="eug-Ht-vxd"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KAK-Bf-3Hz" firstAttribute="top" secondItem="8jE-zB-8AT" secondAttribute="bottom" constant="8" id="07B-WM-e0O"/>
+                                                <constraint firstItem="8jE-zB-8AT" firstAttribute="trailing" secondItem="y9O-92-Yfg" secondAttribute="trailingMargin" id="AzP-UZ-t0R"/>
+                                                <constraint firstItem="8jE-zB-8AT" firstAttribute="top" secondItem="y9O-92-Yfg" secondAttribute="topMargin" id="HlI-07-bGB"/>
+                                                <constraint firstItem="KAK-Bf-3Hz" firstAttribute="leading" secondItem="y9O-92-Yfg" secondAttribute="leadingMargin" id="UnN-7l-Xf3"/>
+                                                <constraint firstItem="8jE-zB-8AT" firstAttribute="leading" secondItem="y9O-92-Yfg" secondAttribute="leadingMargin" id="Utv-Rb-sPt"/>
+                                                <constraint firstItem="KAK-Bf-3Hz" firstAttribute="trailing" secondItem="y9O-92-Yfg" secondAttribute="trailingMargin" id="sKA-GC-yQf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KAK-Bf-3Hz" secondAttribute="bottom" constant="11" id="sWt-je-E1f"/>
+                                                <constraint firstItem="KAK-Bf-3Hz" firstAttribute="top" secondItem="8jE-zB-8AT" secondAttribute="bottom" constant="8" id="tYv-lm-t2I"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="KAK-Bf-3Hz" id="mkd-TC-ZV7"/>
+                                            <outlet property="nameLabel" destination="8jE-zB-8AT" id="V1k-fB-pgC"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackListTableViewCell" id="AbG-xu-Zti" customClass="LBTrackListTableViewCell">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="134" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbG-xu-Zti" id="X9R-E2-xiA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>

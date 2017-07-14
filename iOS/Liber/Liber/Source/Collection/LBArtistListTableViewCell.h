@@ -6,7 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Artist;
 
-@interface LBArtistListTableViewCell : UITableViewCell
+@interface LBArtistListTableViewCell : UITableViewCell 
+
+@property (nonatomic, strong) Artist* artist;
 
 @end
