@@ -26,6 +26,7 @@ extern NSString* const LBTrackEditEnded;
 extern NSString* const LBArtistEditEnded;
 extern NSString* const LBAlbumEditEnded;
 extern NSString* const LBDropboxLoginCancelled;
+extern NSString* const LBCollectionShowAlbum;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

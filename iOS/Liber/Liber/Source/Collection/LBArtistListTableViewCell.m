@@ -9,6 +9,8 @@
 #import "Artist+Functions.h"
 #import "Album+Functions.h"
 #import "LBArtistAlbumsCollectionViewCell.h"
+#import "AppDelegate.h"
+
 
 @interface LBArtistListTableViewCell() <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -16,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UILabel* nameLabel;
 
 @end
+
 
 @implementation LBArtistListTableViewCell
 
@@ -31,24 +34,11 @@
 }
 
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-
-
 - (void) setArtist:(Artist *)artist {
     _artist = artist;
     self.nameLabel.text = _artist.name;
-    for (Album* album in artist.albums.allObjects) {
-        NSLog(@"got an album: %@", album.title);
-    }
     [self.collectionView reloadData];
 }
-
 
 
 #pragma mark - Collection View (Albums)
@@ -68,10 +58,8 @@
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LBArtistAlbumsCollectionViewCell* colViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ArtistAlbumsCollectionViewCell" forIndexPath:indexPath];
-    
     Album* album = [self.artist.albumsSorted objectAtIndex:indexPath.row];
     [colViewCell.imageView setImage:album.artwork];
-
     return colViewCell;
 }
 
@@ -79,7 +67,7 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Album* album = [self.artist.albumsSorted objectAtIndex:indexPath.row];
-    NSLog(@"now show alubm: %@", album.title);
+    [NSNotificationCenter.defaultCenter postNotificationName:LBCollectionShowAlbum object:album];
 }
 
 

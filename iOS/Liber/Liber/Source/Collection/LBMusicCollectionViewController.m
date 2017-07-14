@@ -18,6 +18,8 @@
 #import "LBDownloadsViewController.h"
 #import "LBArtistListTableViewCell.h"
 #import "LBTrackListTableViewCell.h"
+#import "UIImage+Functions.h"
+
 
 typedef enum : NSUInteger {
     LBSortByAlbum,
@@ -31,6 +33,8 @@ typedef enum : NSUInteger {
 @interface LBMusicCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) AppDelegate* appDelegate;
+
+@property (nonatomic, strong) NSArray* observers;
 
 @property (nonatomic, strong) NSArray* displayItems;
 @property (nonatomic, strong) IBOutlet UICollectionView* collectionView;
@@ -177,7 +181,8 @@ typedef enum : NSUInteger {
 - (void) updateNowPlayingBarButtonItem {
     
     if (self.appDelegate.playQueue.currentTrack) {
-        self.nowPlayingBarButtonItem.image = [[self imageAlbumArtResizedForBarButtonImtem:self.appDelegate.playQueue.currentTrack.artwork] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        self.nowPlayingBarButtonItem.image = [[UIImage imageWithImage:self.appDelegate.playQueue.currentTrack.artwork scaledToSize:CGSizeMake(30.0, 30.0)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.navigationItem.leftBarButtonItems = @[self.nowPlayingBarButtonItem];
     }
     else {
@@ -563,47 +568,39 @@ typedef enum : NSUInteger {
 
 - (void) startObserving {
     
-    [NSNotificationCenter.defaultCenter addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    id observer1 = [NSNotificationCenter.defaultCenter addObserverForName:LBMusicItemAddedToCollection object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self updateDisplayItems];
     }];
     
-    [NSNotificationCenter.defaultCenter addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    id observer2 = [NSNotificationCenter.defaultCenter addObserverForName:LBAlbumDeleted object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self updateNowPlayingBarButtonItem];
         [self updateDisplayItems];
     }];
     
-    [NSNotificationCenter.defaultCenter addObserverForName:LBAddedDownloadItemToQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    id observer3 = [NSNotificationCenter.defaultCenter addObserverForName:LBAddedDownloadItemToQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         
         [self updateDownloadsActivityIndicatorStatus];
     }];
     
-    [NSNotificationCenter.defaultCenter addObserverForName:LBRemovedDownloadItemFromQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    id observer4 = [NSNotificationCenter.defaultCenter addObserverForName:LBRemovedDownloadItemFromQueue object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         
         [self updateDownloadsActivityIndicatorStatus];
     }];
+    
+    id observer5 = [NSNotificationCenter.defaultCenter addObserverForName:LBCollectionShowAlbum object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        Album* album = note.object;
+        [self pushAlbumViewControllerForAlbum:album];
+    }];
+    
+    self.observers = @[observer1, observer2, observer3, observer4, observer5];
 }
 
 
 - (void) stopObserving {
     
-    [NSNotificationCenter.defaultCenter removeObserver:self name:LBMusicItemAddedToCollection object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:LBAlbumDeleted object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:LBAddedDownloadItemToQueue object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:LBRemovedDownloadItemFromQueue object:nil];
-}
-
-
-#pragma mark - Utility 
-
-- (UIImage*) imageAlbumArtResizedForBarButtonImtem:(UIImage*)albumArt {
-    
-    CGFloat length = 30.0;
-    CGRect rect = CGRectMake(0,0,length,length);
-    UIGraphicsBeginImageContext(rect.size);
-    [albumArt drawInRect:rect];
-    UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return [UIImage imageWithData:UIImagePNGRepresentation(resizedImage)];
+    for (id observer in self.observers) {
+        [NSNotificationCenter.defaultCenter removeObserver:observer];
+    }
 }
 
 

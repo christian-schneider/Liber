@@ -25,6 +25,8 @@
 @property (nonatomic, weak) AppDelegate* appDelegate ;
 @property (nonatomic, weak) LBPlayQueue* playQueue;
 
+@property (nonatomic, strong) NSArray* observers;
+
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) LBPlayingTrackProgressCell* playingTrackCell;
 
@@ -199,7 +201,7 @@
 
 - (void) startObserving {
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    id observer1 = [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackPlayProgress object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         Track* currentTrack = self.appDelegate.playQueue.currentTrack;
         if ([self.album.tracks containsObject:currentTrack]) {
@@ -212,24 +214,26 @@
         }
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackStatusChanged object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    id observer2 = [[NSNotificationCenter defaultCenter] addObserverForName:LBCurrentTrackStatusChanged object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         [self handleCurrentTrackStatusChanged];
     }];
     
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:LBPlayQueueFinishedPlaying object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    id observer3 = [[NSNotificationCenter defaultCenter] addObserverForName:LBPlayQueueFinishedPlaying object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         [self handleCurrentTrackStatusChanged];
     }];
+    
+    self.observers = @[observer1, observer2, observer3];
 }
 
 
 - (void) stopObserving {
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackPlayProgress object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBCurrentTrackStatusChanged object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LBPlayQueueFinishedPlaying object:nil];
+    for (id observer in self.observers) {
+        [NSNotificationCenter.defaultCenter removeObserver:observer];
+    }
 }
 
 

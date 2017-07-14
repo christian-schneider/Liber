@@ -31,6 +31,8 @@
 @property (readwrite) BOOL loaded;
 @property (readwrite) BOOL loginCancelledByUser;
 
+@property (nonatomic, strong) NSArray* observers;
+
 @end
 
 
@@ -63,10 +65,12 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [NSNotificationCenter.defaultCenter addObserverForName:LBDropboxLoginCancelled object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    id observer1 = [NSNotificationCenter.defaultCenter addObserverForName:LBDropboxLoginCancelled object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         self.loginCancelledByUser = YES;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
+    
+    self.observers = @[observer1];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -110,7 +114,10 @@
 - (void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:LBDropboxLoginCancelled object:nil];
+    
+    for (id observer in self.observers) {
+        [NSNotificationCenter.defaultCenter removeObserver:observer];
+    }
 }
 
 

@@ -26,6 +26,7 @@ NSString* const LBTrackEditEnded                = @"LBTrackEditEnded";
 NSString* const LBArtistEditEnded               = @"LBArtistEditEnded";
 NSString* const LBAlbumEditEnded                = @"LBAlbumEditEnded";
 NSString* const LBDropboxLoginCancelled         = @"LBDropboxLoginCancelled";
+NSString* const LBCollectionShowAlbum           = @"LBCollectionShowAlbum";
 
 
 @implementation AppDelegate

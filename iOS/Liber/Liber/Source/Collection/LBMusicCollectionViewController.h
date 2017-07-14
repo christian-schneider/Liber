@@ -9,6 +9,5 @@
 
 @interface LBMusicCollectionViewController : UIViewController 
 
-
 @end
 
