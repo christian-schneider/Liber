@@ -159,9 +159,14 @@ struct TagLibImage {
     track.artist = artist;
     
     album.artist = albumArtistEntity ? albumArtistEntity : artist ;
+    [album addArtistsObject:artist];
+    if (albumArtistEntity) [album addArtistsObject:albumArtistEntity];
     [album addTracksObject:track];
     
     [artist addAlbumsObject:album];
+    if (albumArtist) {
+        [albumArtistEntity addAlbumsObject:album];
+    }
     [artist addTracksObject:track];
     
     //NSLog(@" now adding this album: %@ for Artist: %@", album.title, album.artist.name);

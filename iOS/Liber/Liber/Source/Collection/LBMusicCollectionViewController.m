@@ -80,7 +80,7 @@ typedef enum : NSUInteger {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.estimatedRowHeight = 54.0;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
@@ -106,6 +106,8 @@ typedef enum : NSUInteger {
     [self.activityIndicator addGestureRecognizer:downloadTapRecogniser];
     
     self.navigationItem.rightBarButtonItems = @[self.importMusicBarButtonItem, self.filterBarButtonItem, self.downloadsInProgressBarButtonItem];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO; // check if this is really needed!
 }
 
 
@@ -130,13 +132,6 @@ typedef enum : NSUInteger {
 }
 
 
-- (void) viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    [self stopObserving];
-}
-
-
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -145,9 +140,35 @@ typedef enum : NSUInteger {
 }
 
 
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    [self stopObserving];
+}
+
+
 - (BOOL) prefersStatusBarHidden {
  
     return YES;
+}
+
+
+/*
+    Reason for this extra update of the display items: when rotating very fast one way, then back in Album view mode
+    the sizing of the collection view cell is not working properly. Under normal "civilized" rotation, this is not
+    needed, but there are no visible artifacts from calling updateDisplayItems another time.
+*/
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        // Stuff you used to do in willRotateToInterfaceOrientation would go here.
+        // If you don't need anything special, you can set this block to nil.
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        // Stuff you used to do in didRotateFromInterfaceOrientation
+        [self updateDisplayItems];
+        
+    }];
 }
 
 
@@ -333,13 +354,13 @@ typedef enum : NSUInteger {
     if (self.sortByType == LBSortByArtist) {
         LBArtistListTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"ArtistListTableViewCell"];
         Artist* artist = [self.displayItems objectAtIndex:indexPath.row];
-        cell.textLabel.text = artist.name;
+        cell.artist = artist; 
         return cell;
     }
     else if (self.sortByType == LBSortByTrack) {
         LBTrackListTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"TrackListTableViewCell"];
         Track* track = [self.displayItems objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", track.artist.name, track.title];
+        cell.track = track;
         return cell;
     }
     return [[UITableViewCell alloc] init];

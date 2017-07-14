@@ -16,3 +16,6 @@
 [submodule "taglib-ios"]
 	path = iOS/Vendor/taglib-ios
 	url = https://bitbucket.org/mdahlbom/taglib-ios.git
+[submodule "box-ios-sdk"]
+	path = iOS/Vendor/box-ios-sdk
+	url = https://github.com/box/box-ios-sdk

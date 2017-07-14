@@ -6,18 +6,18 @@
 //
 
 #import "LBTrackListTableViewCell.h"
+#import "Track+Functions.h"
+#import "Album+Functions.h"
+#import "Artist+Functions.h"
 
 @implementation LBTrackListTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void) setTrack:(Track *)track {
+    
+    _track = track;
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ : %@", _track.artist.name, _track.title];
+    [self.albumArtImageView setImage:_track.album.artwork];
 }
 
 @end

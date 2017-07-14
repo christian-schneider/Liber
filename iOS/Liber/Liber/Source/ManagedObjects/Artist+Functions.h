@@ -11,4 +11,6 @@
 
 - (NSArray*) allArtistNames;
 
+- (NSArray*) albumsSorted; 
+
 @end

@@ -9,6 +9,7 @@
 #import "LBMusicCollectionViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
+#import <BoxContentSDK/BOXContentSDK.h>
 
 
 NSString* const LBMusicItemAddedToCollection    = @"LBMusicItemAddedToCollection";
@@ -24,6 +25,7 @@ NSString* const LBDownloadItemDownloadProgress  = @"LBDownloadItemDownloadProgre
 NSString* const LBTrackEditEnded                = @"LBTrackEditEnded";
 NSString* const LBArtistEditEnded               = @"LBArtistEditEnded";
 NSString* const LBAlbumEditEnded                = @"LBAlbumEditEnded";
+NSString* const LBDropboxLoginCancelled         = @"LBDropboxLoginCancelled";
 
 
 @implementation AppDelegate
@@ -31,6 +33,7 @@ NSString* const LBAlbumEditEnded                = @"LBAlbumEditEnded";
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [DBClientsManager setupWithAppKey:@"keq5g8vwa0wwb1q"];
+    [BOXContentClient setClientID:@"fydajs9irctec0s34ur0mgc41qyc63ch" clientSecret:@"pNzlQ7BPdxzn2LXRalQMjRAq4B77tlJv"];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
     self.importer = [[LBImporter alloc] init];
@@ -88,6 +91,7 @@ NSString* const LBAlbumEditEnded                = @"LBAlbumEditEnded";
             [[DBOAuthManager sharedOAuthManager] storeAccessToken:authResult.accessToken];
         } else if ([authResult isCancel]) {
             NSLog(@"Authorization flow was manually canceled by user!");
+            [NSNotificationCenter.defaultCenter postNotificationName:LBDropboxLoginCancelled object:nil];
         } else if ([authResult isError]) {
             NSLog(@"Error: %@", authResult);
         }

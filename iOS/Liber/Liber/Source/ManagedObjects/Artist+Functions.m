@@ -24,4 +24,12 @@
     return allArtistNames.allObjects;
 }
 
+
+- (NSArray*) albumsSorted {
+    
+    NSSortDescriptor *sortNameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = @[sortNameDescriptor];
+    return [self.albums sortedArrayUsingDescriptors:sortDescriptors];
+}
+
 @end

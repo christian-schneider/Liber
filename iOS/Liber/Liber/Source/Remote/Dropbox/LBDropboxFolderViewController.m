@@ -29,6 +29,7 @@
 - (IBAction) showImportActionController;
 
 @property (readwrite) BOOL loaded;
+@property (readwrite) BOOL loginCancelledByUser;
 
 @end
 
@@ -55,12 +56,26 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
+    
 }
 
+
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [NSNotificationCenter.defaultCenter addObserverForName:LBDropboxLoginCancelled object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        self.loginCancelledByUser = YES;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
 
 - (void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
+    
+    if (self.loginCancelledByUser) {
+        return;
+    }
     
     if (![DBClientsManager authorizedClient]) {
         [DBClientsManager authorizeFromController:[UIApplication sharedApplication]
@@ -89,6 +104,13 @@
         self.dropboxClient = [DBClientsManager authorizedClient];
         [self listRemoteFolder];
     }
+}
+
+
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:LBDropboxLoginCancelled object:nil];
 }
 
 

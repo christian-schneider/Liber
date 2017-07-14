@@ -46,6 +46,7 @@
 		E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E770808A1EEADC8000009088 /* LBAlbumEditViewController.m */; };
 		E770808F1EEAE08E00009088 /* LBTrackEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E770808E1EEAE08E00009088 /* LBTrackEditTableViewCell.m */; };
 		E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */; };
+		E7750B891F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7750B881F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m */; };
 		E7926E301F134B7000513CB8 /* LBArtistListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7926E2F1F134B7000513CB8 /* LBArtistListTableViewCell.m */; };
 		E7926E331F134B8200513CB8 /* LBTrackListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7926E321F134B8200513CB8 /* LBTrackListTableViewCell.m */; };
 		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
@@ -54,6 +55,8 @@
 		E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16F1EC977DA00700156 /* LBRemoteFileTableViewCell.m */; };
 		E7A5C1731EC977F400700156 /* LBRemoteFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */; };
 		E7A5C1771ECA394700700156 /* UIViewController+InfoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */; };
+		E7B4FFC01F18E7740031DE30 /* BoxContentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B4FFB71F18E7510031DE30 /* BoxContentSDK.framework */; };
+		E7B4FFC11F18E7740031DE30 /* BoxContentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B4FFB71F18E7510031DE30 /* BoxContentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7C32B321ECCE55C0038048E /* LBImporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7C32B311ECCE55C0038048E /* LBImporter.mm */; };
 		E7C32B6E1ECCFC4C0038048E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B6D1ECCFC4C0038048E /* AudioToolbox.framework */; };
 		E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C8677D1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m */; };
@@ -87,6 +90,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 905D07171A63DE190076B54E;
 			remoteInfo = "MagicalRecord for iOS";
+		};
+		E7B4FFB41F18E7510031DE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 15605D851A20132200C5EE5A;
+			remoteInfo = BoxContentSDKTests;
+		};
+		E7B4FFB61F18E7510031DE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 599B195A1E4BE65700709C27;
+			remoteInfo = BoxContentSDK;
+		};
+		E7B4FFC21F18E7740031DE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 599B19591E4BE65700709C27;
+			remoteInfo = BoxContentSDK;
 		};
 		E7C32B791ECD02EC0038048E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -217,6 +241,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */,
+				E7B4FFC11F18E7740031DE30 /* BoxContentSDK.framework in Embed Frameworks */,
 				E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */,
 				E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */,
 			);
@@ -308,6 +333,8 @@
 		E770808E1EEAE08E00009088 /* LBTrackEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBTrackEditTableViewCell.m; path = Source/Collection/LBTrackEditTableViewCell.m; sourceTree = "<group>"; };
 		E772C35B1ED7421A008BD303 /* LBMusicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBMusicCollectionViewCell.h; path = Source/Collection/LBMusicCollectionViewCell.h; sourceTree = "<group>"; };
 		E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBMusicCollectionViewCell.m; path = Source/Collection/LBMusicCollectionViewCell.m; sourceTree = "<group>"; };
+		E7750B871F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBArtistAlbumsCollectionViewCell.h; path = Source/Collection/LBArtistAlbumsCollectionViewCell.h; sourceTree = "<group>"; };
+		E7750B881F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBArtistAlbumsCollectionViewCell.m; path = Source/Collection/LBArtistAlbumsCollectionViewCell.m; sourceTree = "<group>"; };
 		E7926E2E1F134B7000513CB8 /* LBArtistListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBArtistListTableViewCell.h; path = Source/Collection/LBArtistListTableViewCell.h; sourceTree = "<group>"; };
 		E7926E2F1F134B7000513CB8 /* LBArtistListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBArtistListTableViewCell.m; path = Source/Collection/LBArtistListTableViewCell.m; sourceTree = "<group>"; };
 		E7926E311F134B8200513CB8 /* LBTrackListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBTrackListTableViewCell.h; path = Source/Collection/LBTrackListTableViewCell.h; sourceTree = "<group>"; };
@@ -324,6 +351,7 @@
 		E7A5C1721EC977F400700156 /* LBRemoteFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolderTableViewCell.m; path = Source/Remote/LBRemoteFolderTableViewCell.m; sourceTree = "<group>"; };
 		E7A5C1751ECA394700700156 /* UIViewController+InfoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+InfoMessage.h"; path = "Source/Util/UIViewController+InfoMessage.h"; sourceTree = "<group>"; };
 		E7A5C1761ECA394700700156 /* UIViewController+InfoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+InfoMessage.m"; path = "Source/Util/UIViewController+InfoMessage.m"; sourceTree = "<group>"; };
+		E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoxContentSDK.xcodeproj; path = "../Vendor/box-ios-sdk/BoxContentSDK/BoxContentSDK.xcodeproj"; sourceTree = "<group>"; };
 		E7C32B301ECCE55C0038048E /* LBImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBImporter.h; path = Source/Core/LBImporter.h; sourceTree = "<group>"; };
 		E7C32B311ECCE55C0038048E /* LBImporter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LBImporter.mm; path = Source/Core/LBImporter.mm; sourceTree = "<group>"; };
 		E7C32B6B1ECCF58A0038048E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -341,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */,
+				E7B4FFC01F18E7740031DE30 /* BoxContentSDK.framework in Frameworks */,
 				E7573DF81EEF0FE400292972 /* libz.tbd in Frameworks */,
 				E7573DF71EEF0FD700292972 /* libstdc++.tbd in Frameworks */,
 				E71DF7941EEC202F00AA17E3 /* Photos.framework in Frameworks */,
@@ -527,6 +556,7 @@
 		E73A662A1EBB7885004181DB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */,
 				E7448AED1ED368240095E754 /* lame.framework */,
 				E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */,
 				E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */,
@@ -542,6 +572,8 @@
 				E772C35C1ED7421A008BD303 /* LBMusicCollectionViewCell.m */,
 				E755D22C1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.h */,
 				E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */,
+				E7750B871F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.h */,
+				E7750B881F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m */,
 			);
 			name = "Custom Views & Cells";
 			sourceTree = "<group>";
@@ -691,6 +723,15 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		E7B4FFA91F18E7510031DE30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7B4FFB51F18E7510031DE30 /* BoxContentSDKTests.xctest */,
+				E7B4FFB71F18E7510031DE30 /* BoxContentSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E7C32B701ECD02EC0038048E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +800,7 @@
 			dependencies = (
 				E744CF4D1EDAF6C700C0FA92 /* PBXTargetDependency */,
 				E7201C551EDAF8B200A59BC7 /* PBXTargetDependency */,
+				E7B4FFC31F18E7740031DE30 /* PBXTargetDependency */,
 			);
 			name = Liber;
 			productName = Liber;
@@ -851,6 +893,10 @@
 					ProjectRef = E7C32B6F1ECD02EC0038048E /* AFNetworking.xcodeproj */;
 				},
 				{
+					ProductGroup = E7B4FFA91F18E7510031DE30 /* Products */;
+					ProjectRef = E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */;
+				},
+				{
 					ProductGroup = E7C32B9A1ECD03030038048E /* Products */;
 					ProjectRef = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
 				},
@@ -869,6 +915,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E7B4FFB51F18E7510031DE30 /* BoxContentSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BoxContentSDKTests.xctest;
+			remoteRef = E7B4FFB41F18E7510031DE30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7B4FFB71F18E7510031DE30 /* BoxContentSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxContentSDK.framework;
+			remoteRef = E7B4FFB61F18E7510031DE30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E7C32B7A1ECD02EC0038048E /* AFNetworking.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1051,6 +1111,7 @@
 				E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */,
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
 				E709E8A51EEB44410035FC49 /* MLPAutoCompleteTextField.m in Sources */,
+				E7750B891F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m in Sources */,
 				E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */,
 				E7C32B321ECCE55C0038048E /* LBImporter.mm in Sources */,
 				E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */,
@@ -1098,6 +1159,11 @@
 			isa = PBXTargetDependency;
 			name = "MagicalRecord for iOS";
 			targetProxy = E744CF4C1EDAF6C700C0FA92 /* PBXContainerItemProxy */;
+		};
+		E7B4FFC31F18E7740031DE30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxContentSDK;
+			targetProxy = E7B4FFC21F18E7740031DE30 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

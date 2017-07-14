@@ -5,11 +5,12 @@
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="artist" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" syncable="YES"/>
+        <relationship name="artists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Artist" inverseName="albums" inverseEntity="Artist" syncable="YES"/>
         <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" syncable="YES"/>
     </entity>
     <entity name="Artist" representedClassName="Artist" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" syncable="YES"/>
+        <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="artists" inverseEntity="Album" syncable="YES"/>
         <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" syncable="YES"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
@@ -21,7 +22,7 @@
         <relationship name="artist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Album" positionX="261" positionY="198" width="128" height="120"/>
+        <element name="Album" positionX="261" positionY="198" width="128" height="135"/>
         <element name="Artist" positionX="270" positionY="207" width="128" height="90"/>
         <element name="Track" positionX="288" positionY="216" width="128" height="135"/>
     </elements>
