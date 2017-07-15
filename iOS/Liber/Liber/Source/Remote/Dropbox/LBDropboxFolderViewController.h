@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBRemoteFolderViewController.h"
 
 
-@interface LBDropboxFolderViewController : UIViewController
+@interface LBDropboxFolderViewController : LBRemoteFolderViewController
 
-@property (nonatomic, strong) NSString* folderPath;
+
 
 @end

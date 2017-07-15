@@ -21,6 +21,7 @@
 		E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */; };
 		E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */; };
 		E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502E61EDAC1450049DF5F /* Track+Functions.m */; };
+		E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
@@ -290,6 +291,8 @@
 		E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayQueue.m; path = Source/Core/LBPlayQueue.m; sourceTree = "<group>"; };
 		E73502E51EDAC1450049DF5F /* Track+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Track+Functions.h"; path = "Source/ManagedObjects/Track+Functions.h"; sourceTree = "<group>"; };
 		E73502E61EDAC1450049DF5F /* Track+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Track+Functions.m"; path = "Source/ManagedObjects/Track+Functions.m"; sourceTree = "<group>"; };
+		E73530A71F1A2CDF00BE2EDB /* LBRemoteFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolderViewController.h; path = Source/Remote/LBRemoteFolderViewController.h; sourceTree = "<group>"; };
+		E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolderViewController.m; path = Source/Remote/LBRemoteFolderViewController.m; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
@@ -491,6 +494,13 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		E73530BA1F1A2CF800BE2EDB /* Box */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Box;
+			sourceTree = "<group>";
+		};
 		E73A65C91EBB73A0004181DB = {
 			isa = PBXGroup;
 			children = (
@@ -641,8 +651,11 @@
 				E7A5C1691EC976BC00700156 /* LBRemoteFile.m */,
 				E7A5C16B1EC976CF00700156 /* LBRemoteFolder.h */,
 				E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */,
+				E73530A71F1A2CDF00BE2EDB /* LBRemoteFolderViewController.h */,
+				E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */,
 				E7FFD7061EE174F9009FF307 /* TableViewCells */,
 				E7A5C1531EC9741900700156 /* Dropbox */,
+				E73530BA1F1A2CF800BE2EDB /* Box */,
 			);
 			name = Remote;
 			sourceTree = "<group>";
@@ -1096,6 +1109,7 @@
 				E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
+				E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */,
 				E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */,

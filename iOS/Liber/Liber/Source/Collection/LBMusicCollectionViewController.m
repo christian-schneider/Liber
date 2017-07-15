@@ -102,6 +102,7 @@ typedef enum : NSUInteger {
     
     self.searchBar.returnKeyType = UIReturnKeyDone;
     self.searchBar.enablesReturnKeyAutomatically = NO;
+    self.currentSearchString = @""; 
     
     // navigation bar
     
@@ -539,12 +540,6 @@ typedef enum : NSUInteger {
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     self.currentSearchString = searchText;
-    /*
-    if ([self.currentSearchString isEqualToString:@""]) {
-        self.searchBarHeightConstraint.constant = 50.0f;
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-    }
-     */
     [self updateDisplayItems];
 }
 
