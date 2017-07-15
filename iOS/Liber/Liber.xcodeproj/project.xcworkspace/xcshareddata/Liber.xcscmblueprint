@@ -8,6 +8,7 @@
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : 9223372036854775807,
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : 9223372036854775807,
     "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : 9223372036854775807,
+    "7242F32EC849D482A99C13FA855F3F56DD1FE6F6" : 9223372036854775807,
     "958932E9D08E4465709D54DB1E7CECF23B0F442E" : 9223372036854775807,
     "8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB" : 9223372036854775807,
     "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 9223372036854775807
@@ -18,6 +19,7 @@
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : "Liber\/iOS\/Vendor\/Dropbox\/",
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : "Liber\/",
     "A3B5B4FC025CD72CB41BD7CEA66647DBE1BD6AEB" : "Liber\/iOS\/Vendor\/libid3-ios\/",
+    "7242F32EC849D482A99C13FA855F3F56DD1FE6F6" : "Liber\/iOS\/Vendor\/box-ios-sdk\/",
     "958932E9D08E4465709D54DB1E7CECF23B0F442E" : "Liber\/iOS\/Vendor\/MagicalRecord\/",
     "8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB" : "Liber\/iOS\/Vendor\/MagicalRecord\/Carthage\/Checkouts\/expecta\/",
     "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "Liber\/iOS\/Vendor\/AFNetworking\/"
@@ -35,6 +37,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dropbox\/dropbox-sdk-obj-c",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/box\/box-ios-sdk",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7242F32EC849D482A99C13FA855F3F56DD1FE6F6"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/specta\/expecta.git",

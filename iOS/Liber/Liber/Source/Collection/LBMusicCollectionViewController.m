@@ -79,7 +79,7 @@ typedef enum : NSUInteger {
     
     // collection view setup
     
-    self.sortByType = LBSortByTrack;
+    self.sortByType = LBSortByAlbum;
     self.itemSpacing = 4.0;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 4.0, 0, 4.0);
