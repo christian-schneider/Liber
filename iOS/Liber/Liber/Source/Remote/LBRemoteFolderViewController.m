@@ -49,6 +49,7 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    self.navigationItem.title = @" ";
     // add any required observer to self.observers, removal is handled in this class -> viewWillDisappear
 }
 

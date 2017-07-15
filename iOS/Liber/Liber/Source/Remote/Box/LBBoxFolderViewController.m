@@ -21,46 +21,29 @@
     
     [super viewDidAppear:animated];
     
-    
-    BOXContentClient *contentClient = [BOXContentClient defaultClient];
-    LBBOXAuthorizationViewController *boxAuthViewController =
-    [[LBBOXAuthorizationViewController alloc]
-     initWithSDKClient:contentClient
-     completionBlock:^(BOXAuthorizationViewController *authorizationViewController, BOXUser *user, NSError *error) {
-         // BOXUser is returned if authentication was successful.
-         // Otherwise, error will contain the reason for failure (e.g. network connection)
-         // You should dismiss authorizationViewController here.
-         if (error == nil) {
-             NSLog(@"Logged in user: %@", user.login);
-             [self listRemoteFolder];
-         }
-         else {
-             NSLog(@"Box, error: %@", error.description);
-         }
-     } cancelBlock:^(BOXAuthorizationViewController *authorizationViewController){
-         // User has canceled the login process.
-         // You should dismiss authorizationViewController here.
-         [self.navigationController popToRootViewControllerAnimated:YES];
-     }];
-    
-    [self.navigationController pushViewController:boxAuthViewController animated:YES];
-    boxAuthViewController.navigationItem.leftBarButtonItem = nil;
-    
-    /*
     if (!BOXContentClient.defaultClient.user) {
-        [BOXContentClient.defaultClient authenticateWithCompletionBlock:^(BOXUser *user, NSError *error) {
-            if (error == nil) {
-                NSLog(@"Logged in user: %@", user.login);
-                [self listRemoteFolder];
-            }
-            else {
-                NSLog(@"Box, error: %@", error.description);
-            }
-        }];
         
-        BOXContentClient.defaultClient authenticateWithCompletionBlock:<#^(BOXUser *user, NSError *error)completion#>
+        BOXContentClient *contentClient = [BOXContentClient defaultClient];
+        LBBOXAuthorizationViewController *boxAuthViewController =
+        [[LBBOXAuthorizationViewController alloc]
+         initWithSDKClient:contentClient
+         completionBlock:^(BOXAuthorizationViewController *authorizationViewController, BOXUser *user, NSError *error) {
+             // BOXUser is returned if authentication was successful.
+             // Otherwise, error will contain the reason for failure (e.g. network connection)
+             // You should dismiss authorizationViewController here.
+             [self.navigationController popViewControllerAnimated:YES];
+             if (error) {
+                 NSLog(@"Box, error: %@", error.description);
+             }
+         } cancelBlock:^(BOXAuthorizationViewController *authorizationViewController){
+             // User has canceled the login process.
+             // You should dismiss authorizationViewController here.
+             [self.navigationController popToRootViewControllerAnimated:YES];
+         }];
+        
+        [self.navigationController pushViewController:boxAuthViewController animated:YES];
+        boxAuthViewController.navigationItem.leftBarButtonItem = nil;
     }
-     */
     
     if ([self.folderPath isEqualToString:BOXAPIFolderIDRoot]) {
         [self setHeaderIcon:[UIImage imageNamed:@"BoxIcon"]];

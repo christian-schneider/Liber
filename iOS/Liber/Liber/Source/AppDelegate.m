@@ -45,6 +45,10 @@ NSString* const LBCollectionShowAlbum           = @"LBCollectionShowAlbum";
         [UINavigationBar appearance].tintColor = [UIColor blackColor];
     }
     
+    NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
+    [titleBarAttributes setValue:[UIFont systemFontOfSize:16.0] forKey:UITextAttributeFont];
+    [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
+    
     return YES;
 }
 
