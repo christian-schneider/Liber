@@ -26,6 +26,7 @@
 		E73530C51F1A381400BE2EDB /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73530C31F1A37F600BE2EDB /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E73530CA1F1A45F500BE2EDB /* UILabel+Boldify.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530C91F1A45F500BE2EDB /* UILabel+Boldify.m */; };
 		E73530CD1F1A4B8E00BE2EDB /* LBBoxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530CC1F1A4B8E00BE2EDB /* LBBoxFolderViewController.m */; };
+		E73530DF1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530DE1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.m */; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
@@ -324,6 +325,8 @@
 		E73530C91F1A45F500BE2EDB /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "Source/Util/UILabel+Boldify.m"; sourceTree = "<group>"; };
 		E73530CB1F1A4B8E00BE2EDB /* LBBoxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBoxFolderViewController.h; path = Source/Remote/Box/LBBoxFolderViewController.h; sourceTree = "<group>"; };
 		E73530CC1F1A4B8E00BE2EDB /* LBBoxFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBoxFolderViewController.m; path = Source/Remote/Box/LBBoxFolderViewController.m; sourceTree = "<group>"; };
+		E73530DD1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBOXAuthorizationViewController.h; path = Source/Remote/Box/LBBOXAuthorizationViewController.h; sourceTree = "<group>"; };
+		E73530DE1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBOXAuthorizationViewController.m; path = Source/Remote/Box/LBBOXAuthorizationViewController.m; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 			children = (
 				E73530CB1F1A4B8E00BE2EDB /* LBBoxFolderViewController.h */,
 				E73530CC1F1A4B8E00BE2EDB /* LBBoxFolderViewController.m */,
+				E73530DD1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.h */,
+				E73530DE1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.m */,
 			);
 			name = Box;
 			sourceTree = "<group>";
@@ -1172,6 +1177,7 @@
 				E7926E301F134B7000513CB8 /* LBArtistListTableViewCell.m in Sources */,
 				E755D2401EDFFB0E00A78097 /* NSString+Functions.m in Sources */,
 				E7C8677E1EE5CB2D00E5E888 /* LBDownloadItemTableViewCell.m in Sources */,
+				E73530DF1F1A86AB00BE2EDB /* LBBOXAuthorizationViewController.m in Sources */,
 				E73A65E31EBB73A0004181DB /* LBMusicCollectionViewController.m in Sources */,
 				E755D2371EDF209C00A78097 /* UIImage+Functions.m in Sources */,
 				E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */,
