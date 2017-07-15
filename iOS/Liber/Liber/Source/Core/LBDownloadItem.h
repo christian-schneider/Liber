@@ -20,7 +20,7 @@
 @property (nonatomic, readonly) NSInteger totalBytesExpected;
 
 
-- (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected;
+- (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesExpected:(NSInteger)totalBytesExpected;
 
 - (void) downloadComplete;
 - (void) cancelDownload;

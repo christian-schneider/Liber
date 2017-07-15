@@ -781,10 +781,10 @@
             </objects>
             <point key="canvasLocation" x="-46" y="107"/>
         </scene>
-        <!--Dropbox Folder View Controller-->
+        <!--Remote Folder View Controller-->
         <scene sceneID="clZ-vp-9xN">
             <objects>
-                <viewController storyboardIdentifier="DropboxFolderViewController" id="qSq-4H-bch" customClass="LBDropboxFolderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RemoteFolderViewController" id="qSq-4H-bch" customClass="LBRemoteFolderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EY2-bJ-ikM"/>
                         <viewControllerLayoutGuide type="bottom" id="LK9-YS-Kaa"/>

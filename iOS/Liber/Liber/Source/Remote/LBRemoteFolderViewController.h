@@ -13,6 +13,7 @@
 @interface LBRemoteFolderViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString* folderPath;
+@property (nonatomic, strong) NSString* folderDisplayName;
 
 @property (readwrite) BOOL loginCancelledByUser;
 @property (readwrite) BOOL loaded;

@@ -35,7 +35,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
-    self.tableView.bounces = YES;
+    self.tableView.bounces = NO;
 }
 
 

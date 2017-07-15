@@ -11,30 +11,13 @@
 #import "LBRemoteFolder.h"
 #import "LBRemoteFile.h"
 #import "AppDelegate.h"
-#import "LBImporter.h"
 #import "LBDownloadItem.h"
-#import "LBDownloadManager.h"
-
-
-@interface LBDropboxFolderViewController () 
-
-@property (nonatomic, strong) DBUserClient* dropboxClient;
-
-@end
+#import <objc/runtime.h>
 
 
 @implementation LBDropboxFolderViewController
 
-
 #pragma mark - View Lifecycle
-
-- (void) viewDidLoad {
-    
-    [super viewDidLoad];
-    
-    self.dropboxClient = [DBClientsManager authorizedClient];
-}
-
 
 - (void) viewWillAppear:(BOOL)animated {
     
@@ -74,22 +57,19 @@
     }
     self.navigationController.hidesBarsOnSwipe = NO;
     
-    if (!self.loaded && [DBClientsManager authorizedClient]) {
-        // if the user logs out, then logs in again self.dropboxClient can be nil!!
-        // if this is the case, assign the new instance
-        self.dropboxClient = [DBClientsManager authorizedClient];
+    if (!self.loaded && DBClientsManager.authorizedClient) {
         [self listRemoteFolder];
     }
 }
 
 
-#pragma mark - Dropbox Listing
+#pragma mark - Dropbox api handling
 
 - (void) listRemoteFolder {
     
     [super listRemoteFolder];
     
-    [[self.dropboxClient.filesRoutes listFolder:self.folderPath]
+    [[DBClientsManager.authorizedClient.filesRoutes listFolder:self.folderPath]
      setResponseBlock:^(DBFILESListFolderResult *response, DBFILESListFolderError *routeError, DBRequestError *networkError) {
          if (response) {
              NSArray<DBFILESMetadata *> *entries = response.entries;
@@ -99,7 +79,7 @@
              [self handleEntries:entries];
              
              if (hasMore) {
-                 [self listFolderContinueWithClient:self.dropboxClient cursor:cursor];
+                 [self listFolderContinueWithClient:DBClientsManager.authorizedClient cursor:cursor];
              } else {
                  [self listFolderCompleted];
              }
@@ -168,19 +148,6 @@
 }
 
 
-#pragma mark - TableView
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 0) {       // folder
-        LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
-        LBDropboxFolderViewController *nextVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
-        nextVC.folderPath = remoteFolder.path;
-        [self.navigationController showViewController:nextVC sender:self];
-    }
-}
-
-
 - (void) downloadFileAndImportIntoLibrary:(NSString*)path {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -193,7 +160,7 @@
                               stringByAppendingPathExtension:path.pathExtension];
         NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
         
-        DBDownloadUrlTask* downloadTask = [[[self.dropboxClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
+        DBDownloadUrlTask* downloadTask = [[[DBClientsManager.authorizedClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
                                             setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
                                                                NSURL *destination) {
                                                 if (result) {
@@ -204,13 +171,31 @@
                                                     NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
                                                 }
                                             }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                                                [downloadItem updateProgressBytesWritten:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+                                                [downloadItem updateProgressBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
                                             }];
         
         downloadItem.cancelTarget = downloadTask;
         downloadItem.cancelSelector = NSSelectorFromString(@"cancel");
         [self.appDelegate.downloadManager addItemToQueue:downloadItem];
     });
+}
+
+
+#pragma mark - TableView
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {       // folder
+        LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
+        LBDropboxFolderViewController *nextVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteFolderViewController"];
+        object_setClass(nextVC, [LBDropboxFolderViewController class]);
+        nextVC.folderPath = remoteFolder.path;
+        nextVC.folderDisplayName = remoteFolder.name; 
+        [self.navigationController showViewController:nextVC sender:self];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 

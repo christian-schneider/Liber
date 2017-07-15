@@ -30,9 +30,9 @@
 }
 
 
-- (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpected:(NSInteger)totalBytesExpected {
+- (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesExpected:(NSInteger)totalBytesExpected {
     
-    self.totalBytesWritten = totalBytesWritten;
+    self.totalBytesWritten = bytesWritten;
     self.totalBytesExpected = totalBytesExpected;
     
     [NSNotificationCenter.defaultCenter postNotificationName:LBDownloadItemDownloadProgress object:self];

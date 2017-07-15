@@ -13,12 +13,15 @@
 #import "LBMusicCollectionViewCell.h"
 #import "LBAlbumViewController.h"
 #import "LBDropboxFolderViewController.h"
+#import "LBBoxFolderViewController.h"
 #import "AppDelegate.h"
 #import "LBPlayQueue.h"
 #import "LBDownloadsViewController.h"
 #import "LBArtistListTableViewCell.h"
 #import "LBTrackListTableViewCell.h"
 #import "UIImage+Functions.h"
+#import <objc/runtime.h>
+@import BoxContentSDK;
 
 
 typedef enum : NSUInteger {
@@ -429,14 +432,30 @@ typedef enum : NSUInteger {
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
     }]];
     
+    // Dropbox
+    
     UIAlertAction* dropboxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dropbox", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        LBDropboxFolderViewController* dropboxFolderVC = (LBDropboxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DropboxFolderViewController"];
+        LBDropboxFolderViewController* dropboxFolderVC = (LBDropboxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteFolderViewController"];
+        object_setClass(dropboxFolderVC, [LBDropboxFolderViewController class]);
         dropboxFolderVC.folderPath = @"";
         [self.navigationController pushViewController:dropboxFolderVC animated:YES];
     }];
     [dropboxAction setValue:[[UIImage imageNamed:@"DropboxIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
     [actionSheet addAction:dropboxAction];
+    
+    
+    // Box
+    
+    UIAlertAction* boxAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Box", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        LBBoxFolderViewController* boxFolderVC = (LBBoxFolderViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RemoteFolderViewController"];
+        object_setClass(boxFolderVC, [LBBoxFolderViewController class]);
+        boxFolderVC.folderPath = BOXAPIFolderIDRoot;
+        [self.navigationController pushViewController:boxFolderVC animated:YES];
+    }];
+    [boxAction setValue:[[UIImage imageNamed:@"BoxIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
+    [actionSheet addAction:boxAction];
     
     actionSheet.view.tintColor = [UIColor blackColor];
     actionSheet.popoverPresentationController.barButtonItem = self.importMusicBarButtonItem;
