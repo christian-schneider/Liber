@@ -81,7 +81,7 @@
     self.navigationItem.titleView = titleView;
     
     self.navigationController.navigationBar.topItem.title = @"";
-    self.albumArtImageView.image = [UIImage imageWithData:self.album.image];
+    self.albumArtImageView.image = self.album.artwork;
     self.albumArtImageView.userInteractionEnabled = YES;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];

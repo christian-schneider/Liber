@@ -314,7 +314,7 @@ typedef enum : NSUInteger {
     colViewCell.albumTitle.text = album.title;
     colViewCell.albumTitle.lineBreakMode = NSLineBreakByWordWrapping;
     colViewCell.albumTitle.numberOfLines = 2;
-    [colViewCell.imageView setImage:[UIImage imageWithData:album.image]];
+    [colViewCell.imageView setImage:album.artwork];
     return colViewCell;
 }
 

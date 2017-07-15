@@ -9,9 +9,17 @@
 #import "AppDelegate.h"
 #import "LBRemoteFile.h"
 #import "LBRemoteFolder.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 
 @interface LBRemoteFolderViewController ()
+
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+
+- (IBAction) showImportActionController;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
+
 @end
 
 
@@ -33,6 +41,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
+    
 }
 
 
@@ -162,7 +171,6 @@
 }
 
 
-
 #pragma mark - Logout
 
 - (void) titleViewTapped:(UIGestureRecognizer*)recognizer {
@@ -212,6 +220,19 @@
     for (LBRemoteFile* remoteFile in self.fileEntries) {
         [self downloadFileAndImportIntoLibrary:remoteFile.path];
     }
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    self.hud.mode = MBProgressHUDModeText;
+    self.hud.label.text = NSLocalizedString(@"Files added to download queue.", nil);
+    [self.hud addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelHud)]];
+    [self.hud hideAnimated:NO afterDelay:3.f];
+}
+
+
+- (void) cancelHud {
+    
+    [self.hud hide:YES];
+    self.hud = nil;
 }
 
 

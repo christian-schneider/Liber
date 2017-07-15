@@ -35,7 +35,12 @@
 
 - (UIImage*) artwork {
     
-    return [UIImage imageWithData:self.image];
+    if (self.image) {
+        return [UIImage imageWithData:self.image];
+    }
+    else {
+        return [UIImage imageNamed:@"NoCover"];
+    }
 }
 
 @end

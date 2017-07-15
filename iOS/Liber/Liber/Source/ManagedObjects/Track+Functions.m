@@ -39,7 +39,7 @@
     AppDelegate* appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
     UIImage* image = [appDelegate.importer imageForItemAtFileURL:[NSURL fileURLWithPath:self.fullPath]];
     if (!image) {
-        image = [UIImage imageWithData:self.album.image];
+        image = self.album.artwork;
     }
     return image;
 }

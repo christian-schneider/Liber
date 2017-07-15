@@ -19,3 +19,6 @@
 [submodule "box-ios-sdk"]
 	path = iOS/Vendor/box-ios-sdk
 	url = https://github.com/box/box-ios-sdk
+[submodule "MBProgressHUD"]
+	path = iOS/Vendor/MBProgressHUD
+	url = https://github.com/jdg/MBProgressHUD

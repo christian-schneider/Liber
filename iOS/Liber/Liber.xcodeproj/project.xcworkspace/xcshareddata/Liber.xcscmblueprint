@@ -4,6 +4,7 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4182765C525509B305166AB949D5935FD5C85212" : 9223372036854775807,
     "B98D736CAE3A1BBCCE6B00B164C7D3A0C71A0C3E" : 9223372036854775807,
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : 9223372036854775807,
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : 9223372036854775807,
@@ -15,6 +16,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F7BCCB5F-7940-4710-81C7-A8361F3EF839",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4182765C525509B305166AB949D5935FD5C85212" : "Liber\/iOS\/Vendor\/MBProgressHUD\/",
     "B98D736CAE3A1BBCCE6B00B164C7D3A0C71A0C3E" : "Liber\/iOS\/Vendor\/taglib-ios\/",
     "5712713D9680BFCBE1BF3AACF9B3E954EDDE4BE0" : "Liber\/iOS\/Vendor\/Dropbox\/",
     "4D44784CA25685A170FBADF1547D00CBCEFE88E5" : "Liber\/",
@@ -28,6 +30,11 @@
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOS\/Liber\/Liber.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/matej\/MBProgressHUD",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4182765C525509B305166AB949D5935FD5C85212"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/christian-schneider\/Liber.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

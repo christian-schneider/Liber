@@ -22,6 +22,8 @@
 		E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */; };
 		E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502E61EDAC1450049DF5F /* Track+Functions.m */; };
 		E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */; };
+		E73530C41F1A381400BE2EDB /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73530C31F1A37F600BE2EDB /* MBProgressHUD.framework */; };
+		E73530C51F1A381400BE2EDB /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73530C31F1A37F600BE2EDB /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E73A65D71EBB73A0004181DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D61EBB73A0004181DB /* main.m */; };
 		E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73A65D91EBB73A0004181DB /* AppDelegate.m */; };
 		E73A65DD1EBB73A0004181DB /* Liber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E73A65DB1EBB73A0004181DB /* Liber.xcdatamodeld */; };
@@ -70,6 +72,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = F26B75741D7F6AF700714F70;
 			remoteInfo = "ObjectiveDropboxOfficial iOS";
+		};
+		E73530C01F1A37F600BE2EDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D286A7491518C70F00E13FB8;
+			remoteInfo = "MBProgressHUD Static Library";
+		};
+		E73530C21F1A37F600BE2EDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D104D7A1ACA36CC00973364;
+			remoteInfo = "MBProgressHUD Framework";
+		};
+		E73530C61F1A381400BE2EDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D104D791ACA36CC00973364;
+			remoteInfo = "MBProgressHUD Framework";
 		};
 		E73A65F21EBB73A0004181DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -244,6 +267,7 @@
 				E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */,
 				E7B4FFC11F18E7740031DE30 /* BoxContentSDK.framework in Embed Frameworks */,
 				E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */,
+				E73530C51F1A381400BE2EDB /* MBProgressHUD.framework in Embed Frameworks */,
 				E744CF4B1EDAF6C700C0FA92 /* MagicalRecord.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -293,6 +317,7 @@
 		E73502E61EDAC1450049DF5F /* Track+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Track+Functions.m"; path = "Source/ManagedObjects/Track+Functions.m"; sourceTree = "<group>"; };
 		E73530A71F1A2CDF00BE2EDB /* LBRemoteFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFolderViewController.h; path = Source/Remote/LBRemoteFolderViewController.h; sourceTree = "<group>"; };
 		E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBRemoteFolderViewController.m; path = Source/Remote/LBRemoteFolderViewController.m; sourceTree = "<group>"; };
+		E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = ../Vendor/MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		E73A65D21EBB73A0004181DB /* Liber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73A65D61EBB73A0004181DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73A65D81EBB73A0004181DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
@@ -373,6 +398,7 @@
 			files = (
 				E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */,
 				E7B4FFC01F18E7740031DE30 /* BoxContentSDK.framework in Frameworks */,
+				E73530C41F1A381400BE2EDB /* MBProgressHUD.framework in Frameworks */,
 				E7573DF81EEF0FE400292972 /* libz.tbd in Frameworks */,
 				E7573DF71EEF0FD700292972 /* libstdc++.tbd in Frameworks */,
 				E71DF7941EEC202F00AA17E3 /* Photos.framework in Frameworks */,
@@ -501,6 +527,15 @@
 			name = Box;
 			sourceTree = "<group>";
 		};
+		E73530BC1F1A37F600BE2EDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E73530C11F1A37F600BE2EDB /* libMBProgressHUD.a */,
+				E73530C31F1A37F600BE2EDB /* MBProgressHUD.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E73A65C91EBB73A0004181DB = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +601,7 @@
 		E73A662A1EBB7885004181DB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */,
 				E7B4FFA81F18E7510031DE30 /* BoxContentSDK.xcodeproj */,
 				E7448AED1ED368240095E754 /* lame.framework */,
 				E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */,
@@ -814,6 +850,7 @@
 				E744CF4D1EDAF6C700C0FA92 /* PBXTargetDependency */,
 				E7201C551EDAF8B200A59BC7 /* PBXTargetDependency */,
 				E7B4FFC31F18E7740031DE30 /* PBXTargetDependency */,
+				E73530C71F1A381400BE2EDB /* PBXTargetDependency */,
 			);
 			name = Liber;
 			productName = Liber;
@@ -914,6 +951,10 @@
 					ProjectRef = E7C32B991ECD03030038048E /* MagicalRecord.xcodeproj */;
 				},
 				{
+					ProductGroup = E73530BC1F1A37F600BE2EDB /* Products */;
+					ProjectRef = E73530BB1F1A37F600BE2EDB /* MBProgressHUD.xcodeproj */;
+				},
+				{
 					ProductGroup = E7C32B881ECD02F30038048E /* Products */;
 					ProjectRef = E7C32B871ECD02F30038048E /* ObjectiveDropboxOfficial.xcodeproj */;
 				},
@@ -928,6 +969,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E73530C11F1A37F600BE2EDB /* libMBProgressHUD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMBProgressHUD.a;
+			remoteRef = E73530C01F1A37F600BE2EDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E73530C31F1A37F600BE2EDB /* MBProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MBProgressHUD.framework;
+			remoteRef = E73530C21F1A37F600BE2EDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E7B4FFB51F18E7510031DE30 /* BoxContentSDKTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1158,6 +1213,11 @@
 			isa = PBXTargetDependency;
 			name = "ObjectiveDropboxOfficial iOS";
 			targetProxy = E7201C541EDAF8B200A59BC7 /* PBXContainerItemProxy */;
+		};
+		E73530C71F1A381400BE2EDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MBProgressHUD Framework";
+			targetProxy = E73530C61F1A381400BE2EDB /* PBXContainerItemProxy */;
 		};
 		E73A65F31EBB73A0004181DB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
