@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LBArtistAlbumsCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView* imageView;

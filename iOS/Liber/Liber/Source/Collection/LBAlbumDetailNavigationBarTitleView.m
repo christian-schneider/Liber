@@ -18,7 +18,6 @@
 
 @implementation LBAlbumDetailNavigationBarTitleView
 
-
 - (id) initWithFrame:(CGRect)frame albumTitle:(NSString*)albumTitle artistName:(NSString*)artistName {
     
     if (self = [super initWithFrame:frame]) {
@@ -97,7 +96,6 @@
                                                               metrics:nil
                                                                 views:viewsDictionary];
     }
-    
     [self addConstraints:constraints];
 }
 

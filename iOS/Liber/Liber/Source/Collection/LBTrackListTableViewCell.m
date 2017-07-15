@@ -10,8 +10,8 @@
 #import "Album+Functions.h"
 #import "Artist+Functions.h"
 
-@implementation LBTrackListTableViewCell
 
+@implementation LBTrackListTableViewCell
 
 - (void) setTrack:(Track *)track {
     

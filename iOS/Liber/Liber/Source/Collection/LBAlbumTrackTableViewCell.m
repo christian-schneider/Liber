@@ -10,13 +10,11 @@
 
 @implementation LBAlbumTrackTableViewCell
 
-
 - (void) initialize {
     
     self.trackTitleLabel.text = @"";
     self.trackNumberLabel.text = @"";
     self.trackDurationLabel.text = @"0:00";
 }
-
 
 @end

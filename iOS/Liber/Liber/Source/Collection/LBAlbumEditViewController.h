@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 @class Album;
 
+
 @interface LBAlbumEditViewController : UIViewController
 
 @property (nonatomic, strong) Album* album;

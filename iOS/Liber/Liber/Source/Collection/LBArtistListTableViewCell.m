@@ -23,6 +23,7 @@
 @implementation LBArtistListTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) return nil;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -35,6 +36,7 @@
 
 
 - (void) setArtist:(Artist *)artist {
+    
     _artist = artist;
     self.nameLabel.text = _artist.name;
     [self.collectionView reloadData];
