@@ -15,4 +15,5 @@
 
 - (id) initWithFrame:(CGRect)frame albumTitle:(NSString*)albumTitle artistName:(NSString*)artistName;
 
+
 @end

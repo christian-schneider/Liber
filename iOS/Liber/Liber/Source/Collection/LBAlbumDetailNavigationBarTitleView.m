@@ -6,6 +6,14 @@
 //
 
 #import "LBAlbumDetailNavigationBarTitleView.h"
+#import "UILabel+Boldify.h"
+
+@interface LBAlbumDetailNavigationBarTitleView()
+
+@property (nonatomic, strong) NSString* albumTitle;
+@property (nonatomic, strong) NSString* artistName;
+
+@end
 
 
 @implementation LBAlbumDetailNavigationBarTitleView
@@ -14,15 +22,19 @@
 - (id) initWithFrame:(CGRect)frame albumTitle:(NSString*)albumTitle artistName:(NSString*)artistName {
     
     if (self = [super initWithFrame:frame]) {
-        _albumTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _albumTitleLabel.font = [UIFont boldSystemFontOfSize:13];
-        _albumTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _albumTitleLabel.text = albumTitle;
         
-        _artistNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _artistNameLabel.font = [UIFont systemFontOfSize:13];
-        _artistNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _artistNameLabel.text = artistName;
+        self.albumTitle = albumTitle;
+        self.artistName = artistName;
+        
+        self.albumTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.albumTitleLabel.font = [UIFont boldSystemFontOfSize:13];
+        self.albumTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.albumTitleLabel.text = albumTitle;
+        
+        self.artistNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.artistNameLabel.font = [UIFont systemFontOfSize:13];
+        self.artistNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.artistNameLabel.text = artistName;
         
         [self addSubview:_albumTitleLabel];
         [self addSubview:_artistNameLabel];
@@ -32,6 +44,17 @@
     [NSNotificationCenter.defaultCenter addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self removeConstraints:self.constraints];
         [self updateConstraints];
+        
+        if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)) {
+            self.albumTitleLabel.text = [NSString stringWithFormat:@"%@ - %@", self.albumTitle, self.artistName];
+            [self.albumTitleLabel unboldSubstring:self.artistName];
+            self.artistNameLabel.text = @"";
+        }
+        else {
+            self.albumTitleLabel.text = self.albumTitle;
+            self.artistNameLabel.text = self.artistName;
+        }
+        
     }];
     
     return self;
@@ -63,7 +86,7 @@
     
     if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation)
         && !(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)) {
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_albumTitleLabel][_artistNameLabel]"
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_albumTitleLabel][_artistNameLabel]"
                                                               options:0
                                                               metrics:nil
                                                                 views:viewsDictionary];
