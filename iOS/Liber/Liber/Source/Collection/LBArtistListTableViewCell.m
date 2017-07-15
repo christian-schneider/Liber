@@ -16,29 +16,26 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView* collectionView;
 @property (nonatomic, weak) IBOutlet UILabel* nameLabel;
+@property (nonatomic, strong) UICollectionViewFlowLayout* flowLayout;
 
 @end
 
 
 @implementation LBArtistListTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
-    if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) return nil;
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.itemSize = CGSizeMake(44, 44);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    [self.collectionView setCollectionViewLayout:layout];
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    return self;
-}
-
-
 - (void) setArtist:(Artist *)artist {
     
     _artist = artist;
     self.nameLabel.text = _artist.name;
+    
+    if (!self.flowLayout) {
+        self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        self.flowLayout.itemSize = CGSizeMake(44, 44);
+        self.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        [self.collectionView setCollectionViewLayout:self.flowLayout];
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+    }
+    
     [self.collectionView reloadData];
 }
 
