@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Album;
+@class Album, Track;
 
 
 /**
@@ -17,6 +17,7 @@
 @interface LBPlayingTrackProgressCell : UITableViewCell
 
 @property (nonatomic, weak) Album* album;
+@property (nonatomic, weak) Track* preselectedTrack;
 
 @property (nonatomic, weak) IBOutlet UILabel* currentTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel* durationLabel;

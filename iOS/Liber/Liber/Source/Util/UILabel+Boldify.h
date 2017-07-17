@@ -15,4 +15,7 @@
 - (void) unboldSubstring:(NSString*)string;
 - (void) unboldRange:(NSRange)range;
 
+- (void) mediumSubstring:(NSString*)string;
+- (void) mediumRange:(NSRange)range;
+
 @end

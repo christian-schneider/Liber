@@ -7,6 +7,7 @@
 
 #import "Album+Functions.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "Track+Functions.h"
 
 
 @implementation Album (Functions)
@@ -41,6 +42,12 @@
     else {
         return [UIImage imageNamed:@"NoCover"];
     }
+}
+
+
+- (NSInteger) indexOfTrack:(Track*)track {
+    
+    return [self.orderedTracks indexOfObject:track];
 }
 
 @end

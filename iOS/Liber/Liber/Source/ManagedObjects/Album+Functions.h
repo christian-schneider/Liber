@@ -7,6 +7,7 @@
 
 #import "Album+CoreDataClass.h"
 #import <UIKit/UIKit.h>
+@class Track;
 
 @interface Album (Functions)
 
@@ -15,5 +16,7 @@
 - (NSArray*) allAlbumTitles;
 
 - (UIImage*) artwork;
+
+- (NSInteger) indexOfTrack:(Track*)track;
 
 @end

@@ -327,7 +327,7 @@ typedef enum : NSUInteger {
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Album* album = [self.displayItems objectAtIndex:indexPath.row];
-    [self pushAlbumViewControllerForAlbum:album];
+    [self pushAlbumViewControllerForAlbum:album preselectedTrack:nil];
 }
 
 
@@ -411,7 +411,7 @@ typedef enum : NSUInteger {
     
     if (self.sortByType == LBSortByTrack) {
         Track* track = [self.displayItems objectAtIndex:indexPath.row];
-        [self pushAlbumViewControllerForAlbum:track.album];
+        [self pushAlbumViewControllerForAlbum:track.album preselectedTrack:track];
     }
 }
 
@@ -419,10 +419,13 @@ typedef enum : NSUInteger {
 #pragma mark - Actions
 
 
-- (void) pushAlbumViewControllerForAlbum:(Album*)album {
+- (void) pushAlbumViewControllerForAlbum:(Album*)album preselectedTrack:(Track*)preselectedTrack {
     
     LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
     albumViewController.album = album;
+    if (preselectedTrack) {
+        albumViewController.preselectedTrack = preselectedTrack;
+    }
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
@@ -500,7 +503,7 @@ typedef enum : NSUInteger {
 - (IBAction) nowPlayingBarButtonItemAction {
     
     if (self.appDelegate.playQueue.currentTrack) {
-        [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album];
+        [self pushAlbumViewControllerForAlbum:self.appDelegate.playQueue.currentTrack.album preselectedTrack:nil];
     }
 }
 
@@ -640,7 +643,7 @@ typedef enum : NSUInteger {
     
     id observer5 = [NSNotificationCenter.defaultCenter addObserverForName:LBCollectionShowAlbum object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         Album* album = note.object;
-        [self pushAlbumViewControllerForAlbum:album];
+        [self pushAlbumViewControllerForAlbum:album preselectedTrack:nil];
     }];
     
     self.observers = @[observer1, observer2, observer3, observer4, observer5];

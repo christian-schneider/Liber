@@ -146,18 +146,23 @@
         [cell initialize];
         cell.album = self.album;
         
-        if (!currentTrack || ![self.album.tracks containsObject:currentTrack]) {
+        if ((!currentTrack || ![self.album.tracks containsObject:currentTrack]) &&
+            !self.preselectedTrack) {
             Track* firstTrack = [self.album.orderedTracks objectAtIndex:0];
             cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:firstTrack] ;
             cell.durationLabel.text = [NSString formatTime:firstTrack.duration];
         }
-        
-        if ([self.album.tracks containsObject:currentTrack]) { // the album with the current track currently played is displayed in this VC
+        else if ([self.album.tracks containsObject:currentTrack]) { // the album with the current track currently played is displayed in this VC
             [cell updatePlayButtonImage:self.playQueue.isPlaying];
             cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:self.playQueue.currentTrack];
             cell.timeSlider.value = self.playQueue.currentTrackCurrentPercent;
             cell.currentTimeLabel.text = self.playQueue.currentTrackCurrentTime;
             cell.durationLabel.text = self.playQueue.currentTrackDuration;
+        }
+        else if (self.preselectedTrack && [self.album.tracks containsObject:self.preselectedTrack]) {
+            cell.preselectedTrack = self.preselectedTrack;
+            cell.trackTitleLabel.text = [self trackTitleLabelTextForTrack:self.preselectedTrack];
+            cell.durationLabel.text = [NSString formatTime:self.preselectedTrack.duration];
         }
         self.playingTrackCell = cell;
         return cell;

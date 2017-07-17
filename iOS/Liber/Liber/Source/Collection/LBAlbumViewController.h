@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Album;
+@class Album, Track;
 
 
 @interface LBAlbumViewController : UIViewController
 
 @property (nonatomic, strong) Album* album;
+@property (nonatomic, weak) Track* preselectedTrack;
 
 @end

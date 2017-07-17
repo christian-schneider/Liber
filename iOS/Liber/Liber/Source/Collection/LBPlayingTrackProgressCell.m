@@ -41,7 +41,11 @@
         (appDelegate.playQueue.currentTrack && ![self.album.tracks containsObject:appDelegate.playQueue.currentTrack])) {
         
         float timeSliderCurrentValue = self.timeSlider.value;
-        [appDelegate.playQueue playAlbum:self.album trackAtIndex:0];
+        NSInteger trackIndex = 0;
+        if (self.preselectedTrack) {
+            trackIndex = [self.album indexOfTrack:self.preselectedTrack];
+        }
+        [appDelegate.playQueue playAlbum:self.album trackAtIndex:trackIndex];
         if (timeSliderCurrentValue > 0.0) {
             [appDelegate.playQueue setCurrentTrackCurrentTimeRelative:self.timeSlider.value];
         }

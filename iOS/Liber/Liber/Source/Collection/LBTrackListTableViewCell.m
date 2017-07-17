@@ -18,7 +18,7 @@
     
     _track = track;
     self.titleLabel.text = [NSString stringWithFormat:@"%@ \n%@", _track.title, _track.artist.name];
-    [self.titleLabel boldSubstring:_track.artist.name];
+    [self.titleLabel mediumSubstring:_track.artist.name];
     [self.albumArtImageView setImage:_track.album.artwork];
 }
 
