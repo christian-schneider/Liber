@@ -16,6 +16,16 @@ https://github.com/rjyo/libid3-ios
 
 
 TODO: 
-- import on file level and folders recursive. 
-- cancel all downloads
-- write album art
+must:
+- import on file level
+- Track view to album view - preselect selected track
+- improve editing, split up in:
+	rename and order tracks
+	set album title and artist name
+	set album artwork
+
+nice:
+- cancel all downloads (?)
+- import folders recursive
+
+

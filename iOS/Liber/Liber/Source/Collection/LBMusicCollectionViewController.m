@@ -238,10 +238,10 @@ typedef enum : NSUInteger {
                                           @"(title CONTAINS[cd] %@) OR (artist.name CONTAINS[cd] %@)",
                                           self.currentSearchString,
                                           self.currentSearchString];
-                self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES withPredicate:predicate];
+                self.displayItems = [Track MR_findAllSortedBy:@"title,artist.name" ascending:YES withPredicate:predicate];
             }
             else {
-                self.displayItems = [Track MR_findAllSortedBy:@"artist.name,title" ascending:YES];
+                self.displayItems = [Track MR_findAllSortedBy:@"title,artist.name" ascending:YES];
             }
             break;
             
