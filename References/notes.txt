@@ -23,6 +23,10 @@ must:
 	rename and order tracks
 	set album title and artist name
 	set album artwork
+- clean up documents directory on every start and/or maybe periodically or after download queue finished. 
+- downloads should go to background queue!! bug, start download, goto lock screen - download stops in the middle
+- prevent adding the same file to download queue twice
+
 
 nice:
 - cancel all downloads (?)

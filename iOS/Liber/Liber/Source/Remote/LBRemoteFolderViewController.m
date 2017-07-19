@@ -166,14 +166,44 @@
 }
 
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 1) { // for files only
+        return YES;
+    }
+    return NO;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //Nothing gets called here if you invoke `tableView:editActionsForRowAtIndexPath:` according to Apple docs so just leave this method blank
+}
+
+
+-(NSArray*) tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 1) { // files only
+        
+        UITableViewRowAction *import = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:NSLocalizedString(@"Import", nil) handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+            NSLog(@"import this track");
+            [tableView setEditing:NO animated:YES];
+        }];
+        
+        return @[import];
+    }
+    return @[]; 
+}
+
+
+#pragma mark - Logout
+
+
 // must be implemented by subclass!
 - (void) performLogout {
     
     assert(0);
 }
 
-
-#pragma mark - Logout
 
 - (void) titleViewTapped:(UIGestureRecognizer*)recognizer {
     
@@ -201,12 +231,12 @@
 
 - (IBAction) showImportActionController {
     
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"All Files", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
     }]];
     
-    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import Media Files", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Import", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self importThisFolder];
     }]];
     
