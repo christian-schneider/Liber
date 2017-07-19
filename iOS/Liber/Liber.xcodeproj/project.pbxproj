@@ -47,6 +47,7 @@
 		E7573DF91EEF101B00292972 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E73DC46C1EEDA29C00583F6E /* libiconv.tbd */; };
 		E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
 		E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E759B1581F1FF58100F80161 /* LBCogIconBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E759B1571F1FF58100F80161 /* LBCogIconBackgroundView.m */; };
 		E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */; };
 		E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */; };
 		E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E770808A1EEADC8000009088 /* LBAlbumEditViewController.m */; };
@@ -360,6 +361,8 @@
 		E755D23E1EDFFB0E00A78097 /* NSString+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Functions.h"; path = "Source/Util/NSString+Functions.h"; sourceTree = "<group>"; };
 		E755D23F1EDFFB0E00A78097 /* NSString+Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Functions.m"; path = "Source/Util/NSString+Functions.m"; sourceTree = "<group>"; };
 		E7573E251EEF322B00292972 /* TagLibIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagLibIOS.framework; path = Frameworks/TagLibIOS.framework; sourceTree = "<group>"; };
+		E759B1561F1FF58100F80161 /* LBCogIconBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBCogIconBackgroundView.h; path = Source/Collection/LBCogIconBackgroundView.h; sourceTree = "<group>"; };
+		E759B1571F1FF58100F80161 /* LBCogIconBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBCogIconBackgroundView.m; path = Source/Collection/LBCogIconBackgroundView.m; sourceTree = "<group>"; };
 		E7644D231EE5BF8E00BD46C9 /* LBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadManager.h; path = Source/Core/LBDownloadManager.h; sourceTree = "<group>"; };
 		E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadManager.m; path = Source/Core/LBDownloadManager.m; sourceTree = "<group>"; };
 		E7644D351EE5C11A00BD46C9 /* LBDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadItem.h; path = Source/Core/LBDownloadItem.h; sourceTree = "<group>"; };
@@ -633,6 +636,8 @@
 				E755D22D1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m */,
 				E7750B871F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.h */,
 				E7750B881F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m */,
+				E759B1561F1FF58100F80161 /* LBCogIconBackgroundView.h */,
+				E759B1571F1FF58100F80161 /* LBCogIconBackgroundView.m */,
 			);
 			name = "Custom Views & Cells";
 			sourceTree = "<group>";
@@ -1198,6 +1203,7 @@
 				E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */,
 				E7A5C1701EC977DA00700156 /* LBRemoteFileTableViewCell.m in Sources */,
 				E709E8A51EEB44410035FC49 /* MLPAutoCompleteTextField.m in Sources */,
+				E759B1581F1FF58100F80161 /* LBCogIconBackgroundView.m in Sources */,
 				E7750B891F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m in Sources */,
 				E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */,
 				E7C32B321ECCE55C0038048E /* LBImporter.mm in Sources */,

@@ -69,7 +69,8 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    LBDownloadItem* downloadItem = [self.appDelegate.downloadManager.downloadQueue objectAtIndex:indexPath.row];
+    NSSortDescriptor* descriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:YES];
+    LBDownloadItem* downloadItem = [[self.appDelegate.downloadManager.downloadQueue sortedArrayUsingDescriptors:@[descriptor]] objectAtIndex:indexPath.row];
     
     LBDownloadItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadTableViewCell"];
     cell.downloadItem = downloadItem;

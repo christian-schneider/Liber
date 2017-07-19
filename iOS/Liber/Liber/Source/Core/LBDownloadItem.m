@@ -25,6 +25,7 @@
     
     if (self = [super init]) {
         self.appDelegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
+        self.created = [NSDate date]; 
     }
     return self;
 }
@@ -61,5 +62,16 @@
     return [NSString stringWithFormat:@"LBDownloadItem: %@", self.downloadPath];
 }
 
+
+- (BOOL) isEqual:(LBDownloadItem*)other {
+    
+    if (other == self) {
+        return YES;
+    }
+    if (![super isEqual:other]) {
+        return NO;
+    }
+    return [self.downloadPath isEqualToString:other.downloadPath];
+}
 
 @end

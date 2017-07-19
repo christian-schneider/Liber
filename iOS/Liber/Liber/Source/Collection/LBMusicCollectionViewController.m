@@ -58,6 +58,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
 @property (nonatomic, readwrite) BOOL showSearchBar;
 @property (nonatomic, strong) NSString* currentSearchString;
+@property (nonatomic, weak) IBOutlet UIButton* cogIconButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint* cogIconWidthConstraint;
+- (IBAction) cogIconAction;
 
 @property (nonatomic, readwrite) BOOL presentingEditAlertController;
 
@@ -90,6 +93,7 @@ typedef enum : NSUInteger {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 54.0;
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
@@ -105,7 +109,9 @@ typedef enum : NSUInteger {
     
     self.searchBar.returnKeyType = UIReturnKeyDone;
     self.searchBar.enablesReturnKeyAutomatically = NO;
-    self.currentSearchString = @""; 
+    self.currentSearchString = @"";
+    self.cogIconWidthConstraint.constant = 0.0;
+    self.searchBar.layer.borderWidth = 0.0;
     
     // navigation bar
     
@@ -235,7 +241,8 @@ typedef enum : NSUInteger {
         case LBSortByTrack:
             if (gotSearchString) {
                 NSPredicate* predicate = [NSPredicate predicateWithFormat:
-                                          @"(title CONTAINS[cd] %@) OR (artist.name CONTAINS[cd] %@)",
+                                          @"(title CONTAINS[cd] %@) OR (artist.name CONTAINS[cd] %@) OR (album.title CONTAINS[cd] %@)",
+                                          self.currentSearchString,
                                           self.currentSearchString,
                                           self.currentSearchString];
                 self.displayItems = [Track MR_findAllSortedBy:@"title,artist.name" ascending:YES withPredicate:predicate];
@@ -256,6 +263,7 @@ typedef enum : NSUInteger {
     }
     [self.collectionView reloadData];
     [self.tableView reloadData];
+    [self updateSearchBarVisibility];
 }
 
 
@@ -407,12 +415,22 @@ typedef enum : NSUInteger {
     return [[UITableViewCell alloc] init];
 }
 
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.sortByType == LBSortByTrack) {
+    if (self.sortByType == LBSortByTrack && !self.tableView.isEditing) {
         Track* track = [self.displayItems objectAtIndex:indexPath.row];
         [self pushAlbumViewControllerForAlbum:track.album preselectedTrack:track];
     }
+}
+
+
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.sortByType == LBSortByTrack) {
+        return YES;
+    }
+    return NO;
 }
 
 
@@ -546,12 +564,19 @@ typedef enum : NSUInteger {
     
     if (self.showSearchBar ) {
         self.searchBarHeightConstraint.constant = 50.0f;
-        [self.searchBar becomeFirstResponder];
-        //[self.navigationController setNavigationBarHidden:YES animated:YES];
+        //[self.searchBar becomeFirstResponder];
+        if (self.sortByType == LBSortByTrack) {
+            self.cogIconWidthConstraint.constant = 53.0f;
+        }
+        else {
+            self.cogIconWidthConstraint.constant = 0.0f;
+        }
     }
     else {
         self.searchBarHeightConstraint.constant = 0.0f;
-        //[self.navigationController setNavigationBarHidden:NO animated:YES];
+        if (self.tableView.isEditing) {
+            [self.tableView setEditing:NO animated:YES];
+        }
     }
     
     [UIView animateWithDuration:0.25
@@ -574,13 +599,42 @@ typedef enum : NSUInteger {
 }
 
 
+- (IBAction) cogIconAction {
+    
+    if (!self.tableView.isEditing) {
+        [self.tableView setEditing:YES animated:YES];
+    }
+    else {
+        
+        if (self.tableView.indexPathsForSelectedRows.count > 0) {
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self.tableView setEditing:NO animated:YES];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Move to Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"move these!");
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create new Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"create new album for these!");
+            }]];
+            
+            actionSheet.view.tintColor = [UIColor blackColor];
+            actionSheet.popoverPresentationController.sourceRect = self.cogIconButton.frame;
+            [self presentViewController:actionSheet animated:YES completion:nil];
+        }
+        else {
+            [self.tableView setEditing:NO animated:YES];
+        }
+    }
+}
+
+
 #pragma mark - Long Press Actions
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    
-    //if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-    //    return;
-    //}
     
     if (!self.presentingEditAlertController) {
         

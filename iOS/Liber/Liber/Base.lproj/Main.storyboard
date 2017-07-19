@@ -24,17 +24,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hag-Dl-AdP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QX1-Z1-zT1">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hag-Dl-AdP">
+                                        <rect key="frame" x="0.0" y="0.0" width="267" height="44"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JEX-9P-axG" id="CHg-sv-FzO"/>
+                                        </connections>
+                                    </searchBar>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je7-0t-lc0" customClass="LBCogIconBackgroundView">
+                                        <rect key="frame" x="267" y="0.0" width="53" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1S-Om-Xjz">
+                                                <rect key="frame" x="0.0" y="0.0" width="53" height="44"/>
+                                                <state key="normal" image="CogIcon"/>
+                                                <connections>
+                                                    <action selector="cogIconAction" destination="JEX-9P-axG" eventType="touchUpInside" id="70d-fO-ZcE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="53" id="HtF-Cy-I7X"/>
+                                            <constraint firstItem="G1S-Om-Xjz" firstAttribute="leading" secondItem="je7-0t-lc0" secondAttribute="leading" id="JEy-I5-RVh"/>
+                                            <constraint firstAttribute="trailing" secondItem="G1S-Om-Xjz" secondAttribute="trailing" id="gD4-oj-a6o"/>
+                                            <constraint firstAttribute="bottom" secondItem="G1S-Om-Xjz" secondAttribute="bottom" id="uUp-Z2-iGi"/>
+                                            <constraint firstItem="G1S-Om-Xjz" firstAttribute="top" secondItem="je7-0t-lc0" secondAttribute="top" id="wyr-fP-Cgg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="UFL-PJ-tvj"/>
+                                    <constraint firstItem="je7-0t-lc0" firstAttribute="top" secondItem="QX1-Z1-zT1" secondAttribute="top" id="33p-qk-bzn"/>
+                                    <constraint firstAttribute="trailing" secondItem="je7-0t-lc0" secondAttribute="trailing" id="3gt-l3-RDH"/>
+                                    <constraint firstItem="hag-Dl-AdP" firstAttribute="leading" secondItem="QX1-Z1-zT1" secondAttribute="leading" id="McU-T6-sSx"/>
+                                    <constraint firstAttribute="bottom" secondItem="je7-0t-lc0" secondAttribute="bottom" id="XZV-8v-TDz"/>
+                                    <constraint firstAttribute="height" constant="44" id="Zs5-KG-H0L"/>
+                                    <constraint firstItem="je7-0t-lc0" firstAttribute="leading" secondItem="hag-Dl-AdP" secondAttribute="trailing" id="vJY-fw-vbF"/>
+                                    <constraint firstItem="hag-Dl-AdP" firstAttribute="top" secondItem="QX1-Z1-zT1" secondAttribute="top" id="yLw-nk-cWB"/>
+                                    <constraint firstAttribute="bottom" secondItem="hag-Dl-AdP" secondAttribute="bottom" id="zBJ-kk-SuR"/>
                                 </constraints>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="JEX-9P-axG" id="CHg-sv-FzO"/>
-                                </connections>
-                            </searchBar>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hYf-k6-zJh">
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -217,17 +250,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="E7m-u8-uIa" firstAttribute="top" secondItem="hag-Dl-AdP" secondAttribute="bottom" id="6eN-zB-sed"/>
+                            <constraint firstItem="QX1-Z1-zT1" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="1Mw-FE-ZUz"/>
+                            <constraint firstItem="E7m-u8-uIa" firstAttribute="top" secondItem="QX1-Z1-zT1" secondAttribute="bottom" id="5O0-Kc-hHw"/>
                             <constraint firstAttribute="trailing" secondItem="E7m-u8-uIa" secondAttribute="trailing" id="DVC-jd-wTW"/>
-                            <constraint firstItem="hYf-k6-zJh" firstAttribute="top" secondItem="hag-Dl-AdP" secondAttribute="bottom" id="DZz-QL-ZH3"/>
-                            <constraint firstItem="hag-Dl-AdP" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="H0O-1U-aSE"/>
-                            <constraint firstItem="hag-Dl-AdP" firstAttribute="trailing" secondItem="hYf-k6-zJh" secondAttribute="trailing" id="J8B-pY-xw9"/>
-                            <constraint firstAttribute="trailing" secondItem="hag-Dl-AdP" secondAttribute="trailing" id="Qe1-pc-miQ"/>
+                            <constraint firstItem="QX1-Z1-zT1" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="PWq-Lk-5no"/>
+                            <constraint firstItem="hYf-k6-zJh" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Ud5-yZ-hFa"/>
                             <constraint firstItem="E7m-u8-uIa" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="XUp-BE-lSo"/>
                             <constraint firstItem="hYf-k6-zJh" firstAttribute="bottom" secondItem="GAO-Cl-Wes" secondAttribute="top" id="bgV-if-82z"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="E7m-u8-uIa" secondAttribute="bottom" id="f6c-je-H6s"/>
-                            <constraint firstItem="hag-Dl-AdP" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="mhX-Wa-3jm"/>
-                            <constraint firstItem="hag-Dl-AdP" firstAttribute="leading" secondItem="hYf-k6-zJh" secondAttribute="leading" id="pBU-hG-Inm"/>
+                            <constraint firstAttribute="trailing" secondItem="QX1-Z1-zT1" secondAttribute="trailing" id="fm2-4a-D07"/>
+                            <constraint firstAttribute="trailing" secondItem="hYf-k6-zJh" secondAttribute="trailing" id="hd2-Gd-rls"/>
+                            <constraint firstItem="hYf-k6-zJh" firstAttribute="top" secondItem="QX1-Z1-zT1" secondAttribute="bottom" id="kEd-Om-n2N"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -253,12 +286,14 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="cogIconButton" destination="G1S-Om-Xjz" id="daF-Od-LNB"/>
+                        <outlet property="cogIconWidthConstraint" destination="HtF-Cy-I7X" id="QdT-ZQ-0LT"/>
                         <outlet property="collectionView" destination="hYf-k6-zJh" id="vwz-Li-6QF"/>
                         <outlet property="filterBarButtonItem" destination="zp8-Z3-mbQ" id="N9R-MA-nDm"/>
                         <outlet property="importMusicBarButtonItem" destination="UK0-Dz-kOy" id="r4Z-yc-hHB"/>
                         <outlet property="nowPlayingBarButtonItem" destination="SKI-ls-eib" id="QSx-bx-ED2"/>
                         <outlet property="searchBar" destination="hag-Dl-AdP" id="DMj-lA-4Lj"/>
-                        <outlet property="searchBarHeightConstraint" destination="UFL-PJ-tvj" id="CPa-VV-DjC"/>
+                        <outlet property="searchBarHeightConstraint" destination="Zs5-KG-H0L" id="obl-dY-qsB"/>
                         <outlet property="tableView" destination="E7m-u8-uIa" id="AFp-bI-SLI"/>
                     </connections>
                 </viewController>
@@ -867,6 +902,7 @@
         <image name="AbortIcon" width="25" height="25"/>
         <image name="AudioFileIcon" width="25" height="25"/>
         <image name="BackwardIcon" width="25" height="25"/>
+        <image name="CogIcon" width="25" height="25"/>
         <image name="ForwardIcon" width="25" height="25"/>
         <image name="InIcon" width="25" height="25"/>
         <image name="LayersIcon" width="25" height="25"/>

@@ -19,6 +19,8 @@
 @property (nonatomic, readonly) NSInteger totalBytesWritten;
 @property (nonatomic, readonly) NSInteger totalBytesExpected;
 
+@property (nonatomic, strong) NSDate* created; 
+
 
 - (void) updateProgressBytesWritten:(NSInteger)bytesWritten totalBytesExpected:(NSInteger)totalBytesExpected;
 

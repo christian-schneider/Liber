@@ -90,7 +90,6 @@
 
 // must be implemented by subclass and call super
 - (void) listRemoteFolder {
- 
     
     [self.tableView.refreshControl beginRefreshing];
     [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - self.tableView.refreshControl.frame.size.height) animated:YES];
@@ -141,7 +140,6 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell* cell ;
-    
     if (indexPath.section == 0) {  // folders
         cell = [tableView dequeueReusableCellWithIdentifier:@"folderTableViewCell"];
         LBRemoteFolder* remoteFolder = [self.folderEntries objectAtIndex:indexPath.row];
@@ -180,13 +178,14 @@
 }
 
 
--(NSArray*) tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSArray*) tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1) { // files only
-        
         UITableViewRowAction *import = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:NSLocalizedString(@"Import", nil) handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            NSLog(@"import this track");
+            
             [tableView setEditing:NO animated:YES];
+            LBRemoteFile* remoteFile = [self.fileEntries objectAtIndex:indexPath.row];
+            [self downloadFileAndImportIntoLibrary:remoteFile.path];
         }];
         
         return @[import];

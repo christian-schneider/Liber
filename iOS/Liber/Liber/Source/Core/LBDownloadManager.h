@@ -11,7 +11,7 @@
 
 @interface LBDownloadManager : NSObject
 
-- (NSArray*) downloadQueue;
+- (NSSet*) downloadQueue;
 
 - (void) addItemToQueue:(LBDownloadItem*)item;
 - (void) removeItemFromQueue:(LBDownloadItem*)item;

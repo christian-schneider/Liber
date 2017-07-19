@@ -12,7 +12,7 @@
 
 @interface LBDownloadManager()
 
-@property (nonatomic, strong) NSMutableArray<LBDownloadItem*>* downloadQueue;
+@property (nonatomic, strong) NSMutableSet<LBDownloadItem*>* downloadQueue;
 
 @end
 
@@ -22,13 +22,13 @@
 - (id) init {
     
     if (self = [super init]) {
-        self.downloadQueue = [NSMutableArray arrayWithCapacity:10];
+        self.downloadQueue = [NSMutableSet setWithCapacity:10];
     }
     return self;
 }
 
 
-- (NSArray*) downloadQueue {
+- (NSSet*) downloadQueue {
     
     return _downloadQueue;
 }

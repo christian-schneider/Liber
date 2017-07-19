@@ -101,8 +101,6 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
-        
-        
         BOXFileRequest *fileInfoRequest = [BOXContentClient.defaultClient fileInfoRequestWithID:path];
         [fileInfoRequest performRequestWithCompletion:^(BOXFile *file, NSError *error) {
             if (!error) {

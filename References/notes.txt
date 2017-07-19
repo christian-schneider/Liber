@@ -17,8 +17,6 @@ https://github.com/rjyo/libid3-ios
 
 TODO: 
 must:
-- import on file level
-- Track view to album view - preselect selected track
 - improve editing, split up in:
 	rename and order tracks
 	set album title and artist name

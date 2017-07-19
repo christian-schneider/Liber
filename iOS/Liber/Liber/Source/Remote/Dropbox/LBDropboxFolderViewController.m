@@ -151,6 +151,7 @@
 - (void) downloadFileAndImportIntoLibrary:(NSString*)path {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
         LBDownloadItem* downloadItem = [[LBDownloadItem alloc] init];
         downloadItem.downloadPath = path;
         downloadItem.isDownloading = YES;
@@ -160,19 +161,19 @@
                               stringByAppendingPathExtension:path.pathExtension];
         NSURL* outputUrl = [NSURL fileURLWithPath:tempPath];
         
-        DBDownloadUrlTask* downloadTask = [[[DBClientsManager.authorizedClient.filesRoutes downloadUrl:path overwrite:YES destination:outputUrl]
-                                            setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError,
-                                                               NSURL *destination) {
-                                                if (result) {
-                                                    [downloadItem downloadComplete];
-                                                    [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
-                                                }
-                                                else {
-                                                    NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
-                                                }
-                                            }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                                                [downloadItem updateProgressBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
-                                            }];
+        DBDownloadUrlTask* downloadTask = [[[DBClientsManager.authorizedClient.filesRoutes
+            downloadUrl:path overwrite:YES destination:outputUrl]
+            setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *networkError, NSURL *destination) {
+                if (result) {
+                    [downloadItem downloadComplete];
+                    [self.appDelegate.importer importFileIntoLibraryAtPath:destination.path originalFilename:path.lastPathComponent];
+                }
+                else {
+                    NSLog(@"Error downloading file from dropbox: %@  --  %@", routeError, networkError);
+                }
+            }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                [downloadItem updateProgressBytesWritten:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+            }];
         
         downloadItem.cancelTarget = downloadTask;
         downloadItem.cancelSelector = NSSelectorFromString(@"cancel");
