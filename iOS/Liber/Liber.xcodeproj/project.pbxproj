@@ -48,6 +48,7 @@
 		E7573E261EEF322B00292972 /* TagLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; };
 		E7573E281EEF323400292972 /* TagLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7573E251EEF322B00292972 /* TagLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E759B1581F1FF58100F80161 /* LBCogIconBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E759B1571F1FF58100F80161 /* LBCogIconBackgroundView.m */; };
+		E7623E4B1F25B6AC00D003F2 /* LBAddToAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7623E4A1F25B6AC00D003F2 /* LBAddToAlbumViewController.m */; };
 		E7644D251EE5BF8E00BD46C9 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */; };
 		E7644D371EE5C11A00BD46C9 /* LBDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E7644D361EE5C11A00BD46C9 /* LBDownloadItem.m */; };
 		E770808B1EEADC8000009088 /* LBAlbumEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E770808A1EEADC8000009088 /* LBAlbumEditViewController.m */; };
@@ -363,6 +364,8 @@
 		E7573E251EEF322B00292972 /* TagLibIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagLibIOS.framework; path = Frameworks/TagLibIOS.framework; sourceTree = "<group>"; };
 		E759B1561F1FF58100F80161 /* LBCogIconBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBCogIconBackgroundView.h; path = Source/Collection/LBCogIconBackgroundView.h; sourceTree = "<group>"; };
 		E759B1571F1FF58100F80161 /* LBCogIconBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBCogIconBackgroundView.m; path = Source/Collection/LBCogIconBackgroundView.m; sourceTree = "<group>"; };
+		E7623E491F25B6AC00D003F2 /* LBAddToAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAddToAlbumViewController.h; path = Source/Collection/Editing/LBAddToAlbumViewController.h; sourceTree = "<group>"; };
+		E7623E4A1F25B6AC00D003F2 /* LBAddToAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAddToAlbumViewController.m; path = Source/Collection/Editing/LBAddToAlbumViewController.m; sourceTree = "<group>"; };
 		E7644D231EE5BF8E00BD46C9 /* LBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadManager.h; path = Source/Core/LBDownloadManager.h; sourceTree = "<group>"; };
 		E7644D241EE5BF8E00BD46C9 /* LBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDownloadManager.m; path = Source/Core/LBDownloadManager.m; sourceTree = "<group>"; };
 		E7644D351EE5C11A00BD46C9 /* LBDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDownloadItem.h; path = Source/Core/LBDownloadItem.h; sourceTree = "<group>"; };
@@ -685,6 +688,7 @@
 		E75FFEC91EC6F1AC00881694 /* Collection & Album */ = {
 			isa = PBXGroup;
 			children = (
+				E7623E371F25B67300D003F2 /* Editing New */,
 				E73A65E11EBB73A0004181DB /* LBMusicCollectionViewController.h */,
 				E73A65E21EBB73A0004181DB /* LBMusicCollectionViewController.m */,
 				E7221C771ED86CDD0002CE1A /* LBAlbumViewController.h */,
@@ -712,6 +716,15 @@
 				E73530BA1F1A2CF800BE2EDB /* Box */,
 			);
 			name = Remote;
+			sourceTree = "<group>";
+		};
+		E7623E371F25B67300D003F2 /* Editing New */ = {
+			isa = PBXGroup;
+			children = (
+				E7623E491F25B6AC00D003F2 /* LBAddToAlbumViewController.h */,
+				E7623E4A1F25B6AC00D003F2 /* LBAddToAlbumViewController.m */,
+			);
+			name = "Editing New";
 			sourceTree = "<group>";
 		};
 		E77080851EEAD30200009088 /* Download */ = {
@@ -1211,6 +1224,7 @@
 				E709E8911EEB06E10035FC49 /* LBArtistEditTableViewCell.m in Sources */,
 				E73A65D71EBB73A0004181DB /* main.m in Sources */,
 				E709E87F1EEB06D20035FC49 /* LBAlbumEditTableViewCell.m in Sources */,
+				E7623E4B1F25B6AC00D003F2 /* LBAddToAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

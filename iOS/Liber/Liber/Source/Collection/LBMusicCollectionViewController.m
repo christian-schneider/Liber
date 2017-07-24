@@ -21,6 +21,7 @@
 #import "LBTrackListTableViewCell.h"
 #import "UIImage+Functions.h"
 #import <objc/runtime.h>
+#import "LBAddToAlbumViewController.h"
 @import BoxContentSDK;
 
 
@@ -146,6 +147,7 @@ typedef enum : NSUInteger {
     }
     else {
         [self showTableView];
+        [self.tableView setEditing:NO]; 
     }
 }
 
@@ -436,7 +438,6 @@ typedef enum : NSUInteger {
 
 #pragma mark - Actions
 
-
 - (void) pushAlbumViewControllerForAlbum:(Album*)album preselectedTrack:(Track*)preselectedTrack {
     
     LBAlbumViewController* albumViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AlbumViewController"];
@@ -533,6 +534,87 @@ typedef enum : NSUInteger {
 }
 
 
+- (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    
+    if (!self.presentingEditAlertController) {
+        
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        if (indexPath == nil){
+            NSLog(@"couldn't find index path");
+        }
+        else {
+            Album* album = [self.displayItems objectAtIndex:indexPath.row];
+            
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                self.presentingEditAlertController = NO;
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                self.presentingEditAlertController = NO;
+                [self.appDelegate.importer deleteAlbum:album];
+            }]];
+            
+            actionSheet.view.tintColor = [UIColor blackColor];
+            self.presentingEditAlertController = YES;
+            
+            UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            actionSheet.popoverPresentationController.sourceView = cell.contentView;
+            
+            CGRect rect = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath].frame;
+            actionSheet.popoverPresentationController.sourceRect = rect;
+            
+            [self presentViewController:actionSheet animated:YES completion:nil];
+        }
+    }
+}
+
+
+- (IBAction) cogIconAction {
+    
+    if (!self.tableView.isEditing) {
+        [self.tableView setEditing:YES animated:YES];
+    }
+    else {
+        
+        if (self.tableView.indexPathsForSelectedRows.count > 0) {
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self.tableView setEditing:NO animated:YES];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Move to Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                NSArray* selected = self.tableView.indexPathsForSelectedRows;
+                NSMutableArray<Track*>* tracksToMove = [NSMutableArray arrayWithCapacity:selected.count];
+                for (NSIndexPath* path in selected) {
+                    Track* track = [self.displayItems objectAtIndex:path.row];
+                    [tracksToMove addObject:track];
+                }
+                
+                LBAddToAlbumViewController* addToAlbumVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddToAlbumViewController"];
+                addToAlbumVC.tracksToMoveAndAdd = tracksToMove;
+                [self.navigationController pushViewController:addToAlbumVC animated:YES];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create new Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"create new album for these!");
+            }]];
+            
+            actionSheet.view.tintColor = [UIColor blackColor];
+            actionSheet.popoverPresentationController.sourceRect = self.cogIconButton.frame;
+            [self presentViewController:actionSheet animated:YES completion:nil];
+        }
+        else {
+            [self.tableView setEditing:NO animated:YES];
+        }
+    }
+}
+
+
 #pragma mark - Search Bar
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -599,77 +681,7 @@ typedef enum : NSUInteger {
 }
 
 
-- (IBAction) cogIconAction {
-    
-    if (!self.tableView.isEditing) {
-        [self.tableView setEditing:YES animated:YES];
-    }
-    else {
-        
-        if (self.tableView.indexPathsForSelectedRows.count > 0) {
-            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                [self.tableView setEditing:NO animated:YES];
-            }]];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Move to Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"move these!");
-            }]];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create new Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"create new album for these!");
-            }]];
-            
-            actionSheet.view.tintColor = [UIColor blackColor];
-            actionSheet.popoverPresentationController.sourceRect = self.cogIconButton.frame;
-            [self presentViewController:actionSheet animated:YES completion:nil];
-        }
-        else {
-            [self.tableView setEditing:NO animated:YES];
-        }
-    }
-}
 
-
-#pragma mark - Long Press Actions
-
-- (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    
-    if (!self.presentingEditAlertController) {
-        
-        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-        if (indexPath == nil){
-            NSLog(@"couldn't find index path");
-        }
-        else {
-            Album* album = [self.displayItems objectAtIndex:indexPath.row];
-            
-            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                self.presentingEditAlertController = NO;
-            }]];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                self.presentingEditAlertController = NO;
-                [self.appDelegate.importer deleteAlbum:album];
-            }]];
-            
-            actionSheet.view.tintColor = [UIColor blackColor];
-            self.presentingEditAlertController = YES;
-            
-            UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-            actionSheet.popoverPresentationController.sourceView = cell.contentView;
-            
-            CGRect rect = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath].frame;
-            actionSheet.popoverPresentationController.sourceRect = rect;
-            
-            [self presentViewController:actionSheet animated:YES completion:nil];
-        }
-    }
-}
 
 
 #pragma mark - Observing
