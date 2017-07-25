@@ -57,6 +57,7 @@
 		E7750B891F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7750B881F18B83600FFDEA6 /* LBArtistAlbumsCollectionViewCell.m */; };
 		E7926E301F134B7000513CB8 /* LBArtistListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7926E2F1F134B7000513CB8 /* LBArtistListTableViewCell.m */; };
 		E7926E331F134B8200513CB8 /* LBTrackListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7926E321F134B8200513CB8 /* LBTrackListTableViewCell.m */; };
+		E79FB5E71F26923100067543 /* LBNewAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79FB5E61F26923100067543 /* LBNewAlbumViewController.m */; };
 		E7A5C1671EC9746400700156 /* LBDropboxFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */; };
 		E7A5C16A1EC976BC00700156 /* LBRemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C1691EC976BC00700156 /* LBRemoteFile.m */; };
 		E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5C16C1EC976CF00700156 /* LBRemoteFolder.m */; };
@@ -382,6 +383,8 @@
 		E7926E2F1F134B7000513CB8 /* LBArtistListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBArtistListTableViewCell.m; path = Source/Collection/LBArtistListTableViewCell.m; sourceTree = "<group>"; };
 		E7926E311F134B8200513CB8 /* LBTrackListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBTrackListTableViewCell.h; path = Source/Collection/LBTrackListTableViewCell.h; sourceTree = "<group>"; };
 		E7926E321F134B8200513CB8 /* LBTrackListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBTrackListTableViewCell.m; path = Source/Collection/LBTrackListTableViewCell.m; sourceTree = "<group>"; };
+		E79FB5E51F26923100067543 /* LBNewAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBNewAlbumViewController.h; path = Source/Collection/Editing/LBNewAlbumViewController.h; sourceTree = "<group>"; };
+		E79FB5E61F26923100067543 /* LBNewAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBNewAlbumViewController.m; path = Source/Collection/Editing/LBNewAlbumViewController.m; sourceTree = "<group>"; };
 		E7A5C1651EC9746400700156 /* LBDropboxFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDropboxFolderViewController.h; path = Source/Remote/Dropbox/LBDropboxFolderViewController.h; sourceTree = "<group>"; };
 		E7A5C1661EC9746400700156 /* LBDropboxFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDropboxFolderViewController.m; path = Source/Remote/Dropbox/LBDropboxFolderViewController.m; sourceTree = "<group>"; };
 		E7A5C1681EC976BC00700156 /* LBRemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBRemoteFile.h; path = Source/Remote/LBRemoteFile.h; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 			children = (
 				E7623E491F25B6AC00D003F2 /* LBAddToAlbumViewController.h */,
 				E7623E4A1F25B6AC00D003F2 /* LBAddToAlbumViewController.m */,
+				E79FB5E51F26923100067543 /* LBNewAlbumViewController.h */,
+				E79FB5E61F26923100067543 /* LBNewAlbumViewController.m */,
 			);
 			name = "Editing New";
 			sourceTree = "<group>";
@@ -1210,6 +1215,7 @@
 				E73A65DA1EBB73A0004181DB /* AppDelegate.m in Sources */,
 				E772C35D1ED7421A008BD303 /* LBMusicCollectionViewCell.m in Sources */,
 				E709E8A61EEB44410035FC49 /* NSString+Levenshtein.m in Sources */,
+				E79FB5E71F26923100067543 /* LBNewAlbumViewController.m in Sources */,
 				E73530CD1F1A4B8E00BE2EDB /* LBBoxFolderViewController.m in Sources */,
 				E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */,
 				E755D22E1EDCA41700A78097 /* LBAlbumDetailNavigationBarTitleView.m in Sources */,

@@ -22,6 +22,7 @@
 #import "UIImage+Functions.h"
 #import <objc/runtime.h>
 #import "LBAddToAlbumViewController.h"
+#import "LBNewAlbumViewController.h"
 @import BoxContentSDK;
 
 
@@ -601,7 +602,17 @@ typedef enum : NSUInteger {
             }]];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create new Album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"create new album for these!");
+                
+                NSArray* selected = self.tableView.indexPathsForSelectedRows;
+                NSMutableArray<Track*>* tracksForNewAlbum = [NSMutableArray arrayWithCapacity:selected.count];
+                for (NSIndexPath* path in selected) {
+                    Track* track = [self.displayItems objectAtIndex:path.row];
+                    [tracksForNewAlbum addObject:track];
+                }
+                
+                LBNewAlbumViewController* newAlbumVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewAlbumViewController"];
+                newAlbumVC.tracks = tracksForNewAlbum;
+                [self.navigationController pushViewController:newAlbumVC animated:YES];
             }]];
             
             actionSheet.view.tintColor = [UIColor blackColor];

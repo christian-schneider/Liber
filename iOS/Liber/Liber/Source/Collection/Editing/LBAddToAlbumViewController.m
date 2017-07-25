@@ -35,7 +35,7 @@
     self.searchBar.enablesReturnKeyAutomatically = NO;
     self.currentSearchString = @"";
     
-    self.tableView.
+
 }
 
 
@@ -43,6 +43,8 @@
     
     [super viewWillAppear:animated];
     [self updateDisplayItems];
+    
+    self.navigationController.hidesBarsOnSwipe = NO;
 }
 
 
