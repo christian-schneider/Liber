@@ -40,6 +40,7 @@ NSString* const LBCollectionShowAlbum           = @"LBCollectionShowAlbum";
     self.importer = [[LBImporter alloc] init];
     self.playQueue = [[LBPlayQueue alloc] init];
     self.downloadManager = [[LBDownloadManager alloc] init];
+    self.documentsManager = [[LBDocumentManager alloc] init];
     
     if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
         [UINavigationBar appearance].tintColor = [UIColor blackColor];

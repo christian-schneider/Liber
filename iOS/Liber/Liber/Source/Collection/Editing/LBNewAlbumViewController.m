@@ -6,7 +6,7 @@
 //
 
 #import "LBNewAlbumViewController.h"
-
+#import "UIViewController+InfoMessage.h"
 
 @interface LBNewAlbumViewController ()
 
@@ -76,6 +76,26 @@
 
 
 - (IBAction)create:(id)sender {
+    
+    NSString* albumTitle = [self.albumTitleLabel.text stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+    NSString* artistName = [self.artistNameLabel.text stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+    NSString* albumArtist = nil;
+    BOOL isCompilation = self.compilationSwitch.on;
+    if (isCompilation) {
+        albumArtist = artistName;
+    }
+    
+    if (albumTitle.length == 0) {
+        [self presentInformalAlertWithTitle:NSLocalizedString(@"Error", nil) andMessage:NSLocalizedString(@"Album title empty.", nil)];
+        return;
+    }
+    
+    if (artistName.length == 0) {
+        [self presentInformalAlertWithTitle:NSLocalizedString(@"Error", nil) andMessage:NSLocalizedString(@"Artist name empty.", nil)];
+        return;
+    }
+    
+    
     
     NSLog(@"create");
 }

@@ -19,6 +19,7 @@
 		E7201C531EDAF8B200A59BC7 /* ObjectiveDropboxOfficial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C32B8D1ECD02F30038048E /* ObjectiveDropboxOfficial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7221C791ED86CDD0002CE1A /* LBAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */; };
 		E7221C7F1ED888240002CE1A /* LBAlbumTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */; };
+		E72A947E1F278C4700626F9F /* LBDocumentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E72A947D1F278C4700626F9F /* LBDocumentManager.m */; };
 		E73502D31EDAC0CA0049DF5F /* LBPlayQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */; };
 		E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = E73502E61EDAC1450049DF5F /* Track+Functions.m */; };
 		E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73530A81F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m */; };
@@ -317,6 +318,8 @@
 		E7221C781ED86CDD0002CE1A /* LBAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumViewController.m; path = Source/Collection/LBAlbumViewController.m; sourceTree = "<group>"; };
 		E7221C7D1ED888240002CE1A /* LBAlbumTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBAlbumTrackTableViewCell.h; path = Source/Collection/LBAlbumTrackTableViewCell.h; sourceTree = "<group>"; };
 		E7221C7E1ED888240002CE1A /* LBAlbumTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBAlbumTrackTableViewCell.m; path = Source/Collection/LBAlbumTrackTableViewCell.m; sourceTree = "<group>"; };
+		E72A947C1F278C4600626F9F /* LBDocumentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBDocumentManager.h; path = Source/Core/LBDocumentManager.h; sourceTree = "<group>"; };
+		E72A947D1F278C4700626F9F /* LBDocumentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBDocumentManager.m; path = Source/Core/LBDocumentManager.m; sourceTree = "<group>"; };
 		E73502D11EDAC0CA0049DF5F /* LBPlayQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBPlayQueue.h; path = Source/Core/LBPlayQueue.h; sourceTree = "<group>"; };
 		E73502D21EDAC0CA0049DF5F /* LBPlayQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBPlayQueue.m; path = Source/Core/LBPlayQueue.m; sourceTree = "<group>"; };
 		E73502E51EDAC1450049DF5F /* Track+Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Track+Functions.h"; path = "Source/ManagedObjects/Track+Functions.h"; sourceTree = "<group>"; };
@@ -447,7 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				E77080871EEAD31B00009088 /* Playing */,
-				E77080861EEAD31000009088 /* Import */,
+				E77080861EEAD31000009088 /* Import & Maintenance */,
 				E77080851EEAD30200009088 /* Download */,
 			);
 			name = Core;
@@ -743,13 +746,15 @@
 			name = Download;
 			sourceTree = "<group>";
 		};
-		E77080861EEAD31000009088 /* Import */ = {
+		E77080861EEAD31000009088 /* Import & Maintenance */ = {
 			isa = PBXGroup;
 			children = (
 				E7C32B301ECCE55C0038048E /* LBImporter.h */,
 				E7C32B311ECCE55C0038048E /* LBImporter.mm */,
+				E72A947C1F278C4600626F9F /* LBDocumentManager.h */,
+				E72A947D1F278C4700626F9F /* LBDocumentManager.m */,
 			);
-			name = Import;
+			name = "Import & Maintenance";
 			sourceTree = "<group>";
 		};
 		E77080871EEAD31B00009088 /* Playing */ = {
@@ -1206,6 +1211,7 @@
 				E73530A91F1A2CDF00BE2EDB /* LBRemoteFolderViewController.m in Sources */,
 				E7483B7B1EE55C30004A72FB /* LBDownloadsViewController.m in Sources */,
 				E73530CA1F1A45F500BE2EDB /* UILabel+Boldify.m in Sources */,
+				E72A947E1F278C4700626F9F /* LBDocumentManager.m in Sources */,
 				E7A5C16D1EC976CF00700156 /* LBRemoteFolder.m in Sources */,
 				E73502E71EDAC1450049DF5F /* Track+Functions.m in Sources */,
 				E71F54261ECBA711006D265D /* LBFilePlayer.m in Sources */,

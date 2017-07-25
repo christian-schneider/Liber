@@ -10,6 +10,7 @@
 #import "LBImporter.h"
 #import "LBPlayQueue.h"
 #import "LBDownloadManager.h"
+#import "LBDocumentManager.h"
 
 
 extern NSString* const LBMusicItemAddedToCollection;
@@ -37,6 +38,7 @@ extern NSString* const LBCollectionShowAlbum;
 @property (nonatomic, strong) LBPlayQueue* playQueue;
 @property (nonatomic, strong) LBImporter* importer;
 @property (nonatomic, strong) LBDownloadManager* downloadManager;
+@property (nonatomic, strong) LBDocumentManager* documentsManager;
 
 
 @end
